@@ -52,7 +52,6 @@ if has("win32") || has("win16")
     set guifont=Consolas:h12:cANSI
     set csprg=C:\Program\ Files\ -\ Portable\cscope157a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
-    set undodir=C:/temp/vim_backup//
     " silent execute '!del "c:\temp\vim_backup\*~"'
 
     " cd shortcuts
@@ -61,7 +60,6 @@ if has("win32") || has("win16")
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
-    set undodir=~/.vim/backup//
     " silent execute '!rm "~/.vim/backup/*~"'
 endif
 
@@ -80,7 +78,9 @@ set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
-set relativenumber
+if version >= 703
+    set relativenumber
+endif
 set encoding=utf-8
 set list
 set listchars=tab:▸\ 
