@@ -51,8 +51,7 @@ endif
 if has("win32") || has("win16")
     set guifont=Consolas:h12:cANSI
     set csprg=C:\Program\ Files\ -\ Portable\cscope157a\cscope.exe
-    set backupdir=C:/temp/vim_backup//
-    set directory=C:/temp/vim_backup//
+    let vimfilesdir = "C:/temp/vim_backup//"
     set undodir=C:/temp/vim_backup//
     " silent execute '!del "c:\temp\vim_backup\*~"'
 
@@ -61,8 +60,7 @@ if has("win32") || has("win16")
     nnoremap @web   :cd C:\projects\WEBGUI_5K\web\modules\<CR>
 else
     set guifont=Inconsolata\ 12
-    set backupdir=~/.vim/backup//
-    set directory=~/.vim/backup//
+    let vimfilesdir = "~/.vim/backup//"
     set undodir=~/.vim/backup//
     " silent execute '!rm "~/.vim/backup/*~"'
 endif
@@ -76,7 +74,6 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set scrolloff=3
-set undofile
 set clipboard=unnamed
 set autoindent
 set nowrapscan
@@ -89,8 +86,16 @@ set list
 set listchars=tab:▸\ 
 set listchars+=trail:·
 set autoread
+
+" backups and such
 set nobackup
 set nowritebackup
+execute "set backupdir=".vimfilesdir
+execute "set directory=".vimfilesdir
+if version >= 703
+    execute "set undodir=".vimfilesdir
+    set undofile
+endif
 
 " searching
 nnoremap / /\v
