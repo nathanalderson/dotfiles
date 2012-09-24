@@ -33,4 +33,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+# gnome-terminal and mate-terminal support 256 colors
+if [[ ("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') ]] then
+  export TERM="xterm-256color"
+fi
