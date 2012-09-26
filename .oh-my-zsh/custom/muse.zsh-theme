@@ -16,6 +16,7 @@ GIT_PROMPT_INFO=$fg[green]
 PROMPT='%{$PROMPT_SUCCESS_COLOR%}%~%{$reset_color%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}%{$PROMPT_PROMPT%}»%{$reset_color%} '
 
 #RPS1="${return_code}"
+MODE_INDICATOR="%{$fg[blue]%}-- NORMAL --%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%})"
