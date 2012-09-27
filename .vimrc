@@ -1,11 +1,14 @@
 set nocompatible
-filetype off    " required for vundle (enabled later)
 
-set rtp+=~/.vim/bundle/vundle/
+"vundle stuff
+filetype off
+if has("win32") || has("win16")
+    let vundle_path = "C:/Program\\ Files\\ -\\ Portable/Vim/vimfiles/bundle/vundle"
+else
+    let vundle_path = "~/.vim/bundle/vundle"
+endif
+execute "set rtp+=".vundle_path
 call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
