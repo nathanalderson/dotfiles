@@ -1,10 +1,34 @@
 set nocompatible
+filetype off    " required for vundle (enabled later)
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'godlygeek/tabular.git'
+Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'tpope/vim-repeat.git'
+Bundle 'tpope/vim-unimpaired.git'
+Bundle 'tpope/vim-commentary.git'
+Bundle 'tpope/vim-surround.git'
+Bundle 'chriskempson/vim-tomorrow-theme.git'
+" vim-scripts repos
+" note: perforce.vim has trouble. May need to convert line endings after
+" downloading
+Bundle 'perforce.vim'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-"Pathogen
-call pathogen#infect()
 filetype plugin indent on
 
 set diffexpr=MyDiff()
@@ -40,9 +64,6 @@ if has("gui_running")
     set nowrap
     set guioptions-=T  "remove toolbar
 
-    " command-T
-    nnoremap <silent> <leader>g :CommandTTag<CR>
-    let g:CommandTMatchWindowReverse=1
 else
     " do terminal-only stuff
     colorscheme default
@@ -144,6 +165,9 @@ vmap <Leader>a\| :Tabularize /\|<CR>
 
 " Command-T
 let g:CommandTMaxFiles=50000
+let g:CommandTMatchWindowReverse=1
+let g:CommandTCancelMap=['<ESC>','<C-c>']   "doesn't work in zsh by default?
+nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " perforce integration
 nnoremap @p4e :!p4 edit %:e

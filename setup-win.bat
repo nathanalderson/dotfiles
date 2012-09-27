@@ -11,3 +11,7 @@ move %vimdir%\vimfiles\autoload\pathogen.vim %vimdir%\vimfiles\autoload\pathogen
 REM hard-link to new files
 MKLINK /H %vimdir%\_vimrc .vimrc
 MKLINK /H %vimdir%\vimfiles\autoload\pathogen.vim .vim\autoload\pathogen.vim
+
+REM install Vundle
+git clone https://github.com/gmarik/vundle.git %vimdir\vimfiles\bundle\vundle
+vim +BundleInstall +qall
