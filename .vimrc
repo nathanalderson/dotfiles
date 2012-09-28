@@ -21,10 +21,8 @@ Bundle 'tpope/vim-unimpaired.git'
 Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
+Bundle 'nathanalderson/perforce.vim.git'
 " vim-scripts repos
-" note: perforce.vim has trouble. May need to convert line endings after
-" downloading
-Bundle 'perforce.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
