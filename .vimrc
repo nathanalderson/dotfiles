@@ -22,6 +22,8 @@ Bundle 'tpope/vim-commentary.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'nathanalderson/perforce.vim.git'
+Bundle 'pangloss/vim-javascript'
+Bundle 'ervandew/supertab'
 " vim-scripts repos
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
