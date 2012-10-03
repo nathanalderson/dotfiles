@@ -24,6 +24,7 @@ Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'nathanalderson/perforce.vim.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
+Bundle 'mileszs/ack.vim'
 " vim-scripts repos
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
