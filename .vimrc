@@ -110,6 +110,7 @@ set list
 set listchars=tab:▸\ 
 set listchars+=trail:·
 set autoread
+set textwidth=100
 
 " backups and such
 set nobackup
