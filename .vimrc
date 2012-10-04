@@ -62,10 +62,8 @@ endfunction
 
 if has("gui_running")
     " do GUI-only stuff
-    set cursorline
     set lines=50
     set columns=200
-    set nowrap
     set guioptions-=T  "remove toolbar
 
 else
@@ -111,7 +109,10 @@ set list
 set listchars=tab:▸\ 
 set listchars+=trail:·
 set autoread
+set nowrap
 set textwidth=100
+set formatoptions-=t
+set cursorline
 
 " backups and such
 set nobackup
