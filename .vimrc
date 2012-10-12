@@ -133,6 +133,7 @@ set gdefault
 set nohlsearch
 
 " random custom mappings
+inoremap jj <ESC>
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
@@ -161,8 +162,8 @@ nmap <Leader>a{ :Tabularize /{<CR>
 vmap <Leader>a{ :Tabularize /{<CR>
 nmap <Leader>a: :Tabularize /:<CR>
 vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a, :Tabularize /,<CR>
-vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a, :Tabularize /,/l0l1<CR>
+vmap <Leader>a, :Tabularize /,/l0l1<CR>
 nmap <Leader>a> :Tabularize /=><CR>
 vmap <Leader>a> :Tabularize /=><CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
