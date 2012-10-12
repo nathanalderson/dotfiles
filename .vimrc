@@ -62,10 +62,8 @@ endfunction
 
 if has("gui_running")
     " do GUI-only stuff
-    set cursorline
     set lines=50
     set columns=200
-    set nowrap
     set guioptions-=T  "remove toolbar
 
 else
@@ -103,6 +101,7 @@ set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
+set wildignore+=*.pyc
 if version >= 703
     set relativenumber
 endif
@@ -111,7 +110,10 @@ set list
 set listchars=tab:▸\ 
 set listchars+=trail:·
 set autoread
+set nowrap
 set textwidth=100
+set formatoptions-=t
+set cursorline
 
 " backups and such
 set nobackup
@@ -177,6 +179,10 @@ nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " perforce integration
 nnoremap @p4e :!p4 edit %:e
+
+" additional extensions
+au BufNewFile,BufRead *.less set filetype=css
+au BufNewFile,BufRead *.bps set filetype=tcl
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
