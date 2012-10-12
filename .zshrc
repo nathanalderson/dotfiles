@@ -35,6 +35,6 @@ plugins=(git vi-mode django)
 source $ZSH/oh-my-zsh.sh
 
 # gnome-terminal and mate-terminal support 256 colors
-if [[ ("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '') ]] then
-  export TERM="xterm-256color"
+if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
+  export TERM=$TERM-256color
 fi
