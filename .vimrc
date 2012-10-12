@@ -101,6 +101,7 @@ set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
+set wildignore+=*.pyc
 if version >= 703
     set relativenumber
 endif
@@ -177,6 +178,10 @@ nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " perforce integration
 nnoremap @p4e :!p4 edit %:e
+
+" additional extensions
+au BufNewFile,BufRead *.less set filetype=css
+au BufNewFile,BufRead *.bps set filetype=tcl
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
