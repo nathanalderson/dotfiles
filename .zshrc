@@ -38,3 +38,6 @@ source $ZSH/oh-my-zsh.sh
 if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
   export TERM=$TERM-256color
 fi
+
+# Sharing history among sessions is annoying to me
+unsetopt share_history
