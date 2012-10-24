@@ -74,7 +74,7 @@ else
 endif 
 
 if has("win32") || has("win16")
-    set guifont=Consolas:h12:cANSI
+    set guifont=Inconsolata:h12:cANSI
     set csprg=C:\Program\ Files\ -\ Portable\cscope157a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
     " silent execute '!del "c:\temp\vim_backup\*~"'
