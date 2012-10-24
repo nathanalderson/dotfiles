@@ -119,6 +119,8 @@ set nowrap
 set textwidth=100
 set formatoptions-=t
 set cursorline
+command W w
+command Q q
 
 " backups and such
 set nobackup
