@@ -64,8 +64,8 @@ endfunction
 
 if has("gui_running")
     " do GUI-only stuff
-    set lines=50
-    set columns=200
+    set lines=35
+    set columns=130
     set guioptions-=T  "remove toolbar
 
 else
@@ -82,6 +82,9 @@ if has("win32") || has("win16")
     " cd shortcuts
     nnoremap @frodo :cd C:\p4workspace\Frodo\tree\source\<CR>
     nnoremap @web   :cd C:\projects\WEBGUI_5K\web\modules\<CR>
+
+    " maximize the window
+    command MaximizeWindow simalt ~x
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
