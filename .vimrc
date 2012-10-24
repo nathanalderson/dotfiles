@@ -199,7 +199,6 @@ nnoremap <silent> <leader>g :CommandTTag<CR>
 nnoremap @p4e :!p4 edit %:e
 
 " additional extensions
-au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.bps set filetype=tcl
 au BufNewFile,BufRead *.jsonp set filetype=javascript
 
