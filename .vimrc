@@ -118,7 +118,11 @@ set autoread
 set nowrap
 set textwidth=100
 set formatoptions-=t
-set cursorline
+if &t_Co >= 256
+    set cursorline
+else
+    set nocursorline
+endif
 command W w
 command Q q
 
