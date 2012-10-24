@@ -173,10 +173,19 @@ nmap <Leader>a: :Tabularize /:<CR>
 vmap <Leader>a: :Tabularize /:<CR>
 nmap <Leader>a, :Tabularize /,/l0l1<CR>
 vmap <Leader>a, :Tabularize /,/l0l1<CR>
-nmap <Leader>a> :Tabularize /=><CR>
-vmap <Leader>a> :Tabularize /=><CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
+" Tabularize (first match only)
+nmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
+vmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
+nmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
+vmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
+nmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
+vmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
+nmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
+vmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
+nmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
+vmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
 
 " Command-T
 let g:CommandTMaxFiles=50000
