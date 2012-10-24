@@ -27,7 +27,9 @@ Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
+Bundle 'hced/bufkill-vim'
 " vim-scripts repos
+Bundle 'python.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -64,8 +66,8 @@ endfunction
 
 if has("gui_running")
     " do GUI-only stuff
-    set lines=50
-    set columns=200
+    set lines=35
+    set columns=130
     set guioptions-=T  "remove toolbar
 
 else
@@ -74,7 +76,7 @@ else
 endif 
 
 if has("win32") || has("win16")
-    set guifont=Consolas:h12:cANSI
+    set guifont=Inconsolata:h12:cANSI
     set csprg=C:\Program\ Files\ -\ Portable\cscope157a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
     " silent execute '!del "c:\temp\vim_backup\*~"'
@@ -82,6 +84,9 @@ if has("win32") || has("win16")
     " cd shortcuts
     nnoremap @frodo :cd C:\p4workspace\Frodo\tree\source\<CR>
     nnoremap @web   :cd C:\projects\WEBGUI_5K\web\modules\<CR>
+
+    " maximize the window
+    command MaximizeWindow simalt ~x
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
@@ -116,6 +121,8 @@ set nowrap
 set textwidth=100
 set formatoptions-=t
 set cursorline
+command W w
+command Q q
 
 " backups and such
 set nobackup
@@ -194,6 +201,7 @@ nnoremap @p4e :!p4 edit %:e
 " additional extensions
 au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.bps set filetype=tcl
+au BufNewFile,BufRead *.jsonp set filetype=javascript
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
