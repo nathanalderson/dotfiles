@@ -11,6 +11,7 @@ ZSH_THEME="muse"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias rs="python manage.py runserver 0.0.0.0:8000"
+alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings --pythonpath=adtran_tests"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"

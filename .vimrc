@@ -25,6 +25,8 @@ Bundle 'nathanalderson/perforce.vim.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
+Bundle 'JDeuce/jinja-syntax'
+Bundle 'groenewege/vim-less'
 Bundle 'hced/bufkill-vim'
 " vim-scripts repos
 Bundle 'python.vim'
@@ -201,7 +203,6 @@ nnoremap <silent> <leader>g :CommandTTag<CR>
 nnoremap @p4e :!p4 edit %:e
 
 " additional extensions
-au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.bps set filetype=tcl
 au BufNewFile,BufRead *.jsonp set filetype=javascript
 
