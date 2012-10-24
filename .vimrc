@@ -25,7 +25,9 @@ Bundle 'nathanalderson/perforce.vim.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
+Bundle 'hced/bufkill-vim'
 " vim-scripts repos
+Bundle 'python.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
