@@ -1,3 +1,4 @@
+@echo off
 set vimdir="C:\Program Files - Portable\Vim"
 
 REM delete backup files
