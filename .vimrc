@@ -82,8 +82,8 @@ if has("win32") || has("win16")
     " silent execute '!del "c:\temp\vim_backup\*~"'
 
     " cd shortcuts
-    nnoremap @frodo :cd C:\p4workspace\Frodo\tree\source\<CR>
-    nnoremap @web   :cd C:\projects\WEBGUI_5K\web\modules\<CR>
+    nnoremap @taml  :cd C:\p4workspace\TAMainline\tree\source\<CR>
+    nnoremap @web   :cd web\modules\<CR>
 
     " maximize the window
     command MaximizeWindow simalt ~x
