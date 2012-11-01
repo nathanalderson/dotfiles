@@ -31,7 +31,7 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode django)
+plugins=(git django)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -42,3 +42,6 @@ fi
 
 # Sharing history among sessions is annoying to me
 unsetopt share_history
+
+# Autocorrect seems more annoying than helpful...
+unsetopt correct_all
