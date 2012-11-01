@@ -28,6 +28,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'hced/bufkill-vim'
+Bundle 'chriskempson/base16-vim'
 " vim-scripts repos
 Bundle 'python.vim'
 " non github repos
@@ -94,7 +95,7 @@ else
 endif
 
 " basic usability
-colorscheme Tomorrow-Night
+colorscheme base16-monokai
 set modelines=0
 set hidden
 set ts=4
@@ -120,7 +121,7 @@ set autoread
 set nowrap
 set textwidth=100
 set formatoptions-=t
-if &t_Co >= 256
+if &t_Co >= 256 || has("gui_running")
     set cursorline
 else
     set nocursorline
@@ -162,6 +163,7 @@ nnoremap <leader>h :cd %:p:h<CR>
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>- <C-w>s<C-w>j
 
 "insert mode custom keymapping
 :inoremap  
