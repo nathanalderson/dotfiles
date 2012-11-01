@@ -31,6 +31,7 @@ Bundle 'hced/bufkill-vim'
 Bundle 'chriskempson/base16-vim'
 " vim-scripts repos
 Bundle 'python.vim'
+Bundle 'CSApprox'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -41,7 +42,7 @@ behave mswin
 filetype plugin indent on
 
 set diffexpr=MyDiff()
-function MyDiff()
+function! MyDiff()
   let opt = '-a --binary '
   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
@@ -70,11 +71,9 @@ if has("gui_running")
     set lines=35
     set columns=130
     set guioptions-=T  "remove toolbar
-
 else
     " do terminal-only stuff
-    colorscheme default
-endif 
+endif
 
 if has("win32") || has("win16")
     set guifont=Inconsolata:h12:cANSI
@@ -87,15 +86,22 @@ if has("win32") || has("win16")
     nnoremap @web   :cd web\modules\<CR>
 
     " maximize the window
-    command MaximizeWindow simalt ~x
+    command! MaximizeWindow simalt ~x
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
     " silent execute '!rm "~/.vim/backup/*~"'
 endif
 
+" colors
+set background=dark
+if has("gui_running")
+    colorscheme base16-monokai
+else
+    colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
+endif
+
 " basic usability
-colorscheme base16-monokai
 set modelines=0
 set hidden
 set ts=4
@@ -126,8 +132,8 @@ if &t_Co >= 256 || has("gui_running")
 else
     set nocursorline
 endif
-command W w
-command Q q
+command! W w
+command! Q q
 
 " backups and such
 set nobackup
