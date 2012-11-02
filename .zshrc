@@ -45,8 +45,3 @@ unsetopt share_history
 
 # Autocorrect seems more annoying than helpful...
 unsetopt correct_all
-
-# Perforce setup
-export P4CLIENT=nalderso_linux
-export P4PORT=p4-cn-srv.adtran.com:1666
-export P4USER=nalderso

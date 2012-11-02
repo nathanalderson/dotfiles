@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files=".vimrc .vim/autoload/pathogen.vim .zshrc .oh-my-zsh/custom .tmux.conf"    # list of files/folders to symlink in homedir
+files=".vimrc .zshrc .oh-my-zsh/custom .tmux.conf .pam_environment"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -28,7 +28,12 @@ echo "Installing Vundle..."
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 vim +BundleInstall +qall
 
+# create vim backup directory
+mkdir ~/.vim/backup
+
 # make command-t
+# note, probably need to install something like:
+# sudo apt-get install ruby ruby-dev build-essential
 echo "Building command-t"
 cd ~/.vim/bundle/command-t/ruby/command-t
 ruby extconf.rb
