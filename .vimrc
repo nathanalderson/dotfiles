@@ -81,9 +81,7 @@ if has("win32") || has("win16")
     let vimfilesdir = "C:/temp/vim_backup//"
     " silent execute '!del "c:\temp\vim_backup\*~"'
 
-    " cd shortcuts
-    nnoremap @taml  :cd C:\p4workspace\TAMainline\tree\source\<CR>
-    nnoremap @web   :cd web\modules\<CR>
+    let s:p4root = "C:\\p4workspace\\"
 
     " maximize the window
     command! MaximizeWindow simalt ~x
@@ -189,17 +187,19 @@ nmap <Leader>a, :Tabularize /,/l0l1<CR>
 vmap <Leader>a, :Tabularize /,/l0l1<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
+vmap <Leader>aw :Tabularize /\v\S+/l1l0<CR>
 " Tabularize (first match only)
-nmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
-vmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
-nmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
-vmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
-nmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
-vmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
-nmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
-vmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
-nmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
-vmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
+nmap <Leader>a1= :Tabularize /\v^.\{-}\zs=<CR>
+vmap <Leader>a1= :Tabularize /\v^.\{-}\zs=<CR>
+nmap <Leader>a1{ :Tabularize /\v^.\{-}\zs{<CR>
+vmap <Leader>a1{ :Tabularize /\v^.\{-}\zs{<CR>
+nmap <Leader>a1: :Tabularize /\v^.\{-}\zs:<CR>
+vmap <Leader>a1: :Tabularize /\v^.\{-}\zs:<CR>
+nmap <Leader>a1, :Tabularize /\v^.\{-}\zs,/l0l1<CR>
+vmap <Leader>a1, :Tabularize /\v^.\{-}\zs,/l0l1<CR>
+nmap <Leader>a1\| :Tabularize /\v^.\{-}\zs\|<CR>
+vmap <Leader>a1\| :Tabularize /\v^.\{-}\zs\|<CR>
+vmap <Leader>a1w :Tabularize /\v^.\{-}\zs\S+/l1l0<CR>
 
 " Command-T
 let g:CommandTMaxFiles=50000
@@ -213,6 +213,30 @@ nnoremap @p4e :!p4 edit %:e
 " additional extensions
 au BufNewFile,BufRead *.bps set filetype=tcl
 au BufNewFile,BufRead *.jsonp set filetype=javascript
+au BufNewFile,BufRead *.rmd set filetype=cpp
+
+" CScope
+set cscopetag                           " CTRL-] uses cscope and tags file
+set csto=0                              " check cscope first, then tags file
+set cscopequickfix=s-,c-,d-,i-,t-,e-    " use quickfix list
+set cspc=0                              " show full path
+nmap <leader>ss mT:cs find s <C-R>=expand("<cword>")<CR><CR>'T:cope<CR>
+nmap <leader>s  :cs find s 
+nmap <F4> :cn<CR>
+nmap <F3> :cp<CR>
+
+" Manage different projects
+function! OpenProject(path)
+    cd `=a:path`
+    set nocsverb
+    cs add .
+    cs add ..
+    cs add ../..
+    set csverb
+endfunction
+command! Taml call OpenProject(s:p4root."tacore\\TAMainline\\tree\\source\\")
+command! SR63 call OpenProject(s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\")
+command! Web  call OpenProject("web\\modules") " run this one after switching to a branch
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
