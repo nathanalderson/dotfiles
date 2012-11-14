@@ -101,13 +101,18 @@ else
     colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
 endif
 
+" tabs
+function! SetTabWidth(size)
+    execute "set ts=".a:size
+    execute "set shiftwidth=".a:size
+    execute "set softtabstop=".a:size
+    set expandtab
+endfunction
+call SetTabWidth(4)
+
 " basic usability
 set modelines=0
 set hidden
-set ts=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
 set scrolloff=3
 set clipboard=unnamed
 set autoindent
