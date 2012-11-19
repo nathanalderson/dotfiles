@@ -18,7 +18,7 @@ Bundle 'godlygeek/tabular.git'
 Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-unimpaired.git'
-Bundle 'tpope/vim-commentary.git'
+Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'nathanalderson/perforce.vim.git'
@@ -66,7 +66,7 @@ function! MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-if has("gui_running")
+if has("gui_running") && &lines < 35
     " do GUI-only stuff
     set lines=35
     set columns=130
@@ -118,7 +118,7 @@ set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
-set wildignore+=*.pyc
+set wildignore+=*.pyc,*.o,*.obj.,*.d,.git
 if version >= 703
     set relativenumber
 endif
@@ -219,6 +219,9 @@ nnoremap @p4e :!p4 edit %:e
 au BufNewFile,BufRead *.bps set filetype=tcl
 au BufNewFile,BufRead *.jsonp set filetype=javascript
 au BufNewFile,BufRead *.rmd set filetype=cpp
+
+" Comments
+let NERDSpaceDelims=1
 
 " CScope
 set cscopetag                           " CTRL-] uses cscope and tags file
