@@ -175,11 +175,11 @@ nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
 
 "insert mode custom keymapping
-:inoremap  
-:inoremap  
-:inoremap  
-:inoremap  
-:inoremap <C-BS> 
+:inoremap <C-]> <C-X><C-]>
+:inoremap <C-F> <C-X><C-F>
+:inoremap <C-D> <C-X><C-D>
+:inoremap <C-L> <C-X><C-L>
+:inoremap <C-BS> <C-W>
 
 " Tabularize
 nmap <Leader>a= :Tabularize /=<CR>
@@ -220,6 +220,9 @@ au BufNewFile,BufRead *.bps set filetype=tcl
 au BufNewFile,BufRead *.jsonp set filetype=javascript
 au BufNewFile,BufRead *.rmd set filetype=cpp
 
+" Ignore timestamp lines in Google Test output
+let &errorformat = '%-G%.%#[Timestamp ]%.%#' . ',' . &efm
+
 " Comments
 let NERDSpaceDelims=1
 
@@ -234,17 +237,38 @@ nmap <F4> :cn<CR>
 nmap <F3> :cp<CR>
 
 " Manage different projects
-function! OpenProject(path)
-    cd `=a:path`
+let s:projects = {
+    \   'taml':          { 'path': s:p4root."tacore\\TAMainline\\tree\\source\\"
+    \                    , 'type': 'tacore' }
+    \ , 'sr63':          { 'path': s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\"
+    \                    , 'type': 'tacore' }
+    \ , 'flash_manager': { 'path': s:p4root."team\\anostos\\flash_manager\\main\\"
+    \                    , 'type': 'package' }
+    \ }
+function! OpenProject(project)
+    let s:current_project = a:project
+    cd `=s:projects[s:current_project]['path']`
     set nocsverb
     cs add .
     cs add ..
     cs add ../..
     set csverb
 endfunction
-command! Taml call OpenProject(s:p4root."tacore\\TAMainline\\tree\\source\\")
-command! SR63 call OpenProject(s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\")
-command! Web  call OpenProject("web\\modules") " run this one after switching to a branch
+command! -complete=customlist,ListProjects -nargs=1 Project call OpenProject(<f-args>)
+function! ListProjects(A,L,P)
+    return keys(s:projects)
+endfunction
+
+function! Make()
+    if s:projects[s:current_project]['type'] == 'package'
+        cd linux
+        make -j all
+        cd ..
+    endif
+endfunction
+command! Make call Make()
+
+command! Web  cd web/modules
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
