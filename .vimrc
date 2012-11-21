@@ -167,8 +167,10 @@ nnoremap <C-h> ^
 nnoremap <C-l> $
 nnoremap <leader>. @:
 nnoremap <F8> :set nohlsearch!<CR>
-" nnoremap <C-S-w> :0,bd<CR>
+nnoremap <C-S-W> :0,bd<CR>
 nnoremap <leader>h :cd %:p:h<CR>
+nmap <F4> :cn<CR>
+nmap <F3> :cp<CR>
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
@@ -233,8 +235,6 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-    " use quickfix list
 set cspc=0                              " show full path
 nmap <leader>ss mT:cs find s <C-R>=expand("<cword>")<CR><CR>'T:cope<CR>
 nmap <leader>s  :cs find s 
-nmap <F4> :cn<CR>
-nmap <F3> :cp<CR>
 
 " Manage different projects
 let s:projects = {
