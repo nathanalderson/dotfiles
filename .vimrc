@@ -118,7 +118,7 @@ set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
-set wildignore+=*.pyc,*.o,*.obj.,*.d,.git
+set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda
 if version >= 703
     set relativenumber
 endif
