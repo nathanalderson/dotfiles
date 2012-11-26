@@ -212,6 +212,8 @@ vmap <Leader>a1w :Tabularize /\v^.\{-}\zs\S+/l1l0<CR>
 let g:CommandTMaxFiles=50000
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap=['<ESC>','<C-c>']   "doesn't work in zsh by default?
+let g:CommandTDelayUpdate=1
+set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " perforce integration
