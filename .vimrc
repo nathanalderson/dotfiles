@@ -167,7 +167,7 @@ nnoremap <C-h> ^
 nnoremap <C-l> $
 nnoremap <leader>. @:
 nnoremap <F8> :set nohlsearch!<CR>
-nnoremap <C-S-W> :0,bd<CR>
+" nnoremap <S-C-W> :0,bd<CR>
 nnoremap <leader>h :cd %:p:h<CR>
 nmap <F4> :cn<CR>
 nmap <F3> :cp<CR>
