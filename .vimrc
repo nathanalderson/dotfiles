@@ -27,8 +27,16 @@ Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
-Bundle 'hced/bufkill-vim'
+Bundle 'muchzill4/bufkill.vim'
 Bundle 'chriskempson/base16-vim'
+Bundle 'kana/vim-textobj-function'
+Bundle 'kana/vim-textobj-indent'
+Bundle 'kana/vim-textobj-line'
+Bundle 'kana/vim-textobj-syntax'
+Bundle 'kana/vim-textobj-lastpat'
+Bundle 'kana/vim-textobj-django-template'
+Bundle 'lucapette/vim-textobj-underscore'
+Bundle 'kana/vim-textobj-user'
 " vim-scripts repos
 Bundle 'python.vim'
 Bundle 'CSApprox'
@@ -212,7 +220,8 @@ vmap <Leader>a1w :Tabularize /\v^.\{-}\zs\S+/l1l0<CR>
 let g:CommandTMaxFiles=50000
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap=['<ESC>','<C-c>']   "doesn't work in zsh by default?
-let g:CommandTDelayUpdate=1
+let g:CommandTDelayUpdate=0
+let g:BufKillBindings=1     "skip bufkill bindings which interfere with Command-T
 set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
 
