@@ -96,6 +96,7 @@ if has("win32") || has("win16")
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
+    let s:p4root = "/home/nalderso/p4workspace"
     " silent execute '!rm "~/.vim/backup/*~"'
 endif
 
