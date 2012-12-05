@@ -8,7 +8,7 @@ else
     let vundle_path = "~/.vim/bundle/vundle"
 endif
 execute "set rtp+=".vundle_path
-call vundle#rc()
+call vundle#rc(vundle_path)
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
