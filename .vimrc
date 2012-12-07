@@ -39,7 +39,9 @@ Bundle 'lucapette/vim-textobj-underscore'
 Bundle 'kana/vim-textobj-user'
 Bundle 'sorin-ionescu/python.vim'
 " vim-scripts repos
-Bundle 'CSApprox'
+if &t_Co >= 256 || has("gui_running")
+    Bundle 'CSApprox'
+endif
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
