@@ -40,6 +40,7 @@ Bundle 'kana/vim-textobj-user'
 " vim-scripts repos
 Bundle 'python.vim'
 Bundle 'CSApprox'
+Bundle 'VimClojure'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
