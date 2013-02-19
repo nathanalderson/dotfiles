@@ -105,7 +105,7 @@ endif
 " colors
 set background=dark
 if has("gui_running")
-    colorscheme base16-monokai
+    colorscheme base16-ocean
 else
     colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
 endif
@@ -162,6 +162,7 @@ endif
 " searching
 nnoremap / /\v
 vnoremap / /\v
+cnoremap s/ s/\v
 nnoremap <leader><space> :noh<cr>
 set ignorecase
 set smartcase
@@ -170,6 +171,7 @@ set nohlsearch
 
 " random custom mappings
 inoremap jj <ESC>
+inoremap jk <ESC>
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
@@ -250,13 +252,24 @@ set cspc=0                              " show full path
 nmap <leader>ss mT:cs find s <C-R>=expand("<cword>")<CR><CR>'T:cope<CR>
 nmap <leader>s  :cs find s 
 
+" python.vim
+let python_highlight_all=1
+
 " Manage different projects
 let s:projects = {
     \   'taml':          { 'path': s:p4root."tacore\\TAMainline\\tree\\source\\"
     \                    , 'type': 'tacore' }
     \ , 'sr63':          { 'path': s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\"
     \                    , 'type': 'tacore' }
+    \ , 'diag':          { 'path': 'J:\addyess\CN-TAMainline\OSP_SR2.2.1\source\'
+    \                    , 'type': 'tacore' }
     \ , 'flash_manager': { 'path': s:p4root."team\\anostos\\flash_manager\\main\\"
+    \                    , 'type': 'package' }
+    \ , 'nd':            { 'path': s:p4root."team\\anostos\\ipv6_neighbor_discovery\\"
+    \                    , 'type': 'package' }
+    \ , 'ip_utilities':  { 'path': s:p4root."package\\ip_utilities\\main\\"
+    \                    , 'type': 'package' }
+    \ , 'adtran_io':     { 'path': s:p4root."package\\adtran_io\\main\\"
     \                    , 'type': 'package' }
     \ }
 function! OpenProject(project)
@@ -278,6 +291,7 @@ function! Make()
         cd linux
         make -j all
         cd ..
+        botright copen
     endif
 endfunction
 command! Make call Make()
