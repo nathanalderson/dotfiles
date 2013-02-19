@@ -3,12 +3,12 @@ set nocompatible
 "vundle stuff
 filetype off
 if has("win32") || has("win16")
-    let vundle_path = "C:/Program\\ Files\\ -\\ Portable/Vim/vimfiles/bundle/vundle"
+    let bundle_path = "C:/Program\\ Files\\ -\\ Portable/Vim/vimfiles/bundle"
 else
-    let vundle_path = "~/.vim/bundle/vundle"
+    let bundle_path = "~/.vim/bundle"
 endif
-execute "set rtp+=".vundle_path
-call vundle#rc()
+execute "set rtp+=".bundle_path.'/vundle'
+call vundle#rc(bundle_path)
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -37,9 +37,11 @@ Bundle 'kana/vim-textobj-lastpat'
 Bundle 'kana/vim-textobj-django-template'
 Bundle 'lucapette/vim-textobj-underscore'
 Bundle 'kana/vim-textobj-user'
+Bundle 'sorin-ionescu/python.vim'
 " vim-scripts repos
-Bundle 'python.vim'
-Bundle 'CSApprox'
+if &t_Co >= 256 || has("gui_running")
+    Bundle 'CSApprox'
+endif
 Bundle 'VimClojure'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
