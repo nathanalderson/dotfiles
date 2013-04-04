@@ -22,12 +22,12 @@ Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'nathanalderson/perforce.vim.git'
+Bundle 'nathanalderson/Command-T.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
-Bundle 'muchzill4/bufkill.vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'kana/vim-textobj-function'
 Bundle 'kana/vim-textobj-indent'
@@ -38,13 +38,14 @@ Bundle 'kana/vim-textobj-django-template'
 Bundle 'lucapette/vim-textobj-underscore'
 Bundle 'kana/vim-textobj-user'
 Bundle 'sorin-ionescu/python.vim'
+Bundle 'mattdbridges/bufkill.vim'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
 endif
 Bundle 'VimClojure'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -210,17 +211,17 @@ nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>aw :Tabularize /\v\S+/l1l0<CR>
 " Tabularize (first match only)
-nmap <Leader>a1= :Tabularize /\v^.\{-}\zs=<CR>
-vmap <Leader>a1= :Tabularize /\v^.\{-}\zs=<CR>
-nmap <Leader>a1{ :Tabularize /\v^.\{-}\zs{<CR>
-vmap <Leader>a1{ :Tabularize /\v^.\{-}\zs{<CR>
-nmap <Leader>a1: :Tabularize /\v^.\{-}\zs:<CR>
-vmap <Leader>a1: :Tabularize /\v^.\{-}\zs:<CR>
-nmap <Leader>a1, :Tabularize /\v^.\{-}\zs,/l0l1<CR>
-vmap <Leader>a1, :Tabularize /\v^.\{-}\zs,/l0l1<CR>
-nmap <Leader>a1\| :Tabularize /\v^.\{-}\zs\|<CR>
-vmap <Leader>a1\| :Tabularize /\v^.\{-}\zs\|<CR>
-vmap <Leader>a1w :Tabularize /\v^.\{-}\zs\S+/l1l0<CR>
+nmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
+vmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
+nmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
+vmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
+nmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
+vmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
+nmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
+vmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
+nmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
+vmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
+vmap <Leader>a1w :Tabularize /^.\{-}\zs\S+/l1l0<CR>
 
 " Command-T
 let g:CommandTMaxFiles=50000
@@ -230,6 +231,9 @@ let g:CommandTDelayUpdate=0
 let g:BufKillBindings=1     "skip bufkill bindings which interfere with Command-T
 set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
+
+" Turn off buffkill leader-key mappings which conflict with Command-T \b
+let g:BufKillCreateMappings=0
 
 " perforce integration
 nnoremap @p4e :!p4 edit %:e
