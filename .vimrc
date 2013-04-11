@@ -58,6 +58,7 @@ if has("gui_running") && &lines < 35
     set lines=35
     set columns=130
     set guioptions-=T  "remove toolbar
+    set guioptions+=c  "use non-modal confirm prompts
 else
     " do terminal-only stuff
 endif
@@ -185,6 +186,8 @@ vmap <Leader>a, :Tabularize /,/l0l1<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>aw :Tabularize /\v\S+/l1l0<CR>
+nmap <Leader>a/ :Tabularize /\/+<CR>
+vmap <Leader>a/ :Tabularize /\/+<CR>
 " Tabularize (first match only)
 nmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
 vmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
