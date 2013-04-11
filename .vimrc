@@ -244,11 +244,7 @@ let s:projects = {
     \                    , 'type': 'tacore' }
     \ , 'sr63':          { 'path': s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\"
     \                    , 'type': 'tacore' }
-    \ , 'diag':          { 'path': 'J:\addyess\CN-TAMainline\OSP_SR2.2.1\source\'
-    \                    , 'type': 'tacore' }
-    \ , 'flash_manager': { 'path': s:p4root."team\\anostos\\flash_manager\\main\\"
-    \                    , 'type': 'package' }
-    \ , 'nd':            { 'path': s:p4root."team\\anostos\\ipv6_neighbor_discovery\\"
+    \ , 'nd':            { 'path': s:p4root."package\\ipv6_neighbor_discovery\\main\\"
     \                    , 'type': 'package' }
     \ , 'ip_utilities':  { 'path': s:p4root."package\\ip_utilities\\main\\"
     \                    , 'type': 'package' }
@@ -263,6 +259,13 @@ function! OpenProject(project)
     cs add ..
     cs add ../..
     set csverb
+    let file_list = '../../cscope.files'
+    if s:projects[s:current_project]['type'] == 'tacore' && filereadable(file_list)
+        let g:CommandTListFile = file_list
+    else
+        let g:CommandTListFile = ''
+    endif
+    CommandTFlush
 endfunction
 command! -complete=customlist,ListProjects -nargs=1 Project call OpenProject(<f-args>)
 function! ListProjects(A,L,P)
