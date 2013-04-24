@@ -35,7 +35,7 @@ mkdir ~/.vim/backup
 # note, probably need to install something like:
 # sudo apt-get install ruby ruby-dev build-essential
 echo "Building command-t"
-cd ~/.vim/bundle/command-t/ruby/command-t
+cd ~/.vim/bundle/Command-T/ruby/command-t
 ruby extconf.rb
 make
 cd -
