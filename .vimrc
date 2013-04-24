@@ -22,12 +22,12 @@ Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'nathanalderson/perforce.vim.git'
+Bundle 'nathanalderson/Command-T.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
-Bundle 'muchzill4/bufkill.vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'kana/vim-textobj-function'
 Bundle 'kana/vim-textobj-indent'
@@ -38,13 +38,14 @@ Bundle 'kana/vim-textobj-django-template'
 Bundle 'lucapette/vim-textobj-underscore'
 Bundle 'kana/vim-textobj-user'
 Bundle 'sorin-ionescu/python.vim'
+Bundle 'mattdbridges/bufkill.vim'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
 endif
 Bundle 'VimClojure'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -52,36 +53,12 @@ behave mswin
 
 filetype plugin indent on
 
-set diffexpr=MyDiff()
-function! MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
 if has("gui_running") && &lines < 35
     " do GUI-only stuff
     set lines=35
     set columns=130
     set guioptions-=T  "remove toolbar
+    set guioptions+=c  "use non-modal confirm prompts
 else
     " do terminal-only stuff
 endif
@@ -209,18 +186,20 @@ vmap <Leader>a, :Tabularize /,/l0l1<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>aw :Tabularize /\v\S+/l1l0<CR>
+nmap <Leader>a/ :Tabularize /\/+<CR>
+vmap <Leader>a/ :Tabularize /\/+<CR>
 " Tabularize (first match only)
-nmap <Leader>a1= :Tabularize /\v^.\{-}\zs=<CR>
-vmap <Leader>a1= :Tabularize /\v^.\{-}\zs=<CR>
-nmap <Leader>a1{ :Tabularize /\v^.\{-}\zs{<CR>
-vmap <Leader>a1{ :Tabularize /\v^.\{-}\zs{<CR>
-nmap <Leader>a1: :Tabularize /\v^.\{-}\zs:<CR>
-vmap <Leader>a1: :Tabularize /\v^.\{-}\zs:<CR>
-nmap <Leader>a1, :Tabularize /\v^.\{-}\zs,/l0l1<CR>
-vmap <Leader>a1, :Tabularize /\v^.\{-}\zs,/l0l1<CR>
-nmap <Leader>a1\| :Tabularize /\v^.\{-}\zs\|<CR>
-vmap <Leader>a1\| :Tabularize /\v^.\{-}\zs\|<CR>
-vmap <Leader>a1w :Tabularize /\v^.\{-}\zs\S+/l1l0<CR>
+nmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
+vmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
+nmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
+vmap <Leader>a1{ :Tabularize /^.\{-}\zs{<CR>
+nmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
+vmap <Leader>a1: :Tabularize /^.\{-}\zs:<CR>
+nmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
+vmap <Leader>a1, :Tabularize /^.\{-}\zs,/l0l1<CR>
+nmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
+vmap <Leader>a1\| :Tabularize /^.\{-}\zs\|<CR>
+vmap <Leader>a1w :Tabularize /^.\{-}\zs\S+/l1l0<CR>
 
 " Command-T
 let g:CommandTMaxFiles=50000
@@ -230,6 +209,9 @@ let g:CommandTDelayUpdate=0
 let g:BufKillBindings=1     "skip bufkill bindings which interfere with Command-T
 set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
+
+" Turn off buffkill leader-key mappings which conflict with Command-T \b
+let g:BufKillCreateMappings=0
 
 " perforce integration
 nnoremap @p4e :!p4 edit %:e
@@ -262,11 +244,7 @@ let s:projects = {
     \                    , 'type': 'tacore' }
     \ , 'sr63':          { 'path': s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\"
     \                    , 'type': 'tacore' }
-    \ , 'diag':          { 'path': 'J:\addyess\CN-TAMainline\OSP_SR2.2.1\source\'
-    \                    , 'type': 'tacore' }
-    \ , 'flash_manager': { 'path': s:p4root."team\\anostos\\flash_manager\\main\\"
-    \                    , 'type': 'package' }
-    \ , 'nd':            { 'path': s:p4root."team\\anostos\\ipv6_neighbor_discovery\\"
+    \ , 'nd':            { 'path': s:p4root."package\\ipv6_neighbor_discovery\\main\\"
     \                    , 'type': 'package' }
     \ , 'ip_utilities':  { 'path': s:p4root."package\\ip_utilities\\main\\"
     \                    , 'type': 'package' }
@@ -281,6 +259,13 @@ function! OpenProject(project)
     cs add ..
     cs add ../..
     set csverb
+    let file_list = '../../cscope.files'
+    if s:projects[s:current_project]['type'] == 'tacore' && filereadable(file_list)
+        let g:CommandTListFile = file_list
+    else
+        let g:CommandTListFile = ''
+    endif
+    CommandTFlush
 endfunction
 command! -complete=customlist,ListProjects -nargs=1 Project call OpenProject(<f-args>)
 function! ListProjects(A,L,P)
