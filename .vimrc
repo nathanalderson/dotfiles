@@ -154,8 +154,8 @@ nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
 nnoremap <leader>o :only<CR>
-nnoremap <C-h> ^
-nnoremap <C-l> $
+nnoremap <S-h> ^
+nnoremap <S-l> $
 nnoremap <leader>. @:
 nnoremap <F8> :set nohlsearch!<CR>
 " nnoremap <S-C-W> :0,bd<CR>
@@ -166,6 +166,10 @@ nmap <F3> :cp<CR>
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 "insert mode custom keymapping
 :inoremap <C-]> <C-X><C-]>
@@ -186,8 +190,8 @@ vmap <Leader>a, :Tabularize /,/l0l1<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>aw :Tabularize /\v\S+/l1l0<CR>
-nmap <Leader>a/ :Tabularize /\/+<CR>
-vmap <Leader>a/ :Tabularize /\/+<CR>
+nmap <Leader>a/ :Tabularize /\v\/+<CR>
+vmap <Leader>a/ :Tabularize /\v\/+<CR>
 " Tabularize (first match only)
 nmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
 vmap <Leader>a1= :Tabularize /^.\{-}\zs=<CR>
