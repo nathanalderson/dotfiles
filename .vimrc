@@ -65,7 +65,7 @@ endif
 
 if has("win32") || has("win16")
     set guifont=Inconsolata:h12:cANSI
-    set csprg=C:\Program\ Files\ -\ Portable\cscope157a\cscope.exe
+    set csprg=C:\Program\ Files\ -\ Portable\cscope158a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
     " silent execute '!del "c:\temp\vim_backup\*~"'
 
@@ -95,7 +95,18 @@ function! SetTabWidth(size)
     execute "set softtabstop=".a:size
     set expandtab
 endfunction
+command! -nargs=* SetTabWidth call SetTabWidth('<args>')
 call SetTabWidth(4)
+
+" Enable nice word wrapping
+function! Wrap()
+    set wrap
+    set linebreak
+    set nolist
+    set textwidth=0
+    set wrapmargin=0
+endfunction
+command! Wrap call Wrap()
 
 " basic usability
 set modelines=0
@@ -148,8 +159,9 @@ set gdefault
 set nohlsearch
 
 " random custom mappings
-inoremap jj <ESC>
 inoremap jk <ESC>
+nnoremap j gj
+nnoremap k gk
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
