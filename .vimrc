@@ -78,7 +78,7 @@ if has("win32") || has("win16")
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
-    let s:p4root = "/home/nalderso/p4workspace"
+    let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
 endif
 
@@ -137,6 +137,8 @@ if &t_Co >= 256 || has("gui_running")
 else
     set nocursorline
 endif
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 command! W w
 command! Q q
 
@@ -258,15 +260,15 @@ let python_highlight_all=1
 
 " Manage different projects
 let s:projects = {
-    \   'taml':          { 'path': s:p4root."tacore\\TAMainline\\tree\\source\\"
+    \   'taml':          { 'path': s:p4root."tacore/TAMainline/tree/source/"
     \                    , 'type': 'tacore' }
-    \ , 'sr63':          { 'path': s:p4root."tacore\\rel\\SR_6.3.x-R\\tree\\source\\"
+    \ , 'sr63':          { 'path': s:p4root."tacore/rel/SR_6.3.x-R/tree/source/"
     \                    , 'type': 'tacore' }
-    \ , 'nd':            { 'path': s:p4root."package\\ipv6_neighbor_discovery\\main\\"
+    \ , 'nd':            { 'path': s:p4root."package/ipv6_neighbor_discovery/main/"
     \                    , 'type': 'package' }
-    \ , 'ip_utilities':  { 'path': s:p4root."package\\ip_utilities\\main\\"
+    \ , 'ip_utilities':  { 'path': s:p4root."package/ip_utilities/main/"
     \                    , 'type': 'package' }
-    \ , 'adtran_io':     { 'path': s:p4root."package\\adtran_io\\main\\"
+    \ , 'adtran_io':     { 'path': s:p4root."package/adtran_io/main/"
     \                    , 'type': 'package' }
     \ }
 function! OpenProject(project)
