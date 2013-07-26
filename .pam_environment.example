@@ -1,2 +1,3 @@
+P4CLIENT=nalderso_linux
 P4PORT=p4-cn-srv.adtran.com:1666
 P4USER=nalderso
