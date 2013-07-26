@@ -45,3 +45,5 @@ unsetopt share_history
 
 # Autocorrect seems more annoying than helpful...
 unsetopt correct_all
+
+source ~/.zshrc-local
