@@ -39,6 +39,7 @@ Bundle 'lucapette/vim-textobj-underscore'
 Bundle 'kana/vim-textobj-user'
 Bundle 'sorin-ionescu/python.vim'
 Bundle 'mattdbridges/bufkill.vim'
+Bundle 'scrooloose/syntastic.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
@@ -132,6 +133,8 @@ set autoread
 set nowrap
 set textwidth=100
 set formatoptions-=t
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 if &t_Co >= 256 || has("gui_running")
     set cursorline
 else
@@ -176,6 +179,7 @@ nnoremap <F8> :set nohlsearch!<CR>
 nnoremap <leader>h :cd %:p:h<CR>
 nmap <F4> :cn<CR>
 nmap <F3> :cp<CR>
+nmap <C-tab> <C-^>
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
@@ -227,6 +231,10 @@ let g:CommandTDelayUpdate=0
 let g:BufKillBindings=1     "skip bufkill bindings which interfere with Command-T
 set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
+
+" Syntastic
+let g:syntastic_python_checkers=['pychecker pylint']
+let g:syntastic_python_pylint_post_args = '--disable=C'
 
 " Turn off buffkill leader-key mappings which conflict with Command-T \b
 let g:BufKillCreateMappings=0
