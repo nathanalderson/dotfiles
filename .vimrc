@@ -66,7 +66,7 @@ else
     " do terminal-only stuff
 endif
 
-if has("win32") || has("win16")
+if has("win64") || has("win32") || has("win16")
     set guifont=Inconsolata:h12:cANSI
     set csprg=C:\Program\ Files\ -\ Portable\cscope158a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
