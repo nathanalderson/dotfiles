@@ -53,10 +53,12 @@ behave mswin
 
 filetype plugin indent on
 
-if has("gui_running") && &lines < 35
+if has("gui_running")
     " do GUI-only stuff
-    set lines=35
-    set columns=130
+    if &lines < 35
+        set lines=35
+        set columns=130
+    endif
     set guioptions-=T  "remove toolbar
     set guioptions+=c  "use non-modal confirm prompts
 else
