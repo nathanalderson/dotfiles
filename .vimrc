@@ -234,8 +234,12 @@ set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " Syntastic
-let g:syntastic_python_checkers=['pychecker pylint']
+let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['cppcheck']
 let g:syntastic_python_pylint_post_args = '--disable=C'
+let g:syntastic_enable_balloons=0
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
 
 " Turn off buffkill leader-key mappings which conflict with Command-T \b
 let g:BufKillCreateMappings=0
