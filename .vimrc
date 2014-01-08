@@ -137,6 +137,7 @@ else
 endif
 command! W w
 command! Q q
+command! CD cd %:p:h
 
 " backups and such
 set nobackup
@@ -239,6 +240,9 @@ au BufNewFile,BufRead *.rmd set filetype=cpp
 
 " Ignore timestamp lines in Google Test output
 let &errorformat = '%-G%.%#[Timestamp ]%.%#' . ',' . &efm
+set errorformat^=%-GIn\ file\ included\ from\ %f:%l:%c:,%-GIn\ file
+           \\ included\ from\ %f:%l:%c\\,,%-GIn\ file\ included\ from\ %f
+           \:%l:%c,%-GIn\ file\ included\ from\ %f:%l
 
 " Comments
 let NERDSpaceDelims=1
