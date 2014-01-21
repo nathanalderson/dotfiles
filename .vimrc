@@ -86,7 +86,7 @@ endif
 " colors
 set background=dark
 if has("gui_running")
-    colorscheme base16-eighties
+    colorscheme base16-mocha
 else
     colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
 endif
@@ -142,6 +142,7 @@ else
 endif
 command! W w
 command! Q q
+command! CD cd %:p:h
 
 " backups and such
 set nobackup
@@ -233,8 +234,16 @@ set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " Syntastic
-let g:syntastic_python_checkers=['pychecker pylint']
+nnoremap <S-F5> :SyntasticCheck<CR>
+let g:syntastic_python_checkers=['pylint']
+let g:syntastic_cpp_checkers=['cppcheck']
 let g:syntastic_python_pylint_post_args = '--disable=C'
+let g:syntastic_enable_balloons=0
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
 
 " Turn off buffkill leader-key mappings which conflict with Command-T \b
 let g:BufKillCreateMappings=0
@@ -249,6 +258,9 @@ au BufNewFile,BufRead *.rmd set filetype=cpp
 
 " Ignore timestamp lines in Google Test output
 let &errorformat = '%-G%.%#[Timestamp ]%.%#' . ',' . &efm
+set errorformat^=%-GIn\ file\ included\ from\ %f:%l:%c:,%-GIn\ file
+           \\ included\ from\ %f:%l:%c\\,,%-GIn\ file\ included\ from\ %f
+           \:%l:%c,%-GIn\ file\ included\ from\ %f:%l
 
 " Comments
 let NERDSpaceDelims=1
@@ -313,4 +325,5 @@ command! Web  cd web/modules
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
 "   useful
-" - Extend surround to allow /* */
+" - Extend surround to support /* */
+" - Extend surround to support spaces
