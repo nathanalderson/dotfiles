@@ -86,7 +86,7 @@ endif
 " colors
 set background=dark
 if has("gui_running")
-    colorscheme base16-eighties
+    colorscheme base16-mocha
 else
     colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
 endif
@@ -325,4 +325,5 @@ command! Web  cd web/modules
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
 "   useful
-" - Extend surround to allow /* */
+" - Extend surround to support /* */
+" - Extend surround to support spaces
