@@ -240,7 +240,7 @@ let g:syntastic_cpp_checkers=['cppcheck']
 let g:syntastic_python_pylint_post_args = '--disable=C'
 let g:syntastic_enable_balloons=0
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0     " this feature doesn't work well with the perforce plugin.
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
