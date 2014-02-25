@@ -40,6 +40,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'sorin-ionescu/python.vim'
 Bundle 'mattdbridges/bufkill.vim'
 Bundle 'scrooloose/syntastic.git'
+Bundle 'tfnico/vim-gradle'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
