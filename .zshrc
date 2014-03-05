@@ -47,3 +47,6 @@ unsetopt share_history
 unsetopt correct_all
 
 source ~/.zshrc-local
+
+# Some environment variables
+export P4CONFIG=.p4config
