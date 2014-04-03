@@ -6,6 +6,7 @@ apt-get install keepass2
 apt-get install xdotool
 apt-get install ruby ruby-dev
 apt-get install curl
+apt-get install openssh-server
 
 curl -L http://install.ohmyz.sh | sh
 
