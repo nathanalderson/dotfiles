@@ -42,6 +42,9 @@ Bundle 'mattdbridges/bufkill.vim'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'tfnico/vim-gradle'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'endel/vim-github-colorscheme'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
@@ -268,6 +271,10 @@ set errorformat^=%-GIn\ file\ included\ from\ %f:%l:%c:,%-GIn\ file
 
 " Comments
 let NERDSpaceDelims=1
+
+" NerdTree
+nmap <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " CScope
 set cscopetag                           " CTRL-] uses cscope and tags file
