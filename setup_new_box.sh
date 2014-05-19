@@ -1,12 +1,5 @@
 apt-get update
-apt-get install vim-gnome
-apt-get install git
-apt-get install zsh
-apt-get install keepass2
-apt-get install xdotool
-apt-get install ruby ruby-dev
-apt-get install curl
-apt-get install openssh-server
+apt-get -y install vim-gnome git zsh keepass2 xdotool ruby ruby-dev curl openssh-server
 
 curl -L http://install.ohmyz.sh | sh
 
