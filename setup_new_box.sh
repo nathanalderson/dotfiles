@@ -13,6 +13,8 @@ curl -L http://install.ohmyz.sh | sh
 git clone https://github.com/nathanalderson/dotfiles.git
 dotfiles/setup.sh
 
+chsh -s /bin/zsh
+
 echo Other things to do...
 echo  "* Download and install dropbox (https://www.dropbox.com/install?os=lnx)"
 echo  "* Set a global keyboard shortcut for keepass (look under Menu > Preferences > System Settings > Keyboard > ...)"

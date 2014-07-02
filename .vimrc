@@ -116,11 +116,14 @@ function! Wrap()
 endfunction
 command! Wrap call Wrap()
 
+" Trim trailing whitespace
+command! Trim :%s/\v\s+$/
+
 " basic usability
 set modelines=0
 set hidden
 set scrolloff=3
-set clipboard=unnamed
+set clipboard=unnamedplus
 set autoindent
 set nowrapscan
 set ttyfast
