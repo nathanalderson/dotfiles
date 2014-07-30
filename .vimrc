@@ -81,17 +81,20 @@ if has("win64") || has("win32") || has("win16")
 
     " maximize the window
     command! MaximizeWindow simalt ~x
+    set clipboard=unnamed
 else
     set guifont=Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
     let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
+    set clipboard=unnamedplus
 endif
 
 " colors
 set background=dark
 if has("gui_running")
-    colorscheme base16-mocha
+    set background=light
+    colorscheme solarized
 else
     colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
 endif
@@ -123,13 +126,12 @@ command! Trim :%s/\v\s+$/
 set modelines=0
 set hidden
 set scrolloff=3
-set clipboard=unnamedplus
 set autoindent
 set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
-set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda
+set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda,venv/**,*.class,*.jar
 if version >= 703
     set relativenumber
 endif
