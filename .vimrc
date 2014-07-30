@@ -101,7 +101,10 @@ function! SetTabWidth(size)
     set expandtab
 endfunction
 command! -nargs=* SetTabWidth call SetTabWidth('<args>')
-call SetTabWidth(4)
+call SetTabWidth(4) " default tabwidth is 4
+autocmd Filetype scala call SetTabWidth(2)
+autocmd Filetype ruby call SetTabWidth(2)
+autocmd Filetype javascript call SetTabWidth(2)
 
 " Enable nice word wrapping
 function! Wrap()
