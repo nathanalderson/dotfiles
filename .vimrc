@@ -72,7 +72,7 @@ else
 endif
 
 if has("win64") || has("win32") || has("win16")
-    set guifont=Inconsolata:h12:cANSI
+    set guifont=Consolas:h11:cANSI
     set csprg=C:\Program\ Files\ -\ Portable\cscope158a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
     " silent execute '!del "c:\temp\vim_backup\*~"'
@@ -107,7 +107,10 @@ function! SetTabWidth(size)
     set expandtab
 endfunction
 command! -nargs=* SetTabWidth call SetTabWidth('<args>')
-call SetTabWidth(4)
+call SetTabWidth(4) " default tabwidth is 4
+autocmd Filetype scala call SetTabWidth(2)
+autocmd Filetype ruby call SetTabWidth(2)
+autocmd Filetype javascript call SetTabWidth(2)
 
 " Enable nice word wrapping
 function! Wrap()
