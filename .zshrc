@@ -50,3 +50,4 @@ source ~/.zshrc-local
 
 # Some environment variables
 export P4CONFIG=.p4config
+PATH=$HOME/bin:$PATH
