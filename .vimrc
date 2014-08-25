@@ -45,6 +45,7 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/fontzoom.vim'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
