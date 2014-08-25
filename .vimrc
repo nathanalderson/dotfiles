@@ -94,7 +94,8 @@ endif
 " colors
 set background=dark
 if has("gui_running")
-    colorscheme base16-mocha
+    set background=light
+    colorscheme solarized
 else
     colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
 endif
@@ -134,7 +135,7 @@ set nowrapscan
 set ttyfast
 set wildmenu
 set wildmode=list:full
-set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda
+set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda,venv/**,*.class,*.jar
 if version >= 703
     set relativenumber
 endif
