@@ -46,6 +46,7 @@ Bundle 'endel/vim-github-colorscheme'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/fontzoom.vim'
+Bundle 'regedarek/ZoomWin'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
@@ -205,6 +206,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <silent> <C-o> :ZoomWin<CR>
 
 "insert mode custom keymapping
 :inoremap <C-]> <C-X><C-]>

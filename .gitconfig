@@ -1,8 +1,6 @@
 [user]
 	name = Nathan Alderson
-	email = nathan.alderson@adtran.com
-[difftool "bc3"]
-	cmd = /usr/bin/git-diff-wrapper.sh
+	email = nathan.alderson@gmail.com
 [diff]
 	tool = bc3
 [merge]
@@ -11,5 +9,10 @@
 	bc3 = trustExitCode
 [difftool]
 	prompt = false
+	bc3 = trustExitCode
 [color]
 	ui = auto
+[core]
+	excludesfile = /home/nalderso/.gitignore_global
+[push]
+	default = simple
