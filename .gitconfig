@@ -16,3 +16,5 @@
 	excludesfile = /home/nalderso/.gitignore_global
 [push]
 	default = simple
+[alias]
+	diffall = !diffall
