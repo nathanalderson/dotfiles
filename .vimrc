@@ -26,6 +26,7 @@ Bundle 'nathanalderson/Command-T.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'chriskempson/base16-vim'
@@ -298,6 +299,11 @@ nmap <leader>s  :cs find s
 
 " python.vim
 let python_highlight_all=1
+
+" Ag and Ack
+let g:ackprg="ack --column --smart-case"
+let g:ag_mapping_message=0
+let g:agprg="ag --column --smart-case"
 
 " Manage different projects
 let s:projects = {
