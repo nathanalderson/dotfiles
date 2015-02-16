@@ -24,10 +24,10 @@ Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'nathanalderson/perforce.vim.git'
-Bundle 'nathanalderson/Command-T.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'JDeuce/jinja-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'chriskempson/base16-vim'
@@ -49,13 +49,19 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/fontzoom.vim'
 Bundle 'regedarek/ZoomWin'
+Bundle 'nathanalderson/yang.vim'
+Bundle 'wincent/command-t'
+Bundle 'tpope/vim-fugitive'
+Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-commentary'
+Bundle 'bling/vim-airline'
+" Bundle 'nathanalderson/Command-T.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Bundle 'CSApprox'
 endif
 Bundle 'VimClojure'
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -87,7 +93,7 @@ if has("win64") || has("win32") || has("win16")
     command! MaximizeWindow simalt ~x
     set clipboard=unnamed
 else
-    set guifont=Inconsolata\ 12
+    set guifont=Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
     let vimfilesdir = "~/.vim/backup//"
     let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
@@ -136,17 +142,14 @@ set scrolloff=3
 set autoindent
 set nowrapscan
 set ttyfast
-set wildmenu
 set wildmode=list:full
 set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda,venv/**,*.class,*.jar
 if version >= 703
     set relativenumber
 endif
-set encoding=utf-8
 set list
 set listchars=tab:▸\ 
-set listchars+=trail:·
-set autoread
+set listchars+=trail:·,extends:…,precedes:…,nbsp:␣
 set nowrap
 set textwidth=100
 set formatoptions-=t
@@ -157,7 +160,6 @@ if &t_Co >= 256 || has("gui_running")
 else
     set nocursorline
 endif
-set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 command! W w
 command! Q q
@@ -200,6 +202,9 @@ nnoremap <leader>h :cd %:p:h<CR>
 nmap <F4> :cn<CR>
 nmap <F3> :cp<CR>
 nmap <C-tab> <C-^>
+nnoremap Y y$
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
@@ -208,7 +213,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <silent> <C-o> :ZoomWin<CR>
+nnoremap <silent> <C-o> :Call ZoomWin()<CR>
 
 "insert mode custom keymapping
 :inoremap <C-]> <C-X><C-]>
@@ -250,8 +255,16 @@ let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap=['<ESC>','<C-c>']   "doesn't work in zsh by default?
 let g:CommandTDelayUpdate=0
 let g:BufKillBindings=1     "skip bufkill bindings which interfere with Command-T
+let g:CommandTTraverseSCM="pwd"
 set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
+
+" ctrl-p
+let g:ctrlp_user_command = ['build.gradle', 'cd %s && git ls-files']
+let g:ctrlp_root_markers = ['build.gradle']
+nnoremap <silent> <leader>t :CtrlP<CR>
+nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+nnoremap <silent> <leader>m :CtrlPMRUFiles<CR>
 
 " Syntastic
 nnoremap <S-F5> :SyntasticCheck<CR>
@@ -284,6 +297,7 @@ set errorformat^=%-GIn\ file\ included\ from\ %f:%l:%c:,%-GIn\ file
 
 " Comments
 let NERDSpaceDelims=1
+autocmd FileType groovy set commentstring=//\ %s
 
 " NerdTree
 nmap <C-n> :NERDTreeToggle<CR>
@@ -300,51 +314,30 @@ nmap <leader>s  :cs find s
 " python.vim
 let python_highlight_all=1
 
-" Manage different projects
-let s:projects = {
-    \   'taml':          { 'path': s:p4root."tacore/TAMainline/tree/source/"
-    \                    , 'type': 'tacore' }
-    \ , 'sr63':          { 'path': s:p4root."tacore/rel/SR_6.3.x-R/tree/source/"
-    \                    , 'type': 'tacore' }
-    \ , 'nd':            { 'path': s:p4root."package/ipv6_neighbor_discovery/main/"
-    \                    , 'type': 'package' }
-    \ , 'ip_utilities':  { 'path': s:p4root."package/ip_utilities/main/"
-    \                    , 'type': 'package' }
-    \ , 'adtran_io':     { 'path': s:p4root."package/adtran_io/main/"
-    \                    , 'type': 'package' }
-    \ }
-function! OpenProject(project)
-    let s:current_project = a:project
-    cd `=s:projects[s:current_project]['path']`
-    set nocsverb
-    cs add .
-    cs add ..
-    cs add ../..
-    set csverb
-    let file_list = '../../cscope.files'
-    if s:projects[s:current_project]['type'] == 'tacore' && filereadable(file_list)
-        let g:CommandTListFile = file_list
-    else
-        let g:CommandTListFile = ''
-    endif
-    CommandTFlush
-endfunction
-command! -complete=customlist,ListProjects -nargs=1 Project call OpenProject(<f-args>)
-function! ListProjects(A,L,P)
-    return keys(s:projects)
-endfunction
+" Ag and Ack
+let g:ackprg="ack --column --smart-case"
+let g:ag_mapping_message=0
+let g:agprg="ag --column --smart-case"
 
-function! Make()
-    if s:projects[s:current_project]['type'] == 'package'
-        cd linux
-        make -j all
-        cd ..
-        botright copen
-    endif
-endfunction
-command! Make call Make()
-
-command! Web  cd web/modules
+"Airline
+if &guifont =~ 'PowerLine'
+  let g:airline_powerline_fonts=1
+endif
+let g:airline_detect_modified=1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'i'  : 'I',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ '' : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
