@@ -1,4 +1,6 @@
 set nocompatible
+set shell=bash
+set ssl
 
 "vundle stuff
 filetype off
