@@ -148,8 +148,7 @@ if version >= 703
     set relativenumber
 endif
 set list
-set listchars=tab:▸\ 
-set listchars+=trail:·,extends:…,precedes:…
+let &listchars="tab:▸ ,trail:·,extends:…,precedes:…"
 set nowrap
 set textwidth=100
 set formatoptions-=t
