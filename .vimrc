@@ -1,4 +1,6 @@
 set nocompatible
+set shell=bash
+set ssl
 
 "vundle stuff
 filetype off
@@ -147,7 +149,7 @@ if version >= 703
 endif
 set list
 set listchars=tab:▸\ 
-set listchars+=trail:·,extends:…,precedes:…,nbsp:␣
+set listchars+=trail:·,extends:…,precedes:…
 set nowrap
 set textwidth=100
 set formatoptions-=t
