@@ -93,7 +93,11 @@ if has("win64") || has("win32") || has("win16")
     command! MaximizeWindow simalt ~x
     set clipboard=unnamed
 else
-    set guifont=Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
+    if has("gui_running")
+        set guifont=Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
+    else
+        set guifont=Inconsolata\ 12
+    endif
     let vimfilesdir = "~/.vim/backup//"
     let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
