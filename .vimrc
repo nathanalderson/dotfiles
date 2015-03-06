@@ -56,6 +56,7 @@ Bundle 'AndrewRadev/splitjoin.vim'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-commentary'
 Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-dispatch'
 " Bundle 'nathanalderson/Command-T.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
@@ -342,8 +343,13 @@ let g:airline_mode_map = {
   \ '' : 'S',
   \ }
 
+"fugitive
+autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
 "   useful
 " - Extend surround to support /* */
 " - Extend surround to support spaces
+" - Check out projectionist.vim
