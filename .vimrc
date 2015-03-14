@@ -212,7 +212,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <silent> <C-o> :Call ZoomWin()<CR>
 
 "insert mode custom keymapping
 :inoremap <C-]> <C-X><C-]>
@@ -259,7 +258,7 @@ set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " ctrl-p
-let g:ctrlp_user_command = ['build.gradle', 'cd %s && git ls-files']
+" let g:ctrlp_user_command = ['build.gradle', 'cd %s && git ls-files']
 let g:ctrlp_root_markers = ['build.gradle']
 nnoremap <silent> <leader>t :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
