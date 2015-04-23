@@ -3,3 +3,5 @@ venv/
 *.iml
 .idea/
 .gradle/
+*.ipr
+*.iws
