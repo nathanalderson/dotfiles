@@ -9,60 +9,63 @@ if has("win32") || has("win16")
 else
     let bundle_path = "~/.vim/bundle"
 endif
-execute "set rtp+=".bundle_path.'/vundle'
-call vundle#rc(bundle_path)
-Bundle 'gmarik/vundle'
+execute "set rtp+=".bundle_path.'/Vundle.vim'
+call vundle#begin(bundle_path)
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles here:
+" My Plugins here:
 "
 " original repos on github
-Bundle 'godlygeek/tabular.git'
-Bundle 'altercation/vim-colors-solarized.git'
-Bundle 'tpope/vim-repeat.git'
-Bundle 'tpope/vim-unimpaired.git'
-Bundle 'scrooloose/nerdcommenter.git'
-Bundle 'tpope/vim-surround.git'
-Bundle 'chriskempson/vim-tomorrow-theme.git'
-Bundle 'nathanalderson/perforce.vim.git'
-Bundle 'pangloss/vim-javascript'
-Bundle 'ervandew/supertab'
-Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
-Bundle 'JDeuce/jinja-syntax'
-Bundle 'groenewege/vim-less'
-Bundle 'chriskempson/base16-vim'
-Bundle 'kana/vim-textobj-function'
-Bundle 'kana/vim-textobj-indent'
-Bundle 'kana/vim-textobj-line'
-Bundle 'kana/vim-textobj-syntax'
-Bundle 'kana/vim-textobj-lastpat'
-Bundle 'kana/vim-textobj-django-template'
-Bundle 'lucapette/vim-textobj-underscore'
-Bundle 'kana/vim-textobj-user'
-Bundle 'sorin-ionescu/python.vim'
-Bundle 'mattdbridges/bufkill.vim'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'tfnico/vim-gradle'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/fontzoom.vim'
-Bundle 'regedarek/ZoomWin'
-Bundle 'nathanalderson/yang.vim'
-Bundle 'wincent/command-t'
-Bundle 'tpope/vim-fugitive'
-Bundle 'AndrewRadev/splitjoin.vim'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-commentary'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-dispatch'
-" Bundle 'nathanalderson/Command-T.git'
+Plugin 'godlygeek/tabular.git'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-unimpaired.git'
+Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'tpope/vim-surround.git'
+Plugin 'chriskempson/vim-tomorrow-theme.git'
+Plugin 'nathanalderson/perforce.vim.git'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ervandew/supertab'
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+Plugin 'JDeuce/jinja-syntax'
+Plugin 'groenewege/vim-less'
+Plugin 'chriskempson/base16-vim'
+Plugin 'kana/vim-textobj-function'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'kana/vim-textobj-line'
+Plugin 'kana/vim-textobj-syntax'
+Plugin 'kana/vim-textobj-lastpat'
+Plugin 'kana/vim-textobj-django-template'
+Plugin 'lucapette/vim-textobj-underscore'
+Plugin 'kana/vim-textobj-user'
+Plugin 'sorin-ionescu/python.vim'
+Plugin 'mattdbridges/bufkill.vim'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'tfnico/vim-gradle'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/fontzoom.vim'
+Plugin 'regedarek/ZoomWin'
+Plugin 'nathanalderson/yang.vim'
+Plugin 'wincent/command-t'
+Plugin 'tpope/vim-fugitive'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-commentary'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-dispatch'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+" Plugin 'nathanalderson/Command-T.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
-    Bundle 'CSApprox'
+    Plugin 'CSApprox'
 endif
-Bundle 'VimClojure'
+Plugin 'VimClojure'
+
+call vundle#end()
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -210,6 +213,7 @@ nmap <C-tab> <C-^>
 nnoremap Y y$
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
