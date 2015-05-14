@@ -46,6 +46,9 @@ unsetopt share_history
 # Autocorrect seems more annoying than helpful...
 unsetopt correct_all
 
+# alias for gradle building
+gbs () { gradle build -Dtest.single=$1 ${*:2} }
+
 source ~/.zshrc-local
 
 # Some environment variables
