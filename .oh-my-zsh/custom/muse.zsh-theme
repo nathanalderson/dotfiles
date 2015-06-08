@@ -22,10 +22,13 @@ function prompt_color {
     fi
 }
 
-PROMPT='%{$PROMPT_SUCCESS_COLOR%}%~%{$reset_color%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}$(prompt_color)»%{$reset_color%} '
+PROMPT='%{$PROMPT_SUCCESS_COLOR%}%~%{$reset_color%} $(virtualenv_prompt_info) %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}$(prompt_color)»%{$reset_color%} '
 
 #RPS1="${return_code}"
 MODE_INDICATOR="%{$fg[blue]%}-- NORMAL --%{$reset_color%}"
+
+ZSH_THEME_VIRTUALENV_PREFIX="%{$fg[yellow]%}["
+ZSH_THEME_VIRTUALENV_SUFFIX="]%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%})"

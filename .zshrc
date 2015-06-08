@@ -31,7 +31,7 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django)
+plugins=(git django virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -47,10 +47,15 @@ unsetopt share_history
 unsetopt correct_all
 
 # alias for gradle building
-gbs () { gradle build -Dtest.single=$1 ${*:2} }
+gbts () { gradle build -Dtest.single=$1 ${*:2} }
 
 source ~/.zshrc-local
 
 # Some environment variables
 export P4CONFIG=.p4config
 PATH=$HOME/bin:$PATH
+
+# Setup virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/dev
+source /usr/local/bin/virtualenvwrapper.sh
