@@ -156,8 +156,7 @@ if version >= 703
     set relativenumber
 endif
 set list
-set listchars=tab:▸\ 
-set listchars+=trail:·,extends:…,precedes:…
+let &listchars="tab:▸ ,trail:·,extends:…,precedes:…"
 set nowrap
 set textwidth=100
 set formatoptions-=t
@@ -268,7 +267,7 @@ set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
 
 " ctrl-p
-let g:ctrlp_user_command = ['build.gradle', 'cd %s && git ls-files']
+" let g:ctrlp_user_command = ['build.gradle', 'cd %s && git ls-files']
 let g:ctrlp_root_markers = ['build.gradle']
 nnoremap <silent> <leader>t :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
