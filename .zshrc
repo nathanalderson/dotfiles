@@ -51,6 +51,9 @@ gbts () { gradle build -Dtest.single=$1 ${*:2} }
 
 source ~/.zshrc-local
 
+# allow comments in interactive shells
+setopt interactivecomments
+
 # Some environment variables
 export P4CONFIG=.p4config
 PATH=$HOME/bin:$PATH

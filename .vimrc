@@ -67,9 +67,8 @@ Plugin 'VimClojure'
 
 call vundle#end()
 
-source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
-behave mswin
+set selectmode=
 
 filetype plugin indent on
 
@@ -80,6 +79,7 @@ if has("gui_running")
         set columns=130
     endif
     set guioptions-=T  "remove toolbar
+    set guioptions-=m  "remove menu
     set guioptions+=c  "use non-modal confirm prompts
 else
     " do terminal-only stuff
@@ -143,6 +143,14 @@ command! Wrap call Wrap()
 " Trim trailing whitespace
 command! Trim :%s/\v\s+$/
 
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Use the mouse
+if has('mouse')
+  set mouse=a
+endif
+
 " basic usability
 set modelines=0
 set hidden
@@ -151,7 +159,7 @@ set autoindent
 set nowrapscan
 set ttyfast
 set wildmode=list:full
-set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda,venv/**,*.class,*.jar
+set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda,venv,*.class,*.jar
 if version >= 703
     set relativenumber
 endif
@@ -168,6 +176,11 @@ else
     set nocursorline
 endif
 autocmd GUIEnter * set visualbell t_vb=
+" When editing a file, always jump to the last known cursor position.
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
 command! W w
 command! Q q
 command! CD cd %:p:h
@@ -223,11 +236,11 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "insert mode custom keymapping
-:inoremap <C-]> <C-X><C-]>
-:inoremap <C-F> <C-X><C-F>
-:inoremap <C-D> <C-X><C-D>
-:inoremap <C-L> <C-X><C-L>
-:inoremap <C-BS> <C-W>
+inoremap <C-]> <C-X><C-]>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-D> <C-X><C-D>
+inoremap <C-L> <C-X><C-L>
+inoremap <C-BS> <C-W>
 
 " Tabularize
 nmap <Leader>a= :Tabularize /=<CR>
