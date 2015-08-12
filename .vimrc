@@ -226,6 +226,8 @@ nnoremap Y y$
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
+vnoremap L $
+vnoremap H ^
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
