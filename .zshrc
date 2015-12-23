@@ -31,9 +31,14 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django virtualenv virtualenvwrapper)
+plugins=(git django virtualenv virtualenvwrapper common-aliases dircycle dirhistory pip supervisor)
 
 source $ZSH/oh-my-zsh.sh
+
+# remove aliases I don't want
+unalias rm
+unalias cp
+unalias mv
 
 # gnome-terminal and mate-terminal support 256 colors
 if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
@@ -47,7 +52,10 @@ unsetopt share_history
 unsetopt correct_all
 
 # alias for gradle building
-gbts () { gradle build -Dtest.single=$1 ${*:2} }
+gbts () { gradle test -Dtest.single=$1 ${*:2} }
+
+# alias for activating virtual environment
+alias svba="source venv/bin/activate"
 
 source ~/.zshrc-local
 
@@ -62,3 +70,17 @@ PATH=$HOME/bin:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev
 source /usr/local/bin/virtualenvwrapper.sh
+
+export NVM_DIR="/home/nalderso/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# use vi mode
+bindkey -v
+export KEYTIMEOUT=2
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
