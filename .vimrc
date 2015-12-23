@@ -58,6 +58,8 @@ Plugin 'tpope/vim-commentary'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-dispatch'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'w0ng/vim-hybrid.git'
+Plugin 'morhetz/gruvbox'
 " Plugin 'nathanalderson/Command-T.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
@@ -111,10 +113,9 @@ endif
 " colors
 set background=dark
 if has("gui_running")
-    set background=light
-    colorscheme solarized
+    colorscheme gruvbox
 else
-    colorscheme Tomorrow-Night  " can't get base16 to look right in the terminal
+    colorscheme gruvbox
 endif
 
 " tabs
@@ -160,9 +161,7 @@ set nowrapscan
 set ttyfast
 set wildmode=list:full
 set wildignore+=*.pyc,*.o,*.obj.,*.d,.git,*.gcno,*.gcda,venv,*.class,*.jar
-if version >= 703
-    set relativenumber
-endif
+set number
 set list
 let &listchars="tab:▸ ,trail:·,extends:…,precedes:…"
 set nowrap
@@ -184,6 +183,9 @@ autocmd BufReadPost *
 command! W w
 command! Q q
 command! CD cd %:p:h
+
+" autosave on focus lost
+autocmd FocusLost * silent! wa
 
 " backups and such
 set nobackup
@@ -287,6 +289,7 @@ let g:ctrlp_root_markers = ['build.gradle']
 nnoremap <silent> <leader>t :CtrlP<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 nnoremap <silent> <leader>m :CtrlPMRUFiles<CR>
+nnoremap <leader>p :let g:ctrlp_working_path_mode='a'<CR>
 
 " Syntastic
 nnoremap <S-F5> :SyntasticCheck<CR>
