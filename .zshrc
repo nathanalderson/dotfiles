@@ -57,6 +57,9 @@ gbts () { gradle test -Dtest.single=$1 ${*:2} }
 # alias for activating virtual environment
 alias svba="source venv/bin/activate"
 
+# alias for serving a directory with python
+alias serve="python -m SimpleHTTPServer"
+
 source ~/.zshrc-local
 
 # allow comments in interactive shells
