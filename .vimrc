@@ -40,7 +40,7 @@ Plugin 'kana/vim-textobj-django-template'
 Plugin 'lucapette/vim-textobj-underscore'
 Plugin 'kana/vim-textobj-user'
 Plugin 'sorin-ionescu/python.vim'
-Plugin 'mattdbridges/bufkill.vim'
+Plugin 'vim-scripts/bufkill.vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tfnico/vim-gradle'
 Plugin 'derekwyatt/vim-scala'
@@ -50,7 +50,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/fontzoom.vim'
 Plugin 'regedarek/ZoomWin'
 Plugin 'nathanalderson/yang.vim'
-Plugin 'wincent/command-t'
 Plugin 'tpope/vim-fugitive'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tpope/vim-sensible'
@@ -60,7 +59,6 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
-" Plugin 'nathanalderson/Command-T.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
@@ -104,7 +102,7 @@ else
     else
         set guifont=Inconsolata\ 12
     endif
-    let vimfilesdir = "~/.vim/backup//"
+    let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
     set clipboard=unnamedplus

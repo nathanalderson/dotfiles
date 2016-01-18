@@ -25,17 +25,8 @@ done
 
 # install Vundle
 echo "Installing Vundle..."
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +BundleInstall +qall
 
 # create vim backup directory
 mkdir ~/.vim/backup
-
-# make command-t
-# note, probably need to install something like:
-# sudo apt-get install ruby ruby-dev build-essential
-echo "Building command-t"
-cd ~/.vim/bundle/Command-T/ruby/command-t
-ruby extconf.rb
-make
-cd -
