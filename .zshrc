@@ -57,6 +57,9 @@ gbts () { gradle test -Dtest.single=$1 ${*:2} }
 # alias for activating virtual environment
 alias svba="source venv/bin/activate"
 
+# alias for vpn-ing to Adtran
+alias vpn="openconnect --juniper vpn.adtran.com"
+
 source ~/.zshrc-local
 
 # allow comments in interactive shells
