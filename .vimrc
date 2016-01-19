@@ -56,7 +56,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-commentary'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-dispatch'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
 " vim-scripts repos
