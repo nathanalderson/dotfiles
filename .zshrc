@@ -55,6 +55,7 @@ unsetopt correct_all
 gbts () { gradle test -Dtest.single=$1 ${*:2} }
 
 # alias for activating virtual environment
+alias ve="virtualenv venv && source venv/bin/activate"
 alias svba="source venv/bin/activate"
 
 # alias for serving a directory with python
