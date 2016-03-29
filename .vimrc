@@ -40,7 +40,7 @@ Plugin 'kana/vim-textobj-django-template'
 Plugin 'lucapette/vim-textobj-underscore'
 Plugin 'kana/vim-textobj-user'
 Plugin 'sorin-ionescu/python.vim'
-Plugin 'mattdbridges/bufkill.vim'
+Plugin 'vim-scripts/bufkill.vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tfnico/vim-gradle'
 Plugin 'derekwyatt/vim-scala'
@@ -58,10 +58,9 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-commentary'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-dispatch'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
-" Plugin 'nathanalderson/Command-T.git'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
@@ -168,14 +167,13 @@ let &listchars="tab:▸ ,trail:·,extends:…,precedes:…"
 set nowrap
 set textwidth=100
 set formatoptions-=t
-set noerrorbells visualbell t_vb=
+set noerrorbells novisualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 if &t_Co >= 256 || has("gui_running")
     set cursorline
 else
     set nocursorline
 endif
-autocmd GUIEnter * set visualbell t_vb=
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
