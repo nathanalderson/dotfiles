@@ -50,7 +50,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/fontzoom.vim'
 Plugin 'regedarek/ZoomWin'
 Plugin 'nathanalderson/yang.vim'
-Plugin 'wincent/command-t'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -104,7 +103,7 @@ else
     else
         set guifont=Inconsolata\ 12
     endif
-    let vimfilesdir = "~/.vim/backup//"
+    let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
     set clipboard=unnamedplus

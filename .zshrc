@@ -61,6 +61,9 @@ alias svba="source venv/bin/activate"
 # alias for serving a directory with python
 alias serve="python -m SimpleHTTPServer"
 
+# alias for vpn-ing to Adtran
+alias vpn="openconnect --juniper vpn.adtran.com"
+
 source ~/.zshrc-local
 
 # allow comments in interactive shells
