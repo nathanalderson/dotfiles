@@ -1,6 +1,7 @@
 [user]
 	name = Nathan Alderson
 	email = nathan.alderson@gmail.com
+    signingkey = 3DCF1866
 [diff]
 	tool = bc3
 [merge]
