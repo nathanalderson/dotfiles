@@ -55,7 +55,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-commentary'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-dispatch'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'w0ng/vim-hybrid.git'
@@ -81,6 +82,7 @@ if has("gui_running")
     endif
     set guioptions-=T  "remove toolbar
     set guioptions-=m  "remove menu
+    set guioptions-=rL "remove right and left scroll bars
     set guioptions+=c  "use non-modal confirm prompts
 else
     " do terminal-only stuff
@@ -110,10 +112,11 @@ else
 endif
 
 " colors
-set background=dark
+set background=light
 if has("gui_running")
-    colorscheme gruvbox
+    colorscheme solarized
 else
+    set background=dark
     colorscheme gruvbox
 endif
 
@@ -340,7 +343,7 @@ let python_highlight_all=1
 " Ag and Ack
 let g:ackprg="ack --column --smart-case"
 let g:ag_mapping_message=0
-let g:agprg="ag --column --smart-case"
+let g:ag_prg="ag --column --smart-case"
 
 "Airline
 if &guifont =~ 'PowerLine'
@@ -349,20 +352,20 @@ endif
 let g:airline_detect_modified=1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_mode_map = {
-  \ '__' : '-',
-  \ 'n'  : 'N',
-  \ 'i'  : 'I',
-  \ 'R'  : 'R',
-  \ 'c'  : 'C',
-  \ 'v'  : 'V',
-  \ 'V'  : 'V',
-  \ '' : 'V',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \ '' : 'S',
-  \ }
+   \ '__' : '-',
+   \ 'n'  : 'N',
+   \ 'i'  : 'I',
+   \ 'R'  : 'R',
+   \ 'c'  : 'C',
+   \ 'v'  : 'V',
+   \ 'V'  : 'V',
+   \ '' : 'V',
+   \ 's'  : 'S',
+   \ 'S'  : 'S',
+   \ '' : 'S',
+   \ }
 
-"fugitive
+" fugitive
 autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
