@@ -1,0 +1,1 @@
+/home/nalderso/dotfiles/.i3
