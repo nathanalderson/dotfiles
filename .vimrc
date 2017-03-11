@@ -93,6 +93,7 @@ if has("gui_running")
     set guioptions+=c  "use non-modal confirm prompts
 else
     " do terminal-only stuff
+    set t_ut=
 endif
 
 if has("win64") || has("win32") || has("win16")
@@ -120,7 +121,7 @@ endif
 
 " colors
 set background=dark
-colorscheme base16-solar-flare
+colorscheme base16-solarflare
 
 " tabs
 function! SetTabWidth(size)
