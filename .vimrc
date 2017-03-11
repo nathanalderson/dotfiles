@@ -40,7 +40,7 @@ Plugin 'kana/vim-textobj-django-template'
 Plugin 'lucapette/vim-textobj-underscore'
 Plugin 'kana/vim-textobj-user'
 Plugin 'sorin-ionescu/python.vim'
-Plugin 'vim-scripts/bufkill.vim'
+Plugin 'qpkorr/vim-bufkill'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tfnico/vim-gradle'
 Plugin 'derekwyatt/vim-scala'
@@ -61,6 +61,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
+Plugin 'nanotech/jellybeans.vim'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
@@ -112,9 +113,9 @@ else
 endif
 
 " colors
-set background=light
+set background=dark
 if has("gui_running")
-    colorscheme solarized
+    colorscheme base16-solar-flare
 else
     set background=dark
     colorscheme gruvbox
@@ -279,7 +280,6 @@ let g:CommandTMaxFiles=50000
 let g:CommandTMatchWindowReverse=1
 let g:CommandTCancelMap=['<ESC>','<C-c>']   "doesn't work in zsh by default?
 let g:CommandTDelayUpdate=0
-let g:BufKillBindings=1     "skip bufkill bindings which interfere with Command-T
 let g:CommandTTraverseSCM="pwd"
 set updatetime=250
 nnoremap <silent> <leader>g :CommandTTag<CR>
@@ -304,8 +304,9 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
 
-" Turn off buffkill leader-key mappings which conflict with Command-T \b
-let g:BufKillCreateMappings=0
+" BufKill
+let g:BufKillCreateMappings=0     "skip bufkill bindings which interfere with Command-T
+nmap <silent> <C-^> :BA<CR>
 
 " perforce integration
 nnoremap @p4e :!p4 edit %:e

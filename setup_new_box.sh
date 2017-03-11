@@ -1,6 +1,7 @@
 apt-get update
 apt-get -y install vim-gnome git zsh keepass2 xdotool ruby ruby-dev curl openssh-server dropbox
 apt-get -y install fonts-inconsolata curl g++ python-pip
+apt-get -y install tmux
 curl -L http://install.ohmyz.sh | sh
 
 git clone https://github.com/nathanalderson/dotfiles.git
