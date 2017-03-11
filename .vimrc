@@ -1,11 +1,14 @@
 set nocompatible
 set shell=bash
 set ssl
+set termguicolors
 
 "vundle stuff
 filetype off
 if has("win32") || has("win16")
     let bundle_path = "C:/Program\\ Files\\ -\\ Portable/Vim/vimfiles/bundle"
+elseif has('nvim')
+    let bundle_path = "~/.config/nvim/bundle"
 else
     let bundle_path = "~/.vim/bundle"
 endif
@@ -23,7 +26,7 @@ Plugin 'tpope/vim-unimpaired.git'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'tpope/vim-surround.git'
 Plugin 'chriskempson/vim-tomorrow-theme.git'
-Plugin 'nathanalderson/perforce.vim.git'
+Plugin 'nfvs/vim-perforce'
 Plugin 'pangloss/vim-javascript'
 Plugin 'ervandew/supertab'
 Plugin 'mileszs/ack.vim'
@@ -67,6 +70,9 @@ if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
 endif
 Plugin 'VimClojure'
+if has('nvim')
+    Plugin 'Shougo/deoplete.nvim'
+end
 
 call vundle#end()
 
@@ -114,12 +120,7 @@ endif
 
 " colors
 set background=dark
-if has("gui_running")
-    colorscheme base16-solar-flare
-else
-    set background=dark
-    colorscheme gruvbox
-endif
+colorscheme base16-solar-flare
 
 " tabs
 function! SetTabWidth(size)
@@ -216,7 +217,6 @@ nnoremap k gk
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
-nnoremap <leader>o :only<CR>
 nnoremap <S-h> ^
 nnoremap <S-l> $
 nnoremap <leader>. @:
@@ -299,7 +299,6 @@ let g:syntastic_cpp_checkers=['cppcheck']
 let g:syntastic_python_pylint_post_args = '--disable=C'
 let g:syntastic_enable_balloons=0
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=0     " this feature doesn't work well with the perforce plugin.
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
@@ -308,8 +307,16 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 let g:BufKillCreateMappings=0     "skip bufkill bindings which interfere with Command-T
 nmap <silent> <C-^> :BA<CR>
 
-" perforce integration
-nnoremap @p4e :!p4 edit %:e
+" ZoomWin
+nnoremap <C-o> :ZoomWin<CR>
+
+" vim-perforce
+let g:perforce_auto_source_dirs=['/home/nalderso/p4workspace']
+
+"deoplete
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+end
 
 " additional extensions
 au BufNewFile,BufRead *.bps set filetype=tcl
