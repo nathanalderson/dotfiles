@@ -109,7 +109,7 @@ if has("win64") || has("win32") || has("win16")
     set clipboard=unnamed
 else
     if has("gui_running")
-        set guifont=Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
+        set guifont=Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
     else
         set guifont=Inconsolata\ 12
     endif
@@ -145,6 +145,13 @@ function! Wrap()
     set wrapmargin=0
 endfunction
 command! Wrap call Wrap()
+
+" Save file as root
+function! Write()
+    w !sudo tee %
+    edit!
+endfunction
+command! Write call Write()
 
 " Trim trailing whitespace
 command! Trim :%s/\v\s+$/
