@@ -3,9 +3,9 @@
 	email = nathan.alderson@gmail.com
     signingkey = 3DCF1866
 [diff]
-	tool = p4merge
+	tool = bc3
 [merge]
-	tool = p4merge
+	tool = bc3
 [mergetool]
 	bc3 = trustExitCode
 	keepBackup = false
