@@ -1,22 +1,23 @@
 [user]
-	name = Nathan Alderson
-	email = nathan.alderson@gmail.com
+    name = Nathan Alderson
+    email = nathan.alderson@gmail.com
     signingkey = 3DCF1866
 [diff]
-	tool = bc3
+    tool = bc3
 [merge]
-	tool = bc3
+    tool = bc3
 [mergetool]
-	bc3 = trustExitCode
-	keepBackup = false
+    bc3 = trustExitCode
+    keepBackup = false
 [difftool]
-	prompt = false
-	bc3 = trustExitCode
+    prompt = false
+    bc3 = trustExitCode
 [color]
-	ui = auto
+    ui = auto
 [core]
-	excludesfile = /home/nalderso/.gitignore_global
+    excludesfile = /home/nalderso/.gitignore_global
 [push]
-	default = simple
+    default = simple
 [alias]
-	diffall = !diffall
+    diffall = !diffall
+
