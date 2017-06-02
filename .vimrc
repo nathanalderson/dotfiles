@@ -65,6 +65,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
@@ -244,10 +245,6 @@ vnoremap H ^
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 "insert mode custom keymapping
 inoremap <C-]> <C-X><C-]>
@@ -255,6 +252,9 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-D> <C-X><C-D>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-BS> <C-W>
+
+nnoremap <F5> :Dispatch<CR>
+autocmd FileType java,scala,groovy let b:dispatch = 'gw build'
 
 " Tabularize
 nmap <Leader>a= :Tabularize /=<CR>
