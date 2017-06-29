@@ -5,7 +5,12 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="muse"
+ZSH_THEME="spaceship"
+SPACESHIP_PROMPT_TRUNC=0
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_PROMPT_SYMBOL=»
+SPACESHIP_GIT_UNSTAGED=✘
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -31,7 +36,7 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django virtualenv virtualenvwrapper common-aliases dircycle dirhistory pip supervisor)
+plugins=(git django virtualenv virtualenvwrapper common-aliases dircycle dirhistory pip supervisor gradle)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,8 +56,12 @@ unsetopt share_history
 # Autocorrect seems more annoying than helpful...
 unsetopt correct_all
 
-# alias for gradle building
-gbts () { gradle test -Dtest.single=$1 ${*:2} }
+setopt extended_glob
+setopt interactivecomments
+
+# aliases for gradle building
+alias gw="./(../)#gradlew" # search up the directory tree for gradlew
+gbts () { gw test -Dtest.single=$1 ${*:2} }
 
 # alias for activating virtual environment
 alias ve="virtualenv venv && source venv/bin/activate"
@@ -62,7 +71,10 @@ alias svba="source venv/bin/activate"
 alias serve="python -m SimpleHTTPServer"
 
 # alias for vpn-ing to Adtran
-alias vpn="openconnect -u nalderso --juniper vpn.adtran.com"
+alias vpn="openconnect --juniper vpn.adtran.com"
+
+# launch nvim in a separate gui. must install https://github.com/fmoralesc/neovim-gnome-terminal-wrapper
+alias gnv="nvim-wrapper"
 
 source ~/.zshrc-local
 
