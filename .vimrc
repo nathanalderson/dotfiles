@@ -121,8 +121,8 @@ else
 endif
 
 " colors
-set background=dark
-colorscheme base16-solarflare
+set background=light
+colorscheme gruvbox
 
 " tabs
 function! SetTabWidth(size)
