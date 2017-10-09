@@ -1,0 +1,26 @@
+source .vimrc
+
+" ideavim emulated plugins
+set surround
+
+" NOTE: to find editor actions for use in mappings, use `:actionlist [pattern]`, then use them like `:action {name}` (in
+" a mapping, you will want to append a `<CR>`)
+
+" ideavim-specific mappings
+nnoremap [<Space> :action EditorStartNewLineBefore<CR>:action VimMotionDown<CR>
+nnoremap ]<Space> :action EditorStartNewLine<CR>:action VimMotionUp<CR>
+nnoremap [e :action MoveLineUp<CR>
+nnoremap ]e :action MoveLineDown<CR>
+
+nmap <C-6> :action VimMotionNextTab<CR>
+
+nmap <leader>t :action SearchEverywhere<CR>
+
+" Using `nnoremap / /\v` caused the search dialog to lose focus
+nnoremap / /
+
+nnoremap <C-h> :action VimWindowLeft<CR>
+nnoremap <C-j> :action VimWindowDown<CR>
+nnoremap <C-k> :action VimWindowUp<CR>
+nnoremap <C-l> :action VimWindowRight<CR>
+
