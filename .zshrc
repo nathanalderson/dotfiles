@@ -103,3 +103,5 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
+# allow sudo to use aliases
+alias sudo='sudo '
