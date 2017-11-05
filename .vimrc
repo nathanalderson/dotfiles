@@ -69,6 +69,7 @@ Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'mattn/emmet-vim'
 " vim-scripts repos
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
