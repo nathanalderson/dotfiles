@@ -16,6 +16,9 @@ execute "set rtp+=".bundle_path.'/Vundle.vim'
 call vundle#begin(bundle_path)
 Plugin 'gmarik/Vundle.vim'
 
+source $VIMRUNTIME/mswin.vim
+set selectmode=
+
 " My Plugins here:
 "
 " original repos on github
@@ -76,9 +79,6 @@ if has('nvim')
 end
 
 call vundle#end()
-
-source $VIMRUNTIME/mswin.vim
-set selectmode=
 
 filetype plugin indent on
 
