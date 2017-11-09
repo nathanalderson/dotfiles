@@ -187,11 +187,16 @@ if &t_Co >= 256 || has("gui_running")
 else
     set nocursorline
 endif
+
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+" ...except for git commits
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
 command! W w
 command! Q q
 command! CD cd %:p:h
@@ -340,6 +345,7 @@ set errorformat^=%-GIn\ file\ included\ from\ %f:%l:%c:,%-GIn\ file
 " Comments
 let NERDSpaceDelims=1
 autocmd FileType groovy set commentstring=//\ %s
+nmap <C-/> gcc
 
 " NerdTree
 nmap <C-n> :NERDTreeToggle<CR>
