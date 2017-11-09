@@ -16,24 +16,49 @@ execute "set rtp+=".bundle_path.'/Vundle.vim'
 call vundle#begin(bundle_path)
 Plugin 'gmarik/Vundle.vim'
 
-" My Plugins here:
-"
-" original repos on github
-Plugin 'godlygeek/tabular.git'
+" *******
+" Plugins
+" *******
+
+" colorschemes
 Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'chriskempson/vim-tomorrow-theme.git'
+Plugin 'chriskempson/base16-vim'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'w0ng/vim-hybrid.git'
+Plugin 'morhetz/gruvbox'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'nightsense/vimspectr'
+if &t_Co >= 256 || has("gui_running")
+    Plugin 'CSApprox'
+endif
+
+" Language support
+Plugin 'pangloss/vim-javascript'
+Plugin 'JDeuce/jinja-syntax'
+Plugin 'groenewege/vim-less'
+Plugin 'sorin-ionescu/python.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'nathanalderson/yang.vim'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'VimClojure'
+
+" version control
+Plugin 'nfvs/vim-perforce'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+" other
+Plugin 'tpope/vim-sensible'
+Plugin 'godlygeek/tabular.git'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-unimpaired.git'
 Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'tpope/vim-surround.git'
-Plugin 'chriskempson/vim-tomorrow-theme.git'
-Plugin 'nfvs/vim-perforce'
-Plugin 'pangloss/vim-javascript'
-Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-commentary'
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
-Plugin 'JDeuce/jinja-syntax'
-Plugin 'groenewege/vim-less'
-Plugin 'chriskempson/base16-vim'
 Plugin 'kana/vim-textobj-function'
 Plugin 'kana/vim-textobj-indent'
 Plugin 'kana/vim-textobj-line'
@@ -42,35 +67,20 @@ Plugin 'kana/vim-textobj-lastpat'
 Plugin 'kana/vim-textobj-django-template'
 Plugin 'lucapette/vim-textobj-underscore'
 Plugin 'kana/vim-textobj-user'
-Plugin 'sorin-ionescu/python.vim'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tfnico/vim-gradle'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'endel/vim-github-colorscheme'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/fontzoom.vim'
 Plugin 'regedarek/ZoomWin'
-Plugin 'nathanalderson/yang.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-dispatch'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'w0ng/vim-hybrid.git'
-Plugin 'morhetz/gruvbox'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-" vim-scripts repos
-if &t_Co >= 256 || has("gui_running")
-    Plugin 'CSApprox'
-endif
-Plugin 'VimClojure'
+
+" neovim
 if has('nvim')
     Plugin 'Shougo/deoplete.nvim'
 end
