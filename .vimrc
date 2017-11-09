@@ -16,6 +16,9 @@ execute "set rtp+=".bundle_path.'/Vundle.vim'
 call vundle#begin(bundle_path)
 Plugin 'gmarik/Vundle.vim'
 
+source $VIMRUNTIME/mswin.vim
+set selectmode=
+
 " *******
 " Plugins
 " *******
@@ -41,6 +44,7 @@ Plugin 'sorin-ionescu/python.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'nathanalderson/yang.vim'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'VimClojure'
 
 " version control
@@ -80,15 +84,13 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-dispatch'
 Plugin 'christoomey/vim-tmux-navigator'
 
+
 " neovim
 if has('nvim')
     Plugin 'Shougo/deoplete.nvim'
 end
 
 call vundle#end()
-
-source $VIMRUNTIME/mswin.vim
-set selectmode=
 
 filetype plugin indent on
 
