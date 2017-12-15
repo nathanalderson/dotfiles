@@ -36,7 +36,7 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django virtualenv virtualenvwrapper common-aliases dircycle dirhistory pip supervisor gradle)
+plugins=(git django virtualenv virtualenvwrapper common-aliases dircycle dirhistory supervisor gradle)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -65,6 +65,8 @@ gbts () { gw test -Dtest.single=$1 ${*:2} }
 
 # alias for activating virtual environment
 alias ve="virtualenv venv && source venv/bin/activate"
+alias ve2="virtualenv --python=python2 venv && source venv/bin/activate"
+alias ve3="virtualenv --python=python3 venv && source venv/bin/activate"
 alias svba="source venv/bin/activate"
 
 # alias for serving a directory with python
@@ -88,7 +90,7 @@ PATH=$HOME/bin:$PATH
 # Setup virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/dev
-source /usr/local/bin/virtualenvwrapper.sh
+source $(which virtualenvwrapper.sh)
 
 export NVM_DIR="/home/nalderso/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -102,6 +104,13 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+bindkey '^[OF' end-of-line
+bindkey '^[OH' beginning-of-line
+bindkey '^[[3~' delete-char
+
 
 # allow sudo to use aliases
 alias sudo='sudo '
+
+# open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
+. /etc/profile.d/vte.sh

@@ -134,7 +134,8 @@ endif
 
 " colors
 set background=light
-colorscheme gruvbox
+colorscheme vimspectrgrey-light
+let g:airline_theme='deus'
 
 " tabs
 function! SetTabWidth(size)
@@ -207,7 +208,7 @@ autocmd BufReadPost *
     \ endif
 
 " ...except for git commits
-autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+autocmd FileType gitcommit execute "normal! ggm\""
 
 command! W w
 command! Q q
