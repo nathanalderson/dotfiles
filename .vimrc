@@ -17,6 +17,7 @@ call vundle#begin(bundle_path)
 Plugin 'gmarik/Vundle.vim'
 
 source $VIMRUNTIME/mswin.vim
+silent! unmap <C-H>
 set selectmode=
 
 " *******
