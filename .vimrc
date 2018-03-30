@@ -38,7 +38,6 @@ if &t_Co >= 256 || has("gui_running")
 endif
 
 " Language support
-Plugin 'pangloss/vim-javascript'
 Plugin 'JDeuce/jinja-syntax'
 Plugin 'groenewege/vim-less'
 Plugin 'sorin-ionescu/python.vim'
@@ -47,6 +46,10 @@ Plugin 'nathanalderson/yang.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'VimClojure'
+Plugin 'Quramy/tsuquyomi' " typescript fanciness
+Plugin 'Quramy/vim-js-pretty-template'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'jason0x43/vim-js-indent'
 
 " version control
 Plugin 'nfvs/vim-perforce'
@@ -150,6 +153,7 @@ call SetTabWidth(4) " default tabwidth is 4
 autocmd Filetype scala call SetTabWidth(2)
 autocmd Filetype ruby call SetTabWidth(2)
 autocmd Filetype javascript call SetTabWidth(2)
+autocmd Filetype typescript call SetTabWidth(2)
 
 " Enable nice word wrapping
 function! Wrap()
@@ -324,10 +328,11 @@ nnoremap <S-F5> :SyntasticCheck<CR>
 let g:syntastic_python_checkers=['pylint']
 let g:syntastic_cpp_checkers=['cppcheck']
 let g:syntastic_python_pylint_post_args = '--disable=C'
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_enable_balloons=0
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': [],
+                           \ 'active_filetypes': ['typescript'],
                            \ 'passive_filetypes': [] }
 
 " BufKill
@@ -404,6 +409,17 @@ let g:airline_mode_map = {
 " fugitive
 autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" supertab
+" let g:SuperTabDefaultCompletionType = "context"
+autocmd FileType *
+    \ if &omnifunc != '' |
+    \   call SuperTabChain(&omnifunc, "<c-p>") |
+    \ endif
+
+" tsuquyomi
+let g:tsuquyomi_disable_quickfix = 1
+map <C-)> <Plug>(TsuquyomiReferences)
 
 " TODO:
 " - Consider remapping Caps-Lock and/or the weird menu key to something more
