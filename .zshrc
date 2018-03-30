@@ -36,7 +36,16 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git django virtualenv virtualenvwrapper common-aliases dircycle dirhistory supervisor gradle)
+plugins=()
+plugins+=(git)
+plugins+=(django)
+plugins+=(virtualenv)
+plugins+=(virtualenvwrapper)
+plugins+=(common-aliases)
+plugins+=(dircycle)
+plugins+=(dirhistory)
+plugins+=(supervisor)
+plugins+=(gradle)
 
 source $ZSH/oh-my-zsh.sh
 
