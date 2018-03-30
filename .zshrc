@@ -114,3 +114,8 @@ alias sudo='sudo '
 
 # open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
 . /etc/profile.d/vte.sh
+
+# enable command editing in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
