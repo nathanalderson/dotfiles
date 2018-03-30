@@ -165,26 +165,41 @@ bar {
 
 # Additional Nathan customizations
 hide_edge_borders both
-exec --no-startup-id nitrogen --restore
-bindsym Mod1+Control+a exec "keepass2 -auto-type"
-bindsym Mod1+Control+l exec ~/bin/fuzzy_lock.sh
-exec xautolock -time 30 -locker ~/bin/fuzzy_lock.sh
-exec dropbox start
 bindsym $mod+i move workspace to output left
 bindsym $mod+o move workspace to output right
-exec /usr/bin/compton --config ~/.compton.conf
+
 exec feh --bg-tile ~/Pictures/wallpapers/desertjourney_1080px3_mid+right.jpg
 
-workspace 1 output DVI-0
-workspace 2 output DVI-0
-workspace 3 output DVI-0
-workspace 4 output DVI-0
-workspace 5 output DVI-0
-workspace 6 output DVI-1
-workspace 7 output DVI-1
-workspace 8 output DVI-1
-workspace 9 output DVI-1
-workspace 10 output DVI-1
+# right-click titlebars to close, or mod+right-click the whole window
+bindsym --release button3 kill
+bindsym --whole-window $mod+button3 kill
+
+# Locking
+bindsym Mod1+Control+l exec ~/bin/fuzzy_lock.sh
+exec xautolock -time 30 -locker ~/bin/fuzzy_lock.sh
+
+# Autostart
+exec dropbox start
+exec keepassxc
+exec google-chrome-stable --silent-launch
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec synergy -c /home/nalderso/synergy-server.conf
+exec pamac-tray
+
+# Assign certain workspaces to certain monitors
+# use "i3-msg message get_outputs" to see monitor names
+set $leftMonitor DVI-I-1
+set $rightMonitor DVI-I-2
+workspace 1 output $leftMonitor
+workspace 2 output $leftMonitor
+workspace 3 output $leftMonitor
+workspace 4 output $leftMonitor
+workspace 5 output $leftMonitor
+workspace 6 output $rightMonitor
+workspace 7 output $rightMonitor
+workspace 8 output $rightMonitor
+workspace 9 output $rightMonitor
+workspace 10 output $rightMonitor
 assign [class="KeePass2"] 10
 
 # google hangouts will always be floating
