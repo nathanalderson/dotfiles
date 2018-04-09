@@ -249,8 +249,8 @@ nnoremap k gk
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
-nnoremap <S-h> ^
-nnoremap <S-l> $
+nnoremap <S-h> g^
+nnoremap <S-l> g$
 nnoremap <leader>. @:
 nnoremap <F8> :set nohlsearch!<CR>
 " nnoremap <S-C-W> :0,bd<CR>
@@ -262,8 +262,8 @@ nnoremap Y y$
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
-vnoremap L $
-vnoremap H ^
+vnoremap L g$
+vnoremap H g^
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
