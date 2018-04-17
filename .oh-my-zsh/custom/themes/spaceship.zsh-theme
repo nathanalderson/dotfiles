@@ -65,6 +65,7 @@ SPACESHIP_XCODE_SYMBOL="${SPACESHIP_XCODE_SYMBOL:-🛠}"
 
 # VENV
 SPACESHIP_VENV_SHOW="${SPACESHIP_VENV_SHOW:-true}"
+SPACESHIP_VENV_SYMBOL="${SPACESHIP_VENV_SYMBOL:-🐍}"
 
 # PYENV
 SPACESHIP_PYENV_SHOW="${SPACESHIP_PYENV_SHOW:-true}"
@@ -248,7 +249,7 @@ spaceship_venv_status() {
   [[ $SPACESHIP_PREFIX_SHOW == true ]] && echo -n "%B${SPACESHIP_PREFIX_VENV}%b" || echo -n ' '
 
   echo -n "%{$fg_bold[blue]%}"
-  echo -n "$(basename $VIRTUAL_ENV)"
+  echo -n "${SPACESHIP_PYENV_SYMBOL} $(basename $VIRTUAL_ENV)"
   echo -n "%{$reset_color%}"
 }
 
@@ -325,7 +326,7 @@ spaceship_ruby_version() {
   [[ "${ruby_version}" =~ ^[0-9].+$ ]] && ruby_version="v${ruby_version}"
 
   echo -n "%{$fg_bold[red]%}"
-  echo -n "${SPACESHIP_RUBY_SYMBOL}  ${ruby_version}"
+  echo -n "${SPACESHIP_RUBY_SYMBOL} ${ruby_version}"
   echo -n "%{$reset_color%}"
 }
 
