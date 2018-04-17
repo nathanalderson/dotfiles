@@ -100,10 +100,12 @@ setopt interactivecomments
 export P4CONFIG=.p4config
 PATH=$HOME/bin:$PATH
 
+# load rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # lazy-load nvm
 if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then
   export NVM_DIR="$HOME/.nvm"
-  export NVM_DIR="/usr/share/nvm"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
   declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
   function __init_nvm() {
@@ -139,3 +141,6 @@ alias sudo='sudo '
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

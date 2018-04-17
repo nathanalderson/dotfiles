@@ -316,7 +316,7 @@ spaceship_ruby_version() {
     return
   fi
 
-  [[ "${ruby_version}" == "system" ]] && return
+  [[ "${ruby_version}" == "system" || "${ruby_version}" == "" ]] && return
 
   # Do not show ruby prefix if prefixes are disabled
   [[ $SPACESHIP_PREFIX_SHOW == true ]] && echo -n "%B${SPACESHIP_PREFIX_RUBY}%b" || echo -n ' '
