@@ -50,6 +50,7 @@ Plugin 'Quramy/tsuquyomi' " typescript fanciness
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'jason0x43/vim-js-indent'
+Plugin 'mfukar/robotframework-vim'
 
 " version control
 Plugin 'nfvs/vim-perforce'
