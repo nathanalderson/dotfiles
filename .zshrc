@@ -1,3 +1,8 @@
+PROFILE_STARTUP=false
+if [[ "$PROFILE_STARTUP" == true ]]; then
+  zmodload zsh/zprof
+fi
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -144,3 +149,7 @@ bindkey -M vicmd v edit-command-line
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+  zprof
+fi
