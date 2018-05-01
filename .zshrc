@@ -140,7 +140,7 @@ bindkey '^[[3~' delete-char
 alias sudo='sudo '
 
 # open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
-. /etc/profile.d/vte.sh
+[[ -s "/etc/profile.d/vte.sh" ]] && . /etc/profile.d/vte.sh
 
 # enable command editing in vim
 autoload -U edit-command-line
