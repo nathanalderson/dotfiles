@@ -66,6 +66,7 @@ Plugin 'kana/vim-textobj-lastpat'
 Plugin 'kana/vim-textobj-django-template'
 Plugin 'lucapette/vim-textobj-underscore'
 Plugin 'kana/vim-textobj-user'
+Plugin 'reedes/vim-textobj-sentence'
 
 " other
 Plugin 'tpope/vim-sensible'
@@ -90,6 +91,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-dispatch'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'reedes/vim-pencil'
+Plugin 'junegunn/goyo.vim'
 
 
 " neovim
@@ -158,6 +161,18 @@ autocmd Filetype ruby call SetTabWidth(2)
 autocmd Filetype javascript call SetTabWidth(2)
 autocmd Filetype typescript call SetTabWidth(2)
 
+" Composition mode (for editing prose)
+let g:goyo_width = 120
+function! Compose()
+    Goyo
+    PencilToggle
+    nnoremap <S-h> g^
+    vnoremap <S-h> g^
+    nnoremap <S-l> g$
+    vnoremap <S-l> g$
+endfunction
+command! Compose call Compose()
+
 " Enable nice word wrapping
 function! Wrap()
     set wrap
@@ -165,6 +180,10 @@ function! Wrap()
     set nolist
     set textwidth=0
     set wrapmargin=0
+    nnoremap <S-h> g^
+    vnoremap <S-h> g^
+    nnoremap <S-l> g$
+    vnoremap <S-l> g$
 endfunction
 command! Wrap call Wrap()
 
@@ -252,8 +271,10 @@ nnoremap k gk
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
-nnoremap <S-h> g^
-nnoremap <S-l> g$
+nnoremap <S-h> ^
+nnoremap <S-l> $
+vnoremap <S-h> g^
+vnoremap <S-l> g$
 nnoremap <leader>. @:
 nnoremap <F8> :set nohlsearch!<CR>
 " nnoremap <S-C-W> :0,bd<CR>
@@ -265,8 +286,6 @@ nnoremap Y y$
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
-vnoremap L g$
-vnoremap H g^
 
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
