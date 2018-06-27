@@ -153,3 +153,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 if [[ "$PROFILE_STARTUP" == true ]]; then
   zprof
 fi
+
+# Set gopath
+export GOPATH="$HOME/.godir"
+export PATH=$PATH:"$GOPATH/bin"
