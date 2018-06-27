@@ -104,6 +104,7 @@ setopt interactivecomments
 # Some environment variables
 export P4CONFIG=.p4config
 PATH=$HOME/bin:$PATH
+export EDITOR=/usr/bin/vim
 
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
