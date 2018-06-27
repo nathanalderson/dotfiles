@@ -93,7 +93,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'reedes/vim-pencil'
 Plugin 'junegunn/goyo.vim'
-
+Plugin 'nathanalderson/yanktohtml'
 
 " neovim
 if has('nvim')
