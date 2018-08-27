@@ -55,6 +55,8 @@ plugins+=(dircycle)
 plugins+=(dirhistory)
 plugins+=(supervisor)
 plugins+=(gradle)
+plugins+=(docker)
+plugins+=(docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,6 +97,9 @@ alias vpn="openconnect --juniper vpn.adtran.com"
 
 # launch nvim in a separate gui. must install https://github.com/fmoralesc/neovim-gnome-terminal-wrapper
 alias gnv="nvim-wrapper"
+
+# docker-compoose
+alias dcupd='docker-compose up -d --build'
 
 source ~/.zshrc-local
 
