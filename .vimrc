@@ -221,6 +221,7 @@ set nowrap
 set textwidth=100
 set formatoptions-=t
 set noerrorbells novisualbell t_vb=
+set foldlevelstart=99
 autocmd GUIEnter * set visualbell t_vb=
 if &t_Co >= 256 || has("gui_running")
     set cursorline
@@ -389,6 +390,7 @@ autocmd FileType groovy set commentstring=//\ %s
 nmap <C-/> gcc
 
 " NerdTree
+let NERDTreeShowHidden=1
 nmap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
