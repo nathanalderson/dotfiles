@@ -57,6 +57,7 @@ plugins+=(supervisor)
 plugins+=(gradle)
 plugins+=(docker)
 plugins+=(docker-compose)
+plugins+=(kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,6 +101,12 @@ alias gnv="nvim-wrapper"
 
 # docker-compoose
 alias dcupd='docker-compose up -d --build'
+
+# docker
+alias drsa='docker ps -aq | xargs --no-run-if-empty docker rm -f' #"docker stop all"
+alias drvc='docker container prune && docker image prune' #"docker very clean"
+dre () { docker exec -it ${*:1} }
+drip () { docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@" }
 
 source ~/.zshrc-local
 
