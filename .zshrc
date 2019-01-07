@@ -170,3 +170,9 @@ fi
 # Set gopath
 export GOPATH="$HOME/.godir"
 export PATH=$PATH:"$GOPATH/bin"
+
+# stupid cows
+export ANSIBLE_NOCOWS=1
+
+# added by travis gem
+[ -f /home/nalderso/.travis/travis.sh ] && source /home/nalderso/.travis/travis.sh

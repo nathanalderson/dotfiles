@@ -10,3 +10,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# added by travis gem
+[ -f /home/nalderso/.travis/travis.sh ] && source /home/nalderso/.travis/travis.sh
