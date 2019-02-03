@@ -38,10 +38,6 @@ alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-# Setup virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/dev
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -49,7 +45,6 @@ plugins=()
 plugins+=(git)
 plugins+=(django)
 plugins+=(virtualenv)
-plugins+=(virtualenvwrapper)
 plugins+=(common-aliases)
 plugins+=(dircycle)
 plugins+=(dirhistory)
@@ -91,7 +86,8 @@ alias ve3="virtualenv --python=python3 venv && source venv/bin/activate"
 alias svba="source venv/bin/activate"
 
 # alias for serving a directory with python
-alias serve="python -m SimpleHTTPServer"
+alias serve2="python -m SimpleHTTPServer"
+alias serve="python -m http.server"
 
 # alias for vpn-ing to Adtran
 alias vpn="openconnect --juniper vpn.adtran.com"
@@ -118,8 +114,15 @@ export P4CONFIG=.p4config
 PATH=$HOME/bin:$PATH
 export EDITOR=/usr/bin/vim
 
-# load rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# lazy-load rvm
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+  function __init_rvm() {
+    unalias rvm
+    unset -f __init_rvm
+    . "$HOME/.rvm/scripts/rvm"
+  }
+  alias rvm='__init_rvm && rvm'
+fi
 
 # lazy-load nvm
 if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then

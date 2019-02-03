@@ -54,6 +54,7 @@ Plugin 'evedovelli/rst-robotframework-syntax-vim'
 Plugin 'mfukar/robotframework-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'udalov/kotlin-vim'
 
 " version control
 Plugin 'nfvs/vim-perforce'
