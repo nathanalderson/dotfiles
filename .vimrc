@@ -33,6 +33,7 @@ Plugin 'w0ng/vim-hybrid.git'
 Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nightsense/vimspectr'
+Plugin 'junegunn/seoul256.vim'
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
 endif
@@ -144,8 +145,8 @@ else
 endif
 
 " colors
-set background=light
-colorscheme vimspectrgrey-light
+set background=dark
+colorscheme seoul256
 let g:airline_theme='deus'
 
 " tabs
@@ -238,6 +239,9 @@ autocmd BufReadPost *
 
 " ...except for git commits
 autocmd FileType gitcommit execute "normal! ggm\""
+
+" vim-anywhere
+autocmd BufNewFile,BufRead /tmp/vim-anywhere/* set syntax=markdown
 
 command! W w
 command! Q q
