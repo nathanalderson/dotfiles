@@ -86,7 +86,8 @@ alias ve3="virtualenv --python=python3 venv && source venv/bin/activate"
 alias svba="source venv/bin/activate"
 
 # alias for serving a directory with python
-alias serve="python -m SimpleHTTPServer"
+alias serve2="python -m SimpleHTTPServer"
+alias serve="python -m http.server"
 
 # alias for vpn-ing to Adtran
 alias vpn="openconnect --juniper vpn.adtran.com"
