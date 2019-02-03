@@ -39,7 +39,7 @@ if &t_Co >= 256 || has("gui_running")
 endif
 
 " Language support
-Plugin 'JDeuce/jinja-syntax'
+Plugin 'lepture/vim-jinja'
 Plugin 'groenewege/vim-less'
 Plugin 'sorin-ionescu/python.vim'
 Plugin 'derekwyatt/vim-scala'
@@ -50,8 +50,10 @@ Plugin 'VimClojure'
 Plugin 'Quramy/tsuquyomi' " typescript fanciness
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'jason0x43/vim-js-indent'
+Plugin 'evedovelli/rst-robotframework-syntax-vim'
 Plugin 'mfukar/robotframework-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " version control
 Plugin 'nfvs/vim-perforce'
