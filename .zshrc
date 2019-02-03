@@ -114,8 +114,15 @@ export P4CONFIG=.p4config
 PATH=$HOME/bin:$PATH
 export EDITOR=/usr/bin/vim
 
-# load rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# lazy-load rvm
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+  function __init_rvm() {
+    unalias rvm
+    unset -f __init_rvm
+    . "$HOME/.rvm/scripts/rvm"
+  }
+  alias rvm='__init_rvm && rvm'
+fi
 
 # lazy-load nvm
 if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then
