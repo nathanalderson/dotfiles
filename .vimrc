@@ -148,8 +148,8 @@ endif
 
 " colors
 set background=dark
-colorscheme seoul256
-let g:airline_theme='deus'
+colorscheme base16-solarflare
+" let g:airline_theme='deus'
 
 " tabs
 function! SetTabWidth(size)
