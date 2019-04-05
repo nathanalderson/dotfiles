@@ -8,3 +8,7 @@ venv*/
 .gradletasknamecache
 .tox/
 .pytest_cache/
+.cproject
+.project
+.settings/
+.autotools
