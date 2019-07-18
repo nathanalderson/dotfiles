@@ -156,6 +156,8 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+bindkey '^[1~' end-of-line
+bindkey '^[4~' beginning-of-line
 bindkey '^[OF' end-of-line
 bindkey '^[OH' beginning-of-line
 bindkey '^[[3~' delete-char
