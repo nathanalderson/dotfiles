@@ -102,7 +102,6 @@ Plugin 'nathanalderson/yanktohtml'
 
 " neovim
 if has('nvim')
-    Plugin 'Shougo/deoplete.nvim'
 end
 
 call vundle#end()
