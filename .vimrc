@@ -42,7 +42,7 @@ endif
 " Language support
 Plugin 'lepture/vim-jinja'
 Plugin 'groenewege/vim-less'
-Plugin 'sorin-ionescu/python.vim'
+Plugin 'python/black'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'nathanalderson/yang.vim'
 Plugin 'ekalinin/Dockerfile.vim'
@@ -355,7 +355,7 @@ nnoremap <leader>p :let g:ctrlp_working_path_mode='a'<CR>
 
 " Syntastic
 nnoremap <S-F5> :SyntasticCheck<CR>
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['pylint', 'mypy']
 let g:syntastic_cpp_checkers=['cppcheck']
 let g:syntastic_python_pylint_post_args = '--disable=C'
 let g:syntastic_typescript_checkers = ['tsuquyomi']
