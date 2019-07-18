@@ -34,6 +34,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nightsense/vimspectr'
 Plugin 'junegunn/seoul256.vim'
+Plugin 'rakr/vim-one'
 if &t_Co >= 256 || has("gui_running")
     Plugin 'CSApprox'
 endif
@@ -147,8 +148,8 @@ else
 endif
 
 " colors
-set background=dark
-colorscheme base16-solarflare
+set background=light
+colorscheme one
 " let g:airline_theme='deus'
 
 " tabs
