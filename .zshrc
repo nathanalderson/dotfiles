@@ -91,6 +91,7 @@ alias serve="python -m http.server"
 
 # alias for vpn-ing to Adtran
 alias vpn="openconnect --juniper vpn.adtran.com"
+alias vpn-reset='sudo pkill -SIGUSR2 openconnect'
 
 # launch nvim in a separate gui. must install https://github.com/fmoralesc/neovim-gnome-terminal-wrapper
 alias gnv="nvim-wrapper"
