@@ -105,6 +105,11 @@ alias drvc='docker container prune && docker image prune' #"docker very clean"
 dre () { docker exec -it ${*:1} }
 drip () { docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@" }
 
+# git
+diff_pager="diff-so-fancy | less --tabs=4 -RX --pattern '^(Date|added|deleted|modified): '"
+alias gd="PAGER=\"$diff_pager\" git diff --color"
+alias gdca="PAGER=\"$diff_pager\" git diff --color --cached"
+
 # delete the bad host key from the previous ssh command
 purgehostkey() {
   lineno=$(eval $history[$((HISTCMD-1))] 2>&1 | grep -oP 'known_hosts:\K\d+')
