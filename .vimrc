@@ -25,7 +25,7 @@ set selectmode=
 " *******
 
 " colorschemes
-Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'lifepillar/vim-solarized8'
 Plugin 'chriskempson/vim-tomorrow-theme.git'
 Plugin 'chriskempson/base16-vim'
 Plugin 'endel/vim-github-colorscheme'
@@ -148,7 +148,7 @@ endif
 
 " colors
 set background=light
-colorscheme one
+colorscheme solarized8
 " let g:airline_theme='deus'
 
 " tabs
