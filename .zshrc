@@ -119,6 +119,9 @@ purgehostkey() {
   echo "Deleted $host from known_hosts:$lineno 🖥️🔑💥"
 }
 
+# I can never remember the "xdg" part
+alias open='xdg-open'
+
 source ~/.zshrc-local
 
 # allow comments in interactive shells
