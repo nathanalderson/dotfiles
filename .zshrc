@@ -113,11 +113,13 @@ alias gdca="PAGER=\"$diff_pager\" git diff --color --cached"
 
 # delete the bad host key from the previous ssh command
 purgehostkey() {
-  lineno=$(eval $history[$((HISTCMD-1))] 2>&1 | grep -oP 'known_hosts:\K\d+')
+  cmd=$history[$((HISTCMD-1))]
+  lineno=$(eval $cmd 2>&1 | grep -oP 'known_hosts:\K\d+')
   known_hosts=~/.ssh/known_hosts
   host=$(sed -n "${lineno}p" $known_hosts | cut --delimiter=' ' --fields=1)
   sed -i -e "${lineno}d" $known_hosts
   echo "Deleted $host from known_hosts:$lineno 🖥️🔑💥"
+  eval $cmd -o StrictHostKeyChecking=accept-new
 }
 
 source ~/.zshrc-local
