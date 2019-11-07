@@ -102,6 +102,7 @@ alias dcupd='docker-compose up -d --build'
 # docker
 alias drsa='docker ps -aq | xargs --no-run-if-empty docker rm -f' #"docker stop all"
 alias drvc='docker container prune && docker image prune' #"docker very clean"
+alias drr='docker run -it --rm' #"docker run"
 dre () { docker exec -it ${*:1} }
 drip () { docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@" }
 
