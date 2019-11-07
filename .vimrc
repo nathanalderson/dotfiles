@@ -409,8 +409,8 @@ set cspc=0                              " show full path
 nmap <leader>ss mT:cs find s <C-R>=expand("<cword>")<CR><CR>'T:cope<CR>
 nmap <leader>s  :cs find s 
 
-" python.vim
-let python_highlight_all=1
+" black
+let g:black_linelength=100
 
 " Ag and Ack
 let g:ackprg="ack --column --smart-case"
