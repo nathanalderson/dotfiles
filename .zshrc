@@ -110,16 +110,24 @@ alias dcupd='docker-compose up -d --build'
 # docker
 alias drsa='docker ps -aq | xargs --no-run-if-empty docker rm -f' #"docker stop all"
 alias drvc='docker container prune && docker image prune' #"docker very clean"
+alias drr='docker run -it --rm' #"docker run"
 dre () { docker exec -it ${*:1} }
 drip () { docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@" }
 
+# git
+diff_pager="diff-so-fancy | less --tabs=4 -RX --pattern '^(Date|added|deleted|modified): '"
+alias gd="PAGER=\"$diff_pager\" git diff --color"
+alias gdca="PAGER=\"$diff_pager\" git diff --color --cached"
+
 # delete the bad host key from the previous ssh command
 purgehostkey() {
-  lineno=$(eval $history[$((HISTCMD-1))] 2>&1 | grep -oP 'known_hosts:\K\d+')
+  cmd=$history[$((HISTCMD-1))]
+  lineno=$(eval $cmd 2>&1 | grep -oP 'known_hosts:\K\d+')
   known_hosts=~/.ssh/known_hosts
   host=$(sed -n "${lineno}p" $known_hosts | cut --delimiter=' ' --fields=1)
   sed -i -e "${lineno}d" $known_hosts
   echo "Deleted $host from known_hosts:$lineno 🖥️🔑💥"
+  eval $cmd -o StrictHostKeyChecking=accept-new
 }
 
 # I can never remember the "xdg" part
