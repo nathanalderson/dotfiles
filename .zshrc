@@ -98,6 +98,9 @@ alias vpn="~/opt/openconnect-7.08/openconnect \
 alias vpn-disconnect='pkill -SIGINT openconnect'
 alias vpn-reset='pkill -SIGUSR2 openconnect'
 
+alias home-vpn='sudo wg-quick up wg0'
+alias home-vpn-disconnect='wg-quick down wg0'
+
 # launch nvim in a separate gui. must install https://github.com/fmoralesc/neovim-gnome-terminal-wrapper
 alias gnv="nvim-wrapper"
 
