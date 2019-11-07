@@ -90,8 +90,16 @@ alias serve2="python -m SimpleHTTPServer"
 alias serve="python -m http.server"
 
 # alias for vpn-ing to Adtran
-alias vpn="openconnect --juniper vpn.adtran.com"
-alias vpn-reset='sudo pkill -SIGUSR2 openconnect'
+alias vpn="~/opt/openconnect-7.08/openconnect \
+    --juniper \
+    --user nalderso \
+    --script ~/opt/openconnect-7.08/vpnc-script \
+    https://vpn.adtran.com"
+alias vpn-disconnect='pkill -SIGINT openconnect'
+alias vpn-reset='pkill -SIGUSR2 openconnect'
+
+alias home-vpn='sudo wg-quick up wg0'
+alias home-vpn-disconnect='wg-quick down wg0'
 
 # launch nvim in a separate gui. must install https://github.com/fmoralesc/neovim-gnome-terminal-wrapper
 alias gnv="nvim-wrapper"
@@ -121,6 +129,9 @@ purgehostkey() {
   echo "Deleted $host from known_hosts:$lineno 🖥️🔑💥"
   eval $cmd -o StrictHostKeyChecking=accept-new
 }
+
+# I can never remember the "xdg" part
+alias open='xdg-open'
 
 source ~/.zshrc-local
 
