@@ -1,0 +1,10 @@
+[Interface]
+PrivateKey = ${PRIVATE_KEY}
+Address = 192.168.100.102/32
+PostUp = printf "nameserver 192.168.1.231\nsearch local\n" | resolvconf -a tun.%i -m 0 -x
+PreDown = resolvconf -d tun.%i
+
+[Peer]
+PublicKey = 17lsXRxlijgHROgWG46pD0oGfhOkPx5pqVNb2HmLizw=
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = nathanalderson.com:51820
