@@ -202,6 +202,9 @@ fi
 export GOPATH="$HOME/.godir"
 export PATH=$PATH:"$GOPATH/bin"
 
+# Add python user bin dir to path
+export PATH=$PATH:"$HOME/.local/bin"
+
 # stupid cows
 export ANSIBLE_NOCOWS=1
 
