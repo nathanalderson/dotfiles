@@ -76,7 +76,6 @@ Plugin 'reedes/vim-textobj-sentence'
 " other
 Plugin 'tpope/vim-sensible'
 Plugin 'godlygeek/tabular.git'
-Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-unimpaired.git'
@@ -102,6 +101,11 @@ Plugin 'nathanalderson/yanktohtml'
 
 " neovim
 if has('nvim')
+    Plugin 'Shougo/deoplete.nvim'
+    Plugin 'deoplete-plugins/deoplete-jedi'
+    Plugin 'davidhalter/jedi-vim'
+else
+    Plugin 'ervandew/supertab'
 end
 
 call vundle#end()
@@ -138,7 +142,7 @@ else
     if has("gui_running")
         set guifont=Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
     else
-        set guifont=Inconsolata\ 12
+        set guifont=Fantasque\ Sans\ Mono:h12
     endif
     let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
@@ -148,7 +152,7 @@ endif
 
 " colors
 set background=light
-colorscheme solarized8
+colorscheme base16-flat
 " let g:airline_theme='deus'
 
 " tabs
@@ -375,9 +379,19 @@ nnoremap <C-o> :ZoomWin<CR>
 " vim-perforce
 let g:perforce_auto_source_dirs=['/home/nalderso/p4workspace']
 
-"deoplete
+if has('nvim')
+    let g:python_host_prog = "/usr/bin/python"
+    let g:python3_host_prog = "/usr/bin/python3"
+end
+
+" deoplete & jedi
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
+    autocmd CompleteDone * silent! pclose!
+    let g:deoplete#sources#jedi#ignore_private_members = 1
+    let g:jedi#completions_enabled = 0
+    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 end
 
 " additional extensions
@@ -441,12 +455,14 @@ let g:airline_mode_map = {
 autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" supertab
-" let g:SuperTabDefaultCompletionType = "context"
-autocmd FileType *
-    \ if &omnifunc != '' |
-    \   call SuperTabChain(&omnifunc, "<c-p>") |
-    \ endif
+if !has('nvim')
+    " supertab
+    " let g:SuperTabDefaultCompletionType = "context"
+    autocmd FileType *
+        \ if &omnifunc != '' |
+        \   call SuperTabChain(&omnifunc, "<c-p>") |
+        \ endif
+end
 
 " tsuquyomi
 let g:tsuquyomi_disable_quickfix = 1
