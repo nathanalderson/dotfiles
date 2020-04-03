@@ -469,8 +469,5 @@ let g:tsuquyomi_disable_quickfix = 1
 map <C-)> <Plug>(TsuquyomiReferences)
 
 " TODO:
-" - Consider remapping Caps-Lock and/or the weird menu key to something more
-"   useful
 " - Extend surround to support /* */
-" - Extend surround to support spaces
 " - Check out projectionist.vim
