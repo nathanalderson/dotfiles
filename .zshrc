@@ -90,11 +90,6 @@ alias serve2="python -m SimpleHTTPServer"
 alias serve="python -m http.server"
 
 # alias for vpn-ing to Adtran
-alias vpn="~/opt/openconnect-7.08/openconnect \
-    --juniper \
-    --user nalderso \
-    --script ~/opt/openconnect-7.08/vpnc-script \
-    https://vpn.adtran.com"
 alias vpn-disconnect='pkill -SIGINT openconnect'
 alias vpn-reset='pkill -SIGUSR2 openconnect'
 
@@ -207,6 +202,9 @@ export PATH=$PATH:"$HOME/.local/bin"
 
 # stupid cows
 export ANSIBLE_NOCOWS=1
+
+# mosh
+export MOSH_ESCAPE_KEY='~'
 
 # added by travis gem
 [ -f /home/nalderso/.travis/travis.sh ] && source /home/nalderso/.travis/travis.sh
