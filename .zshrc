@@ -3,70 +3,61 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
   zmodload zsh/zprof
 fi
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# initialize zinit
+source ~/.zinit/bin/zinit.zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="spaceship"
+###
+# Prompt theme stuff
+###
+
+# enable prompt substitutions and make colors work
+setopt promptsubst
+autoload colors
+colors
+
+# spaceship prompt options
 SPACESHIP_PROMPT_TRUNC=0
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_PROMPT_SYMBOL=»
 SPACESHIP_GIT_UNSTAGED=✘
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rs="python manage.py runserver 0.0.0.0:8000"
-alias cgi="python manage.py runfcgi host=127.0.0.1 port=8080 --settings=settings --pythonpath=adtran_tests"
+zinit wait lucid for \
+    OMZL::git.zsh \
+    OMZP::git \
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+PS1="»" # provide a simple prompt till the theme loads
 
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+zinit wait'!' lucid for \
+    OMZL::prompt_info_functions.zsh \
+   'https://github.com/nathanalderson/dotfiles/blob/master/spaceship.zsh-theme'
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
+###
+# Load plugins
+###
+zinit wait lucid for \
+  OMZL::directories.zsh \
+  atinit"zicompinit; zicdreplay"  \
+    OMZP::colored-man-pages \
+  atload"unalias rm mv cp" \
+    OMZP::common-aliases \
+  as"completion" \
+    OMZP::docker/_docker \
+  atload"zicompinit; zicdreplay" blockf \
+    OMZL::completion.zsh
 
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+###
+# General options
+###
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+# automatically `cd` to a directory when you type its name (including `..`)
+setopt autocd
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=()
-plugins+=(git)
-plugins+=(django)
-plugins+=(virtualenv)
-plugins+=(common-aliases)
-plugins+=(dircycle)
-plugins+=(dirhistory)
-plugins+=(supervisor)
-plugins+=(gradle)
-plugins+=(docker)
-plugins+=(docker-compose)
-plugins+=(kubectl)
-
-source $ZSH/oh-my-zsh.sh
-
-# remove aliases I don't want
-unalias rm
-unalias cp
-unalias mv
-
-# gnome-terminal and mate-terminal support 256 colors
-if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
-  export TERM=$TERM-256color
-fi
-
-# Sharing history among sessions is annoying to me
+# Persist history but don't share it among sessions
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 unsetopt share_history
 
 # Autocorrect seems more annoying than helpful...
@@ -74,6 +65,17 @@ unsetopt correct_all
 
 setopt extended_glob
 setopt interactivecomments
+
+# gnome-terminal and mate-terminal support 256 colors
+if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
+  export TERM=$TERM-256color
+fi
+
+###
+# Custom aliases and functions
+###
+
+alias ls="ls --color=auto"
 
 # aliases for gradle building
 alias gw="./(../)#gradlew" # search up the directory tree for gradlew
@@ -128,15 +130,22 @@ purgehostkey() {
 # I can never remember the "xdg" part
 alias open='xdg-open'
 
-source ~/.zshrc-local
+# allow sudo to use aliases
+alias sudo='sudo '
 
-# allow comments in interactive shells
-setopt interactivecomments
-
-# Some environment variables
+###
+# Environment variables
+###
 export P4CONFIG=.p4config
-PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$PATH
 export EDITOR=/usr/bin/vim
+
+###
+# Other things
+###
+
+# Source a local zshrc if it exists
+source ~/.zshrc-local
 
 # lazy-load rvm
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
@@ -177,9 +186,6 @@ bindkey '^[OF' end-of-line
 bindkey '^[OH' beginning-of-line
 bindkey '^[[3~' delete-char
 
-
-# allow sudo to use aliases
-alias sudo='sudo '
 
 # open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
 [[ -s "/etc/profile.d/vte.sh" ]] && . /etc/profile.d/vte.sh
