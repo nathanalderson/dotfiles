@@ -3,18 +3,26 @@ set shell=bash
 set ssl
 set termguicolors
 
-"vundle stuff
-filetype off
+" *******
+" Initialize vim-plug
+" *******
 if has("win32") || has("win16")
-    let bundle_path = "C:/Program\\ Files\\ -\\ Portable/Vim/vimfiles/bundle"
+  let bundle_path = "C:/Program\\ Files\\ -\\ Portable/Vim/vimfiles/bundle"
 elseif has('nvim')
-    let bundle_path = "~/.config/nvim/bundle"
+  let bundle_path = "~/.config/nvim/bundle"
+  let install_path = stdpath('data') . '/site/autoload/plug.vim'
 else
-    let bundle_path = "~/.vim/bundle"
+  let bundle_path = "~/.vim/bundle"
+  let install_path = "~/.vim/autoload/plug.vim"
 endif
-execute "set rtp+=".bundle_path.'/Vundle.vim'
-call vundle#begin(bundle_path)
-Plugin 'gmarik/Vundle.vim'
+
+" download vim-plug if needed
+if empty(glob(install_path))
+  execute '!curl -fLo ' . install_path . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin(bundle_path)
 
 source $VIMRUNTIME/mswin.vim
 silent! unmap <C-H>
@@ -25,92 +33,89 @@ set selectmode=
 " *******
 
 " colorschemes
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'chriskempson/vim-tomorrow-theme.git'
-Plugin 'chriskempson/base16-vim'
-Plugin 'endel/vim-github-colorscheme'
-Plugin 'w0ng/vim-hybrid.git'
-Plugin 'morhetz/gruvbox'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'nightsense/vimspectr'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'rakr/vim-one'
-if &t_Co >= 256 || has("gui_running")
-    Plugin 'CSApprox'
-endif
+Plug 'lifepillar/vim-solarized8'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'chriskempson/base16-vim'
+Plug 'endel/vim-github-colorscheme'
+Plug 'w0ng/vim-hybrid'
+Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
+Plug 'nightsense/vimspectr'
+Plug 'junegunn/seoul256.vim'
+Plug 'rakr/vim-one'
+" enable this on 88/256-color terminals
+" Plug 'godlygeek/CSApprox'
 
 " Language support
-Plugin 'lepture/vim-jinja'
-Plugin 'groenewege/vim-less'
-Plugin 'python/black'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'nathanalderson/yang.vim'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'VimClojure'
-Plugin 'Quramy/tsuquyomi' " typescript fanciness
-Plugin 'Quramy/vim-js-pretty-template'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'evedovelli/rst-robotframework-syntax-vim'
-Plugin 'mfukar/robotframework-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'udalov/kotlin-vim'
+Plug 'lepture/vim-jinja'
+Plug 'groenewege/vim-less'
+Plug 'derekwyatt/vim-scala'
+Plug 'nathanalderson/yang.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'mattn/emmet-vim'
+Plug 'Quramy/tsuquyomi' " typescript fanciness
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'leafgarland/typescript-vim'
+Plug 'evedovelli/rst-robotframework-syntax-vim'
+Plug 'mfukar/robotframework-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'udalov/kotlin-vim'
+Plug 'cespare/vim-toml'
 
 " version control
-Plugin 'nfvs/vim-perforce'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'nfvs/vim-perforce'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " text objects
-Plugin 'kana/vim-textobj-function'
-Plugin 'kana/vim-textobj-indent'
-Plugin 'kana/vim-textobj-line'
-Plugin 'kana/vim-textobj-syntax'
-Plugin 'kana/vim-textobj-lastpat'
-Plugin 'kana/vim-textobj-django-template'
-Plugin 'lucapette/vim-textobj-underscore'
-Plugin 'kana/vim-textobj-user'
-Plugin 'reedes/vim-textobj-sentence'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-django-template'
+Plug 'lucapette/vim-textobj-underscore'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-sentence'
 
 " other
-Plugin 'tpope/vim-sensible'
-Plugin 'godlygeek/tabular.git'
-Plugin 'tpope/vim-surround.git'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-unimpaired.git'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'tpope/vim-commentary'
-Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'scrooloose/syntastic.git'
-Plugin 'tfnico/vim-gradle'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/fontzoom.vim'
-Plugin 'regedarek/ZoomWin'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-dispatch'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'reedes/vim-pencil'
-Plugin 'junegunn/goyo.vim'
-Plugin 'nathanalderson/yanktohtml'
+Plug 'psf/black', { 'on': 'Black' }
+Plug 'tpope/vim-sensible'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'qpkorr/vim-bufkill'
+Plug 'scrooloose/syntastic'
+Plug 'tfnico/vim-gradle'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-scripts/fontzoom.vim'
+Plug 'regedarek/ZoomWin'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-dispatch'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/goyo.vim'
+Plug 'nathanalderson/yanktohtml'
 
 " neovim
 if has('nvim')
-    Plugin 'Shougo/deoplete.nvim'
-    Plugin 'deoplete-plugins/deoplete-jedi'
-    Plugin 'davidhalter/jedi-vim'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'deoplete-plugins/deoplete-jedi'
+    Plug 'davidhalter/jedi-vim'
 else
-    Plugin 'ervandew/supertab'
+    Plug 'ervandew/supertab'
 end
 
-call vundle#end()
-
-filetype plugin indent on
+call plug#end()
 
 if has("gui_running")
     " do GUI-only stuff
@@ -152,7 +157,7 @@ endif
 
 " colors
 set background=light
-colorscheme base16-flat
+colorscheme gruvbox
 " let g:airline_theme='deus'
 
 " tabs
