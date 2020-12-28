@@ -30,7 +30,7 @@ PS1="»" # provide a simple prompt till the theme loads
 
 zinit wait'!' lucid for \
     OMZL::prompt_info_functions.zsh \
-   'https://github.com/nathanalderson/dotfiles/blob/master/spaceship.zsh-theme'
+    'https://github.com/nathanalderson/dotfiles/blob/master/spaceship.zsh-theme'
 
 ###
 # Load plugins
