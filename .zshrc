@@ -53,12 +53,16 @@ zinit wait lucid for \
 # automatically `cd` to a directory when you type its name (including `..`)
 setopt autocd
 
-# Persist history but don't share it among sessions
+# History command configuration
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
+HISTSIZE=50000
 SAVEHIST=10000
-setopt appendhistory
-unsetopt share_history
+setopt inc_append_history     # write to HISTFILE immediately
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
 
 # Autocorrect seems more annoying than helpful...
 unsetopt correct_all
@@ -102,7 +106,15 @@ alias home-vpn-disconnect='sudo wg-quick down wg0'
 alias gnv="nvim-wrapper"
 
 # docker-compoose
+alias dco='docker-compose'
+alias dcup='docker-compose up --build'
 alias dcupd='docker-compose up -d --build'
+alias dce='docker-compose exec'
+alias dcps='docker-compose ps'
+alias dcdn='docker-compose down'
+alias dcl='docker-compose logs'
+alias dclf='docker-compose logs -f'
+alias dcr='docker-compose run'
 
 # docker
 alias drsa='docker ps -aq | xargs --no-run-if-empty docker rm -f' #"docker stop all"
@@ -181,11 +193,12 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^[1~' end-of-line
-bindkey '^[4~' beginning-of-line
 bindkey '^[OF' end-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[4~' beginning-of-line
 bindkey '^[OH' beginning-of-line
+bindkey '^[[H' beginning-of-line
 bindkey '^[[3~' delete-char
-
 
 # open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
 [[ -s "/etc/profile.d/vte.sh" ]] && . /etc/profile.d/vte.sh
