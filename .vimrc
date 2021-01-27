@@ -145,9 +145,9 @@ if has("win64") || has("win32") || has("win16")
     set clipboard=unnamed
 else
     if has("gui_running")
-        set guifont=Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
+        set guifont=Cascadia\ Code\ SemiLight\ 12,Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
     else
-        set guifont=Fantasque\ Sans\ Mono:h12
+        set guifont=Cascadia\ Code:h12
     endif
     let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
@@ -157,7 +157,7 @@ endif
 
 " colors
 set background=light
-colorscheme gruvbox
+colorscheme base16-atelier-dune-light
 " let g:airline_theme='deus'
 
 " tabs
@@ -314,6 +314,7 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-D> <C-X><C-D>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-BS> <C-W>
+inoremap <C-h> <C-W>
 
 nnoremap <F5> :Dispatch<CR>
 autocmd FileType java,scala,groovy let b:dispatch = 'gw build'
