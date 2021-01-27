@@ -102,8 +102,8 @@ alias vpn-reset='pkill -SIGUSR2 openconnect'
 alias home-vpn='sudo wg-quick up wg0'
 alias home-vpn-disconnect='sudo wg-quick down wg0'
 
-# launch nvim in a separate gui. must install https://github.com/fmoralesc/neovim-gnome-terminal-wrapper
-alias gnv="nvim-wrapper"
+# launch nvim in a separate gui.
+alias gnv="nvim-qt"
 
 # docker-compoose
 alias dco='docker-compose'
@@ -199,6 +199,8 @@ bindkey '^[4~' beginning-of-line
 bindkey '^[OH' beginning-of-line
 bindkey '^[[H' beginning-of-line
 bindkey '^[[3~' delete-char
+# xclip to clipboard
+alias clip='xclip -selection clipboard'
 
 # open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
 [[ -s "/etc/profile.d/vte.sh" ]] && . /etc/profile.d/vte.sh
