@@ -121,7 +121,7 @@ alias drsa='docker ps -aq | xargs --no-run-if-empty docker rm -f' #"docker stop 
 alias drvc='docker container prune && docker image prune' #"docker very clean"
 alias drr='docker run -it --rm' #"docker run"
 dre () { docker exec -it ${*:1} }
-drip () { docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@" }
+drip () { docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@" }
 
 # git
 diff_pager="diff-so-fancy | less --tabs=4 -RX --pattern '^(Date|added|deleted|modified): '"
