@@ -9,7 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 # list of files/folders to symlink in homedir
-files=".vimrc .bashrc .zshrc .tmux.conf .gitconfig .gitignore_global .vim/spell/en.utf-8.add .i3 .i3status.conf .ideavimrc"
+files=".vimrc .bashrc .zshrc .tmux.conf .gitconfig .gitignore_global .i3 .i3status.conf .ideavimrc"
 
 ##########
 
@@ -24,13 +24,8 @@ for file in $files; do
     ln -s $dir/$file ~/$file
 done
 
-# install Vundle
-echo "Installing Vundle..."
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +BundleInstall +qall
-
 # create vim backup directory
-mkdir ~/.vim/backup
+mkdir -p ~/.vim/backup
 
 # setup idea
 find ~ -maxdepth 1 -type d -name ".IdeaIC*" | xargs -I{} ln -sf .idea/idea.properties {}/config/idea.properties
