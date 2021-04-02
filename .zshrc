@@ -39,7 +39,7 @@ zinit wait lucid for \
   OMZL::directories.zsh \
   atinit"zicompinit; zicdreplay"  \
     OMZP::colored-man-pages \
-  atload"unalias rm mv cp" \
+  atload"unalias rm mv cp; alias l=ls; alias ll=lsa" \
     OMZP::common-aliases \
   as"completion" \
     OMZP::docker/_docker \
