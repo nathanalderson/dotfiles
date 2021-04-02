@@ -3,6 +3,9 @@ set shell=bash
 set ssl
 set termguicolors
 
+" add dotfiles dir to beginning of runtimepath
+set rtp^=~/dotfiles/.vim
+
 " *******
 " Initialize vim-plug
 " *******
@@ -36,12 +39,8 @@ set selectmode=
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'chriskempson/base16-vim'
-Plug 'endel/vim-github-colorscheme'
-Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
-Plug 'nanotech/jellybeans.vim'
 Plug 'nightsense/vimspectr'
-Plug 'junegunn/seoul256.vim'
 Plug 'rakr/vim-one'
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
@@ -115,6 +114,10 @@ else
     Plug 'ervandew/supertab'
 end
 
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 call plug#end()
 
 if has("gui_running")
@@ -156,8 +159,8 @@ else
 endif
 
 " colors
-set background=light
-colorscheme base16-atelier-dune-light
+set background=dark
+colorscheme gruvbox
 " let g:airline_theme='deus'
 
 " tabs
@@ -389,6 +392,11 @@ if has('nvim')
     let g:python_host_prog = "/usr/bin/python"
     let g:python3_host_prog = "/usr/bin/python3"
 end
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger='<c-s>'
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = expand('~/dotfiles/.vim/UltiSnips')
 
 " deoplete & jedi
 if has('nvim')
