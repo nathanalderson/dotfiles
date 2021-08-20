@@ -270,7 +270,11 @@ set nowritebackup
 execute "set backupdir=".vimfilesdir
 execute "set directory=".vimfilesdir
 if version >= 703
-    execute "set undodir=".vimfilesdir
+    if has('nvim')
+        execute "set undodir=".vimfilesdir."/nvimundo"
+    else
+        execute "set undodir=".vimfilesdir
+    end
     set undofile
 endif
 
