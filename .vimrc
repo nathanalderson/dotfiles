@@ -148,9 +148,9 @@ if has("win64") || has("win32") || has("win16")
     set clipboard=unnamed
 else
     if has("gui_running")
-        set guifont=Cascadia\ Code\ SemiLight\ 12,Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
+        set guifont=Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
     else
-        set guifont=Cascadia\ Code:h12
+        set guifont=Fantasque\ Sans\ Mono:h12
     endif
     let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
