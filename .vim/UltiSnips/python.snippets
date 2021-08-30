@@ -5,3 +5,10 @@ def main():
 if __name__ == "__main__":
 	main()
 endsnippet
+
+snippet argparse "argparse"
+parser = argparse.ArgumentParser(description='${1}')
+parser.add_argument('--flag', '-f', metavar='N', type=int,
+                    help='an integer for the accumulator')
+args = parser.parse_args()
+endsnippet

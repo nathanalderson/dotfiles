@@ -145,6 +145,9 @@ alias open='xdg-open'
 # allow sudo to use aliases
 alias sudo='sudo '
 
+# create a new named tmux session with `tm <name>`
+alias tm='tmux new -s '
+
 ###
 # Environment variables
 ###
