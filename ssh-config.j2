@@ -1,0 +1,11 @@
+Host *
+  ServerAliveInterval 60
+
+{% if ADTRAN %}
+Host 10.* 172.* 192.168.* van agg
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+
+Host 172.20.9.250
+  Ciphers 3des-cbc
+{% endif %}
