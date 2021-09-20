@@ -1,0 +1,55 @@
+- name: Setup configuration directories
+  file:
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  with_items:
+    - .config
+    - .ssh
+    - bin
+    - opt
+
+- name: Install git
+  become: yes
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Clone dotfiles (read-write)
+  when: has_private_key
+  ansible.builtin.git:
+    repo: https://github.com/nathanalderson/dotfiles
+    dest: dotfiles
+    update: yes
+
+- name: Clone dotfiles (read-only)
+  when: not has_private_key
+  ansible.builtin.git:
+    repo: https://github.com/nathanalderson/dotfiles
+    dest: dotfiles
+
+- name: Install dotfiles
+  file:
+    src: "dotfiles/{{ item }}"
+    dest: "{{ ansible_env.HOME}}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - .bashrc
+    - .gitconfig
+    - .gitignore_global
+    - .ideavimrc
+    - .tmux.conf
+    - .vimrc
+    - .vim
+    - .zshrc
+
+- name: Install templated configs
+  template:
+    src: "{{dotfiles_local}}/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+  with_items:
+    - src: ssh-config.j2
+      dest: .ssh/config
+    - src: .zshenv.j2
+      dest: .zshenv

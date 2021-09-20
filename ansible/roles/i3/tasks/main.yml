@@ -1,0 +1,9 @@
+- name: Install config files
+  file:
+    src: "dotfiles/{{ item }}"
+    dest: "{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - .i3
+    - .i3status.conf
