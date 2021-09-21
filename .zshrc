@@ -153,7 +153,7 @@ alias tm='tmux new -s '
 ###
 export P4CONFIG=.p4config
 export PATH=$HOME/bin:$PATH
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 
 ###
 # Other things
