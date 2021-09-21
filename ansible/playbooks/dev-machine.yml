@@ -1,7 +1,11 @@
-- hosts:
-   - localhost
+- hosts: all
   vars:
-    home: "{{ lookup('env', 'HOME') }}"
-    user: "{{ lookup('env', 'USER') }}"
+    home: "{{ ansible_env.HOME }}"
+    user: "{{ ansible_env.USER }}"
+    dotfiles_local: "{{ playbook_dir}}/.."
+    # does this host have my private key installed? (must be transferred separately)
+    has_private_key: true
   roles:
     - common
+    - adtran
+    - i3
