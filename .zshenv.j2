@@ -1,4 +1,4 @@
-{% if i3 %}
+{% if "i3" in ansible_role_names %}
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK

@@ -3,11 +3,23 @@
     home: "{{ ansible_env.HOME }}"
     user: "{{ ansible_env.USER }}"
     dotfiles_local: "{{ playbook_dir}}/.."
-    # does this host have my private key installed? (must be transferred separately)
-    has_private_key: true
-    # is the user an active directory user (as opposed to a local user)?
-    adtran_active_directory: true
+  pre_tasks:
+    - name: Set dynamic facts
+      tags: [always]
+      block:
+      - name: Check for private key
+        stat:
+          path: .ssh/id_rsa
+        register: privkey_stat
+      - name: Set variable if private key exists
+        set_fact:
+            has_private_key: "{{privkey_stat.stat.exists}}"
   roles:
     - common
     - adtran
     - i3
+  tasks:
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
+      tags: [debug]
