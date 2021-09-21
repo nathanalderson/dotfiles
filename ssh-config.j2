@@ -1,7 +1,7 @@
 Host *
   ServerAliveInterval 60
 
-{% if ADTRAN %}
+{% if adtran %}
 Host 10.* 172.* 192.168.* van agg
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null

@@ -5,6 +5,8 @@
     dotfiles_local: "{{ playbook_dir}}/.."
     # does this host have my private key installed? (must be transferred separately)
     has_private_key: true
+    # is the user an active directory user (as opposed to a local user)?
+    adtran_active_directory: true
   roles:
     - common
     - adtran

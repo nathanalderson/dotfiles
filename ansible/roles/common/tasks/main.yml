@@ -1,19 +1,30 @@
 - name: Setup configuration directories
   file:
-    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    dest: "{{ home }}/{{ item }}"
     state: directory
   with_items:
     - .config
+    - .config/nvim
     - .ssh
     - bin
     - opt
 
+- name: Prepare apt installs
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt:
+    name: aptitude
+    state: present
+    update_cache: yes
+    autoclean: yes
+    autoremove: yes
+
 - name: Install git
+  when: ansible_facts['os_family'] == "Debian"
   become: yes
   apt:
     name: git
     state: present
-    update_cache: yes
 
 - name: Clone dotfiles (read-write)
   when: has_private_key
@@ -31,7 +42,7 @@
 - name: Install dotfiles
   file:
     src: "dotfiles/{{ item }}"
-    dest: "{{ ansible_env.HOME}}/{{ item }}"
+    dest: "{{ home }}/{{ item }}"
     state: link
     force: yes
   with_items:
@@ -46,10 +57,82 @@
 
 - name: Install templated configs
   template:
-    src: "{{dotfiles_local}}/{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    src: "{{ dotfiles_local }}/{{ item.src }}"
+    dest: "{{ home }}/{{ item.dest }}"
   with_items:
     - src: ssh-config.j2
       dest: .ssh/config
     - src: .zshenv.j2
       dest: .zshenv
+
+- name: Install apt packages
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - build-essential
+    - cowsay
+    - curl
+    - htop
+    - neovim
+    - python3-jedi
+    - python3-pip
+    - python3-venv
+    - shellcheck
+    - sshpass
+    - tmux
+    - tree
+    - xclip
+    - zsh
+
+- name: Remove apt packages
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+      - elixir
+      - evolution
+      - krita
+      - thunderbird
+
+- name: Install zinit (for zsh)
+  ansible.builtin.git:
+    repo: https://github.com/zdharma/zinit.git
+    dest: "{{ home }}/.zinit/bin"
+
+- name: Initialize zinit
+  command:
+    cmd: /usr/bin/zsh
+    creates: "{{ home }}/.zinit/completions"
+
+- name: Set shell to zsh
+  # for an AD user, you can't set the shell (have to request IT to update it in AD)
+  when: not adtran_active_directory
+  become: yes
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/bin/zsh
+
+- name: Set default editor
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  community.general.alternatives:
+    name: editor
+    path: /usr/bin/nvim
+
+- name: Setup neovim config
+  file:
+    src: "{{ home }}/dotfiles/.vimrc"
+    dest: ".config/nvim/init.vim"
+    state: link
+    force: yes
+
+- name: Install neovim plugins
+  command:
+    cmd: nvim +PlugInstall +UpdateRemotePlugins +qall
+    creates: "{{ home }}/.config/nvim/bundle"
