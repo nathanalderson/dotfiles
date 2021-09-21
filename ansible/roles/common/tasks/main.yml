@@ -111,8 +111,9 @@
     creates: "{{ home }}/.zinit/completions"
 
 - name: Set shell to zsh
-  # for an AD user, you can't set the shell (have to request IT to update it in AD)
-  when: not adtran_active_directory
+  # for an Active Directory user, you can't set the
+  # shell (have to request IT to update it in AD)
+  when: not "@corp" in user
   become: yes
   user:
     name: "{{ ansible_env.USER }}"
