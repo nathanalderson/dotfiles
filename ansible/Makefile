@@ -11,6 +11,7 @@ endif
 OUT := out
 HOSTS_FILE := $(OUT)/hosts.ini
 ANSIBLE_TAGS ?= all
+ANSIBLE_ARGS ?=
 
 .PHONY: setup
 setup: $(HOSTS_FILE)
@@ -34,7 +35,7 @@ $(HOSTS_FILE): Makefile
 
 .PHONY: run
 run: setup
-	@ansible-playbook -i $(HOSTS_FILE) --ask-become-pass playbook.yml --tags $(ANSIBLE_TAGS)
+	@ansible-playbook -i $(HOSTS_FILE) --ask-become-pass playbook.yml --skip-tags debug --tags $(ANSIBLE_TAGS) $(ANSIBLE_ARGS)
 
 .PHONY: clean
 clean:

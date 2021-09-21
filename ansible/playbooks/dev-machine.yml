@@ -17,6 +17,9 @@
   roles:
     - common
     - adtran
+    - personal
+    - niceties
+    - home_network
     - i3
   tasks:
     - name: Print all available facts

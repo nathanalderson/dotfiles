@@ -1,0 +1,26 @@
+- name: Install stoken
+  become: yes
+  when: ansible_facts['os_family'] == "Debian"
+  apt:
+    name:
+      - stoken
+
+- name: Clone adtran-utils
+  git:
+    repo: git@github.adtran.com:nalderso/adtran-utils.git
+    dest: "{{ home }}/adtran-utils"
+    accept_hostkey: yes
+    update: yes
+
+- name: Get all adtran-utils scripts
+  find:
+    paths: "{{ home }}/adtran-utils"
+  register: adtran_utils
+
+- name: Install adtran-utils scripts
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ home }}/bin/{{ item.path | basename }}"
+    state: link
+    force: yes
+  with_items: "{{ adtran_utils.files }}"

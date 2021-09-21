@@ -26,18 +26,13 @@
     name: git
     state: present
 
-- name: Clone dotfiles (read-write)
+- name: Clone dotfiles
   when: has_private_key
   ansible.builtin.git:
-    repo: https://github.com/nathanalderson/dotfiles
+    repo: "{{ 'git@github.com:nathanalderson/dotfiles.git' if has_private_key else 'https://github.com/nathanalderson/dotfiles' }}"
     dest: dotfiles
+    accept_hostkey: yes
     update: yes
-
-- name: Clone dotfiles (read-only)
-  when: not has_private_key
-  ansible.builtin.git:
-    repo: https://github.com/nathanalderson/dotfiles
-    dest: dotfiles
 
 - name: Install dotfiles
   file:
@@ -64,6 +59,8 @@
       dest: .ssh/config
     - src: .zshenv.j2
       dest: .zshenv
+    - src: .zshrc-local.j2
+      dest: .zshrc-local
 
 - name: Install apt packages
   when: ansible_facts['os_family'] == "Debian"
@@ -76,7 +73,9 @@
     - cowsay
     - curl
     - htop
+    - keepassxc
     - neovim
+    - nextcloud-desktop
     - python3-jedi
     - python3-pip
     - python3-venv
@@ -137,3 +136,20 @@
   command:
     cmd: nvim +PlugInstall +UpdateRemotePlugins +qall
     creates: "{{ home }}/.config/nvim/bundle"
+
+- name: Setup desktop environment
+  when: ansible_facts['os_family'] == "Debian"
+  block:
+    - name: Install cinnamon
+      become: yes
+      apt:
+        name:
+          - cinnamon-desktop-environment
+        state: present
+    # TODO someone set cinnamon as default
+
+- name: Install nextcloud
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt:
+    name: nextcloud-desktop
