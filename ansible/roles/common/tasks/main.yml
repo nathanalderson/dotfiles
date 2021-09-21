@@ -153,3 +153,18 @@
   become: yes
   apt:
     name: nextcloud-desktop
+
+- name: Create folder for X11 conf files
+  become: yes
+  file:
+    dest: /etc/X11/xorg.conf.d/
+    state: directory
+  tags: justme
+
+- name: Enable right-click-drag scrolling
+  become: yes
+  copy:
+    src: "{{ dotfiles_local }}/10-mouse.conf"
+    dest: /etc/X11/xorg.conf.d/
+    force: yes
+  tags: justme
