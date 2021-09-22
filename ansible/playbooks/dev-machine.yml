@@ -3,6 +3,7 @@
     home: "{{ ansible_env.HOME }}"
     user: "{{ ansible_env.USER }}"
     dotfiles_local: "{{ playbook_dir}}/.."
+    local_run: "{{ ansible_host in ['localhost', '127.0.0.1', '::1'] or ansible_connection == 'local' }}"
   pre_tasks:
     - name: Set dynamic facts
       tags: [always]

@@ -27,7 +27,7 @@
     state: present
 
 - name: Clone dotfiles
-  when: has_private_key
+  when: not local_run
   ansible.builtin.git:
     repo: "{{ 'git@github.com:nathanalderson/dotfiles.git' if has_private_key else 'https://github.com/nathanalderson/dotfiles' }}"
     dest: dotfiles
@@ -76,8 +76,10 @@
     - keepassxc
     - neovim
     - nextcloud-desktop
+    - python3-dev
     - python3-jedi
     - python3-pip
+    - python3-wheel
     - python3-venv
     - shellcheck
     - sshpass
@@ -86,12 +88,34 @@
     - xclip
     - zsh
 
+- name: Install python packages (local)
+  # This one has problems using a local connection because you end up still
+  # in the virtualenv being used to run the playbook.
+  when: ansible_connection != 'local'
+  pip:
+    name: "{{ packages }}"
+    executable: pip3
+    extra_args: --user
+    state: present
+  vars:
+    packages:
+      - black
+      - mypy
+      - neovim
+      - poetry
+      - pycodestyle
+      - pylama
+      - pylint
+      - virtualenv
+
 - name: Remove apt packages
   when: ansible_facts['os_family'] == "Debian"
   become: yes
   apt:
     name: "{{ packages }}"
     state: absent
+    autoclean: yes
+    autoremove: yes
   vars:
     packages:
       - elixir
@@ -128,7 +152,7 @@
 - name: Setup neovim config
   file:
     src: "{{ home }}/dotfiles/.vimrc"
-    dest: ".config/nvim/init.vim"
+    dest: "{{ home }}/.config/nvim/init.vim"
     state: link
     force: yes
 
