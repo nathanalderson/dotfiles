@@ -1,6 +1,9 @@
 Host *
   ServerAliveInterval 60
 
+Host localhost 127.0.0.1 ::1
+  ForwardAgent yes
+
 {% if "adtran" in ansible_role_names %}
 Host 10.* 172.* 192.168.* van agg
   StrictHostKeyChecking no
@@ -8,4 +11,10 @@ Host 10.* 172.* 192.168.* van agg
 
 Host 172.20.9.250
   Ciphers 3des-cbc
+
+Host *.adtran.com
+  ForwardAgent yes
+  ForwardX11 yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
 {% endif %}
