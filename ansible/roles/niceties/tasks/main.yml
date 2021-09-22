@@ -4,7 +4,6 @@
   apt_key:
     url: http://www.scootersoftware.com/RPM-GPG-KEY-scootersoftware
     state: present
-  tags: justme
 
 - name: Add BeyondCompare repo
   when: ansible_facts['os_family'] == "Debian"
@@ -13,12 +12,29 @@
     repo: deb http://www.scootersoftware.com/ bcompare4 non-free
     state: present
     update_cache: yes
-  tags: justme
 
 - name: Install niceties
   when: ansible_facts['os_family'] == "Debian"
   become: yes
   apt:
     name:
+      - autoconf
+      - automake
       - bcompare
-  tags: justme
+      - cloc
+      - cmake
+      - dconf-editor
+      - fonts-fantasque-sans
+      - fonts-inconsolata
+      - fonts-noto
+      - iperf3
+      - jq
+      - meld
+      - minicom
+      - ncdu
+      - nmap
+      - samba
+      - silversearcher-ag
+      - wireguard-tools
+      - wireshark
+      - xdotool

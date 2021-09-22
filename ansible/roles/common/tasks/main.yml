@@ -72,6 +72,7 @@
     - build-essential
     - cowsay
     - curl
+    - gconf2
     - htop
     - keepassxc
     - neovim
@@ -159,7 +160,6 @@
   file:
     dest: /etc/X11/xorg.conf.d/
     state: directory
-  tags: justme
 
 - name: Enable right-click-drag scrolling
   become: yes
@@ -167,4 +167,15 @@
     src: "{{ dotfiles_local }}/10-mouse.conf"
     dest: /etc/X11/xorg.conf.d/
     force: yes
-  tags: justme
+
+- name: Network turbo-button
+  become: yes
+  ansible.posix.sysctl:
+    name: net.core.default_qdisc
+    value: cake
+
+- name: Network turbo-button part 2
+  become: yes
+  ansible.posix.sysctl:
+    name: net.ipv4.tcp_congestion_control
+    value: bbr
