@@ -1,13 +1,16 @@
-- name: Setup configuration directories
+- name: Create customary directories
   file:
     dest: "{{ home }}/{{ item }}"
     state: directory
   with_items:
     - .config
     - .config/nvim
+    - .config/pip
     - .ssh
     - bin
     - opt
+    - dev
+    - projects
 
 - name: Prepare apt installs
   when: ansible_facts['os_family'] == "Debian"
@@ -183,7 +186,6 @@
   file:
     dest: /etc/X11/xorg.conf.d/
     state: directory
-  tags: justme
 
 - name: Enable right-click-drag scrolling
   become: yes
@@ -191,4 +193,11 @@
     src: "{{ dotfiles_local }}/10-mouse.conf"
     dest: /etc/X11/xorg.conf.d/
     force: yes
+
+- name: Add home directory to apparmor
+  when: "'adtran' in ansible_role_names and ansible_facts['apparmor']['status'] == 'enabled'"
+  become: yes
+  copy:
+    dest: "/etc/apparmor.d/tunables/home.d/adtran"
+    content: "@{HOMEDIRS}+={{ home | dirname }}"
   tags: justme

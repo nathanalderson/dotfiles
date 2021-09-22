@@ -40,7 +40,7 @@ $(HOSTS_FILE): Makefile
 
 .PHONY: run
 run: setup
-	@ansible-playbook -i $(HOSTS_FILE) --ask-become-pass playbook.yml --skip-tags debug --tags $(ANSIBLE_TAGS) $(ANSIBLE_ARGS)
+	@ansible-playbook -i $(HOSTS_FILE) --ask-become-pass playbook.yml --tags $(ANSIBLE_TAGS) $(ANSIBLE_ARGS)
 
 .PHONY: clean
 clean:

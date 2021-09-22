@@ -6,6 +6,7 @@
       - stoken
 
 - name: Clone adtran-utils
+  when: not local_run
   git:
     repo: git@github.adtran.com:nalderso/adtran-utils.git
     dest: "{{ home }}/adtran-utils"
@@ -14,7 +15,7 @@
 
 - name: Get all adtran-utils scripts
   find:
-    paths: "{{ home }}/adtran-utils"
+    paths: "{{ home }}/adtran-utils/bin"
   register: adtran_utils
 
 - name: Install adtran-utils scripts
@@ -24,3 +25,27 @@
     state: link
     force: yes
   with_items: "{{ adtran_utils.files }}"
+
+- name: Configure pip
+  file:
+    src: "{{ home }}/adtran-utils/pip.conf"
+    dest: "{{ home }}/.config/pip/pip.conf"
+    state: link
+    force: yes
+
+- name: Install porg
+  # This one has problems using a local connection because you end up still
+  # in the virtualenv being used to run the playbook.
+  when: ansible_connection != 'local'
+  pip:
+    extra_args: "--user"
+    state: latest
+    name: porg
+
+- name: Configure porg
+  file:
+    src: "{{ home }}/adtran-utils/porg.toml"
+    dest: "{{ home }}/.config/porg.toml"
+    state: link
+    force: yes
+
