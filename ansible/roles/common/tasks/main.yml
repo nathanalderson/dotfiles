@@ -1,13 +1,16 @@
-- name: Setup configuration directories
+- name: Create customary directories
   file:
     dest: "{{ home }}/{{ item }}"
     state: directory
   with_items:
     - .config
     - .config/nvim
+    - .config/pip
     - .ssh
     - bin
     - opt
+    - dev
+    - projects
 
 - name: Prepare apt installs
   when: ansible_facts['os_family'] == "Debian"
@@ -27,7 +30,7 @@
     state: latest
 
 - name: Clone dotfiles
-  when: has_private_key
+  when: not local_run
   ansible.builtin.git:
     repo: "{{ 'git@github.com:nathanalderson/dotfiles.git' if has_private_key else 'https://github.com/nathanalderson/dotfiles' }}"
     dest: dotfiles
@@ -92,8 +95,10 @@
     - keepassxc
     - neovim
     - nextcloud-desktop
+    - python3-dev
     - python3-jedi
     - python3-pip
+    - python3-wheel
     - python3-venv
     - shellcheck
     - sshpass
@@ -102,12 +107,34 @@
     - xclip
     - zsh
 
+- name: Install python packages (local)
+  # This one has problems using a local connection because you end up still
+  # in the virtualenv being used to run the playbook.
+  when: ansible_connection != 'local'
+  pip:
+    name: "{{ packages }}"
+    executable: pip3
+    extra_args: --user
+    state: present
+  vars:
+    packages:
+      - black
+      - mypy
+      - neovim
+      - poetry
+      - pycodestyle
+      - pylama
+      - pylint
+      - virtualenv
+
 - name: Remove apt packages
   when: ansible_facts['os_family'] == "Debian"
   become: yes
   apt:
     name: "{{ packages }}"
     state: absent
+    autoclean: yes
+    autoremove: yes
   vars:
     packages:
       - elixir
@@ -144,7 +171,7 @@
 - name: Setup neovim config
   file:
     src: "{{ home }}/dotfiles/.vimrc"
-    dest: ".config/nvim/init.vim"
+    dest: "{{ home }}/.config/nvim/init.vim"
     state: link
     force: yes
 
@@ -187,3 +214,10 @@
   ansible.posix.sysctl:
     name: net.ipv4.tcp_congestion_control
     value: bbr
+
+- name: Add home directory to apparmor
+  when: "'adtran' in ansible_role_names and ansible_facts['apparmor']['status'] == 'enabled'"
+  become: yes
+  copy:
+    dest: "/etc/apparmor.d/tunables/home.d/adtran"
+    content: "@{HOMEDIRS}+={{ home | dirname }}"

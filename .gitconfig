@@ -15,7 +15,7 @@
 [color]
     ui = auto
 [core]
-    excludesfile = /home/nalderso/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [push]
     default = simple
 [alias]

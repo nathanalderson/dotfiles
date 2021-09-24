@@ -12,6 +12,11 @@ OUT := out
 HOSTS_FILE := $(OUT)/hosts.ini
 ANSIBLE_TAGS ?= all
 ANSIBLE_ARGS ?=
+ifeq ($(TARGET_HOST),localhost)
+ANSIBLE_CONNECTION ?= local
+else
+ANSIBLE_CONNECTION ?= ssh
+endif
 
 .PHONY: setup
 setup: $(HOSTS_FILE)
@@ -30,12 +35,12 @@ $(HOSTS_FILE): Makefile
 	@mkdir -p $(@D)
 	@echo -n 'Writing $(HOSTS_FILE)...'
 	@echo '[nodes]' > $@
-	@echo 'node1  ansible_user=$(TARGET_USER)  ansible_host=$(TARGET_HOST)' >> $@
+	@echo 'node1  ansible_user=$(TARGET_USER)  ansible_host=$(TARGET_HOST)  ansible_connection=$(ANSIBLE_CONNECTION)' >> $@
 	@echo ' done.'
 
 .PHONY: run
 run: setup
-	@ansible-playbook -i $(HOSTS_FILE) --ask-become-pass playbook.yml --skip-tags debug --tags $(ANSIBLE_TAGS) $(ANSIBLE_ARGS)
+	@ansible-playbook -i $(HOSTS_FILE) --ask-become-pass playbook.yml --tags $(ANSIBLE_TAGS) $(ANSIBLE_ARGS)
 
 .PHONY: clean
 clean:

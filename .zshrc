@@ -86,9 +86,9 @@ alias gw="./(../)#gradlew" # search up the directory tree for gradlew
 gbts () { gw test -Dtest.single=$1 ${*:2} }
 
 # alias for activating virtual environment
-alias ve="virtualenv venv && source venv/bin/activate"
-alias ve2="virtualenv --python=python2 venv && source venv/bin/activate"
-alias ve3="virtualenv --python=python3 venv && source venv/bin/activate"
+alias ve="python3 -m venv venv && source venv/bin/activate"
+alias ve2="python3 -m venv --python=python2 venv && source venv/bin/activate"
+alias ve3="python3 -m venv --python=python3 venv && source venv/bin/activate"
 alias svba="source venv/bin/activate"
 
 # alias for serving a directory with python
