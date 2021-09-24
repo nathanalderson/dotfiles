@@ -1,4 +1,4 @@
-- name: Install stoken
+- name: Install packages
   become: yes
   when: ansible_facts['os_family'] == "Debian"
   apt:
@@ -6,6 +6,7 @@
     state: latest
   vars:
     packages:
+      - openconnect
       - stoken
     state: latest
 
@@ -43,7 +44,7 @@
   when: ansible_connection != 'local'
   pip:
     extra_args: "--user"
-    state: latest
+    state: present
     name: porg
 
 - name: Configure porg

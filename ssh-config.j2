@@ -4,8 +4,26 @@ Host *
 Host localhost 127.0.0.1 ::1
   ForwardAgent yes
 
+Host lt nalderso-laptop nalderso-laptop.adtran.com
+  Hostname nalderso-laptop.adtran.com
+  User nalderso
+  ForwardAgent yes
+  ForwardX11 yes
+
+Host lt-old nalderso-laptop-old nalderso-laptop-old.adtran.com
+  Hostname nalderso-laptop-old.adtran.com
+  User nalderso
+  ForwardAgent yes
+  ForwardX11 yes
+
 {% if "adtran" in ansible_role_names %}
-Host 10.* 172.* 192.168.* van agg
+Host dt nalderso-desktop nalderso-desktop.adtran.com
+  Hostname nalderso-desktop.adtran.com
+  User nalderso
+  ForwardAgent yes
+  ForwardX11 yes
+
+Host 10.* 172.* van agg
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
 
@@ -17,4 +35,18 @@ Host *.adtran.com
   ForwardX11 yes
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
+{% endif %}
+
+{% if "home_network" in ansible_role_names %}
+Host nextcloud*
+  User nathan
+  ForwardAgent yes
+
+Host rock64*
+  User nathan
+  ForwardAgent yes
+
+Host raspberrypi01*
+  User pi
+  ForwardAgent yes
 {% endif %}

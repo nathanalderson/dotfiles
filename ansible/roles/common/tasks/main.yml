@@ -90,6 +90,7 @@
     - build-essential
     - cowsay
     - curl
+    - expect
     - gconf2
     - htop
     - keepassxc
@@ -100,6 +101,7 @@
     - python3-pip
     - python3-wheel
     - python3-venv
+    - resolvconf
     - shellcheck
     - sshpass
     - tmux
@@ -141,6 +143,19 @@
       - evolution
       - krita
       - thunderbird
+
+- name: Locate bin files
+  find:
+    paths: "{{ home }}/dotfiles/bin"
+  register: bin_files
+
+- name: Install bin files
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ home }}/bin/{{ item.path | basename }}"
+    state: link
+    force: yes
+  with_items: "{{ bin_files.files }}"
 
 - name: Install zinit (for zsh)
   ansible.builtin.git:
