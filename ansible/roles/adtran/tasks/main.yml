@@ -2,8 +2,12 @@
   become: yes
   when: ansible_facts['os_family'] == "Debian"
   apt:
-    name:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
       - stoken
+    state: latest
 
 - name: Clone adtran-utils
   git:

@@ -14,7 +14,7 @@
   become: yes
   apt:
     name: aptitude
-    state: present
+    state: latest
     update_cache: yes
     autoclean: yes
     autoremove: yes
@@ -24,7 +24,7 @@
   become: yes
   apt:
     name: git
-    state: present
+    state: latest
 
 - name: Clone dotfiles
   when: has_private_key
@@ -62,11 +62,26 @@
     - src: .zshrc-local.j2
       dest: .zshrc-local
 
+- name: Add keepassxc PPA
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt_repository:
+    repo: ppa:phoerious/keepassxc
+    update_cache: yes
+
+- name: Add nextcloud PPA
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt_repository:
+    repo: ppa:nextcloud-devs/client
+    update_cache: yes
+
 - name: Install apt packages
   when: ansible_facts['os_family'] == "Debian"
   become: yes
   apt:
     name: "{{ packages }}"
+    state: latest
   vars:
     packages:
     - build-essential
@@ -144,16 +159,9 @@
     - name: Install cinnamon
       become: yes
       apt:
-        name:
-          - cinnamon-desktop-environment
-        state: present
-    # TODO someone set cinnamon as default
-
-- name: Install nextcloud
-  when: ansible_facts['os_family'] == "Debian"
-  become: yes
-  apt:
-    name: nextcloud-desktop
+        name: cinnamon-desktop-environment
+        state: latest
+    # TODO somehow set cinnamon as default
 
 - name: Create folder for X11 conf files
   become: yes
