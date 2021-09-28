@@ -87,13 +87,17 @@
     state: latest
   vars:
     packages:
+    - apt-transport-https
+    - ca-certificates
     - build-essential
     - cowsay
     - curl
     - expect
     - gconf2
+    - gnupg
     - htop
     - keepassxc
+    - lsb-release
     - neovim
     - nextcloud-desktop
     - python3-dev

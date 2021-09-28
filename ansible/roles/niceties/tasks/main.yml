@@ -13,6 +13,12 @@
     state: present
     update_cache: yes
 
+- name: Add deadsnakes ppa
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt_repository:
+    repo: ppa:deadsnakes/ppa
+
 - name: Install niceties
   when: ansible_facts['os_family'] == "Debian"
   become: yes

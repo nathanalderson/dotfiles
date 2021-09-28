@@ -1,0 +1,25 @@
+{
+    "dns": [
+        "172.22.52.89",
+        "172.30.50.247"
+    ],
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-size": "10m",
+        "max-file": "3"
+    },
+    "insecure-registries": [
+        "docker.adtran.com:5000",
+        "cn-docker.adtran.com:5000"
+    ],
+    "bip": "192.168.10.1/24",
+    "default-address-pools": [
+        {
+            "base": "192.168.128.0/17",
+            "size": 24
+        }
+    ],
+    "features": {
+        "buildkit": true
+    }
+}
