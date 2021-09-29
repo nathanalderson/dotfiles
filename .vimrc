@@ -150,7 +150,7 @@ else
     if has("gui_running")
         set guifont=Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
     else
-        set guifont=Fantasque\ Sans\ Mono:h12
+        set guifont=Fantasque\ Sans\ Mono:h17
     endif
     let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
