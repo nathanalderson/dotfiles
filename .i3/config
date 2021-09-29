@@ -15,10 +15,11 @@ set $mod Mod1
 set $sup Mod4
 
 # Map capslock to control
-exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+exec_always --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 
-# fix monitors
-exec --no-startup-id xrandr --change
+# fix monitors and set background (done in one command to avoid race condition)
+exec_always --no-startup-id autorandr --change && feh --bg-scale ~/Pictures/wallpapers/fire.png
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -53,23 +54,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+bar split h
@@ -262,8 +251,6 @@ bindsym $mod+m exec --no-startup-id autorandr --change
 bindsym --release Shift+Print exec "screenshot -s ~/Pictures/screenshots/"
 bindsym --release Print exec "screenshot ~/Pictures/screenshots/"
 
-exec feh --bg-scale ~/Pictures/wallpapers/fire.png
-
 # right-click titlebars to close, or mod+right-click the whole window
 bindsym --release button3 kill
 bindsym --whole-window $mod+button3 kill
@@ -279,6 +266,7 @@ exec synergy -c /home/nalderso/synergy-server.conf
 exec nextcloud
 exec discord
 exec teams
+exec firefox
 
 # google hangouts will always be floating
 for_window [window_role="pop-up"] floating enabled
@@ -290,3 +278,10 @@ for_window [class="KeePassXC"] floating enable
 for_window [class="KeePassXC"] resize set 1000 750
 for_window [class="KeePassXC"] move position center
 for_window [workspace=0b] layout stacked
+
+# TODO:
+# * send-to for *b workspaces
+# * key for starting neovim
+# * explore marks
+# * command/key to create a dev layout
+# * possibly consider monitor-spanning workspaces?
