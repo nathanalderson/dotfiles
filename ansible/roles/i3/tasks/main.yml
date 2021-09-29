@@ -1,3 +1,16 @@
+- name: Install niceties
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - autorandr
+      - i3
+      - xautolock
+      - xss-lock
+
 - name: Install config files
   file:
     src: "dotfiles/{{ item }}"

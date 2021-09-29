@@ -14,7 +14,11 @@ set $mod Mod1
 # Mod4 is Windows key
 set $sup Mod4
 
+# Map capslock to control
 exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+
+# fix monitors
+exec --no-startup-id xrandr --change
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -23,7 +27,7 @@ exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Fantasque Sans Mono 11
+font pango:Noto Sans Bold 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -31,9 +35,12 @@ floating_modifier $mod
 # Keys to start programs
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+n exec nemo --no-desktop
+bindsym $mod+b exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+F4 kill
+bindsym Ctrl+4 kill
 
 # Use the windows key to launch programs. i3-dmenu-desktop only includes things
 # that ship a .desktop file. You can change it to dmenu_run to include anything
@@ -140,75 +147,146 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-        # They resize the border in the direction you pressed, e.g.
-        # when pressing left, the window is resized so that it has
-        # more space on its left
+    # They resize the border in the direction you pressed, e.g.
+    # when pressing left, the window is resized so that it has
+    # more space on its left
 
-        bindsym h       resize shrink left  10 px or 10 ppt
-        bindsym Shift+H resize grow   left  10 px or 10 ppt
+    bindsym h       resize shrink left  10 px or 10 ppt
+    bindsym Shift+H resize grow   left  10 px or 10 ppt
 
-        bindsym j resize       shrink down  10 px or 10 ppt
-        bindsym Shift+J resize grow   down  10 px or 10 ppt
+    bindsym j resize       shrink down  10 px or 10 ppt
+    bindsym Shift+J resize grow   down  10 px or 10 ppt
 
-        bindsym k resize       shrink up    10 px or 10 ppt
-        bindsym Shift+K resize grow   up    10 px or 10 ppt
+    bindsym k resize       shrink up    10 px or 10 ppt
+    bindsym Shift+K resize grow   up    10 px or 10 ppt
 
-        bindsym l resize       shrink right 10 px or 10 ppt
-        bindsym Shift+L resize grow   right 10 px or 10 ppt
+    bindsym l resize       shrink right 10 px or 10 ppt
+    bindsym Shift+L resize grow   right 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink left 10 px or 10 ppt
-        bindsym Shift+Left resize grow   left 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink left 10 px or 10 ppt
+    bindsym Shift+Left resize grow   left 10 px or 10 ppt
 
-        bindsym Down resize shrink down 10 px or 10 ppt
-        bindsym Shift+Down resize grow   down 10 px or 10 ppt
+    bindsym Down resize shrink down 10 px or 10 ppt
+    bindsym Shift+Down resize grow   down 10 px or 10 ppt
 
-        bindsym Up resize shrink up 10 px or 10 ppt
-        bindsym Shift+Up resize grow   up 10 px or 10 ppt
+    bindsym Up resize shrink up 10 px or 10 ppt
+    bindsym Shift+Up resize grow   up 10 px or 10 ppt
 
-        bindsym Right resize shrink right 10 px or 10 ppt
-        bindsym Shift+Right resize grow   right 10 px or 10 ppt
+    bindsym Right resize shrink right 10 px or 10 ppt
+    bindsym Shift+Right resize grow   right 10 px or 10 ppt
 
-        bindsym Escape mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
+# Colors
+set $dark0_hard      #1d2021
+set $dark0           #282828
+set $dark0_soft      #32302f
+set $dark1           #3c3836
+set $dark2           #504945
+set $dark3           #665c54
+set $dark4           #7c6f64
+set $dark4_256       #7c6f64
+
+set $gray_245        #928374
+set $gray_244        #928374
+
+set $light0_hard     #f9f5d7
+set $light0          #fbf1c7
+set $light0_soft     #f2e5bc
+set $light1          #ebdbb2
+set $light2          #d5c4a1
+set $light3          #bdae93
+set $light4          #a89984
+set $light4_256      #a89984
+
+set $bright_red      #fb4934
+set $bright_green    #b8bb26
+set $bright_yellow   #fabd2f
+set $bright_blue     #83a598
+set $bright_purple   #d3869b
+set $bright_aqua     #8ec07c
+set $bright_orange   #fe8019
+
+set $neutral_red     #cc241d
+set $neutral_green   #98971a
+set $neutral_yellow  #d79921
+set $neutral_blue    #458588
+set $neutral_purple  #b16286
+set $neutral_aqua    #689d6a
+set $neutral_orange  #d65d0e
+
+set $faded_red       #9d0006
+set $faded_green     #79740e
+set $faded_yellow    #b57614
+set $faded_blue      #076678
+set $faded_purple    #8f3f71
+set $faded_aqua      #427b58
+set $faded_orange    #af3a03
+
+# class                 border          background      text            indicator       child_border
+client.focused          $bright_blue    $bright_blue    $dark0          $bright_yellow  $bright_blue
+client.focused_inactive $dark2          $dark2          $bright_blue    $bright_yellow  $dark2
+client.unfocused        $dark2          $dark2          $bright_blue    $bright_yellow  $dark2
+client.urgent           $bright_red     $bright_red     $dark0          $bright_yellow  $dark2
+client.placeholder      $dark2          $dark0          $light0         $bright_yellow  $dark2
+client.background       $dark0
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command i3status
+    font pango:Noto Sans Bold 12
+    separator_symbol " • "
+    colors {
+        background $dark1
+        statusline $bright_aqua
+        separator $bright_aqua
+        # class             border          background      text
+        active_workspace    $neutral_blue   $dark1          $bright1
+        focused_workspace   $neutral_blue   $neutral_blue   $dark0
+        urgent_workspace    $neutral_red    $neutral_red    $dark0
+    }
 }
 
 # Additional Nathan customizations
 hide_edge_borders both
 bindsym $mod+i move workspace to output left
 bindsym $mod+o move workspace to output right
+bindsym $mod+m exec --no-startup-id autorandr --change
 bindsym --release Shift+Print exec "screenshot -s ~/Pictures/screenshots/"
 bindsym --release Print exec "screenshot ~/Pictures/screenshots/"
 
-exec feh --bg-tile ~/Pictures/wallpapers/nintendo-video-games-black-background-nes-hd-wallpaper.jpg
+exec feh --bg-scale ~/Pictures/wallpapers/fire.png
 
 # right-click titlebars to close, or mod+right-click the whole window
 bindsym --release button3 kill
 bindsym --whole-window $mod+button3 kill
 
 # Locking
-bindsym Mod1+Control+l exec i3lock-fancy
-exec xautolock -time 30 -locker i3lock-fancy
+bindsym Mod1+Control+l exec systemctl suspend
+exec --no-startup-id xss-lock -- i3lock-fancy
 
 # Autostart
-exec dropbox start
 exec keepassxc
-exec google-chrome-stable --silent-launch
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec synergy -c /home/nalderso/synergy-server.conf
-exec pamac-tray
+exec nextcloud
+exec discord
+exec teams
 
 # google hangouts will always be floating
 for_window [window_role="pop-up"] floating enabled
 
 # assign things to certain desktops
-assign [class="KeePass2"] 10
+assign [class="microsoft teams - preview"] 0b
+assign [class="discord"] 0b
+for_window [class="KeePassXC"] floating enable
+for_window [class="KeePassXC"] resize set 1000 750
+for_window [class="KeePassXC"] move position center
+for_window [workspace=0b] layout stacked
