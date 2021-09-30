@@ -123,6 +123,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
+bindsym $mod+equal exec i3-input -f $font -F 'workspace %s' -P 'Workspace: '
 
 # move focused container to workspace
 bindsym $mod+Shift+0 move container to workspace 0
@@ -141,6 +142,7 @@ bindsym $mod+Ctrl+Shift+2 move container to workspace 2b
 bindsym $mod+Ctrl+Shift+3 move container to workspace 3b
 bindsym $mod+Ctrl+Shift+4 move container to workspace 4b
 bindsym $mod+Ctrl+Shift+5 move container to workspace 5b
+bindsym $mod+Shift+equal exec i3-input -f $font -F 'move container to workspace %s' -P 'Workspace: '
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -264,9 +266,15 @@ bindsym $mod+i move workspace to output left
 bindsym $mod+o move workspace to output right
 bindsym $mod+slash scratchpad show
 bindsym $mod+Shift+slash move scratchpad
-bindsym $mod+m exec --no-startup-id autorandr --change
+bindsym $mod+F12 exec --no-startup-id autorandr --change
 bindsym --release Shift+Print exec "screenshot -s ~/Pictures/screenshots/"
 bindsym --release Print exec "screenshot ~/Pictures/screenshots/"
+
+# Marks
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -f $font -F 'mark %s' -l 1 -P 'Mark: '
+# read 1 character and go to the window with the character
+bindsym $mod+apostrophe exec i3-input -f $font -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 # Launch emoji picker
 bindsym $mod+colon exec rofimoji
@@ -303,7 +311,6 @@ for_window [instance="stoken-gui"] floating enable
 for_window [class="PulseUI"] floating enable
 
 # TODO:
-# * explore marks
 # * command/key to create a dev layout
 # * possibly consider monitor-spanning workspaces?
 # * cooler rofi theme
