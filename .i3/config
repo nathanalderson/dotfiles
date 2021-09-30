@@ -16,6 +16,8 @@ set $sup Mod4
 
 # Map capslock to control
 exec_always --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
+# numpad always enters numbers regardless of numlock123
+exec_always --no-startup-id /usr/bin/setxkbmap -option "numpad:mac"
 
 # fix monitors and set background (done in one command to avoid race condition)
 exec_always --no-startup-id autorandr --change && feh --bg-scale ~/Pictures/wallpapers/fire.png
@@ -28,7 +30,8 @@ exec_always --no-startup-id autorandr --change && feh --bg-scale ~/Pictures/wall
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Noto Sans Bold 11
+set $font pango:Orbitron bold 12
+font $font
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -47,7 +50,8 @@ bindsym Ctrl+4 kill
 # Use the windows key to launch programs. i3-dmenu-desktop only includes things
 # that ship a .desktop file. You can change it to dmenu_run to include anything
 # on the $PATH.
-bindcode 133 exec --no-startup-id i3-dmenu-desktop
+bindcode 133 exec --no-startup-id rofi -show run
+bindsym Menu exec --no-startup-id rofi -show run
 
 # change focus
 bindsym $mod+h focus left
@@ -234,7 +238,7 @@ client.background       $dark0
 # finds out, if available)
 bar {
     status_command i3status
-    font pango:Noto Sans Bold 12
+    font $font
     separator_symbol " • "
     colors {
         background $dark1
@@ -256,6 +260,11 @@ bindsym $mod+Shift+slash move scratchpad
 bindsym $mod+m exec --no-startup-id autorandr --change
 bindsym --release Shift+Print exec "screenshot -s ~/Pictures/screenshots/"
 bindsym --release Print exec "screenshot ~/Pictures/screenshots/"
+
+# Launch emoji picker
+bindsym $mod+colon exec rofimoji
+# ... or use the emoji key (which sends ctrl+alt+shift+super+space)
+bindsym Ctrl+Mod1+Mod4+Shift+space exec rofimoji
 
 # right-click titlebars to close, or mod+right-click the whole window
 bindsym --release button3 kill
@@ -292,4 +301,5 @@ for_window [class="PulseUI"] floating enable
 # * explore marks
 # * command/key to create a dev layout
 # * possibly consider monitor-spanning workspaces?
-# * emoji keyboard
+# * cooler rofi theme
+# * put rofi config in dotfiles/ansible
