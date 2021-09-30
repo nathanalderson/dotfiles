@@ -6,6 +6,8 @@ right=${workspaces[1]}
 i3-msg "workspace $left; \
         exec firefox; \
         workspace $right; \
-        exec neovide;"
+        exec cd $(pwd) && neovide; \
+        layout stacking; \
+        "
 sleep 0.2
-i3-msg "exec i3-sensible-terminal; layout stacking"
+i3-msg "move up"
