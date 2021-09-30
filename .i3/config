@@ -51,8 +51,8 @@ bindsym Ctrl+4 kill
 # Use the windows key to launch programs. i3-dmenu-desktop only includes things
 # that ship a .desktop file. You can change it to dmenu_run to include anything
 # on the $PATH.
-bindcode 133 exec --no-startup-id rofi -show run
-bindsym Menu exec --no-startup-id rofi -show run
+bindcode 133 exec --no-startup-id rofi -show drun
+bindsym Menu exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+h focus left
@@ -269,6 +269,7 @@ bindsym $mod+Shift+slash move scratchpad
 bindsym $mod+F12 exec --no-startup-id autorandr --change
 bindsym --release Shift+Print exec "screenshot -s ~/Pictures/screenshots/"
 bindsym --release Print exec "screenshot ~/Pictures/screenshots/"
+bindsym $mod+F11 exec gnome-terminal --role=pop-up -- zsh -c 'token'
 
 # Marks
 # read 1 character and mark the current window with this character
@@ -302,13 +303,16 @@ exec --no-startup-id pulseUI
 # google hangouts will always be floating
 for_window [window_role="pop-up"] floating enabled
 
-# assign things to certain desktops
+# assign certain things to certain desktops
 assign [class="microsoft teams - preview"] 0b
 assign [class="discord"] 0b
-for_window [class="KeePassXC"] floating enable, resize set 1000 750, move position center
 for_window [workspace=0b] layout stacked
+
+# special rules for special windows
+for_window [class="KeePassXC"] floating enable, resize set 1000 750, move position center
 for_window [instance="stoken-gui"] floating enable
 for_window [class="PulseUI"] floating enable
+for_window [class="Nextcloud"] move position mouse
 
 # TODO:
 # * command/key to create a dev layout
