@@ -216,7 +216,7 @@
     dest: /etc/X11/xorg.conf.d/
     state: directory
 
-- name: Enable right-click-drag scrolling
+- name: Set xorg options
   become: yes
   copy:
     src: "{{ dotfiles_local }}/xorg.conf.d/"
