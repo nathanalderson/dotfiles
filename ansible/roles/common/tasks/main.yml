@@ -219,7 +219,7 @@
 - name: Enable right-click-drag scrolling
   become: yes
   copy:
-    src: "{{ dotfiles_local }}/10-mouse.conf"
+    src: "{{ dotfiles_local }}/xorg.conf.d/"
     dest: /etc/X11/xorg.conf.d/
     force: yes
 
