@@ -36,6 +36,7 @@
       - fonts-fantasque-sans
       - fonts-inconsolata
       - fonts-noto
+      - inotify-tools
       - iperf3
       - jq
       - meld
