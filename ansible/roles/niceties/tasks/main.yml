@@ -45,6 +45,7 @@
       - nmap
       - samba
       - silversearcher-ag
+      - vlc
       - wireguard-tools
       - wireshark
       - xdotool
