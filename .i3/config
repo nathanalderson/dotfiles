@@ -113,12 +113,12 @@ workspace 4b output $rightMonitor
 workspace 5b output $rightMonitor
 
 # switch to workspace
-bindsym $mod+0 workspace 0; workspace 0b
-bindsym $mod+1 workspace 1; workspace 1b
-bindsym $mod+2 workspace 2; workspace 2b
-bindsym $mod+3 workspace 3; workspace 3b
-bindsym $mod+4 workspace 4; workspace 4b
-bindsym $mod+5 workspace 5; workspace 5b
+bindsym $mod+0 workspace 0b; workspace 0
+bindsym $mod+1 workspace 1b; workspace 1
+bindsym $mod+2 workspace 2b; workspace 2
+bindsym $mod+3 workspace 3b; workspace 3
+bindsym $mod+4 workspace 4b; workspace 4
+bindsym $mod+5 workspace 5b; workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
