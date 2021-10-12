@@ -30,7 +30,7 @@ exec_always --no-startup-id autorandr --change && feh --bg-scale ~/Pictures/wall
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-set $font pango:Orbitron bold 12
+set $font pango:Fantasque Sans Mono bold 12
 font $font
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -282,6 +282,29 @@ bindsym $mod+colon exec rofimoji
 # ... or use the emoji key (which sends ctrl+alt+shift+super+space)
 bindsym Ctrl+Mod1+Mod4+Shift+space exec rofimoji
 
+# Pulse Audio controls (volume up, down, mute)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym KEY_VOLUMEUP exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym KEY_VOLUMEDOWN exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym KEY_MUTE exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym KEY_PLAY exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym KEY_PAUSE exec playerctl pause
+bindsym KEY_PLAYPAUSE exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym KEY_NEXTSONG exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym KEY_PREVIOUSSONG exec playerctl previous
+
 # right-click titlebars to close, or mod+right-click the whole window
 bindsym --release button3 kill
 bindsym --whole-window $mod+button3 kill
@@ -298,6 +321,7 @@ exec nextcloud
 exec discord
 exec teams
 exec firefox
+exec --no-startup-id nm-applet
 exec --no-startup-id pulseUI
 
 # google hangouts will always be floating

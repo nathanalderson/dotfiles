@@ -1,4 +1,4 @@
-- name: Install niceties
+- name: Install i3 things
   when: ansible_facts['os_family'] == "Debian"
   become: yes
   apt:
@@ -8,8 +8,12 @@
     packages:
       - autorandr
       - i3
+      - pavucontrol
+      - playerctl
+      - pulseaudio-utils
       - rofi
       - xautolock
+      - xbacklight
       - xss-lock
 
 - name: Install config files
