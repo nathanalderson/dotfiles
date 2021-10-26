@@ -210,7 +210,7 @@ bindkey '^[OH' beginning-of-line
 bindkey '^[[H' beginning-of-line
 bindkey '^[[3~' delete-char
 # xclip to clipboard
-alias clip='xclip -selection clipboard'
+alias -g clip='xclip -selection clipboard'
 
 # open new tabs in same directory. Workaround for https://bugs.launchpad.net/ubuntu-gnome/+bug/1193993
 [[ -s "/etc/profile.d/vte.sh" ]] && . /etc/profile.d/vte.sh
