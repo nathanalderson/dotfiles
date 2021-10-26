@@ -24,7 +24,7 @@ SPACESHIP_GIT_UNSTAGED=✘
 
 zinit wait lucid for \
     OMZL::git.zsh \
-    OMZP::git \
+    OMZP::git
 
 PS1="»" # provide a simple prompt till the theme loads
 
