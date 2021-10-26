@@ -43,8 +43,12 @@ zinit wait lucid for \
     OMZP::common-aliases \
   as"completion" \
     OMZP::docker/_docker \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
   atload"zicompinit; zicdreplay" blockf \
-    OMZL::completion.zsh
+    OMZL::completion.zsh \
+  atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 ###
 # General options
@@ -74,6 +78,9 @@ setopt interactivecomments
 if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
   export TERM=$TERM-256color
 fi
+
+# auto-suggestions
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 50
 
 ###
 # Custom aliases and functions
