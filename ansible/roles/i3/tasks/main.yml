@@ -1,3 +1,5 @@
+# Note that this doesn't actually change the default session type to i3
+
 - name: Install i3 things
   when: ansible_facts['os_family'] == "Debian"
   become: yes
