@@ -5,7 +5,7 @@
     dotfiles_local: "{{ playbook_dir}}/.."
     local_run: "{{ ansible_host in ['localhost', '127.0.0.1', '::1'] or ansible_connection == 'local' }}"
   pre_tasks:
-    - name: Set dynamic facts
+    - name: Set extra facts
       tags: [always]
       block:
       - name: Check for private key
@@ -15,6 +15,9 @@
       - name: Set variable if private key exists
         set_fact:
             has_private_key: "{{privkey_stat.stat.exists}}"
+      - name: Populate service facts
+        ansible.builtin.service_facts:
+
   roles:
     - common
     - adtran
@@ -23,6 +26,8 @@
     - home_network
     - docker
     - i3
+    - role: systemd-resolved
+      when: ansible_facts.services.get('systemd-resolved.service')
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:

@@ -1,0 +1,25 @@
+- name: Enable systemd-resolved if present
+  become: yes
+  ansible.builtin.systemd:
+    name: systemd-resolved.service
+    state: started
+    enabled: yes
+
+- name: Symlink resolvconf -> resolvectl (from systemd-resolved)
+  become: yes
+  file:
+    src: /usr/bin/resolvectl
+    dest: /usr/local/bin/resolvconf
+    force: true
+    state: link
+  tags: justme
+
+- name: Symlink /etc/resolv.conf to systemd-resolved stub
+  become: yes
+  file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    force: true
+    state: link
+  tags: justme
+
