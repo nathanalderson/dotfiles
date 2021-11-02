@@ -44,6 +44,7 @@
       - ncdu
       - nmap
       - samba
+      - sshfs
       - silversearcher-ag
       - vlc
       - wireguard-tools
