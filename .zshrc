@@ -80,7 +80,7 @@ if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("
 fi
 
 # auto-suggestions
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 50
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
 
 ###
 # Custom aliases and functions
@@ -201,6 +201,9 @@ bindkey '^N' down-history
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
+bindkey '^H' backward-kill-word # ctrl-backspace
+bindkey "^[[1;5C" forward-word  # ctrl-rightarrow
+bindkey "^[[1;5D" backward-word # ctrl-leftarrow
 bindkey '^r' history-incremental-search-backward
 bindkey '^[1~' end-of-line
 bindkey '^[OF' end-of-line
