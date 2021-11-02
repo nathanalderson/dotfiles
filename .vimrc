@@ -104,6 +104,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 Plug 'nathanalderson/yanktohtml'
+Plug 'lambdalisue/suda.vim' " workaround for https://github.com/neovim/neovim/issues/1716
 
 " neovim
 if has('nvim')
@@ -208,7 +209,8 @@ function! Write()
     w !sudo tee %
     edit!
 endfunction
-command! Write call Write()
+" command! Write call Write()
+command! -nargs=? -complete=file Write SudaWrite
 
 " Trim trailing whitespace
 command! Trim :%s/\v\s+$/
