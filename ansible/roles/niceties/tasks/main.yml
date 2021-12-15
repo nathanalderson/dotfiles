@@ -31,9 +31,6 @@
       - cloc
       - cmake
       - dconf-editor
-      - ttf-fantasque-sans-mono
-      - ttf-inconsolata
-      - noto-fonts
       - inotify-tools
       - iperf3
       - jq
@@ -41,9 +38,15 @@
       - minicom
       - ncdu
       - nmap
+      - noto-fonts
+      - noto-fonts-emoji
+      - numlockx
+      - otf-fantasque-sans-mono
+      - papirus-icon-theme
       - samba
       - sshfs
       - the_silver_searcher
+      - ttf-inconsolata
       - vlc
       - wireguard-tools
       - wireshark-qt

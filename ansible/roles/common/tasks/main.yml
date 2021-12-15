@@ -111,10 +111,12 @@
     - htop
     - keepassxc
     - lightdm
+    - lightdm-slick-greeter
     - lsb-release
     - neovim
     - nextcloud-client
     - nomacs
+    - openssh
     - python-jedi
     - python-pip
     - python-wheel
@@ -183,7 +185,6 @@
       - pylama
       - pylint
       - virtualenv
-  tags: [justme]
 
 - name: Remove apt packages
   when: ansible_facts['os_family'] == "Debian"
@@ -318,3 +319,21 @@
      line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
      validate: /usr/sbin/visudo -cf %s
      create: yes
+
+- name: Install gnome-keyring and associated tools
+  become: yes
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gnome-keyring
+    - libsecret
+    - seahorse
+
+- name: Enable SSH
+  become: yes
+  systemd:
+    name: "sshd"
+    state: started
+    enabled: yes
+  tags: [justme]

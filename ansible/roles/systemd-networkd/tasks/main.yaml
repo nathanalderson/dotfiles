@@ -1,0 +1,81 @@
+- name: Add general systemd-networkd rule for wired interfaces
+  become: yes
+  copy:
+    dest: /etc/systemd/network/20-wired.network
+    content: |
+      [Match]
+      Name=en*
+
+      [Network]
+      DHCP=yes
+
+      [DHCP]
+      RouteMetric=10
+
+- name: Add general systemd-networkd rule for wireless interfaces
+  become: yes
+  copy:
+    dest: /etc/systemd/network/25-wireless.network
+    content: |
+      [Match]
+      Name=wlan*
+
+      [Network]
+      DHCP=yes
+
+      [DHCP]
+      RouteMetric=20
+
+- name: Install iwd for wireless networking
+  become: yes
+  pacman:
+    name: iwd
+    state: present
+
+- name: Enable iwd and systemd-networkd
+  become: yes
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - iwd
+    - systemd-networkd
+
+- name: Disable dhcpcd
+  become: yes
+  systemd:
+    name: dhcpcd.service
+    state: stopped
+    enabled: no
+
+- name: Create directory to configure systemd-networkd-wait-online.service
+  become: yes
+  file:
+    dest: /etc/systemd/system/systemd-networkd-wait-online.service.d
+    state: directory
+
+- name: Wait for at least one interface (rather than all interfaces) to be considered online
+  become: yes
+  copy:
+    dest: /etc/systemd/system/systemd-networkd-wait-online.service.d/wait-for-only-one-interface.conf
+    content: |
+      [Service]
+      ExecStart=
+      ExecStart=/usr/lib/systemd/systemd-networkd-wait-online --any
+
+- name: Connect automatically to WiFi networks
+  become: yes
+  copy:
+    dest: /etc/iwd/main.conf
+    content: |
+      [Settings]
+      AutoConnect=true
+
+- name: don't start nm-applet
+  become: yes
+  file:
+    src: "/bin/true"
+    dest: "/usr/local/bin/nm-applet"
+    state: link
+    force: yes
