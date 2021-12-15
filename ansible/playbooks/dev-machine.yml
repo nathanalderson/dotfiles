@@ -20,7 +20,6 @@
 
   roles:
     - common
-    # - adtran
     - personal
     - niceties
     - home_network
