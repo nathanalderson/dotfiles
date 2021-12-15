@@ -1,0 +1,2 @@
+2021-12-14 13:00:52,177 [INFO @ script_host.py:setup:69] 222987 - install import hook/path
+2021-12-14 13:00:52,177 [INFO @ script_host.py:setup:74] 222987 - redirect sys.stdout and sys.stderr

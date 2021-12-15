@@ -12,11 +12,7 @@ OUT := out
 HOSTS_FILE := $(OUT)/hosts.ini
 ANSIBLE_TAGS ?= all
 ANSIBLE_ARGS ?=
-ifeq ($(TARGET_HOST),localhost)
 ANSIBLE_CONNECTION ?= local
-else
-ANSIBLE_CONNECTION ?= ssh
-endif
 
 .PHONY: setup
 setup: $(HOSTS_FILE)
@@ -30,6 +26,10 @@ print-instructions:
 	@echo '3. Link the desired playbook here as "playbook.yml" (e.g. `ln -s playbooks/dev-machine.yml playbook.yml`).'
 	@echo '   Edit the contents (vars, rolls, etc.) as desired.'
 	@echo '4. Run `make run`.'
+
+.PHONY: install-ansible-collections
+install-ansible-collections:
+	@ansible-galaxy collection install -r ansible-requirements.yaml
 
 $(HOSTS_FILE): Makefile
 	@mkdir -p $(@D)

@@ -44,7 +44,7 @@ zinit wait lucid for \
   as"completion" \
     OMZP::docker/_docker \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma/fast-syntax-highlighting \
+    zdharma-continuum/fast-syntax-highlighting \
   atload"zicompinit; zicdreplay" blockf \
     OMZL::completion.zsh \
   atload"!_zsh_autosuggest_start" \

@@ -19,6 +19,47 @@
   apt_repository:
     repo: ppa:deadsnakes/ppa
 
+- name: Install standard niceties
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - autoconf
+      - automake
+      - cloc
+      - cmake
+      - dconf-editor
+      - ttf-fantasque-sans-mono
+      - ttf-inconsolata
+      - noto-fonts
+      - inotify-tools
+      - iperf3
+      - jq
+      - meld
+      - minicom
+      - ncdu
+      - nmap
+      - samba
+      - sshfs
+      - the_silver_searcher
+      - vlc
+      - wireguard-tools
+      - wireshark-qt
+      - xdotool
+
+- name: Install AUR niceties
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - bcompare
+      - pamac-aur
+
 - name: Install niceties
   when: ansible_facts['os_family'] == "Debian"
   become: yes
@@ -50,3 +91,8 @@
       - wireguard-tools
       - wireshark
       - xdotool
+
+- name: Clone base16-gnome-terminal for terminal color schemes
+  git:
+    repo: https://github.com/aaron-williamson/base16-gnome-terminal.git
+    dest: "{{ home }}/.config/base16-gnome-terminal"

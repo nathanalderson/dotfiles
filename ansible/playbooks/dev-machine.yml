@@ -20,12 +20,12 @@
 
   roles:
     - common
-    - adtran
+    # - adtran
     - personal
     - niceties
     - home_network
     - docker
-    - i3
+    # - i3
     - role: systemd-resolved
       when: ansible_facts.services.get('systemd-resolved.service')
   tasks:

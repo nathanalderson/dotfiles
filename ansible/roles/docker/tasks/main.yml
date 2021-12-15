@@ -18,6 +18,11 @@
   apt:
     name: docker-ce
 
+- name: Create docker group
+  become: yes
+  group:
+    name: docker
+
 - name: Add user to docker group
   become: yes
   user:

@@ -12,6 +12,13 @@
     - dev
     - projects
 
+- name: Prepare pacman installs
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
 - name: Prepare apt installs
   when: ansible_facts['os_family'] == "Debian"
   become: yes
@@ -21,6 +28,13 @@
     update_cache: yes
     autoclean: yes
     autoremove: yes
+
+- name: Install git
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: git
+    state: latest
 
 - name: Install git
   when: ansible_facts['os_family'] == "Debian"
@@ -79,6 +93,42 @@
     repo: ppa:nextcloud-devs/client
     update_cache: yes
 
+- name: Install pacman packages
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - ca-certificates
+    - base-devel
+    - cowsay
+    - curl
+    - expect
+    - gnome-terminal
+    - gnupg
+    - htop
+    - keepassxc
+    - lightdm
+    - lsb-release
+    - neovim
+    - nextcloud-client
+    - nomacs
+    - python-jedi
+    - python-pip
+    - python-wheel
+    - python-virtualenv
+    - resolvconf
+    - shellcheck
+    - sshpass
+    - tmux
+    - tree
+    - xarchiver
+    - xclip
+    - xsel
+    - zsh
+
 - name: Install apt packages
   when: ansible_facts['os_family'] == "Debian"
   become: yes
@@ -133,6 +183,7 @@
       - pylama
       - pylint
       - virtualenv
+  tags: [justme]
 
 - name: Remove apt packages
   when: ansible_facts['os_family'] == "Debian"
@@ -164,7 +215,7 @@
 
 - name: Install zinit (for zsh)
   ansible.builtin.git:
-    repo: https://github.com/zdharma/zinit.git
+    repo: https://github.com/zdharma-continuum/zinit.git
     dest: "{{ home }}/.zinit/bin"
 
 - name: Initialize zinit
@@ -206,7 +257,17 @@
     - name: Install cinnamon
       become: yes
       apt:
-        name: cinnamon-desktop-environment
+        name: cinnamon-desktop-environment xviewer xreader
+        state: latest
+    # TODO somehow set cinnamon as default
+
+- name: Setup desktop environment
+  when: ansible_facts['os_family'] == "Archlinux"
+  block:
+    - name: Install cinnamon
+      become: yes
+      pacman:
+        name: cinnamon
         state: latest
     # TODO somehow set cinnamon as default
 
@@ -241,3 +302,19 @@
   copy:
     dest: "/etc/apparmor.d/tunables/home.d/adtran"
     content: "@{HOMEDIRS}+={{ home | dirname }}"
+
+- name: Create a user for managing AURs
+  become: yes
+  user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
+
+- name: Allow aur_builder to run `sudo pacman` without a password
+  become: yes
+  lineinfile:
+     path: /etc/sudoers.d/11-install-aur_builder
+     state: present
+     line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+     validate: /usr/sbin/visudo -cf %s
+     create: yes
