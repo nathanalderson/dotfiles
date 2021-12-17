@@ -45,7 +45,15 @@ Plug 'rakr/vim-one'
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
 
+" coc.nvim
+Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
+
 " Language support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lepture/vim-jinja'
 Plug 'groenewege/vim-less'
 Plug 'derekwyatt/vim-scala'
@@ -61,6 +69,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'udalov/kotlin-vim'
 Plug 'cespare/vim-toml'
+Plug 'kevinoid/vim-jsonc'
+Plug 'pearofducks/ansible-vim'
+Plug 'elixir-editors/vim-elixir'
 
 " version control
 Plug 'nfvs/vim-perforce'
@@ -105,15 +116,6 @@ Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 Plug 'nathanalderson/yanktohtml'
 Plug 'lambdalisue/suda.vim' " workaround for https://github.com/neovim/neovim/issues/1716
-
-" neovim
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'deoplete-plugins/deoplete-jedi'
-    Plug 'davidhalter/jedi-vim'
-else
-    Plug 'ervandew/supertab'
-end
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -177,6 +179,7 @@ autocmd Filetype scala call SetTabWidth(2)
 autocmd Filetype ruby call SetTabWidth(2)
 autocmd Filetype javascript call SetTabWidth(2)
 autocmd Filetype typescript call SetTabWidth(2)
+autocmd Filetype yaml call SetTabWidth(2)
 
 " Composition mode (for editing prose)
 let g:goyo_width = 120
@@ -404,15 +407,18 @@ let g:UltiSnipsExpandTrigger='<c-s>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = expand('~/dotfiles/.vim/UltiSnips')
 
-" deoplete & jedi
-if has('nvim')
-    let g:deoplete#enable_at_startup = 1
-    autocmd CompleteDone * silent! pclose!
-    let g:deoplete#sources#jedi#ignore_private_members = 1
-    let g:jedi#completions_enabled = 0
-    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-end
+" coc.nvim: use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+" coc.nvim: use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " additional extensions
 au BufNewFile,BufRead *.bps set filetype=tcl
@@ -474,15 +480,6 @@ let g:airline_mode_map = {
 " fugitive
 autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
 autocmd BufReadPost fugitive://* set bufhidden=delete
-
-if !has('nvim')
-    " supertab
-    " let g:SuperTabDefaultCompletionType = "context"
-    autocmd FileType *
-        \ if &omnifunc != '' |
-        \   call SuperTabChain(&omnifunc, "<c-p>") |
-        \ endif
-end
 
 " tsuquyomi
 let g:tsuquyomi_disable_quickfix = 1
