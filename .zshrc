@@ -111,6 +111,10 @@ alias home-vpn-disconnect='sudo wg-quick down wg0'
 
 # launch nvim in a separate gui.
 alias gnv="nvim-qt"
+# `vim` launches `nvim` if available
+nvim() { if command -v nvim &> /dev/null; then env nvim $*; else env vim $*; fi }
+# `vvim` always launches vanilla vim
+alias vvim="env vim"
 
 # docker-compoose
 alias dco='docker-compose'
@@ -242,3 +246,9 @@ export MOSH_ESCAPE_KEY='~'
 
 # added by travis gem
 [ -f /home/nalderso/.travis/travis.sh ] && source /home/nalderso/.travis/travis.sh
+
+# asdf
+ASDF_SCRIPT=/opt/asdf-vm/asdf.sh
+if [[ -f "$ASDF_SCRIPT" ]]; then
+    . $ASDF_SCRIPT
+fi
