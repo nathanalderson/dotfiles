@@ -26,6 +26,7 @@
     name: "{{ packages }}"
   vars:
     packages:
+      - ansible-lint
       - autoconf
       - automake
       - cloc
@@ -38,8 +39,10 @@
       - minicom
       - ncdu
       - nmap
+      - nodejs
       - noto-fonts
       - noto-fonts-emoji
+      - npm
       - numlockx
       - otf-fantasque-sans-mono
       - papirus-icon-theme
@@ -51,6 +54,8 @@
       - wireguard-tools
       - wireshark-qt
       - xdotool
+      - yarn
+      - yamllint
 
 - name: Install AUR niceties
   when: ansible_facts['os_family'] == "Archlinux"

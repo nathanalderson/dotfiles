@@ -4,6 +4,7 @@
     user: "{{ ansible_env.USER }}"
     dotfiles_local: "{{ playbook_dir}}/.."
     local_run: "{{ ansible_host in ['localhost', '127.0.0.1', '::1'] or ansible_connection == 'local' }}"
+    vim_bundle_dir:  "{{ home }}/.config/nvim/bundle"
   pre_tasks:
     - name: Set extra facts
       tags: [always]
@@ -28,6 +29,8 @@
     - systemd-networkd
     - role: systemd-resolved
       when: ansible_facts.services.get('systemd-resolved.service')
+    - elixir
+    - flutter
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:

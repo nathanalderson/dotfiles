@@ -1,0 +1,20 @@
+- name: Install packages
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - jq
+
+- name: Install asdf Flutter plugin
+  command: asdf plugin-add flutter
+  register: asdf_plugin_add_flutter
+  changed_when: asdf_plugin_add_flutter.rc != 2
+  failed_when: "asdf_plugin_add_flutter.rc not in [0, 2]"
+
+- name: Install latest Flutter
+  command: "asdf install flutter latest && asdf global flutter latest"
+  register: asdf_install_flutter_latest
+  changed_when: '"already installed" not in asdf_install_flutter_latest.stdout'

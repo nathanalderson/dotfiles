@@ -1,0 +1,54 @@
+- name: Install packages
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - asdf-vm
+    - base-devel
+    - fop
+    - glu
+    - libpng
+    - libssh
+    - libxslt
+    - mesa
+    - ncurses
+    - unixodbc
+    - wxgtk2
+
+- name: Install asdf Erlang plugin
+  environment:
+    KERL_BUILD_DOCS: yes
+  command: asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+  register: asdf_plugin_add_erlang
+  changed_when: asdf_plugin_add_erlang.rc != 2
+  failed_when: "asdf_plugin_add_erlang.rc not in [0, 2]"
+
+- name: Install latest Erlang
+  command: "asdf install erlang latest && asdf global erlang latest"
+  register: asdf_install_erlang_latest
+  changed_when: '"already installed" not in asdf_install_erlang_latest.stdout'
+
+- name: Install asdf Elixir plugin
+  command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  register: asdf_plugin_add_elixir
+  changed_when: asdf_plugin_add_elixir.rc != 2
+  failed_when: "asdf_plugin_add_elixir.rc not in [0, 2]"
+
+- name: Install latest Elixir
+  command: "asdf install elixir latest && asdf global elixir latest"
+  register: asdf_install_elixir_latest
+  changed_when: '"already installed" not in asdf_install_elixir_latest.stdout'
+
+- name: Create install directory for Elixir language server for coc
+  file:
+    dest: "{{ vim_bundle_dir }}/coc-elixir/els-release/"
+    state: directory
+
+- name: Install the Elixir language server for coc
+  unarchive:
+    src: https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
+    dest: "{{ vim_bundle_dir }}/coc-elixir/els-release/"
+    remote_src: yes

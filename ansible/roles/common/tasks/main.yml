@@ -126,6 +126,7 @@
     - sshpass
     - tmux
     - tree
+    - unzip
     - xarchiver
     - xclip
     - xsel
