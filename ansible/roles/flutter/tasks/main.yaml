@@ -18,3 +18,7 @@
   command: "asdf install flutter latest && asdf global flutter latest"
   register: asdf_install_flutter_latest
   changed_when: '"already installed" not in asdf_install_flutter_latest.stdout'
+
+- name: Set default Flutter to latest
+  command: asdf global flutter latest
+
