@@ -18,6 +18,12 @@
   apt:
     name: docker-ce
 
+- name: Install Docker
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: [docker, docker-compose]
+
 - name: Create docker group
   become: yes
   group:
@@ -45,7 +51,9 @@
 - name: Install python packages (local)
   # This one has problems using a local connection because you end up still
   # in the virtualenv being used to run the playbook.
-  when: ansible_connection != 'local'
+  when:
+    - ansible_connection != 'local'
+    - ansible_facts['os_family'] == "Debian"
   pip:
     name: docker-compose
     executable: pip3
