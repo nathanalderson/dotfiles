@@ -1,0 +1,6 @@
+configuration {
+  font: "Fantasque Sans Mono 12";
+  modi: "run,drun";
+  dpi: 268;
+}
+@theme "/usr/share/rofi/themes/Paper.rasi"

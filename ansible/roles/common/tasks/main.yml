@@ -6,11 +6,14 @@
     - .config
     - .config/nvim
     - .config/pip
+    - .config/bin
     - .ssh
     - bin
     - opt
     - dev
     - projects
+    - tmp
+  tags: [justme]
 
 - name: Prepare pacman installs
   when: ansible_facts['os_family'] == "Archlinux"
@@ -53,7 +56,7 @@
 
 - name: Install dotfiles
   file:
-    src: "dotfiles/{{ item }}"
+    src: "{{ home }}/dotfiles/{{ item }}"
     dest: "{{ home }}/{{ item }}"
     state: link
     force: yes
@@ -65,7 +68,10 @@
     - .tmux.conf
     - .vimrc
     - .vim
+    - .zshenv
     - .zshrc
+    - .config/rofi/config.rasi
+  tags: [justme]
 
 - name: Install templated configs
   template:
@@ -164,6 +170,7 @@
     - tmux
     - tree
     - xclip
+    - xorg-xdpyinfo
     - xsel
     - zsh
 
@@ -337,4 +344,3 @@
     name: "sshd"
     state: started
     enabled: yes
-  tags: [justme]

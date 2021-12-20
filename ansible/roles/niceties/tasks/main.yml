@@ -32,6 +32,8 @@
       - cloc
       - cmake
       - dconf-editor
+      - gnome-calculator
+      - gpaste
       - inotify-tools
       - iperf3
       - jq
@@ -46,6 +48,8 @@
       - numlockx
       - otf-fantasque-sans-mono
       - papirus-icon-theme
+      - rofi
+      - rofimoji
       - samba
       - sshfs
       - the_silver_searcher
