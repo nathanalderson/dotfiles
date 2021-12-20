@@ -81,7 +81,6 @@
       dest: .zshenv
     - src: .zshrc-local.j2
       dest: .zshrc-local
-  tags: [justme]
 
 - name: Add keepassxc PPA
   when: ansible_facts['os_family'] == "Debian"
@@ -134,6 +133,7 @@
     - unzip
     - xarchiver
     - xclip
+    - xorg-xauth
     - xsel
     - zsh
 
@@ -367,3 +367,32 @@
   with_items:
     - slick-greeter.conf
     - slick-greeter-background.jpg
+
+- name: Configure SSH Daemon
+  become: yes
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: "{{ item.key }} {{ item.value }}"
+    regexp: '^#?{{ item.key }}'
+  with_items:
+    - key: X11Forwarding
+      value: "yes"
+    - key: X11DisplayOffset
+      value: 10
+    - key: X11UseLocalhost
+      value: "yes"
+    - key: AllowAgentForwarding
+      value: "yes"
+    - key: AllowTcpForwarding
+      value: "yes"
+    - key: PasswordAuthentication
+      value: "yes"
+  register: ssh_config
+  tags: [justme]
+
+- name: Restart SSHD
+  when: ssh_config.changed
+  systemd:
+    name: sshd
+    state: restarted
+  tags: [justme]
