@@ -112,7 +112,7 @@ alias home-vpn-disconnect='sudo wg-quick down wg0'
 # launch nvim in a separate gui.
 alias gnv="nvim-qt"
 # `vim` launches `nvim` if available
-nvim() { if command -v nvim &> /dev/null; then env nvim $*; else env vim $*; fi }
+vim() { if command -v nvim &> /dev/null; then env nvim $*; else env vim $*; fi }
 # `vvim` always launches vanilla vim
 alias vvim="env vim"
 
