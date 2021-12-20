@@ -67,7 +67,6 @@
     - .tmux.conf
     - .vimrc
     - .vim
-    - .zshenv
     - .zshrc
     - .config/rofi/config.rasi
 
@@ -82,6 +81,7 @@
       dest: .zshenv
     - src: .zshrc-local.j2
       dest: .zshrc-local
+  tags: [justme]
 
 - name: Add keepassxc PPA
   when: ansible_facts['os_family'] == "Debian"
