@@ -12,7 +12,11 @@ OUT := out
 HOSTS_FILE := $(OUT)/hosts.ini
 ANSIBLE_TAGS ?= all
 ANSIBLE_ARGS ?=
+ifeq ($(TARGET_HOST),localhost)
 ANSIBLE_CONNECTION ?= local
+else
+ANSIBLE_CONNECTION ?= ssh
+endif
 
 .PHONY: setup
 setup: $(HOSTS_FILE)

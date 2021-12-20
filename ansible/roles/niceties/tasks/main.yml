@@ -61,6 +61,13 @@
       - yarn
       - yamllint
 
+- name: Install yay-bin
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: yay-bin
+
 - name: Install AUR niceties
   when: ansible_facts['os_family'] == "Archlinux"
   become: yes

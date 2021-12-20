@@ -13,7 +13,6 @@
     - dev
     - projects
     - tmp
-  tags: [justme]
 
 - name: Prepare pacman installs
   when: ansible_facts['os_family'] == "Archlinux"
@@ -71,7 +70,6 @@
     - .zshenv
     - .zshrc
     - .config/rofi/config.rasi
-  tags: [justme]
 
 - name: Install templated configs
   template:
@@ -112,6 +110,7 @@
     - cowsay
     - curl
     - expect
+    - firefox
     - gnome-terminal
     - gnupg
     - htop
@@ -344,3 +343,27 @@
     name: "sshd"
     state: started
     enabled: yes
+
+- name: Configure lightdm to use slick-greeter
+  become: yes
+  lineinfile:
+     path: /etc/lightdm/lightdm.conf
+     state: present
+     insertafter: '^\[Seat:\*\]'
+     line: "greeter-session=lightdm-slick-greeter"
+     create: yes
+
+- name: enable lightdm
+  become: yes
+  systemd:
+    name: "lightdm"
+    enabled: yes
+
+- name: configure lightdm
+  become: yes
+  copy:
+    src: "{{ item }}"
+    dest: /etc/lightdm/
+  with_items:
+    - slick-greeter.conf
+    - slick-greeter-background.jpg
