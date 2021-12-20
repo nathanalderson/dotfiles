@@ -160,13 +160,6 @@ alias sudo='sudo '
 alias tm='tmux new -s '
 
 ###
-# Environment variables
-###
-export P4CONFIG=.p4config
-export PATH=$HOME/bin:$PATH
-export EDITOR=/usr/bin/nvim
-
-###
 # Other things
 ###
 
@@ -234,12 +227,6 @@ fi
 # Set gopath
 export GOPATH="$HOME/.godir"
 export PATH=$PATH:"$GOPATH/bin"
-
-# Add python user bin dir to path
-export PATH=$PATH:"$HOME/.local/bin"
-
-# stupid cows
-export ANSIBLE_NOCOWS=1
 
 # mosh
 export MOSH_ESCAPE_KEY='~'
