@@ -13,3 +13,15 @@
     name: zerotier-one
     state: started
     enabled: yes
+
+- name: update /etc/hosts
+  become: yes
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item.ip }}  {{ item.hostname }}"
+    regex: "{{ item.hostname }}"
+  with_items:
+    - hostname: nathan-desktop-zt
+      ip: "{{ zerotier_address_desktop }}"
+    - hostname: nathan-laptop-zt
+      ip: "{{ zerotier_address_laptop }}"
