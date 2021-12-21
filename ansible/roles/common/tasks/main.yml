@@ -392,6 +392,7 @@
 
 - name: Restart SSHD
   when: ssh_config.changed
+  become: yes
   systemd:
     name: sshd
     state: restarted
