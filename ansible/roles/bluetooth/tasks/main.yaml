@@ -1,0 +1,17 @@
+- name: Install packages
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - bluez
+      - bluez-utils
+
+- name: Start and enable bluetooth
+  become: yes
+  systemd:
+    name: bluetooth
+    state: started
+    enabled: yes

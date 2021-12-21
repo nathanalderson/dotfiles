@@ -1,0 +1,15 @@
+- name: Install packages
+  become: yes
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - aws-cli
+    - zerotier-one
+
+- name: Enable zerotier-one
+  become: yes
+  systemd:
+    name: zerotier-one
+    state: started
+    enabled: yes

@@ -24,6 +24,7 @@
     - personal
     - niceties
     - home_network
+    - bluetooth
     - docker
     # - i3
     - systemd-networkd
@@ -31,6 +32,7 @@
       when: ansible_facts.services.get('systemd-resolved.service')
     - elixir
     - flutter
+    - tangotango
   tasks:
     - name: Print all available facts
       ansible.builtin.debug:
