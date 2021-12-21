@@ -34,6 +34,7 @@
       - dconf-editor
       - gnome-calculator
       - gpaste
+      - imagemagick
       - inotify-tools
       - iperf3
       - jq
