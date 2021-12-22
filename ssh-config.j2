@@ -16,6 +16,20 @@ Host lt nathan-laptop
   ForwardAgent yes
   ForwardX11 yes
 
+{% if "tangotango" in ansible_role_names %}
+Host dtz nathan-desktop-zt
+  Hostname nathan-desktop-zt
+  User nathan
+  ForwardAgent yes
+  ForwardX11 yes
+
+Host ltz nathan-laptop-zt
+  Hostname nathan-laptop-zt
+  User nathan
+  ForwardAgent yes
+  ForwardX11 yes
+{% endif %}
+
 {% if "home_network" in ansible_role_names %}
 Host nextcloud*
   User nathan

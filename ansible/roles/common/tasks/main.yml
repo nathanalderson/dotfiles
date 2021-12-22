@@ -359,7 +359,7 @@
     name: "lightdm"
     enabled: yes
 
-- name: configure lightdm
+- name: configure slick greeter
   become: yes
   copy:
     src: "{{ item }}"
@@ -367,6 +367,13 @@
   with_items:
     - slick-greeter.conf
     - slick-greeter-background.jpg
+
+- name: Tell lightdm to source .zshenv
+  copy:
+    dest: "{{ home }}/.xprofile"
+    content: |
+      #!/bin/sh
+      [[ -f ~/.zshenv ]] && source ~/.zshenv
 
 - name: Configure SSH Daemon
   become: yes
