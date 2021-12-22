@@ -55,7 +55,7 @@
 
 - name: Install dotfiles
   file:
-    src: "{{ home }}/dotfiles/{{ item }}"
+    src: "dotfiles/{{ item }}"
     dest: "{{ home }}/{{ item }}"
     state: link
     force: yes
@@ -68,7 +68,7 @@
     - .vimrc
     - .vim
     - .zshrc
-    - .config/rofi/config.rasi
+  tags: [justme]
 
 - name: Install templated configs
   template:
@@ -126,6 +126,7 @@
     - python-wheel
     - python-virtualenv
     - resolvconf
+    - rsync
     - shellcheck
     - sshpass
     - tmux
@@ -172,6 +173,11 @@
     - xorg-xdpyinfo
     - xsel
     - zsh
+
+- name: copy ~/.config/ dir
+  ansible.posix.synchronize:
+    src: "{{ dotfiles_local }}/.config/"
+    dest: "{{ home }}/.config/"
 
 - name: Install python packages (local)
   # This one has problems using a local connection because you end up still
@@ -395,7 +401,6 @@
     - key: PasswordAuthentication
       value: "yes"
   register: ssh_config
-  tags: [justme]
 
 - name: Restart SSHD
   when: ssh_config.changed
@@ -403,4 +408,3 @@
   systemd:
     name: sshd
     state: restarted
-  tags: [justme]

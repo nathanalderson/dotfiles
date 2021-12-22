@@ -21,17 +21,17 @@
 
   roles:
     - common
-    # - personal
-    # - niceties
+    - personal
+    - niceties
     - home_network
-    # - bluetooth
-    # - docker
-    # # - i3
-    # - systemd-networkd
-    # - role: systemd-resolved
-    #   when: ansible_facts.services.get('systemd-resolved.service')
-    # - elixir
-    # - flutter
+    - bluetooth
+    - docker
+    # - i3
+    - systemd-networkd
+    - role: systemd-resolved
+      when: ansible_facts.services.get('systemd-resolved.service')
+    - elixir
+    - flutter
     - tangotango
   tasks:
     - name: Print all available facts

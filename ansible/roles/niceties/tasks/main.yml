@@ -52,6 +52,7 @@
       - papirus-icon-theme
       - rofi
       - rofimoji
+      - rsync
       - samba
       - sshfs
       - the_silver_searcher
