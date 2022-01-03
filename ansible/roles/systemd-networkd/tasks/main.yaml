@@ -12,6 +12,9 @@
       [DHCP]
       RouteMetric=10
 
+      [DHCPv4]
+      UseDomains=true
+
 - name: Add general systemd-networkd rule for wireless interfaces
   become: yes
   copy:
@@ -25,6 +28,9 @@
 
       [DHCP]
       RouteMetric=20
+
+      [DHCPv4]
+      UseDomains=true
 
 - name: Install iwd for wireless networking
   become: yes

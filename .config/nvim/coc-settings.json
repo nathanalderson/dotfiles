@@ -1,0 +1,9 @@
+{
+  // avoid popups mostly
+  "diagnostic.messageTarget": "echo",
+  "signature.target": "echo",
+  "hover.target": "echo",
+
+  "ansible.ansibleLint.arguments": "-d relaxed"
+
+}

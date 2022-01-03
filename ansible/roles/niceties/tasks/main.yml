@@ -57,6 +57,7 @@
       - sshfs
       - the_silver_searcher
       - ttf-inconsolata
+      - ttf-liberation
       - vlc
       - wireguard-tools
       - wireshark-qt
@@ -113,6 +114,14 @@
       - wireguard-tools
       - wireshark
       - xdotool
+
+- name: Add user to the wireshark group
+  become: yes
+  user:
+    name: "{{ user }}"
+    groups: [wireshark]
+    append: yes
+  tags: [justme]
 
 - name: Clone base16-gnome-terminal for terminal color schemes
   git:

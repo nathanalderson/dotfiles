@@ -68,7 +68,6 @@
     - .vimrc
     - .vim
     - .zshrc
-  tags: [justme]
 
 - name: Install templated configs
   template:
@@ -107,6 +106,7 @@
     - ca-certificates
     - base-devel
     - cowsay
+    - cups
     - curl
     - expect
     - firefox
@@ -129,8 +129,10 @@
     - rsync
     - shellcheck
     - sshpass
+    - system-config-printer
     - tmux
     - tree
+    - udisks2
     - unzip
     - xarchiver
     - xclip
@@ -408,3 +410,11 @@
   systemd:
     name: sshd
     state: restarted
+
+- name: Add user to some groups
+  become: yes
+  user:
+    name: "{{ user }}"
+    groups: [wheel, sudo, storage]
+    append: yes
+  tags: [justme]

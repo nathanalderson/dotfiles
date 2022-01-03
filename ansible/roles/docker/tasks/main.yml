@@ -48,6 +48,13 @@
     src: daemon.json
     dest: /etc/docker/daemon.json
 
+- name: Start and enable Docker daemon
+  become: yes
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
 - name: Install python packages (local)
   # This one has problems using a local connection because you end up still
   # in the virtualenv being used to run the playbook.
