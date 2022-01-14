@@ -31,10 +31,12 @@ source $VIMRUNTIME/mswin.vim
 silent! unmap <C-H>
 set selectmode=
 
+
 " *******
 " Plugins
 " *******
 
+if !exists('g:vscode')
 " colorschemes
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/vim-tomorrow-theme'
@@ -77,6 +79,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'nfvs/vim-perforce'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+end " !exists('g:vscode')
 
 " text objects
 Plug 'kana/vim-textobj-function'
@@ -161,6 +164,8 @@ else
     set clipboard=unnamedplus
 endif
 
+if !exists('g:vscode')
+
 " colors
 set background=dark
 colorscheme gruvbox
@@ -215,6 +220,8 @@ endfunction
 " command! Write call Write()
 command! -nargs=? -complete=file Write SudaWrite
 
+end " !exists('g:vscode')
+
 " Trim trailing whitespace
 command! Trim :%s/\v\s+$/
 
@@ -250,6 +257,8 @@ else
     set nocursorline
 endif
 
+if !exists('g:vscode')
+
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -261,6 +270,8 @@ autocmd FileType gitcommit execute "normal! ggm\""
 
 " vim-anywhere
 autocmd BufNewFile,BufRead /tmp/vim-anywhere/* set syntax=markdown
+
+end " !exists('g:vscode')
 
 command! W w
 command! Q q
@@ -319,6 +330,8 @@ nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
+
+if !exists('g:vscode')
 
 "insert mode custom keymapping
 inoremap <C-]> <C-X><C-]>
@@ -387,6 +400,8 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['typescript'],
                            \ 'passive_filetypes': [] }
 
+end " !exists('g:vscode')
+
 " BufKill
 let g:BufKillCreateMappings=0     "skip bufkill bindings which interfere with Command-T
 nmap <silent> <C-^> :BA<CR>
@@ -407,6 +422,8 @@ let g:UltiSnipsExpandTrigger='<c-s>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = expand('~/dotfiles/.vim/UltiSnips')
 
+if !exists('g:vscode')
+
 " coc.nvim: use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -419,6 +436,8 @@ inoremap <silent><expr> <Tab>
 
 " coc.nvim: use <c-space>for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
+
+end " !exists('g:vscode')
 
 " additional extensions
 au BufNewFile,BufRead *.bps set filetype=tcl
@@ -457,6 +476,8 @@ let g:ackprg="ack --column --smart-case"
 let g:ag_mapping_message=0
 let g:ag_prg="ag --column --smart-case"
 
+if !exists('g:vscode')
+
 "Airline
 if &guifont =~ 'PowerLine'
   let g:airline_powerline_fonts=1
@@ -488,3 +509,5 @@ map <C-)> <Plug>(TsuquyomiReferences)
 " TODO:
 " - Extend surround to support /* */
 " - Check out projectionist.vim
+
+end " !exists('g:vscode')
