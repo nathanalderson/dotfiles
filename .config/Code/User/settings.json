@@ -1,6 +1,9 @@
 {
     "workbench.colorTheme": "Ayu Light Bordered",
+    "workbench.iconTheme": "ayu",
+
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.definitionLinkOpensInPeek": true,
+
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-    "workbench.iconTheme": "ayu"
 }
