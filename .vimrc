@@ -320,6 +320,21 @@ nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
 
+" neovim terminal
+if has('nvim')
+    nnoremap <C-t> :terminal zsh<CR>
+    tnoremap jk <C-\><C-n>
+    tnoremap <ESC> <C-\><C-n>
+    tnoremap <C-h> <Cmd>wincmd h<CR>
+    tnoremap <C-j> <Cmd>wincmd j<CR>
+    tnoremap <C-k> <Cmd>wincmd k<CR>
+    tnoremap <C-l> <Cmd>wincmd l<CR>
+    augroup nvim_terminal | au!
+        autocmd TermEnter term://* startinsert
+        autocmd BufEnter term://* startinsert
+    augroup end
+endif
+
 "insert mode custom keymapping
 inoremap <C-]> <C-X><C-]>
 inoremap <C-F> <C-X><C-F>

@@ -176,10 +176,32 @@
     - xsel
     - zsh
 
-- name: copy ~/.config/ dir
-  ansible.posix.synchronize:
-    src: "{{ dotfiles_local }}/.config/"
-    dest: "{{ home }}/.config/"
+- name: Locate .config files
+  shell: "cd {{ home }}/dotfiles && find .config -type f"
+  register: dotconfig_files
+  tags: [justme]
+
+# - name: Print .config files
+#   debug:
+#     msg: "{{ item | dirname }}"
+#   with_items: "{{ dotconfig_files.stdout_lines }}"
+#   tags: [justme]
+
+- name: Create directories for .config files
+  file:
+    dest: "{{ home }}/{{ item | dirname }}"
+    state: directory
+  with_items: "{{ dotconfig_files.stdout_lines }}"
+  tags: [justme]
+
+- name: Symlink .config files
+  file:
+    src: "{{ home }}/dotfiles/{{ item }}"
+    dest: "{{ home }}/{{ item }}"
+    state: link
+    force: yes
+  with_items: "{{ dotconfig_files.stdout_lines }}"
+  tags: [justme]
 
 - name: Install python packages (local)
   # This one has problems using a local connection because you end up still
@@ -417,4 +439,3 @@
     name: "{{ user }}"
     groups: [wheel, sudo, storage]
     append: yes
-  tags: [justme]

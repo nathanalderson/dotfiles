@@ -121,7 +121,6 @@
     name: "{{ user }}"
     groups: [wireshark]
     append: yes
-  tags: [justme]
 
 - name: Clone base16-gnome-terminal for terminal color schemes
   git:

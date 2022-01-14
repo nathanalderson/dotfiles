@@ -4,6 +4,13 @@
   "signature.target": "echo",
   "hover.target": "echo",
 
-  "ansible.ansibleLint.arguments": "-d relaxed"
+  "ansible.ansibleLint.arguments": "-d relaxed",
 
+  // diagnostic-languageserver
+  "diagnostic-languageserver.filetypes": {
+    "elixir": ["mix_credo", "mix_credo_compile"]
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "elixir": "mix_format"
+  }
 }
