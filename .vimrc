@@ -295,9 +295,11 @@ if version >= 703
 endif
 
 " searching
-nnoremap / /\v
-vnoremap / /\v
-cnoremap s/ s/\v
+if !exists('g:vscode')
+    nnoremap / /\v
+    vnoremap / /\v
+    cnoremap s/ s/\v
+end
 nnoremap <leader><space> :noh<cr>
 set ignorecase
 set smartcase

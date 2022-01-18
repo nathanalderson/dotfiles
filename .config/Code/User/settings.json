@@ -6,4 +6,11 @@
     "editor.definitionLinkOpensInPeek": true,
 
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+
+    "files.autoSave": "afterDelay",
+
+    "[elixir]": {
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+    },
 }

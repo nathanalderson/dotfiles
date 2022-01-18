@@ -11,5 +11,37 @@
         "key": "k",
         "when": "neovim.mode == insert && editorTextFocus",
         "args": "k"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+6",
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusRightGroup"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusLeftGroup"
     }
 ]
