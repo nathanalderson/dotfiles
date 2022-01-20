@@ -54,6 +54,8 @@ Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
 
+end " !exists('g:vscode')
+
 " Language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lepture/vim-jinja'
@@ -79,7 +81,6 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'nfvs/vim-perforce'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-end " !exists('g:vscode')
 
 " text objects
 Plug 'kana/vim-textobj-function'
@@ -470,6 +471,7 @@ set errorformat^=%-GIn\ file\ included\ from\ %f:%l:%c:,%-GIn\ file
 " Comments
 let NERDSpaceDelims=1
 autocmd FileType groovy set commentstring=//\ %s
+autocmd FileType json set commentstring=//\ %s  " jsonc is a thing
 nmap <C-/> gcc
 
 " NerdTree

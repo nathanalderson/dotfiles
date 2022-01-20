@@ -1,5 +1,7 @@
 // Place your key bindings in this file to override the defaults
 [
+    // ===================================================
+    // Neovim `jk` escape
     {
         "command": "vscode-neovim.compositeEscape1",
         "key": "j",
@@ -12,6 +14,20 @@
         "when": "neovim.mode == insert && editorTextFocus",
         "args": "k"
     },
+    // ===================================================
+    // Remove neovim bindings that remap ctrl-c (cuz that should copy)
+    {
+        "key": "ctrl+c",
+        "command": "-vscode-neovim.escape",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert'"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "-vscode-neovim.escape",
+        "when": "editorTextFocus && neovim.ctrlKeysInsert && neovim.init && neovim.mode == 'insert'"
+    },
+    // ===================================================
+    // Simulate NERDTree
     {
         "key": "ctrl+n",
         "command": "-workbench.action.files.newUntitledFile"
@@ -24,24 +40,46 @@
         "key": "ctrl+b",
         "command": "-workbench.action.toggleSidebarVisibility"
     },
+    // ===================================================
+    // Ctrl+6 to switch tabs
     {
         "key": "ctrl+6",
         "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
     },
+    // ===================================================
+    // window navigation
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
     {
         "key": "ctrl+l",
-        "command": "workbench.action.focusRightGroup"
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
     },
     {
         "key": "ctrl+j",
-        "command": "workbench.action.terminal.focus"
+        "command": "workbench.action.navigateDown"
+    },
+    // ===================================================
+    // Focus the terminal
+    {
+        "key": "ctrl+alt+;",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    // ===================================================
+    // ctrl n(next) and p(previous) already works, just adding jk as a personal preference
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
     },
     {
-        "key": "ctrl+k ctrl+k",
-        "command": "workbench.action.focusPreviousGroup"
+        "key": "ctrl+k",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
     },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.action.focusLeftGroup"
-    }
 ]
