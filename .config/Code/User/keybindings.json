@@ -67,7 +67,7 @@
     // ===================================================
     // Focus the terminal
     {
-        "key": "ctrl+alt+;",
+        "key": "ctrl+shift+.",
         "command": "workbench.action.terminal.toggleTerminal"
     },
     // ===================================================
@@ -81,5 +81,37 @@
         "key": "ctrl+k",
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
+    },
+    // ===================================================
+    // Testing
+    {
+        "key": "ctrl+; ;",
+        "command": "exunit.runTest",  // test under cursor
+        "when": "editorTextFocus && resourceLangId == elixir"
+    },
+    {
+        "key": "ctrl+; .",
+        "command": "exunit.runPrevious",
+        "when": "resourceLangId == elixir"
+    },
+    {
+        "key": "ctrl+; g",
+        "command": "exunit.runTestFile",
+        "when": "editorFocus && resourceLangId == elixir"
+    },
+    {
+        "key": "ctrl+; g",
+        "command": "exunit.runTestFile",
+        "when": "editorFocus && resourceLangId == elixir"
+    },
+    {
+        "key": "ctrl+; a",
+        "command": "exunit.runAll",
+        "when": "resourceLangId == elixir"
+    },
+    {
+        "key": "ctrl+; u",
+        "command": "exunit.runAllInUmbrella",
+        "when": "resourceLangId == elixir"
     },
 ]
