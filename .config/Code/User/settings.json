@@ -17,9 +17,10 @@
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
     },
-    
+
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
     ],
+    "terminal.integrated.scrollback": 10000,
 }
