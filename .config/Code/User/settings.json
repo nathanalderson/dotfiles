@@ -1,6 +1,7 @@
 {
     "workbench.colorTheme": "Ayu Light Bordered",
     "workbench.iconTheme": "ayu",
+    "workbench.list.automaticKeyboardNavigation": false,  // explorer works more like NERDTree
 
     "window.zoomLevel": -1.0455173977264463,
 

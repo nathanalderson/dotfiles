@@ -34,7 +34,8 @@
     },
     {
         "key": "ctrl+n",
-        "command": "workbench.action.toggleSidebarVisibility"
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "!suggestWidgetVisible && !inQuickOpen"
     },
     {
         "key": "ctrl+b",
@@ -82,6 +83,16 @@
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
     },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
     // ===================================================
     // Testing
     {
@@ -114,4 +125,15 @@
         "command": "exunit.runAllInUmbrella",
         "when": "resourceLangId == elixir"
     },
+    // Zoomwin
+    {
+        "key": "\\ z",
+        "command": "workbench.action.toggleZenMode",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": "\\ z",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "panelFocus"
+    }
 ]
