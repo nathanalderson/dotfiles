@@ -92,6 +92,7 @@ Plug 'kana/vim-textobj-django-template'
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-sentence'
+Plug 'andyl/vim-textobj-elixir'
 
 " other
 Plug 'psf/black', { 'on': 'Black' }
