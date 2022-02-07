@@ -42,6 +42,7 @@
       - meld
       - minicom
       - ncdu
+      - net-tools
       - nmap
       - nodejs
       - noto-fonts
