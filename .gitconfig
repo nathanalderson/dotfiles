@@ -6,9 +6,13 @@
     tool = bc3
 [merge]
     tool = bc3
+    conflictStyle = diff3
 [mergetool]
     bc3 = trustExitCode
     keepBackup = false
+[mergetool.vd]
+    cmd = nvim -f -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED" -c '$wincmd w' -c 'wincmd J'
+    trustExitCode = true
 [difftool]
     prompt = false
     bc3 = trustExitCode
