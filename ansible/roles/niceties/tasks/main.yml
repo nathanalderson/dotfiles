@@ -48,6 +48,7 @@
       - noto-fonts
       - noto-fonts-emoji
       - npm
+      - ntp
       - numlockx
       - otf-fantasque-sans-mono
       - papirus-icon-theme
@@ -115,6 +116,7 @@
       - wireguard-tools
       - wireshark
       - xdotool
+  tags: [justme]
 
 - name: Add user to the wireshark group
   become: yes
@@ -127,3 +129,12 @@
   git:
     repo: https://github.com/aaron-williamson/base16-gnome-terminal.git
     dest: "{{ home }}/.config/base16-gnome-terminal"
+
+- name: start and enable NTP
+  become: yes
+  systemd:
+    name: ntpd
+    state: started
+    enabled: yes
+  tags: [justme]
+
