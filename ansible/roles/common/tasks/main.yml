@@ -70,7 +70,6 @@
     - .vim
     - .zshrc
     - .zprofile
-  tags: [justme]
 
 - name: Install templated configs
   template:
