@@ -96,7 +96,14 @@ gbts () { gw test -Dtest.single=$1 ${*:2} }
 alias ve="python3 -m virtualenv venv && source venv/bin/activate"
 alias ve2="python3 -m virtualenv --python=python2 venv && source venv/bin/activate"
 alias ve3="python3 -m virtualenv --python=python3 venv && source venv/bin/activate"
-alias svba="source venv/bin/activate"
+svba () {
+    poetry_venv=$(poetry env info --path)
+    if [ $? -eq 0 ]; then
+        source $poetry_venv/bin/activate
+    else
+        source venv/bin/activate
+    fi
+}
 
 # alias for serving a directory with python
 alias serve2="python -m SimpleHTTPServer"
