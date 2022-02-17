@@ -13,3 +13,4 @@ venv*/
 .settings/
 .autotools
 .mypy_cache/
+.vscode/
