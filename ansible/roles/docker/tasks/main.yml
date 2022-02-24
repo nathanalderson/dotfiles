@@ -66,3 +66,11 @@
     executable: pip3
     extra_args: --user
     state: present
+
+- name: Install credential helper
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: docker-credential-secretservice
+
