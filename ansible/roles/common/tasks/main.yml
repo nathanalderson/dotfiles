@@ -136,6 +136,7 @@
     - tree
     - udisks2
     - unzip
+    - wget
     - xarchiver
     - xclip
     - xorg-xauth
