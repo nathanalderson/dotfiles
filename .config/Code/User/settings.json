@@ -42,4 +42,8 @@
     },
 
     "git.confirmSync": false,
+    "remote.SSH.useLocalServer": false,
+    "remote.SSH.remotePlatform": {
+        "nathan-desktop-zt": "linux"
+    },
 }
