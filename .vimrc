@@ -496,6 +496,10 @@ let g:ackprg="ack --column --smart-case"
 let g:ag_mapping_message=0
 let g:ag_prg="ag --column --smart-case"
 
+" surround
+let g:surround_37 = "<% \r %>"
+let g:surround_61 = "<%= \r %>"
+
 if !exists('g:vscode')
 
 "Airline
@@ -531,3 +535,9 @@ map <C-)> <Plug>(TsuquyomiReferences)
 " - Check out projectionist.vim
 
 end " !exists('g:vscode')
+
+if exists('g:vscode')
+    " go to next/previous change
+    nnoremap [c <Cmd>call VSCodeNotify("workbench.action.editor.previousChange")<CR>
+    nnoremap ]c <Cmd>call VSCodeNotify("workbench.action.editor.nextChange")<CR>
+end
