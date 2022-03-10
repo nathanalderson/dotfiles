@@ -136,11 +136,6 @@
         "command": "workbench.action.toggleZenMode",
         "when": "editorTextFocus && neovim.mode == normal"
     },
-    {
-        "key": "\\ z",
-        "command": "workbench.action.toggleMaximizedPanel",
-        "when": "panelFocus"
-    },
     // Back and forward
     {
         "key": "alt+left",
@@ -150,8 +145,9 @@
         "key": "alt+right",
         "command": "workbench.action.navigateForward"
     },
+    // Don't close the workbench when I accidentally hit ctrl+q
     {
         "key": "ctrl+q",
         "command": "-workbench.action.quit"
-    }
+    },
 ]

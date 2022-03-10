@@ -5,6 +5,7 @@
     "workbench.list.automaticKeyboardNavigation": false,  // explorer works more like NERDTree
 
     "window.zoomLevel": -1.0455173977264463,
+    "window.menuBarVisibility": "toggle",
 
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.definitionLinkOpensInPeek": true,
@@ -15,8 +16,9 @@
 
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
 
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "onWindowChange",
 
+    "elixirLS.suggestSpecs": false,
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
@@ -46,4 +48,6 @@
     "remote.SSH.remotePlatform": {
         "nathan-desktop-zt": "linux"
     },
+
+    "python.formatting.provider": "black",
 }
