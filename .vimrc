@@ -44,6 +44,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'nightsense/vimspectr'
 Plug 'rakr/vim-one'
+Plug 'tjdevries/colorbuddy.nvim' " required for lalitmee/cobalt2.nvim
+Plug 'lalitmee/cobalt2.nvim'
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
 
@@ -110,11 +112,12 @@ Plug 'scrooloose/syntastic'
 Plug 'tfnico/vim-gradle'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'vim-scripts/fontzoom.vim'
 Plug 'regedarek/ZoomWin'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'reedes/vim-pencil'
@@ -170,8 +173,7 @@ if !exists('g:vscode')
 
 " colors
 set background=dark
-colorscheme gruvbox
-" let g:airline_theme='deus'
+lua require('colorbuddy').colorscheme('cobalt2')
 
 " tabs
 function! SetTabWidth(size)
@@ -477,8 +479,15 @@ nmap <C-/> gcc
 
 " NerdTree
 let NERDTreeShowHidden=1
-nmap <C-n> :NERDTreeToggle<CR>
+" nmap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" nvim-tree
+nnoremap <C-n> :NvimTreeToggle<CR>
+lua << EOF
+require'nvim-tree'.setup {
+}
+EOF
 
 " CScope
 set cscopetag                           " CTRL-] uses cscope and tags file
@@ -502,25 +511,14 @@ let g:surround_61 = "<%= \r %>"
 
 if !exists('g:vscode')
 
-"Airline
-if &guifont =~ 'PowerLine'
-  let g:airline_powerline_fonts=1
-endif
-let g:airline_detect_modified=1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_mode_map = {
-   \ '__' : '-',
-   \ 'n'  : 'N',
-   \ 'i'  : 'I',
-   \ 'R'  : 'R',
-   \ 'c'  : 'C',
-   \ 'v'  : 'V',
-   \ 'V'  : 'V',
-   \ '' : 'V',
-   \ 's'  : 'S',
-   \ 'S'  : 'S',
-   \ '' : 'S',
-   \ }
+" lualine
+lua << END
+require('lualine').setup {
+    options = {
+        section_separators = '', component_separators = ''
+    },
+}
+END
 
 " fugitive
 autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
