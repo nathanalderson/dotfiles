@@ -14,6 +14,8 @@
     "editor.cursorSurroundingLines": 3,
     "editor.minimap.enabled": false,
 
+    "explorer.autoReveal": false,
+
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
 
     "files.autoSave": "onWindowChange",
@@ -29,6 +31,7 @@
         "-workbench.action.quickOpen"
     ],
     "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.localEchoLatencyThreshold": 100,
 
 	"debug.openDebug": "openOnDebugBreak",
 
