@@ -1,6 +1,6 @@
 [Interface]
 PrivateKey = ${PRIVATE_KEY}
-Address = 192.168.100.102/32
+Address = ${IP}/32
 PostUp = resolvectl dns %i 192.168.1.231; resolvectl domain %i "local"
 PreDown = resolvectl revert %i
 
