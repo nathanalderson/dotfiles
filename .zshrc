@@ -109,13 +109,6 @@ svba () {
 alias serve2="python -m SimpleHTTPServer"
 alias serve="python -m http.server"
 
-# alias for vpn-ing to Adtran
-alias vpn-disconnect='pkill -SIGINT openconnect'
-alias vpn-reset='pkill -SIGUSR2 openconnect'
-
-alias home-vpn='sudo wg-quick up wg0'
-alias home-vpn-disconnect='sudo wg-quick down wg0'
-
 # launch nvim in a separate gui.
 alias gnv="nvim-qt"
 # `vim` launches `nvim` if available
