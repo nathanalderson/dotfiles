@@ -150,4 +150,13 @@
         "key": "ctrl+q",
         "command": "-workbench.action.quit"
     },
+    // Use ctrl+shift+n to highlight the file in the explorer
+    {
+        "key": "ctrl+shift+n",
+        "command": "-workbench.action.newWindow"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
 ]
