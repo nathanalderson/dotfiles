@@ -209,6 +209,7 @@
   vars:
     packages:
       - black
+      - esbonio
       - mypy
       - neovim
       - poetry
