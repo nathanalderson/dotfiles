@@ -77,6 +77,18 @@
         "command": "workbench.action.terminal.toggleTerminal"
     },
     // ===================================================
+    // navigate terminals
+    {
+        "key": "ctrl+shift+k",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    // ===================================================
     // ctrl n(next) and p(previous) already works, just adding jk as a personal preference
     {
         "key": "ctrl+j",

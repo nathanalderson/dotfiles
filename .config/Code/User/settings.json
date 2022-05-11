@@ -32,6 +32,7 @@
     ],
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.localEchoLatencyThreshold": 100,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
 
 	"debug.openDebug": "openOnDebugBreak",
 
