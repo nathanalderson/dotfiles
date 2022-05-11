@@ -4,7 +4,7 @@ import subprocess
 
 def vpn_home(action, limited):
     primary_interface, other_interface = ("wg1", "wg0") if limited else ("wg0", "wg1")
-    op = "up" if action == "connect" else "down"
+    op = "up" if action in ["up", "connect"] else "down"
     primary_proc = subprocess.run(["sudo", "wg-quick", op, primary_interface], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if primary_proc.returncode == 0 or op == "down":
         subprocess.run(["sudo", "wg-quick", "down", other_interface], capture_output=True)
@@ -16,7 +16,8 @@ def vpn_home(action, limited):
 def main():
     parser = argparse.ArgumentParser(description='Manage VPN connections')
     parser.add_argument('action', type=str, nargs="?", default="connect",
-            help='The action to perform')
+            choices=['up', 'down', 'connect', 'disconnect'], metavar='ACTION',
+            help=f'The action to perform: up/connect or down/disconnect')
     parser.add_argument('--home', action='store_const', dest='dest', const='home', default='home',
             help="Set the destination to 'home' (default)")
     parser.add_argument('--work', '-w', action='store_const', dest='dest', const='work',
