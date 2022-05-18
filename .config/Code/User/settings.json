@@ -13,6 +13,7 @@
     "editor.cursorBlinking": "phase",
     "editor.cursorSurroundingLines": 3,
     "editor.minimap.enabled": false,
+    "editor.find.loop": false,
 
     "explorer.autoReveal": false,
 
@@ -54,4 +55,5 @@
     },
 
     "python.formatting.provider": "black",
+    "terminal.integrated.cursorStyle": "line",
 }
