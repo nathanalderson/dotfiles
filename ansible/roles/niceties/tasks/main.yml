@@ -116,7 +116,6 @@
       - wireguard-tools
       - wireshark
       - xdotool
-  tags: [justme]
 
 - name: Add user to the wireshark group
   become: yes
@@ -136,5 +135,4 @@
     name: ntpd
     state: started
     enabled: yes
-  tags: [justme]
 
