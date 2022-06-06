@@ -119,7 +119,7 @@ Plug 'regedarek/ZoomWin'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'tpope/vim-dispatch'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'aserowy/tmux.nvim'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 Plug 'nathanalderson/yanktohtml'
@@ -508,6 +508,16 @@ let g:ag_prg="ag --column --smart-case"
 " surround
 let g:surround_37 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
+
+" tmux.nvim
+lua << EOF
+require("tmux").setup({
+    navigation = {
+        enable_default_keybindings = true,
+        cycle_navigation = false,
+    },
+})
+EOF
 
 if !exists('g:vscode')
 
