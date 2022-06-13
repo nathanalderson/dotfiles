@@ -1,6 +1,20 @@
 // Place your key bindings in this file to override the defaults
 [
     // ===================================================
+    // Neovim `jk` escape
+    {
+        "command": "vscode-neovim.compositeEscape1",
+        "key": "j",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "j"
+    },
+    {
+        "command": "vscode-neovim.compositeEscape2",
+        "key": "k",
+        "when": "neovim.mode == insert && editorTextFocus",
+        "args": "k"
+    },
+    // ===================================================
     // Remove neovim bindings that remap ctrl-c (cuz that should copy)
     {
         "key": "ctrl+c",
