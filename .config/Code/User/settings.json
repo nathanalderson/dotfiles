@@ -8,7 +8,6 @@
     "window.menuBarVisibility": "toggle",
 
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "editor.definitionLinkOpensInPeek": true,
     "editor.cursorSmoothCaretAnimation": true,
     "editor.cursorBlinking": "phase",
     "editor.cursorSurroundingLines": 3,
