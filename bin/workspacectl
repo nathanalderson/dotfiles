@@ -1,0 +1,222 @@
+#!/usr/bin/env python
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+
+import argparse
+import math
+import os
+import re
+
+
+def get_workspace_info():
+    wmctrl_d_output = os.popen("wmctrl -d").read()
+    current = get_current_workspace(wmctrl_d_output)
+    num = get_num_workspaces(wmctrl_d_output)
+    return current, num
+
+
+def get_current_workspace(wmctrl_d_output):
+    m = re.search(r"(\d+)\s+\*", wmctrl_d_output)
+    try:
+        return int(m[1])
+    except (TypeError, ValueError):
+        raise RuntimeError("Couldn't determine current desktop")
+
+
+def get_num_workspaces(wmctrl_d_output):
+    m = re.findall(r"^(\d+)", wmctrl_d_output, re.MULTILINE)
+    try:
+        return int(m[-1]) + 1
+    except (TypeError, ValueError):
+        raise RuntimeError("Couldn't determine current desktop")
+
+
+def set_current_desktop(n):
+    os.system(f"wmctrl -s {n}")
+
+
+def move_to_desktop(n):
+    os.system(f"wmctrl -r :ACTIVE: -t {n} && wmctrl -s {n}")
+
+
+def get_options(parser):
+    """Define command line options."""
+    parser.add_option(
+        "-d",
+        "--desktop",
+        dest="desktop",
+        default=None,
+        help="Jump to an adjacent workspace, given by 'up', 'down', 'left',\
+        'right'.",
+    )
+    parser.add_option(
+        "-t",
+        "--todesktop",
+        dest="todesktop",
+        default=None,
+        help="Move the current window to an adjacent workspace, given by 'up',\
+        'down', 'left', 'right'.",
+    )
+    parser.add_option(
+        "-x",
+        "--xworkspaces",
+        dest="xworkspaces",
+        default=2,
+        help="The number of columns in the workspace grid. Default: 2.",
+    )
+    parser.add_option(
+        "-y",
+        "--yworkspaces",
+        dest="yworkspaces",
+        default=2,
+        help="The number of rows in the workspace grid. Default: 2.",
+    )
+    options, args = parser.parse_args()
+    return options.desktop, options.todesktop, options.xworkspaces, options.yworkspaces
+
+
+def num_to_xy(desktop_number, num_cols):
+    x = desktop_number % num_cols
+    y = desktop_number // num_cols
+    return x, y
+
+
+def move(direction, current_x, current_y, num_rows, num_cols, wrap):
+    offsets = {"up": (0, -1), "down": (0, 1), "left": (-1, 0), "right": (1, 0)}
+    offset_x, offset_y = offsets[direction]
+    x, y = current_x + offset_x, current_y + offset_y
+    if wrap:
+        x, y = x % num_cols, y % num_rows
+    if x < 0 or x >= num_cols or y < 0 or y >= num_rows:
+        return current_x, current_y
+    return x, y
+
+
+def xy_to_num(x, y, num_cols):
+    return y * num_cols + x
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="""
+        Adapts inter-workspace motions in any wmctrl-compatible window manager as if the
+        workspaces are positioned on a grid. Index is row-major. Defaults to 2x2 workspaces.
+
+        Requires wmctrl.
+        """
+    )
+    parser.add_argument(
+        "action",
+        choices=["switch", "move"],
+        help="""
+        The action to take. `switch` will just change the view in
+        the given direction. `move` will also move the current window
+        while switching.
+        """,
+    )
+    parser.add_argument(
+        "direction", choices=["up", "down", "left", "right"], help="The direction to switch/move"
+    )
+    parser.add_argument(
+        "-r",
+        "--rows",
+        type=int,
+        help="""
+        The number of rows the workspaces are divided into. Defaults to the floor of the square
+        root of the number of desktops.
+        """,
+    )
+    parser.add_argument("-w", "--wrap", action="store_true", help="Wrap around")
+    args = parser.parse_args()
+
+    current_workspace, num_workspaces = get_workspace_info()
+    num_rows = args.rows or math.floor(math.sqrt(num_workspaces))
+    num_cols = num_workspaces // num_rows
+    current_x, current_y = num_to_xy(current_workspace, num_cols)
+    new_x, new_y = move(args.direction, current_x, current_y, num_rows, num_cols, args.wrap)
+    new_workspace = xy_to_num(new_x, new_y, num_cols)
+
+    if args.action == "switch":
+        set_current_desktop(new_workspace)
+    elif args.action == "move":
+        move_to_desktop(new_workspace)
+    else:
+        raise NotImplementedError
+
+
+if __name__ == "__main__":
+    main()
+
+
+import pytest
+
+
+@pytest.mark.parametrize(
+    "direction, current_x, current_y, num_rows, num_cols, wrap, expected",
+    [
+        # moving from center
+        ("left", 1, 1, 3, 3, False, (0, 1)),
+        ("right", 1, 1, 3, 3, False, (2, 1)),
+        ("up", 1, 1, 3, 3, False, (1, 0)),
+        ("down", 1, 1, 3, 3, False, (1, 2)),
+        # moving out of range, no wrapping
+        ("left", 0, 0, 3, 3, False, (0, 0)),
+        ("right", 2, 2, 3, 3, False, (2, 2)),
+        ("up", 0, 0, 3, 3, False, (0, 0)),
+        ("down", 2, 2, 3, 3, False, (2, 2)),
+        # moving out of range, wrapping
+        ("left", 0, 0, 3, 3, True, (2, 0)),
+        ("right", 2, 2, 3, 3, True, (0, 2)),
+        ("up", 0, 0, 3, 3, True, (0, 2)),
+        ("down", 2, 2, 3, 3, True, (2, 0)),
+        # non-square
+        ("down", 1, 0, 2, 3, False, (1, 1)),
+    ],
+)
+def test_move(direction, current_x, current_y, num_rows, num_cols, wrap, expected):
+    assert move(direction, current_x, current_y, num_rows, num_cols, wrap) == expected
+
+
+wmctrl_d_output = """\
+0  - DG: 7680x2160  VP: N/A  WA: 0,0 7680x2110  Workspace 1
+1  * DG: 7680x2160  VP: 0,0  WA: 0,0 7680x2110  Workspace 2
+2  - DG: 7680x2160  VP: N/A  WA: 0,0 7680x2110  Workspace 3
+3  - DG: 7680x2160  VP: N/A  WA: 0,0 7680x2110  Workspace 4
+4  - DG: 7680x2160  VP: N/A  WA: 0,0 7680x2110  Workspace 5
+5  - DG: 7680x2160  VP: N/A  WA: 0,0 7680x2110  Workspace 6
+"""
+
+
+def test_get_current_desktop():
+    assert get_current_workspace(wmctrl_d_output) == 1
+
+
+def test_get_num_desktops():
+    assert get_num_workspaces(wmctrl_d_output) == 6
+
+
+@pytest.mark.parametrize(
+    "current_workspace, num_cols, expected",
+    [
+        (0, 3, (0, 0)),
+        (1, 3, (1, 0)),
+        (2, 3, (2, 0)),
+        (3, 3, (0, 1)),
+        (4, 3, (1, 1)),
+        (5, 3, (2, 1)),
+    ],
+)
+def test_num_to_xy(current_workspace, num_cols, expected):
+    assert num_to_xy(current_workspace, num_cols) == expected
