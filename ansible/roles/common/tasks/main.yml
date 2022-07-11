@@ -137,6 +137,7 @@
     - udisks2
     - unzip
     - wget
+    - wmctrl
     - xarchiver
     - xclip
     - xorg-xauth
