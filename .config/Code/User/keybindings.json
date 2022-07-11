@@ -27,6 +27,12 @@
         "when": "editorTextFocus && neovim.ctrlKeysInsert && neovim.init && neovim.mode == 'insert'"
     },
     // ===================================================
+    // Remove neovim bindings for <C-W>o which conflicts with ZoomWin
+    {
+        "command": "-workbench.action.joinAllGroups",
+        "key": "ctrl+w o"
+    },
+    // ===================================================
     // Simulate NERDTree
     {
         "key": "ctrl+n",

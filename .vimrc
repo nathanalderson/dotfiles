@@ -56,6 +56,9 @@ Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
 
+" other
+Plug 'regedarek/ZoomWin'
+
 end " !exists('g:vscode')
 
 " Language support
@@ -115,7 +118,6 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'vim-scripts/fontzoom.vim'
-Plug 'regedarek/ZoomWin'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'tpope/vim-dispatch'
