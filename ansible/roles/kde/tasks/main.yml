@@ -1,0 +1,53 @@
+# Note that this doesn't actually change the default session type to i3
+
+- name: Install KDE
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - plasma-meta
+      - kwallet-pam
+      - kwalletmanager
+      - ksshaskpass
+
+- name: setup kwallet-pam
+  block:
+    - become: yes
+      lineinfile:
+        path: "{{ item }}"
+        insertafter: '^-?auth'
+        line: -auth       optional    pam_kwallet5.so
+      with_items: "{{ files }}"
+    - become: yes
+      lineinfile:
+        path: "{{ item }}"
+        insertafter: '^-?session'
+        line: -session    optional    pam_kwallet5.so auto_start
+      with_items: "{{ files }}"
+  vars:
+    files:
+      - /etc/pam.d/lightdm
+      - /etc/pam.d/lightdm-autologin
+
+- name: Use KDE Wallet to store ssh-key passphrases
+  copy:
+    dest: "{{ home }}/.config/autostart/ssh-add.desktop"
+    content: |
+      [Desktop Entry]
+      Exec=zsh --extendedglob -c 'ssh-add -q ~/.ssh/id^*.pub < /dev/null'
+      Name=ssh-add
+      Type=Application
+
+- name: Use ksshaskpass
+  block:
+    - file:
+        dest: "{{ env_dir }}"
+        state: directory
+    - copy:
+        dest: "{{ env_dir }}/ssh_askpass.conf"
+        content: SSH_ASKPASS='/usr/bin/ksshaskpass'
+  vars:
+    env_dir: "{{ home }}/.config/environment.d/"
