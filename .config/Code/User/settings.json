@@ -4,7 +4,7 @@
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,  // explorer works more like NERDTree
 
-    "window.zoomLevel": -1.0455173977264463,
+    "window.zoomLevel": -1,
     "window.menuBarVisibility": "toggle",
 
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -55,4 +55,5 @@
 
     "python.formatting.provider": "black",
     "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.shellIntegration.enabled": false,
 }
