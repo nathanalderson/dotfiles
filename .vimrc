@@ -115,8 +115,6 @@ Plug 'scrooloose/syntastic'
 Plug 'tfnico/vim-gradle'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'vim-scripts/fontzoom.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'nvim-lualine/lualine.nvim'
@@ -445,6 +443,18 @@ let g:UltiSnipsExpandTrigger='<c-s>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = expand('~/dotfiles/.vim/UltiSnips')
 
+" SplitJoin
+autocmd FileType elixir let b:splitjoin_split_callbacks += [
+    \ 'sj#js#SplitObjectLiteral',
+    \ 'sj#html#SplitTags',
+    \ 'sj#html#SplitAttributes'
+    \ ]
+autocmd FileType elixir let b:splitjoin_join_callbacks += [
+    \ 'sj#js#JoinObjectLiteral',
+    \ 'sj#html#JoinAttributes',
+    \ 'sj#html#JoinTags'
+    \ ]
+
 if !exists('g:vscode')
 
 " coc.nvim: use <tab> for trigger completion and navigate to the next complete item
@@ -481,15 +491,8 @@ nmap <C-/> gcc
 
 " NerdTree
 let NERDTreeShowHidden=1
-" nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" nvim-tree
-nnoremap <C-n> :NvimTreeToggle<CR>
-lua << EOF
-require'nvim-tree'.setup {
-}
-EOF
 
 " CScope
 set cscopetag                           " CTRL-] uses cscope and tags file
