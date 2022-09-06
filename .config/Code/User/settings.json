@@ -33,6 +33,9 @@
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.localEchoLatencyThreshold": 100,
     "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.cursorStyle": "line",
+    // Disabled here because automatic installation doesn't work for me. Enabled manually in .zshrc
+    "terminal.integrated.shellIntegration.enabled": false,
 
 	"debug.openDebug": "openOnDebugBreak",
 
@@ -54,6 +57,4 @@
     },
 
     "python.formatting.provider": "black",
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.shellIntegration.enabled": false,
 }
