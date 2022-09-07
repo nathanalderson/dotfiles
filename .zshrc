@@ -28,7 +28,9 @@ zinit wait lucid for \
 
 PS1="»" # provide a simple prompt till the theme loads
 
+# vscode shell integration must be loaded after the prompt theme
 zinit wait'!' lucid for \
+    atload'[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"' \
     OMZL::prompt_info_functions.zsh \
     'https://github.com/nathanalderson/dotfiles/blob/master/spaceship.zsh-theme'
 

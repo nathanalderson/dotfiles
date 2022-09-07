@@ -443,6 +443,18 @@ let g:UltiSnipsExpandTrigger='<c-s>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = expand('~/dotfiles/.vim/UltiSnips')
 
+" SplitJoin
+autocmd FileType elixir let b:splitjoin_split_callbacks += [
+    \ 'sj#js#SplitObjectLiteral',
+    \ 'sj#html#SplitTags',
+    \ 'sj#html#SplitAttributes'
+    \ ]
+autocmd FileType elixir let b:splitjoin_join_callbacks += [
+    \ 'sj#js#JoinObjectLiteral',
+    \ 'sj#html#JoinAttributes',
+    \ 'sj#html#JoinTags'
+    \ ]
+
 if !exists('g:vscode')
 
 " coc.nvim: use <tab> for trigger completion and navigate to the next complete item

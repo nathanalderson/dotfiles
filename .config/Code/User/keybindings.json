@@ -177,4 +177,19 @@
         "key": "ctrl+shift+n",
         "command": "workbench.files.action.showActiveFileInExplorer"
     },
+    // Pass Ctrl-q to neovim
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+q",
+        "when": "editorTextFocus && neovim.mode == normal",
+        "args": "<C-q>"
+    },
+    // Pass Ctrl-y chords to neovim (for emmet-vim)
+    {"command": "vscode-neovim.send", "key": "ctrl+y ,", "when": "editorTextFocus", "args": "<C-y>,"},
+    {"command": "vscode-neovim.send", "key": "ctrl+y ;", "when": "editorTextFocus", "args": "<C-y>;"},
+    {"command": "vscode-neovim.send", "key": "ctrl+y u", "when": "editorTextFocus", "args": "<C-y>u"},
+    {"command": "vscode-neovim.send", "key": "ctrl+y m", "when": "editorTextFocus", "args": "<C-y>m"},
+    {"command": "vscode-neovim.send", "key": "ctrl+y k", "when": "editorTextFocus", "args": "<C-y>k"},
+    {"command": "vscode-neovim.send", "key": "ctrl+y j", "when": "editorTextFocus", "args": "<C-y>j"},
+    {"command": "vscode-neovim.send", "key": "ctrl+y /", "when": "editorTextFocus", "args": "<C-y>/"},
 ]
