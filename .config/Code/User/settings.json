@@ -24,6 +24,12 @@
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
+        "editor.formatOnPaste": true
+    },
+    "[html-eex]": {
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true
     },
 
     // This allows ctrl-p to function as "previous" in the terminal
