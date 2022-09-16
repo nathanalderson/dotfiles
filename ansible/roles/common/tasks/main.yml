@@ -142,6 +142,7 @@
     - xclip
     - xorg-xauth
     - xsel
+    - zip
     - zsh
 
 - name: Install apt packages
