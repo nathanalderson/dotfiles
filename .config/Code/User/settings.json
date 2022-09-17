@@ -24,6 +24,7 @@
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
+        "editor.tabSize": 2
     },
 
     // This allows ctrl-p to function as "previous" in the terminal
@@ -57,4 +58,16 @@
     },
 
     "python.formatting.provider": "black",
+    "editor.guides.indentation": false,
+
+    "[html]": {
+        "editor.tabSize": 2
+    },
+    "[html-eex]": {
+        "editor.tabSize": 2
+    },
+
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
 }
