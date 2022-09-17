@@ -13,6 +13,7 @@
     "editor.cursorSurroundingLines": 3,
     "editor.minimap.enabled": false,
     "editor.find.loop": false,
+    "editor.guides.indentation": false,
 
     "explorer.autoReveal": false,
 
@@ -24,6 +25,21 @@
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.tabSize": 2
+    },
+    "[html-eex]": {
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.tabSize": 2
+    },
+    
+    "[html]": {
+        "editor.tabSize": 2
+    },
+
+    "[javascript]": {
         "editor.tabSize": 2
     },
 
@@ -58,16 +74,5 @@
     },
 
     "python.formatting.provider": "black",
-    "editor.guides.indentation": false,
 
-    "[html]": {
-        "editor.tabSize": 2
-    },
-    "[html-eex]": {
-        "editor.tabSize": 2
-    },
-
-    "[javascript]": {
-        "editor.tabSize": 2
-    },
 }

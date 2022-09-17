@@ -453,6 +453,23 @@ autocmd FileType elixir let b:splitjoin_join_callbacks += [
     \ 'sj#html#JoinAttributes',
     \ 'sj#html#JoinTags'
     \ ]
+autocmd FileType heex let b:splitjoin_split_callbacks += [
+    \ 'sj#elixir#SplitDoBlock',
+    \ 'sj#elixir#SplitArray',
+    \ 'sj#elixir#SplitPipe',
+    \ 'sj#js#SplitObjectLiteral',
+    \ 'sj#html#SplitTags',
+    \ 'sj#html#SplitAttributes'
+    \ ]
+autocmd FileType heex let b:splitjoin_join_callbacks += [
+    \ 'sj#elixir#JoinDoBlock',
+    \ 'sj#elixir#JoinArray',
+    \ 'sj#elixir#JoinCommaDelimitedItems',
+    \ 'sj#elixir#JoinPipe',
+    \ 'sj#js#JoinObjectLiteral',
+    \ 'sj#html#JoinAttributes',
+    \ 'sj#html#JoinTags'
+    \ ]
 
 if !exists('g:vscode')
 
