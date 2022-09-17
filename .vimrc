@@ -42,7 +42,6 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
-Plug 'nightsense/vimspectr'
 Plug 'rakr/vim-one'
 Plug 'tjdevries/colorbuddy.nvim' " required for lalitmee/cobalt2.nvim
 Plug 'lalitmee/cobalt2.nvim'
