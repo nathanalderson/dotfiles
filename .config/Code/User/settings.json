@@ -1,7 +1,6 @@
 {
     "workbench.colorTheme": "Cobalt2",
     "workbench.iconTheme": "ayu",
-    "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,  // explorer works more like NERDTree
 
     "window.zoomLevel": -1,
@@ -13,6 +12,7 @@
     "editor.cursorSurroundingLines": 3,
     "editor.minimap.enabled": false,
     "editor.find.loop": false,
+    "editor.guides.indentation": false,
 
     "explorer.autoReveal": false,
 
@@ -21,6 +21,9 @@
     "files.autoSave": "onWindowChange",
 
     "elixirLS.suggestSpecs": false,
+    "elixirLS.envVariables": {
+        "ELIXIR_WARNINGS_OK": 1
+    },
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
@@ -63,4 +66,7 @@
     },
 
     "python.formatting.provider": "black",
+    "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editor.showTabs": false,
 }
