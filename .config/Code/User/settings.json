@@ -37,7 +37,8 @@
     },
 
     "[javascript]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
     },
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
@@ -70,8 +71,5 @@
     "python.formatting.provider": "black",
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
-    "[javascript]": {
-        "editor.formatOnSave": true
-    },
     "liquid.format": true,
 }
