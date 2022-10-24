@@ -184,6 +184,13 @@
         "when": "editorTextFocus && neovim.mode == normal",
         "args": "<C-q>"
     },
+    // Pass Ctrl-s to neovim in insert mode
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+s",
+        "when": "editorTextFocus && neovim.mode == insert",
+        "args": "<C-s>"
+    },
     // Pass Ctrl-y chords to neovim (for emmet-vim)
     {"command": "vscode-neovim.send", "key": "ctrl+y ,", "when": "editorTextFocus", "args": "<C-y>,"},
     {"command": "vscode-neovim.send", "key": "ctrl+y ;", "when": "editorTextFocus", "args": "<C-y>;"},

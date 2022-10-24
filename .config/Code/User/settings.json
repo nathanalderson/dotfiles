@@ -2,9 +2,7 @@
     "workbench.colorTheme": "Cobalt2",
     "workbench.iconTheme": "ayu",
     "workbench.editor.showTabs": false,
-    "workbench.list.automaticKeyboardNavigation": false,  // explorer works more like NERDTree
-
-    "window.zoomLevel": -1,
+    "workbench.list.automaticKeyboardNavigation": false,
     "window.menuBarVisibility": "toggle",
 
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -74,5 +72,6 @@
     },
 
     "python.formatting.provider": "black",
-
+    "window.zoomLevel": -1,
+    "liquid.format": true,
 }
