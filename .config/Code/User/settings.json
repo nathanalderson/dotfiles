@@ -21,13 +21,22 @@
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
-        "editor.formatOnPaste": true
+        "editor.formatOnPaste": true,
+        "editor.tabSize": 2
     },
     "[html-eex]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
-        "emmet.triggerExpansionOnTab": true
+        "editor.tabSize": 2
+    },
+    
+    "[html]": {
+        "editor.tabSize": 2
+    },
+
+    "[javascript]": {
+        "editor.tabSize": 2
     },
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
