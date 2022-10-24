@@ -3,8 +3,8 @@
     "workbench.iconTheme": "ayu",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
+    "window.zoomLevel": -1,
     "window.menuBarVisibility": "toggle",
-
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.cursorSmoothCaretAnimation": true,
     "editor.cursorBlinking": "phase",
@@ -12,14 +12,13 @@
     "editor.minimap.enabled": false,
     "editor.find.loop": false,
     "editor.guides.indentation": false,
-
     "explorer.autoReveal": false,
-
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-
     "files.autoSave": "onWindowChange",
-
     "elixirLS.suggestSpecs": false,
+    "elixirLS.envVariables": {
+        "ELIXIR_WARNINGS_OK": 1
+    },
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
@@ -40,7 +39,6 @@
     "[javascript]": {
         "editor.tabSize": 2
     },
-
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
@@ -51,27 +49,29 @@
     "terminal.integrated.cursorStyle": "line",
     // Disabled here because automatic installation doesn't work for me. Enabled manually in .zshrc
     "terminal.integrated.shellIntegration.enabled": false,
-
-	"debug.openDebug": "openOnDebugBreak",
-
-	"[dart]": {
-		"editor.formatOnSave": true,
-		"editor.formatOnType": true,
-		"editor.rulers": [80],
-		"editor.selectionHighlight": false,
-		"editor.suggest.snippetsPreventQuickSuggestions": false,
-		"editor.suggestSelection": "first",
-		"editor.tabCompletion": "onlySnippets",
-		"editor.wordBasedSuggestions": false,
+    "debug.openDebug": "openOnDebugBreak",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false,
     },
-
     "git.confirmSync": false,
     "remote.SSH.useLocalServer": false,
     "remote.SSH.remotePlatform": {
         "nathan-desktop-zt": "linux"
     },
-
     "python.formatting.provider": "black",
-    "window.zoomLevel": -1,
+    "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
     "liquid.format": true,
 }
