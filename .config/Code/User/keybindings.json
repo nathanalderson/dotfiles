@@ -199,4 +199,10 @@
     {"command": "vscode-neovim.send", "key": "ctrl+y k", "when": "editorTextFocus", "args": "<C-y>k"},
     {"command": "vscode-neovim.send", "key": "ctrl+y j", "when": "editorTextFocus", "args": "<C-y>j"},
     {"command": "vscode-neovim.send", "key": "ctrl+y /", "when": "editorTextFocus", "args": "<C-y>/"},
+    // Hunk revert
+    {
+        "key": "ctrl+h ctrl+u",
+        "command": "git.revertSelectedRanges",
+        "when": "editorTextFocus"
+    },
 ]
