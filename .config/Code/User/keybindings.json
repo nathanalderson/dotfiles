@@ -201,8 +201,8 @@
     {"command": "vscode-neovim.send", "key": "ctrl+y /", "when": "editorTextFocus", "args": "<C-y>/"},
     // Hunk revert
     {
-        "key": "ctrl+h ctrl+u",
+        "key": "\\ h",
         "command": "git.revertSelectedRanges",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && neovim.mode == normal"
     },
 ]
