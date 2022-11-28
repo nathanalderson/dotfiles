@@ -3,9 +3,9 @@
     "workbench.iconTheme": "ayu",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
-    "window.zoomLevel": -1,
     "window.menuBarVisibility": "toggle",
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": true,
     "editor.cursorBlinking": "phase",
     "editor.cursorSurroundingLines": 3,
@@ -31,11 +31,9 @@
         "editor.formatOnPaste": true,
         "editor.tabSize": 2
     },
-    
     "[html]": {
         "editor.tabSize": 2
     },
-
     "[javascript]": {
         "editor.tabSize": 2,
         "editor.formatOnSave": true
@@ -72,4 +70,5 @@
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
     "liquid.format": true,
+    "window.zoomLevel": -1,
 }
