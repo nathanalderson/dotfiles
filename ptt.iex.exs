@@ -1,3 +1,5 @@
+alias TangoTango.Core.Messaging
+
 alias TangoTango.Persistence.Repo
 alias TangoTango.Persistence.CassandraRepo
 alias TangoTango.Persistence.Users
@@ -42,6 +44,79 @@ alias TangoTango.Persistence.Types.MacAddress
 alias TangoTango.Persistence.Types.PhoneNumber
 
 defmodule N do
+  def seed() do
+    tango_org = SeedHelpers.tango_tango_org()
+    SeedHelpers.attempt_insert(%Organization{org_name: "Nathan's Org"})
+    nathans_org = UnsecuredOrgs.get_organization_by_name("Nathan's Org")
+    SeedHelpers.device_limit(tango_org, 1000)
+    SeedHelpers.device_limit(nathans_org, 1000)
+    SeedHelpers.attempt_insert(
+      User.changeset(%User{}, %{
+        first_name: "Nathan",
+        last_name: "Alderson",
+        org_id: tango_org.id,
+        email: "nathan@tangotango.net",
+        identity: "sms|61c0a828d6496fcf66e5d812",
+        phone_number: "19314462935",
+        designator: "NAT"
+      })
+    )
+    for i <- 1..15 do
+      i = i |> Integer.to_string() |> String.pad_leading(2, "0")
+      SeedHelpers.attempt_insert(
+        User.changeset(%User{}, %{
+          first_name: "User",
+          last_name: "Person #{i}",
+          org_id: tango_org.id,
+          email: "user.person#{i}@tangotango.net",
+          identity: "auth0|0000000000000000000000#{i}",
+          phone_number: "125655500#{i}"
+        })
+      )
+    end
+    # for i <- 1..5 do
+    #   i = i |> Integer.to_string() |> String.pad_leading(2, "0")
+    #   SeedHelpers.attempt_insert(%Channel{name: "tango channel #{i}", org_id: tango_org.id})
+    # end
+    # for i <- 1..5 do
+    #   i = i |> Integer.to_string() |> String.pad_leading(2, "0")
+    #   SeedHelpers.attempt_insert(%Channel{name: "nathan's channel #{i}", org_id: nathans_org.id})
+    # end
+    SeedHelpers.set_org_admin(tango_org, N.me())
+    SeedHelpers.attempt_insert(
+      User.changeset(%User{}, %{
+        first_name: "Darth",
+        last_name: "Maulderson",
+        org_id: nathans_org.id,
+        email: "darth_maulderson@sith.gov",
+        identity: "sms|6287d55f1e2b004f283490c8",
+        phone_number: "12565421532",
+        designator: "DAR"
+      })
+    )
+    SeedHelpers.attempt_insert(%Device{
+      device_id: "aae8093a6dd1128e",
+      name: "Google Pixel 4a",
+      platform: :android,
+      platform_version: "13",
+      vendor: "Google",
+      model: "Pixel 4a",
+      token: "euyxiQavQ9OGqzfZ57HeQ4:APA91bFNfP5lyWtIspT3H8nHKXpFzAK2RGF_l-safrCeoHfn8pvP0im5sTvMNwN0Kitk0hWlnn7Zm9yH6YHU_4isvuFfO0GXmZI-HPLjQZoH5VRm95_KADLE2AxLqFX4fcXn2Q8vvLDf",
+      voip_token: nil,
+      app_version: "1.3.7+684",
+      release_build: true,
+      dnd: true,
+      activation_status: :active,
+      push_status: :registered,
+      user_id: N.me().id,
+    })
+    SeedHelpers.attempt_insert(%Site{
+        name: "Site 01",
+        org_id: tango_org.id,
+        mac_address: "00:00:00:00:00:01",
+    })
+  end
+
   def device(), do:
     %Device{
       device_id: "e406733fff8a7bd1",
@@ -86,6 +161,20 @@ defmodule N do
       events
     end)
   end
+
+  def send_messages(count, channel_id, text \\ nil, call_id \\ nil, tone_ids \\ []) do
+    channel = UnsecuredChannels.get_channel!(channel_id)
+    now = Timex.now()
+    for i <- 1..count do
+      Messaging.send_message(channel, Message.new!(
+        channel_id, Timex.shift(now, seconds: -i), :user, N.me().id, :standard, text || "Message #{i}", [], %{
+          "callId" => "#{call_id}",
+          "detectedToneIds" => Enum.join(tone_ids, ",")
+        }
+      ))
+    end
+  end
 end
 
 N.set_log_level(:info)
+N.seed()
