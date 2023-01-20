@@ -98,7 +98,7 @@ alias ve="python3 -m virtualenv venv && source venv/bin/activate"
 alias ve2="python3 -m virtualenv --python=python2 venv && source venv/bin/activate"
 alias ve3="python3 -m virtualenv --python=python3 venv && source venv/bin/activate"
 svba () {
-    poetry_venv=$(poetry env info --path)
+    poetry_venv=$(poetry env info --path 2>/dev/null)
     if [ $? -eq 0 ]; then
         source $poetry_venv/bin/activate
     else
