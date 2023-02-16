@@ -1,12 +1,16 @@
 {
-    "workbench.colorTheme": "Cobalt2",
+    "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "ayu",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "window.menuBarVisibility": "toggle",
+    "window.titleBarStyle": "custom",
+    "breadcrumbs.symbolPath": "off",
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    // The following are ligature customizations for Fira Code
+    "editor.fontLigatures": false,
     "editor.formatOnSave": true,
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "phase",
     "editor.cursorSurroundingLines": 3,
     "editor.minimap.enabled": false,
@@ -16,6 +20,7 @@
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "files.autoSave": "onWindowChange",
     "elixirLS.suggestSpecs": false,
+    "elixirLS.dialyzerFormat": "dialyxir_short",
     "elixirLS.envVariables": {
         "ELIXIR_WARNINGS_OK": 1
     },
@@ -70,5 +75,5 @@
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
     "liquid.format": true,
-    "window.zoomLevel": -1,
+    "window.zoomLevel": -0.4772413011367769,
 }
