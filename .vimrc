@@ -474,7 +474,7 @@ autocmd FileType heex let b:splitjoin_join_callbacks += [
 if !exists('g:vscode')
 
 " coc.nvim: use <CR> to confirm completion
-inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+" inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 
 " coc.nvim: use <c-space>for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
