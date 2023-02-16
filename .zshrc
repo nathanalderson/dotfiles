@@ -24,6 +24,7 @@ SPACESHIP_GIT_UNSTAGED=✘
 
 zinit wait lucid for \
     OMZL::git.zsh \
+  atload"set_git_aliases" \
     OMZP::git
 
 PS1="»" # provide a simple prompt till the theme loads
@@ -136,9 +137,9 @@ dre () { docker exec -it ${*:1} }
 drip () { docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@" }
 
 # git
-diff_pager="diff-so-fancy | less --tabs=4 -RX --pattern '^(Date|added|deleted|modified): '"
-alias gd="PAGER=\"$diff_pager\" git diff --color"
-alias gdca="PAGER=\"$diff_pager\" git diff --color --cached"
+set_git_aliases() {
+    alias gb='git branch --sort=-committerdate'
+}
 
 # delete the bad host key from the previous ssh command
 purgehostkey() {
