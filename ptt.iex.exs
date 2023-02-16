@@ -31,6 +31,8 @@ alias TangoTango.Persistence.MessageAttachments
 alias TangoTango.Persistence.Messages
 alias TangoTango.Persistence.Messages.Message
 alias TangoTango.Persistence.Messages.Attachment
+alias TangoTango.Persistence.RegistrationList
+alias TangoTango.Persistence.RegistrationList.UnregisteredSite
 alias TangoTango.Persistence.SeedHelpers
 alias TangoTango.Persistence.Sites
 alias TangoTango.Persistence.Sites.Site
@@ -117,23 +119,9 @@ defmodule N do
     })
   end
 
-  def device(), do:
-    %Device{
-      device_id: "e406733fff8a7bd1",
-      name: "samsung SM-G715A",
-      platform: :android,
-      platform_version: "12",
-      vendor: "samsung",
-      model: "SM-G715A",
-      token: "ey6OkLZkR3y3zA7LYN3izN:APA91bGM_BfR4VQIsLNRuDVAs3araOCWYimPD9S5R1qf5qzxPqlNcjQBqQHxQ9K6FR8tRIU4iXYxQB9qwwk7iBkipHqYCwyTaUSoGPyRHmTUoAoVBL1jy0xZm1zJuC_s15wVwtAaLQbW",
-      voip_token: nil,
-      app_version: "1.3.4+673",
-      release_build: true,
-      dnd: false,
-      activation_status: :active,
-      push_status: :registered,
-      user_id: 6979347344739270656
-    }
+  def first_device(user), do:
+    Repo.preload(user, :devices).devices |> Enum.at(0)
+
 
   def set_log_level(level \\ :info), do: Logger.configure(level: level)
   def dont_truncate(), do: IEx.configure(inspect: [limit: :infinity, printable_limit: :infinity])
@@ -174,6 +162,31 @@ defmodule N do
       ))
     end
   end
+
+  def send_location_update(user, timestamp \\ Timex.now()) do
+      lat = rand_interval(34.769604619877164, 34.66079144385748)
+      long = rand_interval(-86.79176805114027, -86.48162697390367)
+      record = %LatestLocationByOrg.LocationRecord{
+        viewer_org_id: user.org_id,
+        org_id: user.org_id,
+        user_id: user.id,
+        device_id: N.first_device(user).id,
+        coords_latitude: lat,
+        coords_longitude: long,
+        coords_accuracy: 3.0,
+        coords_speed: 0,
+        coords_heading: nil,
+        coords_altitude: nil,
+        battery_level: 1.0,
+        battery_is_charging: false,
+        event: "update",
+        correlation_id: "#{timestamp}",
+        timestamp: timestamp
+      }
+      LatestLocationByOrg.update_location(record)
+  end
+
+  def rand_interval(a, b), do: a + (b - a) * :rand.uniform()
 end
 
 N.set_log_level(:info)
