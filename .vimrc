@@ -43,17 +43,21 @@ Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
+if has('nvim')
 Plug 'tjdevries/colorbuddy.nvim' " required for lalitmee/cobalt2.nvim
 Plug 'lalitmee/cobalt2.nvim'
+endif
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
 
 " coc.nvim
+if has('nvim')
 Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
+endif
 
 " other
 Plug 'regedarek/ZoomWin'
@@ -61,7 +65,9 @@ Plug 'regedarek/ZoomWin'
 end " !exists('g:vscode')
 
 " Language support
+if has('nvim')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'lepture/vim-jinja'
 Plug 'groenewege/vim-less'
 Plug 'derekwyatt/vim-scala'
@@ -116,9 +122,11 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-scripts/fontzoom.vim'
 Plug 'AndrewRadev/splitjoin.vim'
+if has('nvim')
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'tpope/vim-dispatch'
 Plug 'aserowy/tmux.nvim'
+endif
+Plug 'tpope/vim-dispatch'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 Plug 'nathanalderson/yanktohtml'
@@ -172,7 +180,11 @@ if !exists('g:vscode')
 
 " colors
 set background=dark
-lua require('colorbuddy').colorscheme('cobalt2')
+if has('nvim')
+    lua require('colorbuddy').colorscheme('cobalt2')
+else
+    colorscheme gruvbox
+endif
 
 " tabs
 function! SetTabWidth(size)
@@ -523,6 +535,7 @@ let g:ag_prg="ag --column --smart-case"
 let g:surround_37 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
 
+if has('nvim')
 " tmux.nvim
 lua << EOF
 require("tmux").setup({
@@ -532,9 +545,11 @@ require("tmux").setup({
     },
 })
 EOF
+endif
 
 if !exists('g:vscode')
 
+if has('nvim')
 " lualine
 lua << END
 require('lualine').setup {
@@ -543,6 +558,7 @@ require('lualine').setup {
     },
 }
 END
+endif
 
 " fugitive
 autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
