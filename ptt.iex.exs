@@ -129,13 +129,14 @@ defmodule N do
   def me(), do: UnsecuredUsers.get_user_by_email("nathan@tangotango.net")
   def tango(), do: UnsecuredOrgs.get_organization_by_name("Tango Tango")
 
-  def create_sites(count) do
+  def create_sites(count, type \\ :cradlepoint) do
     for i <- 1..count do
       num = String.pad_leading("#{i}", 2, "0")
       UnsecuredSites.create_site(%{
         name: "Site #{num}",
         mac_address: "00:00:00:00:00:#{num}",
-        org_id: tango().id
+        org_id: tango().id,
+        type: type
       })
     end
   end
