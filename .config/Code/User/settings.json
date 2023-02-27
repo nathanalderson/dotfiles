@@ -1,13 +1,12 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
-    "workbench.iconTheme": "ayu",
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "Monokai Pro Icons",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "custom",
     "breadcrumbs.symbolPath": "off",
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    // The following are ligature customizations for Fira Code
     "editor.fontLigatures": false,
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
@@ -43,6 +42,10 @@
         "editor.tabSize": 2,
         "editor.formatOnSave": true
     },
+    "python.formatting.provider": "black",
+    "[python]": {
+        "editor.formatOnType": true
+    },
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
@@ -57,9 +60,6 @@
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
-        "editor.rulers": [
-            80
-        ],
         "editor.selectionHighlight": false,
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
@@ -71,9 +71,12 @@
     "remote.SSH.remotePlatform": {
         "nathan-desktop-zt": "linux"
     },
-    "python.formatting.provider": "black",
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
     "liquid.format": true,
     "window.zoomLevel": -0.4772413011367769,
+    "dart.showTestCodeLens": false,
+    "dart.showMainCodeLens": false,
+    "dart.showDartPadSampleCodeLens": false,
+    "testing.automaticallyOpenPeekView": "never",
 }

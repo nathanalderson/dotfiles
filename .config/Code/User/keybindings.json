@@ -94,6 +94,11 @@
         "command": "workbench.action.terminal.focusNext",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
     // ===================================================
     // ctrl n(next) and p(previous) already works, just adding jk as a personal preference
     {
@@ -120,8 +125,13 @@
     // Testing
     {
         "key": "ctrl+; ;",
-        "command": "exunit.runTest",  // test under cursor
+        "command": "exunit.runTest", // test under cursor
         "when": "editorTextFocus && resourceLangId == elixir"
+    },
+    {
+        "key": "ctrl+; ;",
+        "command": "testing.runAtCursor",
+        "when": "editorTextFocus"
     },
     {
         "key": "ctrl+; .",
@@ -129,9 +139,8 @@
         "when": "resourceLangId == elixir"
     },
     {
-        "key": "ctrl+; g",
-        "command": "exunit.runTestFile",
-        "when": "editorFocus && resourceLangId == elixir"
+        "key": "ctrl+; .",
+        "command": "testing.reRunLastRun",
     },
     {
         "key": "ctrl+; g",
@@ -139,14 +148,9 @@
         "when": "editorFocus && resourceLangId == elixir"
     },
     {
-        "key": "ctrl+; a",
-        "command": "exunit.runAll",
-        "when": "resourceLangId == elixir"
-    },
-    {
-        "key": "ctrl+; u",
-        "command": "exunit.runAllInUmbrella",
-        "when": "resourceLangId == elixir"
+        "key": "ctrl+; g",
+        "command": "testing.runCurrentFile",
+        "when": "editorFocus"
     },
     // Zoomwin
     {
@@ -192,13 +196,48 @@
         "args": "<C-s>"
     },
     // Pass Ctrl-y chords to neovim (for emmet-vim)
-    {"command": "vscode-neovim.send", "key": "ctrl+y ,", "when": "editorTextFocus", "args": "<C-y>,"},
-    {"command": "vscode-neovim.send", "key": "ctrl+y ;", "when": "editorTextFocus", "args": "<C-y>;"},
-    {"command": "vscode-neovim.send", "key": "ctrl+y u", "when": "editorTextFocus", "args": "<C-y>u"},
-    {"command": "vscode-neovim.send", "key": "ctrl+y m", "when": "editorTextFocus", "args": "<C-y>m"},
-    {"command": "vscode-neovim.send", "key": "ctrl+y k", "when": "editorTextFocus", "args": "<C-y>k"},
-    {"command": "vscode-neovim.send", "key": "ctrl+y j", "when": "editorTextFocus", "args": "<C-y>j"},
-    {"command": "vscode-neovim.send", "key": "ctrl+y /", "when": "editorTextFocus", "args": "<C-y>/"},
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y ,",
+        "when": "editorTextFocus",
+        "args": "<C-y>,"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y ;",
+        "when": "editorTextFocus",
+        "args": "<C-y>;"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y u",
+        "when": "editorTextFocus",
+        "args": "<C-y>u"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y m",
+        "when": "editorTextFocus",
+        "args": "<C-y>m"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y k",
+        "when": "editorTextFocus",
+        "args": "<C-y>k"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y j",
+        "when": "editorTextFocus",
+        "args": "<C-y>j"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+y /",
+        "when": "editorTextFocus",
+        "args": "<C-y>/"
+    },
     // Hunk revert
     {
         "key": "\\ h",
