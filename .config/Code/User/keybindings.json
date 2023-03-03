@@ -131,7 +131,7 @@
     {
         "key": "ctrl+; ;",
         "command": "testing.runAtCursor",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId != elixir"
     },
     {
         "key": "ctrl+; .",
@@ -141,6 +141,7 @@
     {
         "key": "ctrl+; .",
         "command": "testing.reRunLastRun",
+        "when": "resourceLangId != elixir"
     },
     {
         "key": "ctrl+; g",
@@ -150,7 +151,7 @@
     {
         "key": "ctrl+; g",
         "command": "testing.runCurrentFile",
-        "when": "editorFocus"
+        "when": "editorFocus && resourceLangId != elixir"
     },
     // Zoomwin
     {
