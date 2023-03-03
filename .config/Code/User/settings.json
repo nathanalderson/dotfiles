@@ -81,4 +81,5 @@
     "dart.showMainCodeLens": false,
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
+    "dart.closingLabels": false,
 }
