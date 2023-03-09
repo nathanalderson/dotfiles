@@ -48,6 +48,16 @@
         "command": "-workbench.action.toggleSidebarVisibility"
     },
     // ===================================================
+    // Toggle panel visibility
+    {
+        "key": "ctrl+m",
+        "command": "workbench.action.togglePanel"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-workbench.action.togglePanel"
+    },
+    // ===================================================
     // Ctrl+6 to switch tabs
     {
         "key": "ctrl+6",

@@ -16,6 +16,7 @@
     "editor.find.loop": false,
     "editor.guides.indentation": false,
     "explorer.autoReveal": false,
+    "explorer.decorations.badges": false,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "files.autoSave": "onWindowChange",
     "elixirLS.suggestSpecs": false,
@@ -82,4 +83,5 @@
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
+    "workbench.activityBar.visible": false,
 }
