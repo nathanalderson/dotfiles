@@ -1,6 +1,5 @@
 {
-    "workbench.colorTheme": "Monokai Pro",
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.colorTheme": "One Monokai",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "window.menuBarVisibility": "toggle",
@@ -22,7 +21,7 @@
     "elixirLS.suggestSpecs": false,
     "elixirLS.dialyzerFormat": "dialyxir_short",
     "elixirLS.envVariables": {
-        "ELIXIR_WARNINGS_OK": 1
+        "ELIXIR_WARNINGS_OK": "1"
     },
     "[elixir]": {
         "editor.formatOnType": true,
@@ -84,4 +83,8 @@
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
     "workbench.activityBar.visible": false,
+    "tailwindCSS.colorDecorators": false,
+    "tailwindCSS.includeLanguages": {
+        "\"elixir\"": "\"html\""
+    },
 }
