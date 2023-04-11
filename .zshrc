@@ -4,7 +4,7 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 # initialize zinit
-source ~/.zinit/bin/zinit.zsh
+source ~/.local/share/zinit/zinit.git/zinit.zsh
 
 ###
 # Prompt theme stuff
@@ -32,7 +32,16 @@ PS1="»" # provide a simple prompt till the theme loads
 # vscode shell integration must be loaded after the prompt theme
 zinit wait'!' lucid for \
     OMZL::prompt_info_functions.zsh \
-    'https://github.com/nathanalderson/dotfiles/blob/master/spaceship.zsh-theme'
+    'https://github.com/nathanalderson/dotfiles/blob/main/spaceship.zsh-theme'
+
+# This block added by the zinit installer...
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
 ###
 # Load plugins
