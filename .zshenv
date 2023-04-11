@@ -14,3 +14,5 @@ export CM_IGNORE_WINDOW=.*keepass.*
 
 # iex history
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 10000000"
+# build Elixir with Docs
+export KERL_BUILD_DOCS=yes
