@@ -86,6 +86,14 @@
     "tailwindCSS.includeLanguages": {
         "\"elixir\"": "\"html\""
     },
+    "testing.gutterEnabled": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "diffEditor.diffAlgorithm": "advanced",
     "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 14,

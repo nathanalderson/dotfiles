@@ -1,5 +1,5 @@
 # Add ~/bin and ~/.local/bin to PATH
-export PATH="$HOME/.local/bin":"$HOME/bin":$PATH:"$HOME/Android/Sdk/tools/bin":"$HOME/Android/Sdk/cmdline-tools/latest/bin/"
+export PATH="$HOME/.local/bin":"$HOME/bin":"$HOME/.pub-cache/bin":$PATH:"$HOME/Android/Sdk/tools/bin":"$HOME/Android/Sdk/cmdline-tools/latest/bin/"
 
 # Use nvim for editor
 export EDITOR=/usr/bin/nvim

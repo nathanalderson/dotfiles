@@ -86,6 +86,8 @@ Plug 'cespare/vim-toml'
 Plug 'kevinoid/vim-jsonc'
 Plug 'pearofducks/ansible-vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 " version control
 Plug 'nfvs/vim-perforce'
@@ -485,7 +487,7 @@ autocmd FileType heex let b:splitjoin_join_callbacks += [
 if !exists('g:vscode')
 
 " coc.nvim: use <CR> to confirm completion
-" inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+inoremap <expr> <C-cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-CR>"
 
 " coc.nvim: use <c-space>for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
