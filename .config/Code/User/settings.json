@@ -87,4 +87,12 @@
     "tailwindCSS.includeLanguages": {
         "\"elixir\"": "\"html\""
     },
+    "testing.gutterEnabled": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "diffEditor.diffAlgorithm": "advanced",
 }
