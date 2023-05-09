@@ -246,7 +246,9 @@ export MOSH_ESCAPE_KEY='~'
 [ -f /home/nalderso/.travis/travis.sh ] && source /home/nalderso/.travis/travis.sh
 
 # asdf
-ASDF_SCRIPT=/opt/asdf-vm/asdf.sh
-if [[ -f "$ASDF_SCRIPT" ]]; then
-    . $ASDF_SCRIPT
-fi
+for ASDF_SCRIPT in /opt/asdf-vm/asdf.sh ~/.asdf/asdf.sh; do
+    if [[ -f "$ASDF_SCRIPT" ]]; then
+        . $ASDF_SCRIPT
+        break
+    fi
+done

@@ -1,10 +1,8 @@
 {
-    "workbench.colorTheme": "Monokai Pro",
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.colorTheme": "One Monokai",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "window.menuBarVisibility": "toggle",
-    "window.titleBarStyle": "custom",
     "breadcrumbs.symbolPath": "off",
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": false,
@@ -84,4 +82,7 @@
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
     "workbench.activityBar.visible": false,
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
 }

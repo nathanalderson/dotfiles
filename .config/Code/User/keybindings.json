@@ -15,70 +15,70 @@
         "args": "k"
     },
     // ===================================================
-    // Remove neovim bindings that remap ctrl-c (cuz that should copy)
+    // Remove neovim bindings that remap cmd-c (cuz that should copy)
     {
-        "key": "ctrl+c",
+        "key": "cmd+c",
         "command": "-vscode-neovim.escape",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.cmdKeysNormal && neovim.init && neovim.mode != 'insert'"
     },
     {
-        "key": "ctrl+c",
+        "key": "cmd+c",
         "command": "-vscode-neovim.escape",
-        "when": "editorTextFocus && neovim.ctrlKeysInsert && neovim.init && neovim.mode == 'insert'"
+        "when": "editorTextFocus && neovim.cmdKeysInsert && neovim.init && neovim.mode == 'insert'"
     },
     // ===================================================
     // Remove neovim bindings for <C-W>o which conflicts with ZoomWin
     {
         "command": "-workbench.action.joinAllGroups",
-        "key": "ctrl+w o"
+        "key": "cmd+w o"
     },
     // ===================================================
     // Simulate NERDTree
     {
-        "key": "ctrl+n",
+        "key": "cmd+n",
         "command": "-workbench.action.files.newUntitledFile"
     },
     {
-        "key": "ctrl+n",
+        "key": "cmd+n",
         "command": "workbench.action.toggleSidebarVisibility",
         "when": "!suggestWidgetVisible && !inQuickOpen"
     },
     {
-        "key": "ctrl+b",
+        "key": "cmd+b",
         "command": "-workbench.action.toggleSidebarVisibility"
     },
     // ===================================================
     // Toggle panel visibility
     {
-        "key": "ctrl+m",
+        "key": "cmd+m",
         "command": "workbench.action.togglePanel"
     },
     {
-        "key": "ctrl+j",
+        "key": "cmd+j",
         "command": "-workbench.action.togglePanel"
     },
     // ===================================================
-    // Ctrl+6 to switch tabs
+    // cmd+6 to switch tabs
     {
-        "key": "ctrl+6",
+        "key": "cmd+6",
         "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
     },
     // ===================================================
     // window navigation and manaagement
     {
-        "key": "ctrl+h",
+        "key": "cmd+h",
         "command": "workbench.action.navigateLeft"
     },
     {
-        "key": "ctrl+l",
+        "key": "cmd+l",
         "command": "workbench.action.navigateRight"
     },
     {
-        "key": "ctrl+k",
+        "key": "cmd+k",
         "command": "workbench.action.navigateUp"
     },
     {
-        "key": "ctrl+j",
+        "key": "cmd+j",
         "command": "workbench.action.navigateDown"
     },
     {
@@ -89,77 +89,77 @@
     // ===================================================
     // Focus the terminal
     {
-        "key": "ctrl+shift+.",
+        "key": "cmd+shift+.",
         "command": "workbench.action.terminal.toggleTerminal"
     },
     // ===================================================
     // navigate terminals
     {
-        "key": "ctrl+shift+k",
+        "key": "cmd+shift+k",
         "command": "workbench.action.terminal.focusPrevious",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
     {
-        "key": "ctrl+shift+j",
+        "key": "cmd+shift+j",
         "command": "workbench.action.terminal.focusNext",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
     {
-        "key": "ctrl+t",
+        "key": "cmd+t",
         "command": "workbench.action.terminal.new",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
     // ===================================================
-    // ctrl n(next) and p(previous) already works, just adding jk as a personal preference
+    // cmd n(next) and p(previous) already works, just adding jk as a personal preference
     {
-        "key": "ctrl+j",
+        "key": "cmd+j",
         "command": "workbench.action.quickOpenSelectNext",
         "when": "inQuickOpen"
     },
     {
-        "key": "ctrl+k",
+        "key": "cmd+k",
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
     },
     {
-        "key": "ctrl+j",
+        "key": "cmd+j",
         "command": "selectNextSuggestion",
         "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
     },
     {
-        "key": "ctrl+k",
+        "key": "cmd+k",
         "command": "selectPrevSuggestion",
         "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
     },
     // ===================================================
     // Testing
     {
-        "key": "ctrl+; ;",
+        "key": "cmd+; ;",
         "command": "exunit.runTest", // test under cursor
         "when": "editorTextFocus && resourceLangId == elixir"
     },
     {
-        "key": "ctrl+; ;",
+        "key": "cmd+; ;",
         "command": "testing.runAtCursor",
         "when": "editorTextFocus && resourceLangId != elixir"
     },
     {
-        "key": "ctrl+; .",
+        "key": "cmd+; .",
         "command": "exunit.runPrevious",
         "when": "resourceLangId == elixir"
     },
     {
-        "key": "ctrl+; .",
+        "key": "cmd+; .",
         "command": "testing.reRunLastRun",
         "when": "resourceLangId != elixir"
     },
     {
-        "key": "ctrl+; g",
+        "key": "cmd+; g",
         "command": "exunit.runTestFile",
         "when": "editorFocus && resourceLangId == elixir"
     },
     {
-        "key": "ctrl+; g",
+        "key": "cmd+; g",
         "command": "testing.runCurrentFile",
         "when": "editorFocus && resourceLangId != elixir"
     },
@@ -178,74 +178,74 @@
         "key": "alt+right",
         "command": "workbench.action.navigateForward"
     },
-    // Don't close the workbench when I accidentally hit ctrl+q
+    // Don't close the workbench when I accidentally hit cmd+q
     {
-        "key": "ctrl+q",
+        "key": "cmd+q",
         "command": "-workbench.action.quit"
     },
-    // Use ctrl+shift+n to highlight the file in the explorer
+    // Use cmd+shift+n to highlight the file in the explorer
     {
-        "key": "ctrl+shift+n",
+        "key": "cmd+shift+n",
         "command": "-workbench.action.newWindow"
     },
     {
-        "key": "ctrl+shift+n",
+        "key": "cmd+shift+n",
         "command": "workbench.files.action.showActiveFileInExplorer"
     },
-    // Pass Ctrl-q to neovim
+    // Pass cmd-q to neovim
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+q",
+        "key": "cmd+q",
         "when": "editorTextFocus && neovim.mode == normal",
         "args": "<C-q>"
     },
-    // Pass Ctrl-s to neovim in insert mode
+    // Pass cmd-s to neovim in insert mode
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+s",
+        "key": "cmd+s",
         "when": "editorTextFocus && neovim.mode == insert",
         "args": "<C-s>"
     },
-    // Pass Ctrl-y chords to neovim (for emmet-vim)
+    // Pass cmd-y chords to neovim (for emmet-vim)
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y ,",
+        "key": "cmd+y ,",
         "when": "editorTextFocus",
         "args": "<C-y>,"
     },
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y ;",
+        "key": "cmd+y ;",
         "when": "editorTextFocus",
         "args": "<C-y>;"
     },
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y u",
+        "key": "cmd+y u",
         "when": "editorTextFocus",
         "args": "<C-y>u"
     },
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y m",
+        "key": "cmd+y m",
         "when": "editorTextFocus",
         "args": "<C-y>m"
     },
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y k",
+        "key": "cmd+y k",
         "when": "editorTextFocus",
         "args": "<C-y>k"
     },
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y j",
+        "key": "cmd+y j",
         "when": "editorTextFocus",
         "args": "<C-y>j"
     },
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y /",
+        "key": "cmd+y /",
         "when": "editorTextFocus",
         "args": "<C-y>/"
     },

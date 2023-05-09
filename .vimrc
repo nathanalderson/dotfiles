@@ -133,8 +133,8 @@ Plug 'nathanalderson/yanktohtml'
 Plug 'lambdalisue/suda.vim' " workaround for https://github.com/neovim/neovim/issues/1716
 
 " Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 call plug#end()
 
