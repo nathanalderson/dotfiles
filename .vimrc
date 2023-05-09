@@ -155,7 +155,6 @@ endif
 
 if has("win64") || has("win32") || has("win16")
     set guifont=Consolas:h11:cANSI
-    set csprg=C:\Program\ Files\ -\ Portable\cscope158a\cscope.exe
     let vimfilesdir = "C:/temp/vim_backup//"
     " silent execute '!del "c:\temp\vim_backup\*~"'
 
@@ -514,14 +513,6 @@ nmap <C-/> gcc
 let NERDTreeShowHidden=1
 nmap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" CScope
-set cscopetag                           " CTRL-] uses cscope and tags file
-set csto=0                              " check cscope first, then tags file
-set cscopequickfix=s-,c-,d-,i-,t-,e-    " use quickfix list
-set cspc=0                              " show full path
-nmap <leader>ss mT:cs find s <C-R>=expand("<cword>")<CR><CR>'T:cope<CR>
-nmap <leader>s  :cs find s 
 
 " black
 let g:black_linelength=100

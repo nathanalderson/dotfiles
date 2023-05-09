@@ -43,3 +43,5 @@
       ip: "{{ zerotier_address_desktop }}"
     - hostname: nathan-laptop-zt
       ip: "{{ zerotier_address_laptop }}"
+    - hostname: nathan-macbook-zt
+      ip: "{{ zerotier_address_macbook }}"

@@ -109,7 +109,6 @@ defmodule N do
       release_build: true,
       dnd: true,
       activation_status: :active,
-      push_status: :registered,
       user_id: N.me().id,
     })
     SeedHelpers.attempt_insert(%Site{
@@ -151,18 +150,23 @@ defmodule N do
     end)
   end
 
+defmodule Nathan do
+  alias TangoTango.Core.Messaging
+  alias TangoTango.Persistence.Messages.Message
+  alias TangoTango.Persistence.Channels.Unsecured, as: UnsecuredChannels
   def send_messages(count, channel_id, text \\ nil, call_id \\ nil, tone_ids \\ []) do
     channel = UnsecuredChannels.get_channel!(channel_id)
     now = Timex.now()
     for i <- 1..count do
       Messaging.send_message(channel, Message.new!(
-        channel_id, Timex.shift(now, seconds: -i), :user, N.me().id, :standard, text || "Message #{i}", [], %{
+        channel_id, Timex.shift(now, seconds: -i), :user, 6890685743094562816, :standard, text || "Message #{i}", [], %{
           "callId" => "#{call_id}",
           "detectedToneIds" => Enum.join(tone_ids, ",")
         }
       ))
     end
   end
+end
 
   def send_location_update(user, timestamp \\ Timex.now()) do
       lat = rand_interval(34.769604619877164, 34.66079144385748)
