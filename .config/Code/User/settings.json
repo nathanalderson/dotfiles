@@ -83,9 +83,17 @@
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
+    "workbench.activityBar.visible": false,
     "tailwindCSS.colorDecorators": false,
     "tailwindCSS.includeLanguages": {
         "\"elixir\"": "\"html\""
     },
-    "workbench.activityBar.visible": false,
+    "testing.gutterEnabled": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "diffEditor.diffAlgorithm": "advanced",
 }
