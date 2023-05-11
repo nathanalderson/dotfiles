@@ -27,7 +27,7 @@
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
     },
     "[html-eex]": {
         "editor.formatOnType": true,
@@ -71,20 +71,21 @@
     "git.confirmSync": false,
     "remote.SSH.useLocalServer": false,
     "remote.SSH.remotePlatform": {
-        "nathan-desktop-zt": "linux"
+        "nathan-desktop-zt": "linux",
+        "192.168.125.2": "macOS"
     },
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
     "liquid.format": true,
-    "window.zoomLevel": -0.4772413011367769,
+    "window.zoomLevel": -1,
     "dart.showTestCodeLens": false,
     "dart.showMainCodeLens": false,
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
-    "workbench.activityBar.visible": false,
     "tailwindCSS.colorDecorators": false,
     "tailwindCSS.includeLanguages": {
         "\"elixir\"": "\"html\""
     },
+    "workbench.activityBar.visible": false,
 }
