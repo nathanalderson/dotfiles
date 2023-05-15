@@ -7,4 +7,6 @@ if [[ -f "$ASDF_SCRIPT" ]]; then
     . $ASDF_SCRIPT
 fi
 
-. ~/.profile-local
+if [[ -f "~/.profile-local" ]]; then
+    . ~/.profile-local
+fi
