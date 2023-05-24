@@ -81,7 +81,6 @@
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
-    "workbench.activityBar.visible": false,
     "tailwindCSS.colorDecorators": false,
     "tailwindCSS.includeLanguages": {
         "\"elixir\"": "\"html\""
