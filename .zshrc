@@ -170,9 +170,6 @@ alias sudo='sudo '
 # create a new named tmux session with `tm <name>`
 alias tm='tmux new -s '
 
-# run `flutter pub get` in all sub-projects
-alias fpg='for d in $(find . -maxdepth 5 -name pubspec.yaml); do bash -c "cd $(dirname $d) && flutter pub get"; done'
-
 ###
 # Other things
 ###
