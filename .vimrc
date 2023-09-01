@@ -479,6 +479,20 @@ autocmd FileType heex let b:splitjoin_join_callbacks += [
     \ 'sj#html#JoinAttributes',
     \ 'sj#html#JoinTags'
     \ ]
+autocmd FileType kotlin let b:splitjoin_split_callbacks = [
+    \ 'sj#java#SplitIfClauseBody',
+    \ 'sj#java#SplitIfClauseCondition',
+    \ 'sj#java#SplitLambda',
+    \ 'sj#java#SplitFuncall',
+    \ 'sj#js#SplitObjectLiteral'
+    \ ]
+autocmd FileType kotlin let b:splitjoin_join_callbacks = [
+    \ 'sj#java#JoinLambda',
+    \ 'sj#java#JoinIfClauseCondition',
+    \ 'sj#java#JoinFuncall',
+    \ 'sj#java#JoinIfClauseBody',
+    \ 'sj#js#JoinObjectLiteral'
+    \ ]
 
 if !exists('g:vscode')
 
