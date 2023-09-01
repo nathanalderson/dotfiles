@@ -187,6 +187,65 @@ defmodule N do
   end
 
   def rand_interval(a, b), do: a + (b - a) * :rand.uniform()
+
+  def create_users(count, org_id) do
+    for i <- 1..count do
+      num = String.pad_leading("#{i}", 4, "0")
+      {:ok, user} = UnsecuredUsers.create_user(%{
+        first_name: "User",
+        last_name: "Person #{num}",
+        org_id: org_id,
+        email: "user.person#{num}@organization.org",
+        identity: "fake|#{num}",
+        phone_number: "1256555#{num}"
+      })
+      user
+    end
+  end
+
+  def create_random_devices(count, org_id) do
+    organization = UnsecuredOrgs.get_organization!(org_id) |> Repo.preload(:users)
+
+    Enum.map(1..count, fn i ->
+      platform = Enum.random([:ios, :android])
+      push_status = Enum.random([:registered, :unregistered])
+      activation_status = Enum.random([:active, :inactive, :pending])
+      org_managed = Enum.random([true, false, false])
+      user = if org_managed, do: Enum.random(organization.users ++ [nil]), else: Enum.random(organization.users)
+      is_apple = platform == :ios
+      i = Integer.to_string(i) |> String.pad_leading(4, "0")
+
+      {:ok, device} =
+        UnsecuredDevices.create_device(%{
+          device_id: "device-#{i}",
+          imei: "imei-#{i}",
+          user_id: user && user.id,
+          platform_version: if(is_apple, do: "15.4.1", else: "11"),
+          platform: platform,
+          model: if(is_apple, do: "iPhone", else: "Pixel 5"),
+          vendor: if(is_apple, do: "Apple", else: "Google"),
+          app_version: "1.2.3",
+          activation_status: activation_status,
+          managing_org_id: if(org_managed, do: org_id, else: nil)
+        })
+
+      if push_status == :registered do
+        {:ok, _} =
+          UnsecuredDevices.update_device_token(%{
+            device_id: device.id,
+            token_type: :fcm,
+            token_value: "#{device.id}-fcm-token"
+          })
+
+        {:ok, _} =
+          UnsecuredDevices.update_device_token(%{
+            device_id: device.id,
+            token_type: :ios_voip,
+            token_value: "#{device.id}-voip-token"
+          })
+      end
+    end)
+  end
 end
 
 N.set_log_level(:info)
