@@ -1,8 +1,11 @@
 {
+    "window.commandCenter": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "toggle",
     "workbench.colorTheme": "Ayu Mirage Bordered",
     "workbench.editor.showTabs": false,
-    "workbench.list.automaticKeyboardNavigation": false,
-    "window.titleBarStyle": "custom",
+    "workbench.activityBar.visible": false,
+    "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": false,
@@ -13,6 +16,7 @@
     "editor.minimap.enabled": false,
     "editor.find.loop": false,
     "editor.guides.indentation": false,
+    "editor.inlineSuggest.enabled": true,
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
@@ -83,7 +87,7 @@
     },
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
-    "liquid.format": true,
+    "diffEditor.diffAlgorithm": "smart",
     "window.zoomLevel": -1,
     "dart.showTestCodeLens": false,
     "dart.showMainCodeLens": false,
@@ -101,8 +105,4 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "diffEditor.diffAlgorithm": "advanced",
-    "editor.inlineSuggest.enabled": true,
-    "window.menuBarVisibility": "compact",
-    "workbench.activityBar.visible": false,
 }
