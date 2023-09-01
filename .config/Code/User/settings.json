@@ -1,8 +1,7 @@
 {
-    "workbench.colorTheme": "One Monokai",
+    "workbench.colorTheme": "Ayu Mirage Bordered",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
-    "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "custom",
     "breadcrumbs.symbolPath": "off",
     "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -42,11 +41,17 @@
         "editor.tabSize": 2,
         "editor.formatOnSave": true
     },
+    "[yaml]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.detectIndentation": false
+    },
     "C_Cpp.default.compilerPath": "/usr/bin/x86_64-linux-gnu-gcc",
     "C_Cpp.default.cppStandard": "c++17",
     "python.formatting.provider": "black",
     "[python]": {
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
     },
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
@@ -72,7 +77,9 @@
     "remote.SSH.useLocalServer": false,
     "remote.SSH.remotePlatform": {
         "nathan-desktop-zt": "linux",
-        "192.168.125.2": "macOS"
+        "192.168.125.2": "macOS",
+        "nathan-macbook-zt": "macOS",
+        "nathan-macbook": "macOS"
     },
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
@@ -83,17 +90,19 @@
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
-    "workbench.activityBar.visible": false,
     "tailwindCSS.colorDecorators": false,
     "tailwindCSS.includeLanguages": {
         "\"elixir\"": "\"html\""
     },
     "testing.gutterEnabled": false,
     "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "diffEditor.diffAlgorithm": "advanced",
+    "editor.inlineSuggest.enabled": true,
+    "window.menuBarVisibility": "compact",
+    "workbench.activityBar.visible": false,
 }
