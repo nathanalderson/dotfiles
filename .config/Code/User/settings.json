@@ -99,10 +99,13 @@
         "\"elixir\"": "\"html\""
     },
     "testing.gutterEnabled": false,
+    "eslint.format.enable": true,
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    "liquid.engine": "jekyll",
+    "[liquid]": {},
 }
