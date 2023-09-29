@@ -100,9 +100,18 @@
     },
     "testing.gutterEnabled": false,
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.tree.indent": 12,
+    "workbench.list.smoothScrolling": true,
+    "eslint.format.enable": true,
+    "eslint.workingDirectories": [
+        "testing"
+    ],
 }
