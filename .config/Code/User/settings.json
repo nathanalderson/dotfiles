@@ -106,6 +106,9 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "liquid.engine": "jekyll",
-    "[liquid]": {},
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.tree.indent": 12,
+    "workbench.list.smoothScrolling": true,
 }
