@@ -13,6 +13,7 @@ alias TangoTango.Persistence.Organizations.Organization
 alias TangoTango.Persistence.Organizations.OrganizationAdmin
 alias TangoTango.Persistence.Organizations.InteropAgreement
 alias TangoTango.Persistence.Organizations.InteropAgreements
+alias TangoTango.Persistence.RedisUtils
 
 alias TangoTango.Persistence.Organizations.InteropAgreements.Unsecured,
   as: UnsecuredInteropAgreements
@@ -102,25 +103,30 @@ defmodule N do
       })
     )
 
-    result = SeedHelpers.attempt_insert(%Device{
-      device_id: "aae8093a6dd1128e",
-      name: "Google Pixel 4a",
-      platform: :android,
-      platform_version: "13",
-      vendor: "Google",
-      model: "Pixel 4a",
-      app_version: "1.3.7+684",
-      release_build: true,
-      dnd: true,
-      activation_status: :active,
-      user_id: N.me().id
-    })
+    result =
+      SeedHelpers.attempt_insert(%Device{
+        device_id: "aae8093a6dd1128e",
+        name: "Google Pixel 4a",
+        platform: :android,
+        platform_version: "13",
+        vendor: "Google",
+        model: "Pixel 4a",
+        app_version: "1.3.7+684",
+        release_build: true,
+        dnd: true,
+        activation_status: :active,
+        user_id: N.me().id
+      })
+
     case result do
-      :ok -> nil
+      :ok ->
+        nil
+
       {:ok, device} ->
         UnsecuredDevices.update_device_token(%{
           device_id: device.id,
-          token_value: "d_Dn-zqSQo6RuelR6CDRRh:APA91bERzaOfSKJyC3B-UuVJXDGBPXqkmlRdMj5_FuDs3wB32wFKuKnViVelofnzGrJPzTuqX1Lr8VYZNT3c0rFiS8Ab3s8BUZoLGV7zKWoumFMDUVmRCzLYP72vhe1npFqgKQf4aEEi",
+          token_value:
+            "d_Dn-zqSQo6RuelR6CDRRh:APA91bERzaOfSKJyC3B-UuVJXDGBPXqkmlRdMj5_FuDs3wB32wFKuKnViVelofnzGrJPzTuqX1Lr8VYZNT3c0rFiS8Ab3s8BUZoLGV7zKWoumFMDUVmRCzLYP72vhe1npFqgKQf4aEEi",
           token_type: :fcm
         })
     end
@@ -218,14 +224,17 @@ defmodule N do
   def create_users(count, org_id) do
     for i <- 1..count do
       num = String.pad_leading("#{i}", 4, "0")
-      {:ok, user} = UnsecuredUsers.create_user(%{
-        first_name: "User",
-        last_name: "Person #{num}",
-        org_id: org_id,
-        email: "user.person#{num}@organization.org",
-        identity: "fake|#{num}",
-        phone_number: "1256555#{num}"
-      })
+
+      {:ok, user} =
+        UnsecuredUsers.create_user(%{
+          first_name: "User",
+          last_name: "Person #{num}",
+          org_id: org_id,
+          email: "user.person#{num}@organization.org",
+          identity: "fake|#{num}",
+          phone_number: "1256555#{num}"
+        })
+
       user
     end
   end
@@ -242,7 +251,7 @@ defmodule N do
       is_apple = platform == :ios
       i = Integer.to_string(i) |> String.pad_leading(4, "0")
 
-      {:ok, device} =
+      result =
         UnsecuredDevices.create_device(%{
           device_id: "device-#{i}",
           imei: "imei-#{i}",
@@ -256,20 +265,26 @@ defmodule N do
           managing_org_id: if(org_managed, do: org_id, else: nil)
         })
 
-      if push_status == :registered do
-        {:ok, _} =
-          UnsecuredDevices.update_device_token(%{
-            device_id: device.id,
-            token_type: :fcm,
-            token_value: "#{device.id}-fcm-token"
-          })
+      case result do
+        {:ok, device} ->
+          if push_status == :registered do
+            {:ok, _} =
+              UnsecuredDevices.update_device_token(%{
+                device_id: device.id,
+                token_type: :fcm,
+                token_value: "#{device.id}-fcm-token"
+              })
 
-        {:ok, _} =
-          UnsecuredDevices.update_device_token(%{
-            device_id: device.id,
-            token_type: :ios_voip,
-            token_value: "#{device.id}-voip-token"
-          })
+            {:ok, _} =
+              UnsecuredDevices.update_device_token(%{
+                device_id: device.id,
+                token_type: :ios_voip,
+                token_value: "#{device.id}-voip-token"
+              })
+          end
+
+        _ ->
+          nil
       end
     end)
   end
