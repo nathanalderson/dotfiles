@@ -53,7 +53,7 @@ zinit wait lucid for \
   atload"unalias rm mv cp; alias l=ls; alias ll=lsa" \
     OMZP::common-aliases \
   as"completion" \
-    OMZP::docker/_docker \
+    OMZP::docker/completions/_docker \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
   atload"zicompinit; zicdreplay" blockf \
