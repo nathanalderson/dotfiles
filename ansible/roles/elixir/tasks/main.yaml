@@ -15,7 +15,7 @@
     - mesa
     - ncurses
     - unixodbc
-    - wxgtk2
+    # - wxgtk2
 
 - name: Install asdf
   when: ansible_facts['os_family'] == "Archlinux"
@@ -33,13 +33,13 @@
   changed_when: asdf_plugin_add_erlang.rc != 2
   failed_when: "asdf_plugin_add_erlang.rc not in [0, 2]"
 
-- name: Install latest Erlang
-  command: asdf install erlang latest
-  register: asdf_install_erlang_latest
-  changed_when: '"already installed" not in asdf_install_erlang_latest.stdout'
+# - name: Install latest Erlang
+#   command: asdf install erlang latest
+#   register: asdf_install_erlang_latest
+#   changed_when: '"already installed" not in asdf_install_erlang_latest.stdout'
 
-- name: Set default Erlang to latest
-  command: asdf global erlang latest
+# - name: Set default Erlang to latest
+#   command: asdf global erlang latest
 
 - name: Install asdf Elixir plugin
   command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
@@ -47,21 +47,21 @@
   changed_when: asdf_plugin_add_elixir.rc != 2
   failed_when: "asdf_plugin_add_elixir.rc not in [0, 2]"
 
-- name: Install latest Elixir
-  command: asdf install elixir latest
-  register: asdf_install_elixir_latest
-  changed_when: '"already installed" not in asdf_install_elixir_latest.stdout'
+# - name: Install latest Elixir
+#   command: asdf install elixir latest
+#   register: asdf_install_elixir_latest
+#   changed_when: '"already installed" not in asdf_install_elixir_latest.stdout'
 
-- name: Set default Elixir to latest
-  command: asdf global elixir latest
+# - name: Set default Elixir to latest
+#   command: asdf global elixir latest
 
-- name: Create install directory for Elixir language server for coc
-  file:
-    dest: "{{ vim_bundle_dir }}/coc-elixir/els-release/"
-    state: directory
+# - name: Create install directory for Elixir language server for coc
+#   file:
+#     dest: "{{ vim_bundle_dir }}/coc-elixir/els-release/"
+#     state: directory
 
-- name: Install the Elixir language server for coc
-  unarchive:
-    src: https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
-    dest: "{{ vim_bundle_dir }}/coc-elixir/els-release/"
-    remote_src: yes
+# - name: Install the Elixir language server for coc
+#   unarchive:
+#     src: https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
+#     dest: "{{ vim_bundle_dir }}/coc-elixir/els-release/"
+#     remote_src: yes

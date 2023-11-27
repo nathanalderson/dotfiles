@@ -122,7 +122,6 @@
     - lsb-release
     - neovim
     - nextcloud-client
-    - nomacs
     - openssh
     - python-jedi
     - python-pip
@@ -252,7 +251,7 @@
 - name: Install zinit (for zsh)
   ansible.builtin.git:
     repo: https://github.com/zdharma-continuum/zinit.git
-    dest: "{{ home }}/.zinit/bin"
+    dest: "{{ home }}/.local/share/zinit/zinit.git"
 
 - name: Initialize zinit
   command:
@@ -330,13 +329,6 @@
   ansible.posix.sysctl:
     name: net.ipv4.tcp_congestion_control
     value: bbr
-
-- name: Add home directory to apparmor
-  when: "'adtran' in ansible_role_names and ansible_facts['apparmor']['status'] == 'enabled'"
-  become: yes
-  copy:
-    dest: "/etc/apparmor.d/tunables/home.d/adtran"
-    content: "@{HOMEDIRS}+={{ home | dirname }}"
 
 - name: Create a user for managing AURs
   become: yes

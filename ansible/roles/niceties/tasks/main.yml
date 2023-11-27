@@ -83,7 +83,7 @@
   vars:
     packages:
       - bcompare
-      - pamac-aur
+      # - pamac-aur
 
 - name: Install niceties
   when: ansible_facts['os_family'] == "Debian"
