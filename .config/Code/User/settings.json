@@ -3,12 +3,11 @@
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
     "workbench.colorTheme": "Ayu Mirage Bordered",
-    "workbench.editor.showTabs": false,
-    "workbench.activityBar.visible": false,
+    "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "editor.fontLigatures": false,
+    "editor.fontFamily": "'Monaspace Neon', monospace",
+    "editor.fontLigatures": "'calt', 'ss06'",
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "phase",
@@ -111,4 +110,13 @@
     },
     "workbench.tree.indent": 12,
     "workbench.list.smoothScrolling": true,
+    "editor.lineNumbers": "on",
+    "github.copilot.enable": {
+        "*": true,
+    },
+    "workbench.activityBar.location": "top",
+    "[liquid]": {
+        "editor.defaultFormatter": "sissel.shopify-liquid",
+        "editor.formatOnSave": true
+    },
 }
