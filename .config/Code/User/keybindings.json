@@ -265,4 +265,24 @@
         "command": "git.revertSelectedRanges",
         "when": "editorTextFocus && neovim.mode == normal"
     },
+    {
+        "key": "ctrl+; d",
+        "command": "testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+; ctrl+c",
+        "command": "-testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+' i",
+        "command": "inlineChat.start",
+        "when": "inlineChatHasProvider && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k i",
+        "command": "-inlineChat.start",
+        "when": "inlineChatHasProvider && !editorReadonly"
+    },
 ]
