@@ -125,6 +125,7 @@
     - openssh
     - python-jedi
     - python-pip
+    - python-pynvim
     - python-wheel
     - python-virtualenv
     - resolvconf
