@@ -52,12 +52,14 @@ endif
 
 " coc.nvim
 if has('nvim')
-Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
-Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
-Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+let g:coc_global_extensions = [
+            \'@yaegassy/coc-ansible',
+            \'coc-elixir',
+            \'coc-flutter',
+            \'coc-json',
+            \'coc-pyright',
+            \'coc-snippets',
+            \]
 endif
 
 " other
