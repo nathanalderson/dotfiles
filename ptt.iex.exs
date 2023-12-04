@@ -146,6 +146,21 @@ defmodule N do
   def me(), do: UnsecuredUsers.get_user_by_email("nathan@tangotango.net")
   def tango(), do: UnsecuredOrgs.get_organization_by_name("Tango Tango")
 
+  def create_unregistered_sites(count, type \\ :dev) do
+    for i <- 1..count do
+      num = String.pad_leading("#{i}", 2, "0")
+
+      %UnregisteredSite{}
+      |> UnregisteredSite.changeset(%{
+        name: "Unregistered Site #{num}",
+        mac_address: "00:00:00:00:00:#{num}",
+        type: type,
+        status: :waiting
+      })
+      |> Repo.insert()
+    end
+  end
+
   def create_sites(count, type \\ :cradlepoint) do
     for i <- 1..count do
       num = String.pad_leading("#{i}", 2, "0")
@@ -230,9 +245,8 @@ defmodule N do
           first_name: "User",
           last_name: "Person #{num}",
           org_id: org_id,
-          email: "user.person#{num}@organization.org",
-          identity: "fake|#{num}",
-          phone_number: "1256555#{num}"
+          email: "user.person#{num}@#{org_id}.org",
+          identity: "fake|#{num}"
         })
 
       user
