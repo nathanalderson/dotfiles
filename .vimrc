@@ -57,6 +57,7 @@ Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 endif
 
 " other
@@ -496,10 +497,25 @@ autocmd FileType kotlin let b:splitjoin_join_callbacks = [
 
 if !exists('g:vscode')
 
-" coc.nvim: use <CR> to confirm completion
-inoremap <expr> <C-cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-CR>"
+" COC
+" Use <C-j>/<C-k> to trigger completion with characters ahead and navigate
+inoremap <silent><expr> <C-j>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<C-j>" :
+      \ coc#refresh()
+inoremap <expr><C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
-" coc.nvim: use <c-space>for trigger completion
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 
 end " !exists('g:vscode')
