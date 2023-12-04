@@ -22,6 +22,9 @@ SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_PROMPT_SYMBOL=»
 SPACESHIP_GIT_UNSTAGED=✘
 
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
 zinit wait lucid for \
     OMZL::git.zsh \
   atload"set_git_aliases" \
@@ -54,12 +57,12 @@ zinit wait lucid for \
     OMZP::common-aliases \
   as"completion" \
     OMZP::docker/completions/_docker \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
   atload"zicompinit; zicdreplay" blockf \
     OMZL::completion.zsh \
   atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-autosuggestions \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zsh-users/zsh-syntax-highlighting
 
 ###
 # General options
