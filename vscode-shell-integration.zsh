@@ -14,16 +14,16 @@ source_if_exists() {
 
 for path in "${FILE_PATHS[@]}"; do
     if source_if_exists $path; then
-        exit 0
+        return 0
     fi
 done
 
 # If not found, ask vscode where it is (starts nodejs, so a bit slow when starting a terminal)
 FALLBACK_PATH=$(code --locate-shell-integration-path zsh)
 if source_if_exists $FALLBACK_PATH; then
-    exit 0
+    return 0
 else
     echo "Couldn't find vscode shell integration script"
-    exit 1
+    return 1
 fi
 
