@@ -33,6 +33,7 @@
       - cmake
       - dconf-editor
       - dnsutils
+      - flameshot
       - gnome-calculator
       - gpaste
       - imagemagick
