@@ -74,7 +74,7 @@
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": false,
+        "editor.wordBasedSuggestions": "off",
     },
     "git.confirmSync": false,
     "remote.SSH.useLocalServer": false,
@@ -87,7 +87,7 @@
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.diffAlgorithm": "smart",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": -1.5227586988632231,
     "dart.showTestCodeLens": false,
     "dart.showMainCodeLens": false,
     "dart.showDartPadSampleCodeLens": false,
@@ -119,4 +119,8 @@
         "editor.defaultFormatter": "sissel.shopify-liquid",
         "editor.formatOnSave": true
     },
+    "editor.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
+    "exunit.saveAllBeforeRun": true,
 }
