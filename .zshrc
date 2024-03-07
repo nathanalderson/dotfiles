@@ -171,8 +171,10 @@ alias open='xdg-open'
 # allow sudo to use aliases
 alias sudo='sudo '
 
-# create a new named tmux session with `tm <name>`
+# TMUX aliases
 alias tm='tmux new -s '
+alias tml='tmux list-sessions'
+alias tma='tmux attach -t'
 
 ###
 # Other things
