@@ -47,6 +47,9 @@ alias TangoTango.Persistence.Types.MacAddress
 alias TangoTango.Persistence.Types.PhoneNumber
 
 defmodule N do
+  alias TangoTango.Web.ExternalEventManager
+  alias TangoTango.Persistence.ExternalEvents.ExternalEvent
+
   def seed() do
     tango_org = SeedHelpers.tango_tango_org()
     SeedHelpers.attempt_insert(%Organization{org_name: "Nathan's Org"})
@@ -301,6 +304,48 @@ defmodule N do
           nil
       end
     end)
+  end
+
+  def create_external_events(count, org_id) do
+    for i <- 1..count do
+      num = String.pad_leading("#{i}", 4, "0")
+      datetime = Timex.shift(Timex.now(), seconds: -i)
+
+      event =
+        ExternalEvent.new!(
+          org_id,
+          datetime,
+          "Event #{num}",
+          %{
+            title: "Event #{num}",
+            address: "123 Main St",
+            call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+            city: "Anytown",
+            code: "69E08",
+            cross: "Main St x 1st St",
+            date: Timex.format!(datetime, "%m/%d/%Y", :strftime),
+            gps: "34.711188,-86.653937",
+            w3w: "pursuing.smudges.walkway",
+            id: "id-#{num}",
+            info: "Info #{num}",
+            place: "Place #{num}",
+            priority: "bravo",
+            time: Timex.format!(datetime, "%H:%M:%S", :strftime),
+            unit: "Unit #{num}"
+          },
+          "config-1",
+          dest_email: "#{org_id}@cadptt.ai",
+          raw_input: "raw input #{num}",
+          type: "cad",
+          audio_arns: [
+            "arn:aws:s3:::cad-audio-dev/203930044676968449/audio-20231108174553.opus",
+            "arn:aws:s3:::cad-audio-dev/203930044676968449/audio-20231108174553.aac"
+          ],
+          announcement: "Announcement #{num}"
+        )
+
+      ExternalEventManager.create(event)
+    end
   end
 end
 
