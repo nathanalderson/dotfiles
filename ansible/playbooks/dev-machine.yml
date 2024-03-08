@@ -5,6 +5,7 @@
     dotfiles_local: "{{ playbook_dir}}/.."
     local_run: "{{ ansible_host in ['localhost', '127.0.0.1', '::1'] or ansible_connection == 'local' }}"
     vim_bundle_dir:  "{{ home }}/.config/nvim/bundle"
+    ansible_python_interpreter: /bin/python
   pre_tasks:
     - name: Set extra facts
       tags: [always]
@@ -22,15 +23,15 @@
   roles:
     # - common
     # - personal
-    # - niceties
+    - niceties
     # - home_network
     # - bluetooth
     # - docker
     # # - i3
     # - systemd-networkd
     # - role: systemd-resolved
-      # when: ansible_facts.services.get('systemd-resolved.service')
-    - elixir
+    #   when: ansible_facts.services.get('systemd-resolved.service')
+    # - elixir
     # - flutter
     # - tangotango
     # - kde

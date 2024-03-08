@@ -138,9 +138,9 @@
     enabled: yes
 
 - name: Enable gnome-keyring SSH-Agent
-  become: yes
   systemd:
     name: gcr-ssh-agent.socket
     state: started
     enabled: yes
     scope: user
+  tags: [justme]
