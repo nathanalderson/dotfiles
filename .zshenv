@@ -16,3 +16,6 @@ export CM_IGNORE_WINDOW=.*keepass.*
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 10000000"
 # build Elixir with Docs
 export KERL_BUILD_DOCS=yes
+
+# Use gcr-4 (gnome-keyring) for SSH Agent
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh

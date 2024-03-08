@@ -20,11 +20,10 @@
     "explorer.decorations.badges": false,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "files.autoSave": "onWindowChange",
-    "elixirLS.suggestSpecs": false,
-    "elixirLS.dialyzerFormat": "dialyxir_short",
     "elixirLS.envVariables": {
         "ELIXIR_WARNINGS_OK": "1"
     },
+    "elixirLS.suggestSpecs": false,
     "exunit.saveAllBeforeRun": true,
     "[elixir]": {
         "editor.formatOnType": true,
@@ -111,6 +110,7 @@
     "editor.lineNumbers": "on",
     "github.copilot.enable": {
         "*": true,
+        "scminput": false
     },
     "workbench.activityBar.location": "top",
     "[liquid]": {
@@ -120,4 +120,6 @@
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
+    "debug.javascript.autoAttachFilter": "smart",
+    "window.customTitleBarVisibility": "auto",
 }
