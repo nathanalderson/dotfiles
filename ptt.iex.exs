@@ -45,6 +45,11 @@ alias TangoTango.Persistence.Tones.Unsecured, as: UnsecuredTones
 alias TangoTango.Persistence.Types.Avatar
 alias TangoTango.Persistence.Types.MacAddress
 alias TangoTango.Persistence.Types.PhoneNumber
+alias TangoTango.Persistence.ExternalEvents
+alias TangoTango.Persistence.ExternalEvents.ExternalEvent
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured, as: UnsecuredEventConfigs
 
 defmodule N do
   def seed() do
@@ -301,6 +306,71 @@ defmodule N do
           nil
       end
     end)
+  end
+
+  def create_alerts(count, config_id, type) do
+    config = UnsecuredEventConfigs.get(config_id)
+
+    for _ <- 1..count do
+      timestamp = Timex.now()
+
+      content =
+        case type do
+          "flock" ->
+            %{
+              title: "Flock Event #{timestamp}",
+              call: "call1",
+              source: "source1",
+              reason: "reason1",
+              vehicleModel: "Model",
+              vehicleMake: "Make",
+              vehicleColor: "Color",
+              licensePlate: "PLATENUM",
+              camera: "camera1",
+              network: "network1",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              image: "https://picsum.photos/500",
+              extra_field: "extra_value"
+            }
+
+          "cad" ->
+            %{
+              address: "1 Tranquility Base",
+              apt: "apt1",
+              call: "call1",
+              city: "Huntsville",
+              code: "code1",
+              cross: "Tranquility Base x Old Madison Pike",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              gps: "34.71109621352907,-86.65589039202656",
+              id: "id1",
+              info: "info1",
+              place: "place1",
+              priority: "priority1",
+              title: "CAD Event #{timestamp}",
+              unit: "unit1",
+              w3w: "motor.wolf.reclaim"
+            }
+        end
+
+      ExternalEvents.store_event(
+        ExternalEvent.new!(
+          config.org_id,
+          timestamp,
+          content.title,
+          content,
+          config_id,
+          audio_arns: [
+            "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.opus",
+            "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.aac"
+          ],
+          announcement: "Fake announcement",
+          type: type
+        )
+      )
+    end
   end
 end
 
