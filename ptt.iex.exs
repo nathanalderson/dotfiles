@@ -52,6 +52,9 @@ alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured, as: UnsecuredEventConfigs
 
 defmodule N do
+  alias TangoTango.Web.ExternalEventManager
+  alias TangoTango.Persistence.ExternalEvents.ExternalEvent
+
   def seed() do
     tango_org = SeedHelpers.tango_tango_org()
     SeedHelpers.attempt_insert(%Organization{org_name: "Nathan's Org"})
@@ -311,15 +314,16 @@ defmodule N do
   def create_alerts(count, config_id, type) do
     config = UnsecuredEventConfigs.get(config_id)
 
-    for _ <- 1..count do
-      timestamp = Timex.now()
+    for i <- 1..count do
+      num = String.pad_leading("#{i}", 4, "0")
+      timestamp = Timex.shift(Timex.now(), seconds: -i)
 
       content =
         case type do
           "flock" ->
             %{
               title: "Flock Event #{timestamp}",
-              call: "call1",
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
               source: "source1",
               reason: "reason1",
               vehicleModel: "Model",
@@ -336,22 +340,21 @@ defmodule N do
 
           "cad" ->
             %{
-              address: "1 Tranquility Base",
-              apt: "apt1",
-              call: "call1",
-              city: "Huntsville",
-              code: "code1",
-              cross: "Tranquility Base x Old Madison Pike",
-              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
-              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
-              gps: "34.71109621352907,-86.65589039202656",
-              id: "id1",
-              info: "info1",
-              place: "place1",
-              priority: "priority1",
               title: "CAD Event #{timestamp}",
-              unit: "unit1",
-              w3w: "motor.wolf.reclaim"
+              address: "123 Main St",
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+              city: "Anytown",
+              code: "69E08",
+              cross: "Main St x 1st St",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              gps: "34.711188,-86.653937",
+              w3w: "pursuing.smudges.walkway",
+              id: "id-#{num}",
+              info: "Info #{num}",
+              place: "Place #{num}",
+              priority: "bravo",
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              unit: "Unit #{num}"
             }
         end
 

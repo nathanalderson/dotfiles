@@ -24,6 +24,7 @@
         "ELIXIR_WARNINGS_OK": "1"
     },
     "elixirLS.suggestSpecs": false,
+    "exunit.saveAllBeforeRun": true,
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
@@ -48,9 +49,6 @@
         "editor.formatOnSave": true,
         "editor.detectIndentation": false
     },
-    "C_Cpp.default.compilerPath": "/usr/bin/x86_64-linux-gnu-gcc",
-    "C_Cpp.default.cppStandard": "c++17",
-    "python.formatting.provider": "black",
     "[python]": {
         "editor.formatOnType": true,
         "editor.defaultFormatter": "ms-python.black-formatter"
@@ -81,12 +79,12 @@
         "nathan-desktop-zt": "linux",
         "192.168.125.2": "macOS",
         "nathan-macbook-zt": "macOS",
-        "nathan-macbook": "macOS"
+        "nathan-macbook": "macOS",
+        "nathan-desktop": "linux"
     },
     "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.diffAlgorithm": "smart",
-    "window.zoomLevel": -1.5227586988632231,
     "dart.showTestCodeLens": false,
     "dart.showMainCodeLens": false,
     "dart.showDartPadSampleCodeLens": false,
@@ -122,6 +120,6 @@
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
-    "exunit.saveAllBeforeRun": true,
     "debug.javascript.autoAttachFilter": "smart",
+    "window.customTitleBarVisibility": "auto",
 }
