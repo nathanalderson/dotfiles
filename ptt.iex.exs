@@ -45,6 +45,11 @@ alias TangoTango.Persistence.Tones.Unsecured, as: UnsecuredTones
 alias TangoTango.Persistence.Types.Avatar
 alias TangoTango.Persistence.Types.MacAddress
 alias TangoTango.Persistence.Types.PhoneNumber
+alias TangoTango.Persistence.ExternalEvents
+alias TangoTango.Persistence.ExternalEvents.ExternalEvent
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured, as: UnsecuredEventConfigs
 
 defmodule N do
   alias TangoTango.Web.ExternalEventManager
@@ -306,45 +311,68 @@ defmodule N do
     end)
   end
 
-  def create_external_events(count, org_id) do
+  def create_alerts(count, config_id, type) do
+    config = UnsecuredEventConfigs.get(config_id)
+
     for i <- 1..count do
       num = String.pad_leading("#{i}", 4, "0")
-      datetime = Timex.shift(Timex.now(), seconds: -i)
+      timestamp = Timex.shift(Timex.now(), seconds: -i)
 
-      event =
+      content =
+        case type do
+          "flock" ->
+            %{
+              title: "Flock Event #{timestamp}",
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+              source: "source1",
+              reason: "reason1",
+              vehicleModel: "Model",
+              vehicleMake: "Make",
+              vehicleColor: "Color",
+              licensePlate: "PLATENUM",
+              camera: "camera1",
+              network: "network1",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              image: "https://picsum.photos/500",
+              extra_field: "extra_value"
+            }
+
+          "cad" ->
+            %{
+              title: "CAD Event #{timestamp}",
+              address: "123 Main St",
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+              city: "Anytown",
+              code: "69E08",
+              cross: "Main St x 1st St",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              gps: "34.711188,-86.653937",
+              w3w: "pursuing.smudges.walkway",
+              id: "id-#{num}",
+              info: "Info #{num}",
+              place: "Place #{num}",
+              priority: "bravo",
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              unit: "Unit #{num}"
+            }
+        end
+
+      ExternalEvents.store_event(
         ExternalEvent.new!(
-          org_id,
-          datetime,
-          "Event #{num}",
-          %{
-            title: "Event #{num}",
-            address: "123 Main St",
-            call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
-            city: "Anytown",
-            code: "69E08",
-            cross: "Main St x 1st St",
-            date: Timex.format!(datetime, "%m/%d/%Y", :strftime),
-            gps: "34.711188,-86.653937",
-            w3w: "pursuing.smudges.walkway",
-            id: "id-#{num}",
-            info: "Info #{num}",
-            place: "Place #{num}",
-            priority: "bravo",
-            time: Timex.format!(datetime, "%H:%M:%S", :strftime),
-            unit: "Unit #{num}"
-          },
-          "config-1",
-          dest_email: "#{org_id}@cadptt.ai",
-          raw_input: "raw input #{num}",
-          type: "cad",
+          config.org_id,
+          timestamp,
+          content.title,
+          content,
+          config_id,
           audio_arns: [
-            "arn:aws:s3:::cad-audio-dev/203930044676968449/audio-20231108174553.opus",
-            "arn:aws:s3:::cad-audio-dev/203930044676968449/audio-20231108174553.aac"
+            "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.opus",
+            "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.aac"
           ],
-          announcement: "Announcement #{num}"
+          announcement: "Fake announcement",
+          type: type
         )
-
-      ExternalEventManager.create(event)
+      )
     end
   end
 end
