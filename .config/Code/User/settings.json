@@ -6,7 +6,7 @@
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'Monaspace Neon', monospace",
+    "editor.fontFamily": "'Fantasque Sans', monospace",
     "editor.fontLigatures": "'calt', 'ss06'",
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
