@@ -62,10 +62,22 @@ let g:coc_global_extensions = [
             \]
 endif
 
-" other
+" other (non-vscode)
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/syntastic'
 Plug 'regedarek/ZoomWin'
-
-end " !exists('g:vscode')
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tfnico/vim-gradle'
+Plug 'vim-scripts/fontzoom.vim'
+if has('nvim')
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'aserowy/tmux.nvim'
+endif
+Plug 'tpope/vim-dispatch'
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/goyo.vim'
 
 " Language support
 if has('nvim')
@@ -93,9 +105,9 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 
 " version control
-Plug 'nfvs/vim-perforce'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+end " !exists('g:vscode')
 
 " text objects
 Plug 'kana/vim-textobj-function'
@@ -118,22 +130,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
-Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
 Plug 'qpkorr/vim-bufkill'
-Plug 'scrooloose/syntastic'
-Plug 'tfnico/vim-gradle'
-Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'vim-scripts/fontzoom.vim'
 Plug 'AndrewRadev/splitjoin.vim'
-if has('nvim')
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'aserowy/tmux.nvim'
-endif
-Plug 'tpope/vim-dispatch'
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/goyo.vim'
 Plug 'nathanalderson/yanktohtml'
 Plug 'lambdalisue/suda.vim' " workaround for https://github.com/neovim/neovim/issues/1716
 
@@ -556,6 +554,8 @@ let g:ag_prg="ag --column --smart-case"
 let g:surround_37 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
 
+if !exists('g:vscode')
+
 if has('nvim')
 " tmux.nvim
 lua << EOF
@@ -567,8 +567,6 @@ require("tmux").setup({
 })
 EOF
 endif
-
-if !exists('g:vscode')
 
 if has('nvim')
 " lualine
