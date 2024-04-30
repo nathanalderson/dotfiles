@@ -152,6 +152,8 @@ drip () { docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddres
 set_git_aliases() {
     alias gb='git branch --sort=-committerdate'
     alias grom='git rebase --onto $(git_main_branch)'
+    alias gsp='git stash pop'
+    alias gsa='git stash apply'
 }
 
 # delete the bad host key from the previous ssh command
