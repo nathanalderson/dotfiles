@@ -129,6 +129,7 @@
         "editor.defaultFormatter": "sissel.shopify-liquid",
         "editor.formatOnSave": true
     },
+    "liquid.engine": "jekyll",
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
