@@ -19,6 +19,14 @@
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.lua",
+            "args": [
+                "vim.api.nvim_input('<ESC>')"
+            ]
+        }
+    },
     "files.autoSave": "onWindowChange",
     "elixirLS.envVariables": {
         "ELIXIR_WARNINGS_OK": "1"
@@ -51,8 +59,12 @@
     },
     "[python]": {
         "editor.formatOnType": true,
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "ms-python.black-formatter",
     },
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
@@ -122,4 +134,5 @@
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.javascript.autoAttachFilter": "smart",
     "window.customTitleBarVisibility": "auto",
+    "window.zoomLevel": -1.0455173977264463,
 }
