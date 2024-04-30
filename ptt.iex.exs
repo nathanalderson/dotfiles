@@ -49,12 +49,11 @@ alias TangoTango.Persistence.ExternalEvents
 alias TangoTango.Persistence.ExternalEvents.ExternalEvent
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
-alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured, as: UnsecuredEventConfigs
+
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured,
+  as: UnsecuredEventConfigs
 
 defmodule N do
-  alias TangoTango.Web.ExternalEventManager
-  alias TangoTango.Persistence.ExternalEvents.ExternalEvent
-
   def seed() do
     tango_org = SeedHelpers.tango_tango_org()
     SeedHelpers.attempt_insert(%Organization{org_name: "Nathan's Org"})
@@ -188,12 +187,21 @@ defmodule N do
 
     1..count
     |> Enum.flat_map(fn i ->
-      {events, []} = ToneEvents.store_tone_event(entities, :now, tone.id, tone.channel_id, call_id, i)
+      {events, []} =
+        ToneEvents.store_tone_event(entities, :now, tone.id, tone.channel_id, call_id, i)
+
       events
     end)
   end
 
-  def send_messages(count, channel_id, type \\ :standard, text \\ nil, call_id \\ nil, tone_ids \\ []) do
+  def send_messages(
+        count,
+        channel_id,
+        type \\ :standard,
+        text \\ nil,
+        call_id \\ nil,
+        tone_ids \\ []
+      ) do
     channel = UnsecuredChannels.get_channel!(channel_id)
     now = Timex.now()
 
@@ -269,7 +277,12 @@ defmodule N do
       push_status = Enum.random([:registered, :unregistered])
       activation_status = Enum.random([:active, :inactive, :pending])
       org_managed = Enum.random([true, false, false])
-      user = if org_managed, do: Enum.random(organization.users ++ [nil]), else: Enum.random(organization.users)
+
+      user =
+        if org_managed,
+          do: Enum.random(organization.users ++ [nil]),
+          else: Enum.random(organization.users)
+
       is_apple = platform == :ios
       i = Integer.to_string(i) |> String.pad_leading(4, "0")
 
