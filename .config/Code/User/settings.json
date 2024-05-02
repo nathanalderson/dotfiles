@@ -21,10 +21,7 @@
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.compositeKeys": {
         "jk": {
-            "command": "vscode-neovim.lua",
-            "args": [
-                "vim.api.nvim_input('<ESC>')"
-            ]
+            "command": "vscode-neovim.escape",
         }
     },
     "files.autoSave": "onWindowChange",
