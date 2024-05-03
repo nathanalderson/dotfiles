@@ -46,6 +46,7 @@ Plug 'rakr/vim-one'
 if has('nvim')
 Plug 'tjdevries/colorbuddy.nvim' " required for lalitmee/cobalt2.nvim
 Plug 'lalitmee/cobalt2.nvim'
+Plug 'loctvl842/monokai-pro.nvim'
 endif
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
@@ -179,7 +180,9 @@ if !exists('g:vscode')
 " colors
 set background=dark
 if has('nvim')
-    lua require('colorbuddy').colorscheme('cobalt2')
+    colors monokai-pro
+    " choose "filter"
+    MonokaiPro pro
 else
     colorscheme gruvbox
 endif
@@ -558,25 +561,23 @@ if !exists('g:vscode')
 
 if has('nvim')
 " tmux.nvim
-lua << EOF
-require("tmux").setup({
-    navigation = {
-        enable_default_keybindings = true,
-        cycle_navigation = false,
-    },
-})
-EOF
+lua require("tmux").setup({
+        \ navigation = {
+        \ enable_default_keybindings = true,
+        \ cycle_navigation = false,
+    \ },
+\ })
 endif
 
 if has('nvim')
 " lualine
-lua << END
-require('lualine').setup {
-    options = {
-        section_separators = '', component_separators = ''
-    },
-}
-END
+lua require('lualine').setup {
+    \ options = {
+        \ section_separators = '',
+        \ component_separators = '',
+        \ theme = 'monokai-pro',
+    \ },
+\ }
 endif
 
 " fugitive
