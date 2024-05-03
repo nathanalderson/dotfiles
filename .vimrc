@@ -180,9 +180,10 @@ if !exists('g:vscode')
 " colors
 set background=dark
 if has('nvim')
+    lua require('monokai-pro').setup({
+        \ filter = "pro"
+      \ })
     colors monokai-pro
-    " choose "filter"
-    MonokaiPro pro
 else
     colorscheme gruvbox
 endif
