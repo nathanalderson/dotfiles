@@ -99,8 +99,10 @@
       - bcompare
       - cloc
       - cmake
+      - dconf-cli
       - dconf-editor
       - fonts-fantasque-sans
+      - fonts-fantasque-nerd
       - fonts-inconsolata
       - fonts-noto
       - inotify-tools
@@ -113,6 +115,7 @@
       - samba
       - sshfs
       - silversearcher-ag
+      - uuid-runtime
       - vlc
       - wireguard-tools
       - wireshark
@@ -125,10 +128,11 @@
     groups: [wireshark]
     append: yes
 
-- name: Clone base16-gnome-terminal for terminal color schemes
+- name: Clone gogh for terminal color schemes
+  tags: [justme]
   git:
-    repo: https://github.com/aaron-williamson/base16-gnome-terminal.git
-    dest: "{{ home }}/.config/base16-gnome-terminal"
+    repo: https://github.com/Gogh-Co/Gogh.git
+    dest: "{{ home }}/opt/gogh"
 
 - name: start and enable NTP
   become: yes
