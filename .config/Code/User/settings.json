@@ -2,7 +2,7 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "workbench.colorTheme": "Monokai Pro",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
@@ -133,4 +133,5 @@
     "debug.javascript.autoAttachFilter": "smart",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.0455173977264463,
+    "workbench.iconTheme": "Monokai Pro Icons",
 }
