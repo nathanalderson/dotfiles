@@ -121,7 +121,6 @@
     - lightdm-slick-greeter
     - lsb-release
     - neovim
-    - nextcloud-client
     - openssh
     - python-jedi
     - python-pip
