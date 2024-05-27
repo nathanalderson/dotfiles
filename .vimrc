@@ -75,6 +75,7 @@ Plug 'vim-scripts/fontzoom.vim'
 if has('nvim')
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'aserowy/tmux.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 Plug 'tpope/vim-dispatch'
 Plug 'reedes/vim-pencil'
@@ -181,7 +182,9 @@ if !exists('g:vscode')
 set background=dark
 if has('nvim')
     lua require('monokai-pro').setup({
-        \ filter = "pro"
+        \ filter = "pro",
+        \ background_clear = {},
+        \ transparent_background = true
       \ })
     colors monokai-pro
 else
