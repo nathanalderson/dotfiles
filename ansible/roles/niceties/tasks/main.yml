@@ -40,6 +40,7 @@
       - inotify-tools
       - iperf3
       - jq
+      - live-media
       - meld
       - minicom
       - ncdu
