@@ -388,6 +388,12 @@ defmodule N do
       )
     end
   end
+
+  def kill_pids(pidnums, reason \\ :kill) do
+    pidnums
+    |> Enum.map(&:erlang.list_to_pid(~c"<0.#{&1}.0>"))
+    |> Enum.each(&Process.exit(&1, reason))
+  end
 end
 
 N.set_log_level(:info)
