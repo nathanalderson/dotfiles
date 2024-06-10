@@ -36,6 +36,7 @@
       - flameshot
       - gnome-calculator
       - gpaste
+      - gvfs-smb
       - imagemagick
       - inotify-tools
       - iperf3
