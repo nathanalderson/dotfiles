@@ -168,14 +168,25 @@ defmodule N do
     end
   end
 
-  def create_sites(count, type \\ :cradlepoint) do
+  def create_sites(count, opts \\ []) do
+    type = Keyword.get(opts, :type, :dev)
+    org_id = Keyword.get(opts, :org_id, tango().id)
+    <<four_bytes::binary-size(4), _::binary>> = :crypto.hash(:sha, "#{org_id}")
+
+    middle =
+      four_bytes
+      |> :binary.bin_to_list()
+      |> Enum.map(&Integer.to_string(&1, 16))
+      |> Enum.map(&String.pad_leading(&1, 2, "0"))
+      |> Enum.join(":")
+
     for i <- 1..count do
       num = String.pad_leading("#{i}", 2, "0")
 
       UnsecuredSites.create_site(%{
         name: "Site #{num}",
-        mac_address: "00:00:00:00:00:#{num}",
-        org_id: tango().id,
+        mac_address: "01:#{middle}:#{num}",
+        org_id: org_id,
         type: type
       })
     end
@@ -383,7 +394,8 @@ defmodule N do
             "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.aac"
           ],
           announcement: "Fake announcement",
-          type: type
+          type: type,
+          raw_input: "raw input"
         )
       )
     end

@@ -6,8 +6,9 @@
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'Fantasque Sans', monospace",
-    "editor.fontLigatures": "'calt', 'ss06'",
+    "editor.fontFamily": "'Fantasque Sans Mono', monospace",
+    "editor.fontSize": 15,
+    "editor.fontLigatures": "",
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "phase",
@@ -56,7 +57,7 @@
     },
     "[python]": {
         "editor.formatOnType": true,
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
     },
     "isort.args": [
         "--profile",
@@ -68,7 +69,7 @@
     ],
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.localEchoLatencyThreshold": 100,
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.cursorStyle": "line",
     // Disabled here because automatic installation doesn't work for me. Enabled manually in .zshrc
     "terminal.integrated.shellIntegration.enabled": false,
@@ -89,19 +90,25 @@
         "192.168.125.2": "macOS",
         "nathan-macbook-zt": "macOS",
         "nathan-macbook": "macOS",
-        "nathan-desktop": "linux"
+        "nathan-desktop": "linux",
+        "nathan-ubuntu2204": "linux",
+        "10.0.100.107": "macOS",
+        "10.0.100.182": "macOS"
     },
-    "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
-    "diffEditor.diffAlgorithm": "smart",
+    "diffEditor.diffAlgorithm": "advanced",
     "dart.showTestCodeLens": false,
     "dart.showMainCodeLens": false,
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
-    "tailwindCSS.colorDecorators": false,
     "tailwindCSS.includeLanguages": {
-        "\"elixir\"": "\"html\""
+        "elixir": "html",
+        "phoenix-heex": "html",
+    },
+    "emmet.includeLanguages": {
+        "phoenix-heex": "html",
+        "elixir": "html",
     },
     "testing.gutterEnabled": false,
     "eslint.format.enable": true,
@@ -137,4 +144,5 @@
     "window.zoomLevel": -2.6137934943161154,
     "workbench.iconTheme": "Monokai Pro Icons",
     "github.copilot.editor.enableAutoCompletions": true,
+    "black-formatter.importStrategy": "fromEnvironment",
 }

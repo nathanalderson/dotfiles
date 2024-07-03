@@ -328,8 +328,8 @@ set nohlsearch
 
 " random custom mappings
 inoremap jk <ESC>
-nnoremap j gj
-nnoremap k gk
+nmap j gj
+nmap k gk
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
