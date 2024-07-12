@@ -126,6 +126,8 @@
     "editor.lineNumbers": "on",
     "github.copilot.enable": {
         "*": true,
+        "plaintext": false,
+        "markdown": false,
         "scminput": false
     },
     "workbench.activityBar.location": "top",
@@ -139,7 +141,7 @@
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.javascript.autoAttachFilter": "smart",
     "window.customTitleBarVisibility": "auto",
-    "window.zoomLevel": -1.5682760965896694,
+    "window.zoomLevel": -2.6137934943161154,
     "workbench.iconTheme": "Monokai Pro Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
