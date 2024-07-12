@@ -143,4 +143,5 @@
     "workbench.iconTheme": "Monokai Pro Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
+    "python.analysis.autoFormatStrings": true,
 }
