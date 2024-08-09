@@ -6,6 +6,9 @@
 
   "ansible.ansibleLint.arguments": "-d relaxed",
 
+  // dont add magic text inline
+  "inlayHint.enable": false,
+
   // diagnostic-languageserver
   "diagnostic-languageserver.filetypes": {
     "elixir": ["mix_credo", "mix_credo_compile"]
