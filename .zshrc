@@ -154,6 +154,7 @@ set_git_aliases() {
     alias grom='git rebase --onto $(git_main_branch)'
     alias gsp='git stash pop'
     alias gsa='git stash apply'
+    alias gca='git commit --amend'
 }
 
 # delete the bad host key from the previous ssh command
