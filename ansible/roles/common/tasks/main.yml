@@ -20,7 +20,7 @@
   copy:
     src: pacman.conf
     dest: /etc/pacman.conf
-    user: root
+    owner: root
     group: root
     mode: 0644
   tags: [justme]
