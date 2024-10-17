@@ -205,12 +205,6 @@
     // Pass Ctrl-y chords to neovim (for emmet-vim)
     {
         "command": "vscode-neovim.send",
-        "key": "ctrl+y ,",
-        "when": "editorTextFocus",
-        "args": "<C-y>,"
-    },
-    {
-        "command": "vscode-neovim.send",
         "key": "ctrl+y ;",
         "when": "editorTextFocus",
         "args": "<C-y>;"
@@ -280,4 +274,14 @@
         "key": "ctrl+escape",
         "command": "vscode-neovim.restart"
     },
+    {
+        "key": "ctrl+y ,",
+        "command": "editor.emmet.action.expandAbbreviation",
+        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.emmet.action.expandAbbreviation",
+        "when": "config.emmet.triggerExpansionOnTab && editorTextFocus && !editorReadonly && !editorTabMovesFocus"
+    }
 ]

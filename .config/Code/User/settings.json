@@ -93,7 +93,8 @@
         "nathan-desktop": "linux",
         "nathan-ubuntu2204": "linux",
         "10.0.100.107": "macOS",
-        "10.0.100.182": "macOS"
+        "10.0.100.182": "macOS",
+        "10.0.100.60": "macOS"
     },
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.diffAlgorithm": "advanced",
@@ -141,9 +142,11 @@
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.javascript.autoAttachFilter": "smart",
     "window.customTitleBarVisibility": "auto",
-    "window.zoomLevel": -2.6137934943161154,
+    "window.zoomLevel": -1.0455173977264463,
     "workbench.iconTheme": "Monokai Pro Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
 }
