@@ -14,6 +14,17 @@
     - projects
     - tmp
 
+- name: configure pacman
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+    user: root
+    group: root
+    mode: 0644
+  tags: [justme]
+
 - name: Prepare pacman installs
   when: ansible_facts['os_family'] == "Archlinux"
   become: yes

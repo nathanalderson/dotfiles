@@ -131,7 +131,6 @@
     append: yes
 
 - name: Clone gogh for terminal color schemes
-  tags: [justme]
   git:
     repo: https://github.com/Gogh-Co/Gogh.git
     dest: "{{ home }}/opt/gogh"
@@ -149,4 +148,3 @@
     state: started
     enabled: yes
     scope: user
-  tags: [justme]

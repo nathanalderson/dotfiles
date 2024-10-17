@@ -27,7 +27,6 @@
     - pkgconf
 
 - name: Build and Install Fwup
-  tags: [justme]
   block:
   - name: Git checkout
     ansible.builtin.git:
