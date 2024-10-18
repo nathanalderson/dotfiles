@@ -335,7 +335,7 @@ defmodule N do
     end)
   end
 
-  def create_alerts(count, config_id, type) do
+  def create_alerts(count, config_id, type, opts \\ []) do
     config = UnsecuredEventConfigs.get(config_id)
 
     for i <- 1..count do
@@ -346,7 +346,7 @@ defmodule N do
         case type do
           "flock" ->
             %{
-              title: "Flock Event #{timestamp}",
+              title: Keyword.get(opts, :title, "Flock Event #{timestamp}"),
               call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
               source: "source1",
               reason: "reason1",
@@ -364,7 +364,7 @@ defmodule N do
 
           "cad" ->
             %{
-              title: "CAD Event #{timestamp}",
+              title: Keyword.get(opts, :title, "CAD Event #{timestamp}"),
               address: "123 Main St",
               call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
               city: "Anytown",
@@ -374,7 +374,7 @@ defmodule N do
               gps: "34.711188,-86.653937",
               w3w: "pursuing.smudges.walkway",
               id: "id-#{num}",
-              info: "Info #{num}",
+              info: Keyword.get(opts, :info, "Info #{num}"),
               place: "Place #{num}",
               priority: "bravo",
               time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
@@ -389,11 +389,12 @@ defmodule N do
           content.title,
           content,
           config_id,
-          audio_arns: [
-            "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.opus",
-            "arn:aws:s3:::cad-audio-dev/209141057110204419/audio-20240215143809.aac"
-          ],
-          announcement: "Fake announcement",
+          audio_arns:
+            Keyword.get(opts, :audio_arns, [
+              "arn:aws:s3:::event-email-staging-audio/1234test/this_is_opus.opus",
+              "arn:aws:s3:::event-email-staging-audio/1234test/this_is_aac.aac"
+            ]),
+          announcement: Keyword.get(opts, :announcement, "Fake announcement"),
           type: type,
           raw_input: "raw input"
         )
