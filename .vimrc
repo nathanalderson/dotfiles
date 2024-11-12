@@ -182,9 +182,7 @@ if !exists('g:vscode')
 set background=dark
 if has('nvim')
     lua require('monokai-pro').setup({
-        \ filter = "pro",
-        \ background_clear = {},
-        \ transparent_background = true
+        \ filter = "pro"
       \ })
     colors monokai-pro
 else
@@ -470,7 +468,7 @@ autocmd FileType elixir let b:splitjoin_join_callbacks += [
     \ 'sj#html#JoinAttributes',
     \ 'sj#html#JoinTags'
     \ ]
-autocmd FileType heex let b:splitjoin_split_callbacks += [
+autocmd FileType heex let b:splitjoin_split_callbacks = [
     \ 'sj#elixir#SplitDoBlock',
     \ 'sj#elixir#SplitArray',
     \ 'sj#elixir#SplitPipe',
@@ -478,7 +476,7 @@ autocmd FileType heex let b:splitjoin_split_callbacks += [
     \ 'sj#html#SplitTags',
     \ 'sj#html#SplitAttributes'
     \ ]
-autocmd FileType heex let b:splitjoin_join_callbacks += [
+autocmd FileType heex let b:splitjoin_join_callbacks = [
     \ 'sj#elixir#JoinDoBlock',
     \ 'sj#elixir#JoinArray',
     \ 'sj#elixir#JoinCommaDelimitedItems',
