@@ -283,5 +283,91 @@
         "key": "tab",
         "command": "-editor.emmet.action.expandAbbreviation",
         "when": "config.emmet.triggerExpansionOnTab && editorTextFocus && !editorReadonly && !editorTabMovesFocus"
-    }
+    },
+    {
+        "key": "ctrl+i",
+        "command": "vscode-augment.code-instruction.change",
+        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-vscode-augment.code-instruction.change",
+        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "vscode-augment.code-instruction.start",
+        "when": "!editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-vscode-augment.code-instruction.start",
+        "when": "!editorReadonly"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-vscode-augment.internal-dv.i",
+        "when": "vscode-augment.enableDebugFeatures && !editorReadonly && !terminalFocus || vscode-augment.internal-new-instructions.enabled && !editorReadonly && !terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "vscode-augment.focusAugmentPanel"
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "-vscode-augment.focusAugmentPanel"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "notebook.formatCell",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-notebook.formatCell",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "editor.action.formatDocument.none",
+        "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-editor.action.formatDocument.none",
+        "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "notebook.format",
+        "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-notebook.format",
+        "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-vscode-augment.focusAugmentPanel"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-workbench.action.chat.newChat",
+        "when": "chatIsEnabled && inChat && chatLocation != 'editing-session'"
+    },
+    {
+        "key": "ctrl+shift+w",
+        "command": "-workbench.action.closeWindow"
+    },
 ]
