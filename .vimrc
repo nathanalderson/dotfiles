@@ -243,6 +243,15 @@ end " !exists('g:vscode')
 " Trim trailing whitespace
 command! Trim :%s/\v\s+$/
 
+" Make buffer a scratch buffer
+function! Scratch()
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+endfunction
+
+command! Scratch call Scratch()
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
