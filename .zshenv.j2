@@ -1,3 +1,7 @@
+# asdf
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
 {% if "i3" in ansible_role_names %}
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
@@ -5,8 +9,11 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 {% endif %}
 
+# Android development
+export PATH="$HOME/.pub-cache/bin":$PATH:"$HOME/Android/Sdk/tools/bin":"$HOME/Android/Sdk/cmdline-tools/latest/bin/"
+
 # Add ~/bin and ~/.local/bin to PATH
-export PATH="$HOME/.local/bin":"$HOME/bin":"$HOME/.pub-cache/bin":$PATH:"$HOME/Android/Sdk/tools/bin":"$HOME/Android/Sdk/cmdline-tools/latest/bin/"
+export PATH="$HOME/.local/bin":"$HOME/bin":$PATH
 
 # Use nvim for editor
 export EDITOR=/usr/bin/nvim
@@ -26,3 +33,6 @@ export KERL_BUILD_DOCS=yes
 
 # Use gcr-4 (gnome-keyring) for SSH Agent
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+
+# Tell electron apps to use native wayland support if possible
+export ELECTRON_OZONE_PLATFORM_HINT=auto
