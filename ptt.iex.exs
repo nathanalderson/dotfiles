@@ -180,11 +180,11 @@ defmodule N do
       |> Enum.join(":")
 
     for i <- 1..count do
-      num = String.pad_leading("#{i}", 2, "0")
+      <<upper::binary-2, lower::binary-2>> = String.pad_leading("#{i}", 4, "0")
 
       UnsecuredSites.create_site(%{
-        name: "Site #{num}",
-        mac_address: "01:#{middle}:#{num}",
+        name: "Site #{upper}#{lower}",
+        mac_address: "#{middle}:#{upper}:#{lower}",
         org_id: org_id,
         type: type
       })
