@@ -191,6 +191,17 @@ defmodule N do
     end
   end
 
+  def create_channels(count, opts \\ []) do
+    org_id = Keyword.get(opts, :org_id, tango().id)
+
+    for i <- 1..count do
+      UnsecuredChannels.create_channel(%{
+        name: "Channel #{String.pad_leading("#{i}", 4, "0")}",
+        org_id: org_id
+      })
+    end
+  end
+
   def create_tone_events(count, tone, call_id \\ nil) do
     call_id = call_id || 1
     entities = [{tone.id, :tone}, {tone.channel_id, :channel}, {tone.org_id, :org}]
