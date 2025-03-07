@@ -107,6 +107,7 @@
       - fonts-fantasque-nerd
       - fonts-inconsolata
       - fonts-noto
+      - fonts-nono-cjk
       - inotify-tools
       - iperf3
       - jq
