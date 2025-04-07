@@ -27,7 +27,6 @@ endif
 
 call plug#begin(bundle_path)
 
-source $VIMRUNTIME/mswin.vim
 silent! unmap <C-H>
 set selectmode=
 
