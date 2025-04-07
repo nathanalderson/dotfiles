@@ -18,20 +18,24 @@ alias TangoTango.Persistence.RedisUtils
 alias TangoTango.Persistence.Organizations.InteropAgreements.Unsecured,
   as: UnsecuredInteropAgreements
 
-alias TangoTango.Persistence.Organizations.Unsecured, as: UnsecuredOrgs
-alias TangoTango.Persistence.OrganizationFeatures
-alias TangoTango.Persistence.OrganizationFeatures.Unsecured, as: UnsecuredOrgFeatures
 alias TangoTango.Persistence.AuditLog
 alias TangoTango.Persistence.AuditlogManager
 alias TangoTango.Persistence.CallDetailRecords
 alias TangoTango.Persistence.Channels
 alias TangoTango.Persistence.Channels.Channel
 alias TangoTango.Persistence.Channels.Unsecured, as: UnsecuredChannels
+alias TangoTango.Persistence.ExternalEvents
+alias TangoTango.Persistence.ExternalEvents.ExternalEvent
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
+alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
 alias TangoTango.Persistence.LatestLocationByOrg
 alias TangoTango.Persistence.MessageAttachments
 alias TangoTango.Persistence.Messages
-alias TangoTango.Persistence.Messages.Message
 alias TangoTango.Persistence.Messages.Attachment
+alias TangoTango.Persistence.Messages.Message
+alias TangoTango.Persistence.OrganizationFeatures
+alias TangoTango.Persistence.OrganizationFeatures.Unsecured, as: UnsecuredOrgFeatures
+alias TangoTango.Persistence.Organizations.Unsecured, as: UnsecuredOrgs
 alias TangoTango.Persistence.RegistrationList
 alias TangoTango.Persistence.RegistrationList.UnregisteredSite
 alias TangoTango.Persistence.SeedHelpers
@@ -45,10 +49,7 @@ alias TangoTango.Persistence.Tones.Unsecured, as: UnsecuredTones
 alias TangoTango.Persistence.Types.Avatar
 alias TangoTango.Persistence.Types.MacAddress
 alias TangoTango.Persistence.Types.PhoneNumber
-alias TangoTango.Persistence.ExternalEvents
-alias TangoTango.Persistence.ExternalEvents.ExternalEvent
-alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
-alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
+alias TangoTango.Persistence.Users.TokenPermissions
 
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured,
   as: UnsecuredEventConfigs
@@ -149,7 +150,23 @@ defmodule N do
   def set_log_level(level \\ :info), do: Logger.configure(level: level)
   def dont_truncate(), do: IEx.configure(inspect: [limit: :infinity, printable_limit: :infinity])
 
-  def me(), do: UnsecuredUsers.get_user_by_email("nathan@tangotango.net")
+  def me() do
+    me = UnsecuredUsers.get_user_by_email("nathan@tangotango.net")
+
+    token_permissions = [
+      TokenPermissions.Org.view_all(),
+      TokenPermissions.Org.manage_all(),
+      TokenPermissions.User.view_all(),
+      TokenPermissions.User.manage_all(),
+      TokenPermissions.Sites.view_all(),
+      TokenPermissions.Sites.manage_all(),
+      TokenPermissions.Sites.start_registration(),
+      TokenPermissions.Devices.register()
+    ]
+
+    %{me | token_permissions: token_permissions}
+  end
+
   def tango(), do: UnsecuredOrgs.get_organization_by_name("Tango Tango")
 
   def create_unregistered_sites(count, type \\ :dev) do
