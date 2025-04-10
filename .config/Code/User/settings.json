@@ -2,7 +2,7 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
@@ -19,7 +19,8 @@
     "editor.inlineSuggest.enabled": true,
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
-    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "extensions.ignoreRecommendations": true,
+    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim-0.9.5.appimage",
     "vscode-neovim.compositeKeys": {
         "jk": {
             "command": "vscode-neovim.escape",
@@ -143,13 +144,28 @@
     "debug.javascript.autoAttachFilter": "smart",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.0455173977264463,
-    "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
     "editor.suggest.shareSuggestSelections": true,
     "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-    "window.autoDetectColorScheme": true,
-    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Ristretto)",
+    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
     "workbench.preferredLightColorTheme": "Monokai Pro Light",
+    "workbench.editorAssociations": {
+        "*.svg": "default"
+    },
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
+    "files.associations": {
+        "*.html.j2": "html"
+    },
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+    "rust-analyzer.inlayHints.genericParameterHints.const.enable": false,
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "rust-analyzer.inlayHints.renderColons": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "rust-analyzer.lens.implementations.enable": false,
 }
