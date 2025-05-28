@@ -23,7 +23,6 @@
     owner: root
     group: root
     mode: 0644
-  tags: [justme]
 
 - name: Prepare pacman installs
   when: ansible_facts['os_family'] == "Archlinux"
@@ -259,15 +258,12 @@
     force: yes
   with_items: "{{ bin_files.files }}"
 
-- name: Install zinit (for zsh)
+- name: Install znap (for zsh)
   ansible.builtin.git:
-    repo: https://github.com/zdharma-continuum/zinit.git
-    dest: "{{ home }}/.local/share/zinit/zinit.git"
-
-- name: Initialize zinit
-  command:
-    cmd: /usr/bin/zsh
-    creates: "{{ home }}/.zinit/completions"
+    repo: https://github.com/marlonrichert/zsh-snap.git
+    dest: "{{ home }}/.local/share/znap"
+    depth: 1
+  tags: [justme]
 
 - name: Set shell to zsh
   # for an Active Directory user, you can't set the
