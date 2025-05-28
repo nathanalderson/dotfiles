@@ -2,7 +2,7 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
@@ -74,9 +74,6 @@
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.localEchoLatencyThreshold": 100,
     "terminal.integrated.enableMultiLinePasteWarning": "never",
-    "terminal.integrated.cursorStyle": "line",
-    // Disabled here because automatic installation doesn't work for me. Enabled manually in .zshrc
-    "terminal.integrated.shellIntegration.enabled": false,
     "debug.openDebug": "openOnDebugBreak",
     "[dart]": {
         "editor.formatOnSave": true,
@@ -147,7 +144,7 @@
     "debug.javascript.autoAttachFilter": "smart",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.0455173977264463,
-    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
