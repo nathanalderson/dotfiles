@@ -96,4 +96,7 @@
     "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 14,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
 }
