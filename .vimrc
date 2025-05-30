@@ -151,7 +151,9 @@ if has("gui_running")
     set guioptions-=T  "remove toolbar
     set guioptions-=m  "remove menu
     set guioptions-=rL "remove right and left scroll bars
-    set guioptions+=c  "use non-modal confirm prompts
+    if !has('nvim')
+        set guioptions+=c  "use non-modal confirm prompts
+    endif
 else
     " do terminal-only stuff
     set t_ut=
