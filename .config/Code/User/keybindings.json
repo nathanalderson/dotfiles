@@ -1,20 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
     // ===================================================
-    // Neovim `jk` escape
-    {
-        "command": "vscode-neovim.compositeEscape1",
-        "key": "j",
-        "when": "neovim.mode == insert && editorTextFocus",
-        "args": "j"
-    },
-    {
-        "command": "vscode-neovim.compositeEscape2",
-        "key": "k",
-        "when": "neovim.mode == insert && editorTextFocus",
-        "args": "k"
-    },
-    // ===================================================
     // Remove neovim bindings that remap cmd-c (cuz that should copy)
     {
         "key": "cmd+c",
@@ -265,4 +251,107 @@
         "command": "git.revertSelectedRanges",
         "when": "editorTextFocus && neovim.mode == normal"
     },
+    {
+        "key": "ctrl+; d",
+        "command": "testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+; ctrl+c",
+        "command": "-testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+' i",
+        "command": "inlineChat.start",
+        "when": "inlineChatHasProvider && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k i",
+        "command": "-inlineChat.start",
+        "when": "inlineChatHasProvider && !editorReadonly"
+    },
+    {
+        "key": "ctrl+escape",
+        "command": "-workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+escape",
+        "command": "vscode-neovim.restart"
+    },
+    {
+        "key": "ctrl+y ,",
+        "command": "editor.emmet.action.expandAbbreviation",
+        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.emmet.action.expandAbbreviation",
+        "when": "config.emmet.triggerExpansionOnTab && editorTextFocus && !editorReadonly && !editorTabMovesFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-vscode-augment.focusAugmentPanel"
+    },
+    {
+        "key": "ctrl+shift+alt+i",
+        "command": "vscode-augment.code-instruction.change",
+        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-vscode-augment.code-instruction.change",
+        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
+    },
+    {
+        "key": "ctrl+shift+alt+i",
+        "command": "vscode-augment.code-instruction.start",
+        "when": "!editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-vscode-augment.code-instruction.start",
+        "when": "!editorReadonly"
+    },
+    {
+        "key": "ctrl+]",
+        "command": "vscode-augment.next-edit.background.goto-hinting",
+        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canGotoHinting && vscode-augment.nextEdit.enableGotoHinting"
+    },
+    {
+        "key": "ctrl+;",
+        "command": "-vscode-augment.next-edit.background.goto-hinting",
+        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canGotoHinting && vscode-augment.nextEdit.enableGotoHinting"
+    },
+    {
+        "key": "ctrl+]",
+        "command": "vscode-augment.next-edit.background.next",
+        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canNext && !vscode-augment.nextEdit.enableGotoHinting"
+    },
+    {
+        "key": "ctrl+;",
+        "command": "-vscode-augment.next-edit.background.next",
+        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canNext && !vscode-augment.nextEdit.enableGotoHinting"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "vscode-augment.next-edit.background.previous",
+        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canPrevious && !vscode-augment.nextEdit.enableGotoHinting"
+    },
+    {
+        "key": "ctrl+shift+;",
+        "command": "-vscode-augment.next-edit.background.previous",
+        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canPrevious && !vscode-augment.nextEdit.enableGotoHinting"
+    },
+    {
+        "key": "ctrl+alt+]",
+        "command": "vscode-augment.next-edit.force",
+        "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
+    },
+    {
+        "key": "ctrl+alt+;",
+        "command": "-vscode-augment.next-edit.force",
+        "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
+    }
 ]

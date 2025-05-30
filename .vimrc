@@ -27,7 +27,6 @@ endif
 
 call plug#begin(bundle_path)
 
-source $VIMRUNTIME/mswin.vim
 silent! unmap <C-H>
 set selectmode=
 
@@ -46,23 +45,40 @@ Plug 'rakr/vim-one'
 if has('nvim')
 Plug 'tjdevries/colorbuddy.nvim' " required for lalitmee/cobalt2.nvim
 Plug 'lalitmee/cobalt2.nvim'
+Plug 'loctvl842/monokai-pro.nvim'
 endif
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
 
 " coc.nvim
 if has('nvim')
-Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
-Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
-Plug 'iamcco/coc-flutter', {'do': 'yarn install  --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install  --frozen-lockfile'}
+let g:coc_global_extensions = [
+            \'@yaegassy/coc-ansible',
+            \'coc-elixir',
+            \'coc-flutter',
+            \'coc-json',
+            \'coc-pyright',
+            \'coc-snippets',
+            \]
 endif
 
-" other
+" other (non-vscode)
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/syntastic'
 Plug 'regedarek/ZoomWin'
-
-end " !exists('g:vscode')
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tfnico/vim-gradle'
+Plug 'vim-scripts/fontzoom.vim'
+if has('nvim')
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'aserowy/tmux.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+endif
+Plug 'tpope/vim-dispatch'
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/goyo.vim'
 
 " Language support
 if has('nvim')
@@ -90,9 +106,9 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 
 " version control
-Plug 'nfvs/vim-perforce'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+end " !exists('g:vscode')
 
 " text objects
 Plug 'kana/vim-textobj-function'
@@ -115,22 +131,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
-Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
 Plug 'qpkorr/vim-bufkill'
-Plug 'scrooloose/syntastic'
-Plug 'tfnico/vim-gradle'
-Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'vim-scripts/fontzoom.vim'
 Plug 'AndrewRadev/splitjoin.vim'
-if has('nvim')
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'aserowy/tmux.nvim'
-endif
-Plug 'tpope/vim-dispatch'
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/goyo.vim'
 Plug 'nathanalderson/yanktohtml'
 Plug 'lambdalisue/suda.vim' " workaround for https://github.com/neovim/neovim/issues/1716
 
@@ -166,11 +168,7 @@ if has("win64") || has("win32") || has("win16")
     command! MaximizeWindow simalt ~x
     set clipboard=unnamed
 else
-    if has("gui_running")
-        set guifont=Fantasque\ Sans\ Mono\ 12,Inconsolata\ for\ PowerLine\ 12,Inconsolata\ 12
-    else
-        set guifont=Fantasque\ Sans\ Mono:h17
-    endif
+    set guifont=Fantasque\ Sans\ Mono:h10
     let vimfilesdir = "~/.vim/backup/"
     let s:p4root = "/home/nalderso/p4workspace/"
     " silent execute '!rm "~/.vim/backup/*~"'
@@ -182,7 +180,10 @@ if !exists('g:vscode')
 " colors
 set background=dark
 if has('nvim')
-    lua require('colorbuddy').colorscheme('cobalt2')
+    lua require('monokai-pro').setup({
+        \ filter = "pro"
+      \ })
+    colors monokai-pro
 else
     colorscheme gruvbox
 endif
@@ -240,6 +241,15 @@ end " !exists('g:vscode')
 
 " Trim trailing whitespace
 command! Trim :%s/\v\s+$/
+
+" Make buffer a scratch buffer
+function! Scratch()
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+endfunction
+
+command! Scratch call Scratch()
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -324,8 +334,8 @@ set nohlsearch
 
 " random custom mappings
 inoremap jk <ESC>
-nnoremap j gj
-nnoremap k gk
+nmap j gj
+nmap k gk
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
@@ -466,7 +476,7 @@ autocmd FileType elixir let b:splitjoin_join_callbacks += [
     \ 'sj#html#JoinAttributes',
     \ 'sj#html#JoinTags'
     \ ]
-autocmd FileType heex let b:splitjoin_split_callbacks += [
+autocmd FileType heex let b:splitjoin_split_callbacks = [
     \ 'sj#elixir#SplitDoBlock',
     \ 'sj#elixir#SplitArray',
     \ 'sj#elixir#SplitPipe',
@@ -474,7 +484,7 @@ autocmd FileType heex let b:splitjoin_split_callbacks += [
     \ 'sj#html#SplitTags',
     \ 'sj#html#SplitAttributes'
     \ ]
-autocmd FileType heex let b:splitjoin_join_callbacks += [
+autocmd FileType heex let b:splitjoin_join_callbacks = [
     \ 'sj#elixir#JoinDoBlock',
     \ 'sj#elixir#JoinArray',
     \ 'sj#elixir#JoinCommaDelimitedItems',
@@ -483,13 +493,42 @@ autocmd FileType heex let b:splitjoin_join_callbacks += [
     \ 'sj#html#JoinAttributes',
     \ 'sj#html#JoinTags'
     \ ]
+autocmd FileType kotlin let b:splitjoin_split_callbacks = [
+    \ 'sj#java#SplitIfClauseBody',
+    \ 'sj#java#SplitIfClauseCondition',
+    \ 'sj#java#SplitLambda',
+    \ 'sj#java#SplitFuncall',
+    \ 'sj#js#SplitObjectLiteral'
+    \ ]
+autocmd FileType kotlin let b:splitjoin_join_callbacks = [
+    \ 'sj#java#JoinLambda',
+    \ 'sj#java#JoinIfClauseCondition',
+    \ 'sj#java#JoinFuncall',
+    \ 'sj#java#JoinIfClauseBody',
+    \ 'sj#js#JoinObjectLiteral'
+    \ ]
 
 if !exists('g:vscode')
 
-" coc.nvim: use <CR> to confirm completion
-inoremap <expr> <C-cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-CR>"
+" COC
+" Use <C-j>/<C-k> to trigger completion with characters ahead and navigate
+inoremap <silent><expr> <C-j>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<C-j>" :
+      \ coc#refresh()
+inoremap <expr><C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
-" coc.nvim: use <c-space>for trigger completion
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 
 end " !exists('g:vscode')
@@ -528,29 +567,27 @@ let g:ag_prg="ag --column --smart-case"
 let g:surround_37 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
 
-if has('nvim')
-" tmux.nvim
-lua << EOF
-require("tmux").setup({
-    navigation = {
-        enable_default_keybindings = true,
-        cycle_navigation = false,
-    },
-})
-EOF
-endif
-
 if !exists('g:vscode')
 
 if has('nvim')
+" tmux.nvim
+lua require("tmux").setup({
+        \ navigation = {
+        \ enable_default_keybindings = true,
+        \ cycle_navigation = false,
+    \ },
+\ })
+endif
+
+if has('nvim')
 " lualine
-lua << END
-require('lualine').setup {
-    options = {
-        section_separators = '', component_separators = ''
-    },
-}
-END
+lua require('lualine').setup {
+    \ options = {
+        \ section_separators = '',
+        \ component_separators = '',
+        \ theme = 'monokai-pro',
+    \ },
+\ }
 endif
 
 " fugitive

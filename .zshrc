@@ -4,7 +4,7 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 # initialize zinit
-source ~/.local/share/zinit/zinit.git/zinit.zsh
+source ~/.local/share/znap/znap.zsh
 
 ###
 # Prompt theme stuff
@@ -22,44 +22,34 @@ SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_PROMPT_SYMBOL=»
 SPACESHIP_GIT_UNSTAGED=✘
 
-zinit wait lucid for \
-    OMZL::git.zsh \
-  atload"set_git_aliases" \
-    OMZP::git
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
-PS1="»" # provide a simple prompt till the theme loads
+znap source ohmyzsh/ohmyzsh lib/{git,theme-and-appearance}
 
-# vscode shell integration must be loaded after the prompt theme
-zinit wait'!' lucid for \
-    OMZL::prompt_info_functions.zsh \
-    'https://github.com/nathanalderson/dotfiles/blob/main/spaceship.zsh-theme'
+source ~/dotfiles/spaceship.zsh-theme
+znap prompt
 
-# This block added by the zinit installer...
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+znap source ohmyzsh/ohmyzsh plugins/git
+alias gb='git branch --sort=-committerdate'
+alias grom='git rebase --onto $(git_main_branch)'
+alias gsp='git stash pop'
+alias gsa='git stash apply'
+alias gca='git commit --amend'
 
-###
-# Load plugins
-###
-zinit wait lucid for \
-  OMZL::directories.zsh \
-  atinit"zicompinit; zicdreplay"  \
-    OMZP::colored-man-pages \
-  atload"unalias rm mv cp; alias l=ls; alias ll=lsa" \
-    OMZP::common-aliases \
-  as"completion" \
-    OMZP::docker/_docker \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
-  atload"zicompinit; zicdreplay" blockf \
-    OMZL::completion.zsh \
-  atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+znap source ohmyzsh/ohmyzsh plugins/common-aliases
+znap source ohmyzsh/ohmyzsh lib/directories
+unalias rm mv cp l ll
+alias l='ls'
+alias ls='ls --color=auto'
+alias ll='lsa'
+
+znap source ohmyzsh/ohmyzsh plugins/colored-man-pages
+znap source zsh-users/zsh-syntax-highlighting
+
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
+znap source zsh-users/zsh-autosuggestions
+
 
 ###
 # General options
@@ -85,19 +75,14 @@ unsetopt correct_all
 setopt extended_glob
 setopt interactivecomments
 
-# gnome-terminal and mate-terminal support 256 colors
-if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
-  export TERM=$TERM-256color
-fi
-
-# auto-suggestions
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
+# # gnome-terminal and mate-terminal support 256 colors
+# if [[ (! ("$TERM" =~ '.*256color')) && (("$COLORTERM" == 'gnome-terminal') || ("$COLORTERM" == 'mate-terminal') || ("$COLORTERM" == '')) ]] then
+#   export TERM=$TERM-256color
+# fi
 
 ###
 # Custom aliases and functions
 ###
-
-alias ls="ls --color=auto"
 
 # aliases for gradle building
 alias gw="./(../)#gradlew" # search up the directory tree for gradlew
@@ -145,11 +130,6 @@ alias drr='docker run -it --rm' #"docker run"
 dre () { docker exec -it ${*:1} }
 drip () { docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@" }
 
-# git
-set_git_aliases() {
-    alias gb='git branch --sort=-committerdate'
-}
-
 # delete the bad host key from the previous ssh command
 purgehostkey() {
   cmd=$history[$((HISTCMD-1))]
@@ -167,11 +147,10 @@ alias open='xdg-open'
 # allow sudo to use aliases
 alias sudo='sudo '
 
-# create a new named tmux session with `tm <name>`
-alias tm='tmux new -s '
-
-# run `flutter pub get` in all sub-projects
-alias fpg='for d in $(find . -maxdepth 5 -name pubspec.yaml); do bash -c "cd $(dirname $d) && flutter pub get"; done'
+# TMUX aliases
+alias tm='tmux new -A -s'
+alias tml='tmux list-sessions'
+alias tma='tmux attach -t'
 
 ###
 # Other things
@@ -234,19 +213,9 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-if [[ "$PROFILE_STARTUP" == true ]]; then
-  zprof
-fi
-
 # Set gopath
 export GOPATH="$HOME/.godir"
 export PATH=$PATH:"$GOPATH/bin"
-
-# mosh
-export MOSH_ESCAPE_KEY='~'
-
-# added by travis gem
-[ -f /home/nalderso/.travis/travis.sh ] && source /home/nalderso/.travis/travis.sh
 
 # asdf
 for ASDF_SCRIPT in /opt/asdf-vm/asdf.sh ~/.asdf/asdf.sh; do

@@ -14,6 +14,16 @@
     - projects
     - tmp
 
+- name: configure pacman
+  when: ansible_facts['os_family'] == "Archlinux"
+  become: yes
+  copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Prepare pacman installs
   when: ansible_facts['os_family'] == "Archlinux"
   become: yes
@@ -121,11 +131,10 @@
     - lightdm-slick-greeter
     - lsb-release
     - neovim
-    - nextcloud-client
-    - nomacs
     - openssh
     - python-jedi
     - python-pip
+    - python-pynvim
     - python-wheel
     - python-virtualenv
     - resolvconf
@@ -249,15 +258,12 @@
     force: yes
   with_items: "{{ bin_files.files }}"
 
-- name: Install zinit (for zsh)
+- name: Install znap (for zsh)
   ansible.builtin.git:
-    repo: https://github.com/zdharma-continuum/zinit.git
-    dest: "{{ home }}/.zinit/bin"
-
-- name: Initialize zinit
-  command:
-    cmd: /usr/bin/zsh
-    creates: "{{ home }}/.zinit/completions"
+    repo: https://github.com/marlonrichert/zsh-snap.git
+    dest: "{{ home }}/.local/share/znap"
+    depth: 1
+  tags: [justme]
 
 - name: Set shell to zsh
   # for an Active Directory user, you can't set the
@@ -330,13 +336,6 @@
   ansible.posix.sysctl:
     name: net.ipv4.tcp_congestion_control
     value: bbr
-
-- name: Add home directory to apparmor
-  when: "'adtran' in ansible_role_names and ansible_facts['apparmor']['status'] == 'enabled'"
-  become: yes
-  copy:
-    dest: "/etc/apparmor.d/tunables/home.d/adtran"
-    content: "@{HOMEDIRS}+={{ home | dirname }}"
 
 - name: Create a user for managing AURs
   become: yes

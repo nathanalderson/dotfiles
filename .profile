@@ -2,9 +2,5 @@
 ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 10000000"
 
 # asdf
-ASDF_SCRIPT=/opt/asdf-vm/asdf.sh
-if [[ -f "$ASDF_SCRIPT" ]]; then
-    . $ASDF_SCRIPT
-fi
-
-. ~/.profile-local
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"

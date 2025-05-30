@@ -1,9 +1,16 @@
+# asdf
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
 {% if "i3" in ansible_role_names %}
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
 fi
 {% endif %}
+
+# Android development
+export PATH="$HOME/.pub-cache/bin":$PATH:"$HOME/Android/Sdk/tools/bin":"$HOME/Android/Sdk/cmdline-tools/latest/bin/"
 
 # Add ~/bin and ~/.local/bin to PATH
 export PATH="$HOME/.local/bin":"$HOME/bin":$PATH
@@ -18,3 +25,14 @@ export ANSIBLE_NOCOWS=1
 export CM_OWN_CLIPBOARD=1
 export CM_LAUNCHER=rofi
 export CM_IGNORE_WINDOW=.*keepass.*
+
+# iex history
+export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 10000000"
+# build Elixir with Docs
+export KERL_BUILD_DOCS=yes
+
+# Use gcr-4 (gnome-keyring) for SSH Agent
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+
+# Tell electron apps to use native wayland support if possible
+export ELECTRON_OZONE_PLATFORM_HINT=auto

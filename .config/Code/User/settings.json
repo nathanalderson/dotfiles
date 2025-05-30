@@ -1,11 +1,14 @@
 {
-    "workbench.colorTheme": "One Monokai",
-    "workbench.editor.showTabs": false,
-    "workbench.list.automaticKeyboardNavigation": false,
+    "window.commandCenter": false,
+    "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
+    "workbench.editor.showTabs": "single",
+    "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "editor.fontLigatures": false,
+    "editor.fontFamily": "'Fantasque Sans Mono', monospace",
+    "editor.fontSize": 15,
+    "editor.fontLigatures": "",
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "phase",
@@ -13,20 +16,27 @@
     "editor.minimap.enabled": false,
     "editor.find.loop": false,
     "editor.guides.indentation": false,
+    "editor.inlineSuggest.enabled": true,
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
-    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "extensions.ignoreRecommendations": true,
+    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim-0.9.5.appimage",
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape",
+        }
+    },
     "files.autoSave": "onWindowChange",
-    "elixirLS.suggestSpecs": false,
-    "elixirLS.dialyzerFormat": "dialyxir_short",
     "elixirLS.envVariables": {
         "ELIXIR_WARNINGS_OK": "1"
     },
+    "elixirLS.suggestSpecs": false,
+    "exunit.saveAllBeforeRun": true,
     "[elixir]": {
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
     },
     "[html-eex]": {
         "editor.formatOnType": true,
@@ -41,22 +51,29 @@
         "editor.tabSize": 2,
         "editor.formatOnSave": true
     },
-    "C_Cpp.default.compilerPath": "/usr/bin/x86_64-linux-gnu-gcc",
-    "C_Cpp.default.cppStandard": "c++17",
-    "python.formatting.provider": "black",
-    "[python]": {
-        "editor.formatOnType": true
+    "[yaml]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.detectIndentation": false
     },
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+    },
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
     // This allows ctrl-p to function as "previous" in the terminal
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
     ],
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.localEchoLatencyThreshold": 100,
-    "terminal.integrated.enableMultiLinePasteWarning": false,
-    "terminal.integrated.cursorStyle": "line",
-    // Disabled here because automatic installation doesn't work for me. Enabled manually in .zshrc
-    "terminal.integrated.shellIntegration.enabled": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     "debug.openDebug": "openOnDebugBreak",
     "[dart]": {
         "editor.formatOnSave": true,
@@ -65,34 +82,91 @@
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": false,
+        "editor.wordBasedSuggestions": "off",
     },
     "git.confirmSync": false,
     "remote.SSH.useLocalServer": false,
     "remote.SSH.remotePlatform": {
-        "nathan-desktop-zt": "linux"
+        "nathan-desktop-zt": "linux",
+        "192.168.125.2": "macOS",
+        "nathan-macbook-zt": "macOS",
+        "nathan-macbook": "macOS",
+        "nathan-desktop": "linux",
+        "nathan-ubuntu2204": "linux",
+        "10.0.100.107": "macOS",
+        "10.0.100.182": "macOS",
+        "10.0.100.60": "macOS"
     },
-    "alpine-intellisense.settings.languageScopes": "html,elixir,html-eex,heex",
     "diffEditor.ignoreTrimWhitespace": false,
-    "liquid.format": true,
-    "window.zoomLevel": -0.4772413011367769,
+    "diffEditor.diffAlgorithm": "advanced",
     "dart.showTestCodeLens": false,
     "dart.showMainCodeLens": false,
     "dart.showDartPadSampleCodeLens": false,
     "testing.automaticallyOpenPeekView": "never",
     "dart.closingLabels": false,
-    "tailwindCSS.colorDecorators": false,
     "tailwindCSS.includeLanguages": {
-        "\"elixir\"": "\"html\""
+        "elixir": "html",
+        "phoenix-heex": "html",
+    },
+    "emmet.includeLanguages": {
+        "phoenix-heex": "html",
+        "elixir": "html",
     },
     "testing.gutterEnabled": false,
+    "eslint.format.enable": true,
     "[typescript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "diffEditor.diffAlgorithm": "advanced",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.tree.indent": 12,
+    "workbench.list.smoothScrolling": true,
+    "editor.lineNumbers": "on",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "workbench.activityBar.location": "top",
+    "[liquid]": {
+        "editor.defaultFormatter": "sissel.shopify-liquid",
+        "editor.formatOnSave": true
+    },
+    "liquid.engine": "jekyll",
+    "editor.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
+    "debug.javascript.autoAttachFilter": "smart",
+    "window.customTitleBarVisibility": "auto",
+    "window.zoomLevel": -1.0455173977264463,
+    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "black-formatter.importStrategy": "fromEnvironment",
+    "python.analysis.autoFormatStrings": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.preferredLightColorTheme": "Monokai Pro Light",
+    "workbench.editorAssociations": {
+        "*.svg": "default"
+    },
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
+    "files.associations": {
+        "*.html.j2": "html"
+    },
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+    "rust-analyzer.inlayHints.genericParameterHints.const.enable": false,
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "rust-analyzer.inlayHints.renderColons": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
     "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 14,

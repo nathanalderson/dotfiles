@@ -33,12 +33,15 @@
       - cmake
       - dconf-editor
       - dnsutils
+      - flameshot
       - gnome-calculator
       - gpaste
+      - gvfs-smb
       - imagemagick
       - inotify-tools
       - iperf3
       - jq
+      - live-media
       - meld
       - minicom
       - ncdu
@@ -83,7 +86,7 @@
   vars:
     packages:
       - bcompare
-      - pamac-aur
+      # - pamac-aur
 
 - name: Install niceties
   when: ansible_facts['os_family'] == "Debian"
@@ -98,10 +101,13 @@
       - bcompare
       - cloc
       - cmake
+      - dconf-cli
       - dconf-editor
       - fonts-fantasque-sans
+      - fonts-fantasque-nerd
       - fonts-inconsolata
       - fonts-noto
+      - fonts-nono-cjk
       - inotify-tools
       - iperf3
       - jq
@@ -112,6 +118,7 @@
       - samba
       - sshfs
       - silversearcher-ag
+      - uuid-runtime
       - vlc
       - wireguard-tools
       - wireshark
@@ -124,10 +131,10 @@
     groups: [wireshark]
     append: yes
 
-- name: Clone base16-gnome-terminal for terminal color schemes
+- name: Clone gogh for terminal color schemes
   git:
-    repo: https://github.com/aaron-williamson/base16-gnome-terminal.git
-    dest: "{{ home }}/.config/base16-gnome-terminal"
+    repo: https://github.com/Gogh-Co/Gogh.git
+    dest: "{{ home }}/opt/gogh"
 
 - name: start and enable NTP
   become: yes
@@ -136,3 +143,9 @@
     state: started
     enabled: yes
 
+- name: Enable gnome-keyring SSH-Agent
+  systemd:
+    name: gcr-ssh-agent.socket
+    state: started
+    enabled: yes
+    scope: user
