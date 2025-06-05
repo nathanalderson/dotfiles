@@ -209,27 +209,6 @@
     force: yes
   with_items: "{{ dotconfig_files.stdout_lines }}"
 
-- name: Install python packages (local)
-  # This one has problems using a local connection because you end up still
-  # in the virtualenv being used to run the playbook.
-  when: ansible_connection != 'local'
-  pip:
-    name: "{{ packages }}"
-    executable: pip3
-    extra_args: --user
-    state: present
-  vars:
-    packages:
-      - black
-      - esbonio
-      - mypy
-      - neovim
-      - poetry
-      - pycodestyle
-      - pylama
-      - pylint
-      - virtualenv
-
 - name: Remove apt packages
   when: ansible_facts['os_family'] == "Debian"
   become: yes
