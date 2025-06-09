@@ -159,6 +159,12 @@ else
     set t_ut=
 endif
 
+if exists("g:neovide")
+    " prevents overly bold text
+    let g:neovide_text_gamma = 0.8
+    let g:neovide_text_contrast = 0.1
+endif
+
 if has("win64") || has("win32") || has("win16")
     set guifont=Consolas:h11:cANSI
     let vimfilesdir = "C:/temp/vim_backup//"

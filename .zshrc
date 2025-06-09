@@ -3,7 +3,7 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
   zmodload zsh/zprof
 fi
 
-# initialize zinit
+# initialize znap
 source ~/.local/share/znap/znap.zsh
 
 ###
@@ -44,6 +44,7 @@ alias l='ls'
 alias ls='ls --color=auto'
 alias ll='lsa'
 
+znap source ohmyzsh/ohmyzsh lib/completion
 znap source ohmyzsh/ohmyzsh plugins/colored-man-pages
 znap source zsh-users/zsh-syntax-highlighting
 
