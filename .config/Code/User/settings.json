@@ -95,7 +95,8 @@
         "nathan-ubuntu2204": "linux",
         "10.0.100.107": "macOS",
         "10.0.100.182": "macOS",
-        "10.0.100.60": "macOS"
+        "10.0.100.60": "macOS",
+        "MacBookAir": "macOS"
     },
     "diffEditor.ignoreTrimWhitespace": false,
     "diffEditor.diffAlgorithm": "advanced",
