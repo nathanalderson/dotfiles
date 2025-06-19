@@ -20,7 +20,7 @@
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
     "extensions.ignoreRecommendations": true,
-    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim-0.9.5.appimage",
+    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim-v0.12.0-dev-630+g8af2aea24f.appimage",
     "vscode-neovim.compositeKeys": {
         "jk": {
             "command": "vscode-neovim.escape",
@@ -169,4 +169,5 @@
     "rust-analyzer.inlayHints.renderColons": false,
     "rust-analyzer.inlayHints.typeHints.enable": false,
     "rust-analyzer.lens.implementations.enable": false,
+    "augment.chat.userGuidelines": "Don't apologize. Don't ask me about what I want to do next.",
 }
