@@ -367,6 +367,16 @@ nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
 
+" Ctrl[-Shift]-v paste
+inoremap <C-v> <C-r>+
+inoremap <C-S-v> <C-r>+
+cnoremap <C-v> <C-r>+
+cnoremap <C-S-v> <C-r>+
+vnoremap <C-v> "+p
+vnoremap <C-S-v> "+p
+nnoremap <C-v> "+p
+nnoremap <C-S-v> "+p
+
 if !exists('g:vscode')
 
 " neovim terminal
