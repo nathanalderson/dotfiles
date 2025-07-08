@@ -361,5 +361,10 @@
         "key": "ctrl+shift+a",
         "command": "-editor.action.blockComment",
         "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.terminal.newLocal",
+        "when": "terminalFocus"
     }
 ]
