@@ -142,7 +142,7 @@
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
-    "debug.javascript.autoAttachFilter": "smart",
+    "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.0455173977264463,
     "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
