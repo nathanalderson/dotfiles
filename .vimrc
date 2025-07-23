@@ -344,6 +344,8 @@ set nohlsearch
 inoremap jk <ESC>
 nmap j gj
 nmap k gk
+" fixes horizontal cursor position memory with gj and gk (or just j and k with above mappings)
+set virtualedit=onemore
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
