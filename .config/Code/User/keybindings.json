@@ -366,5 +366,15 @@
         "key": "ctrl+shift+t",
         "command": "workbench.action.terminal.newLocal",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "-rust-analyzer.joinLines",
+        "when": "editorTextFocus && editorLangId == 'rust'"
     }
 ]
