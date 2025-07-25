@@ -54,6 +54,8 @@ alias TangoTango.Persistence.Users.TokenPermissions
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured,
   as: UnsecuredEventConfigs
 
+require Ecto.Query
+
 defmodule N do
   def seed() do
     tango_org = SeedHelpers.tango_tango_org()
@@ -200,12 +202,24 @@ defmodule N do
       <<upper::binary-2, lower::binary-2>> = String.pad_leading("#{i}", 4, "0")
 
       UnsecuredSites.create_site(%{
-        name: "Site #{upper}#{lower}",
+        name: "Site #{upper}#{lower} (#{org_id})",
         mac_address: "#{middle}:#{upper}:#{lower}",
         org_id: org_id,
-        type: type
+        type: type,
+        imei: "imei-#{upper}#{lower}"
       })
     end
+  end
+
+  # Add a random set of tags to each site in an org
+  def tag_sites(org_id, tags) do
+    sites = Repo.all(Site |> Ecto.Query.where(org_id: ^org_id))
+
+    Enum.each(sites, fn site ->
+      tag_count = Enum.random(1..3)
+      selected_tags = Enum.take_random(tags, tag_count)
+      UnsecuredSites.update_site(site, %{tags: selected_tags})
+    end)
   end
 
   def create_channels(count, opts \\ []) do
