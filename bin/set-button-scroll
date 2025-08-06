@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DEVICE_NAME="pointer:Logitech MX Ergo"
+
+case "$1" in
+  on)
+    xinput set-prop "$DEVICE_NAME" "libinput Scroll Method Enabled" 0 0 1
+    ;;
+  off)
+    xinput set-prop "$DEVICE_NAME" "libinput Scroll Method Enabled" 0 0 0
+    ;;
+  *)
+    echo "Usage: $0 [on|off]"
+    exit 1
+    ;;
+esac
