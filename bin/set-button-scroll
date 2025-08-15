@@ -10,7 +10,7 @@ case "$1" in
     xinput set-prop "$DEVICE_NAME" "libinput Scroll Method Enabled" 0 0 0
     ;;
   toggle)
-    if [[ $(xinput list-props "$DEVICE_NAME" | grep "310" | grep -o "1$") ]]; then
+    if [[ $(xinput list-props "$DEVICE_NAME" | grep "libinput Scroll Method Enabled (" | grep -o "1$") ]]; then
       echo "Disabling button scrolling"
       xinput set-prop "$DEVICE_NAME" "libinput Scroll Method Enabled" 0 0 0
     else
