@@ -332,6 +332,13 @@
      validate: /usr/sbin/visudo -cf %s
      create: yes
 
+- name: Don't install AUR debug packages
+  become: yes
+  lineinfile:
+     path: /etc/makepkg.conf
+     regexp: "^OPTIONS="
+     line: "OPTIONS=(strip docs !libtool !staticlibs emptydirs zipman purge !debug lto)"
+
 - name: Install gnome-keyring and associated tools
   become: yes
   pacman:
