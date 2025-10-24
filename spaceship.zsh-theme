@@ -15,7 +15,7 @@ SPACESHIP_PROMPT_SEPARATE_LINE="${SPACESHIP_PROMPT_SEPARATE_LINE:-true}"
 SPACESHIP_PROMPT_TRUNC="${SPACESHIP_PROMPT_TRUNC:-3}"
 
 # PREFIXES
-SPACESHIP_PREFIX_SHOW="${SPACEHIP_PREFIX_SHOW:-true}"
+SPACESHIP_PREFIX_SHOW="${SPACESHIP_PREFIX_SHOW:-true}"
 SPACESHIP_PREFIX_HOST="${SPACESHIP_PREFIX_HOST:-" at "}"
 SPACESHIP_PREFIX_DIR="${SPACESHIP_PREFIX_DIR:-" in "}"
 SPACESHIP_PREFIX_GIT="${SPACESHIP_PREFIX_GIT:-" on "}"
@@ -151,7 +151,7 @@ spaceship_current_dir() {
 # Uncommitted changes.
 # Check for uncommitted changes in the index.
 spaceship_git_uncomitted() {
-  if ! $(git diff --quiet --ignore-submodules --cached); then
+  if ! git diff --quiet --ignore-submodules --cached -- &>/dev/null; then
     echo -n "${SPACESHIP_GIT_UNCOMMITTED}"
   fi
 }
@@ -159,7 +159,7 @@ spaceship_git_uncomitted() {
 # Unstaged changes.
 # Check for unstaged changes.
 spaceship_git_unstaged() {
-  if ! $(git diff-files --quiet --ignore-submodules --); then
+  if ! git diff-files --quiet --ignore-submodules -- &>/dev/null; then
     echo -n "${SPACESHIP_GIT_UNSTAGED}"
   fi
 }
@@ -175,7 +175,7 @@ spaceship_git_untracked() {
 # Stashed changes.
 # Check for stashed changes.
 spaceship_git_stashed() {
-  if $(git rev-parse --verify refs/stash &>/dev/null); then
+  if git rev-parse --verify refs/stash &>/dev/null; then
     echo -n "${SPACESHIP_GIT_STASHED}"
   fi
 }
@@ -485,7 +485,7 @@ spaceship_prompt() {
 # PS2 - continuation interactive prompt
 spaceship_ps2_prompt() {
   echo -n "%{$fg_bold[yellow]%}"
-  echo -n "%{$SPACESHIP_PROMPT_SYMBOL%} "
+  echo -n "$SPACESHIP_PROMPT_SYMBOL "
   echo -n "%{$reset_color%}"
 }
 
