@@ -70,12 +70,12 @@
       - yarn
       - yamllint
 
-- name: Install yay-bin
-  when: ansible_facts['os_family'] == "Archlinux"
-  become: yes
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    name: yay-bin
+# - name: Install yay
+#   when: ansible_facts['os_family'] == "Archlinux"
+#   become: yes
+#   become_user: aur_builder
+#   kewlfft.aur.aur:
+#     name: yay-bin
 
 - name: Install AUR niceties
   when: ansible_facts['os_family'] == "Archlinux"
@@ -86,7 +86,8 @@
   vars:
     packages:
       - bcompare
-      # - pamac-aur
+      - 1password
+      - 1password-cli
 
 - name: Install niceties
   when: ansible_facts['os_family'] == "Debian"

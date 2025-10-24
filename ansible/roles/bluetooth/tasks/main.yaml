@@ -9,7 +9,6 @@
       - blueman
       - bluez
       - bluez-utils
-      - pulseaudio-bluetooth
 
 - name: Start and enable bluetooth
   become: yes

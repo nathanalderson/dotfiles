@@ -48,12 +48,12 @@
     - iwd
     - systemd-networkd
 
-- name: Disable dhcpcd
-  become: yes
-  systemd:
-    name: dhcpcd.service
-    state: stopped
-    enabled: no
+# - name: Disable dhcpcd
+#   become: yes
+#   systemd:
+#     name: dhcpcd.service
+#     state: stopped
+#     enabled: no
 
 - name: Create directory to configure systemd-networkd-wait-online.service
   become: yes

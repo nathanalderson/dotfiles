@@ -9,7 +9,7 @@
     - jq
 
 - name: Install asdf Flutter plugin
-  command: asdf plugin-add flutter
+  command: asdf plugin add flutter
   register: asdf_plugin_add_flutter
   changed_when: asdf_plugin_add_flutter.rc != 2
   failed_when: "asdf_plugin_add_flutter.rc not in [0, 2]"
@@ -18,7 +18,3 @@
   command: "asdf install flutter latest && asdf global flutter latest"
   register: asdf_install_flutter_latest
   changed_when: '"already installed" not in asdf_install_flutter_latest.stdout'
-
-- name: Set default Flutter to latest
-  command: asdf global flutter latest
-
