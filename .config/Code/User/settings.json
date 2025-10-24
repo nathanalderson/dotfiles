@@ -2,7 +2,7 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
@@ -127,10 +127,7 @@
     "workbench.list.smoothScrolling": true,
     "editor.lineNumbers": "on",
     "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
+        "*": false
     },
     "workbench.activityBar.location": "top",
     "[liquid]": {
@@ -143,8 +140,8 @@
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
-    "window.zoomLevel": -1.0455173977264463,
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "window.zoomLevel": -1.5682760965896694,
+    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
