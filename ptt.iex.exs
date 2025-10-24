@@ -36,8 +36,6 @@ alias TangoTango.Persistence.Messages.Message
 alias TangoTango.Persistence.OrganizationFeatures
 alias TangoTango.Persistence.OrganizationFeatures.Unsecured, as: UnsecuredOrgFeatures
 alias TangoTango.Persistence.Organizations.Unsecured, as: UnsecuredOrgs
-alias TangoTango.Persistence.RegistrationList
-alias TangoTango.Persistence.RegistrationList.UnregisteredSite
 alias TangoTango.Persistence.SeedHelpers
 alias TangoTango.Persistence.Sites
 alias TangoTango.Persistence.Sites.Site
@@ -170,21 +168,6 @@ defmodule N do
   end
 
   def tango(), do: UnsecuredOrgs.get_organization_by_name("Tango Tango")
-
-  def create_unregistered_sites(count, type \\ :dev) do
-    for i <- 1..count do
-      num = String.pad_leading("#{i}", 2, "0")
-
-      %UnregisteredSite{}
-      |> UnregisteredSite.changeset(%{
-        name: "Unregistered Site #{num}",
-        mac_address: "00:00:00:00:00:#{num}",
-        type: type,
-        status: :waiting
-      })
-      |> Repo.insert()
-    end
-  end
 
   def create_sites(count, opts \\ []) do
     type = Keyword.get(opts, :type, :dev)
