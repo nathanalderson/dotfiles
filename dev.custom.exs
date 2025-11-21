@@ -39,8 +39,7 @@ config :logger, :console,
   colors: [enabled: true],
   metadata: MyConsoleLogger.logs_metadata()
 
-config :ex_stream_client,
-  api_key: "62nfxqhsugu4",
-  api_key_secret: "9djsqz8usphbedvqqfffs4ffdhhtswmk67yzpxr34h2n74y6gznwv7a9pqrfnw8z"
-
-config :stream_chat, enabled: true
+# Import custom secrets
+if File.exists?("dev.custom.secret.exs") do
+  import_config "dev.custom.secret.exs"
+end
