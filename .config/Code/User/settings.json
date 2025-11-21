@@ -126,9 +126,6 @@
     "workbench.tree.indent": 12,
     "workbench.list.smoothScrolling": true,
     "editor.lineNumbers": "on",
-    "github.copilot.enable": {
-        "*": false
-    },
     "workbench.activityBar.location": "top",
     "[liquid]": {
         "editor.defaultFormatter": "sissel.shopify-liquid",
@@ -140,7 +137,7 @@
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
-    "window.zoomLevel": -1.5682760965896694,
+    "window.zoomLevel": -1.0455173977264463,
     "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
@@ -169,4 +166,11 @@
     "rust-analyzer.lens.run.enable": false,
     "rust-analyzer.lens.debug.enable": false,
     "terminal.integrated.stickyScroll.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.enable": {
+        "plaintext": true,
+        "markdown": true,
+        "scminput": true
+    },
+    "github.copilot.selectedCompletionModel": "",
 }
