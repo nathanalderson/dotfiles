@@ -289,43 +289,8 @@
         "command": "-vscode-augment.focusAugmentPanel"
     },
     {
-        "key": "ctrl+shift+alt+i",
-        "command": "vscode-augment.code-instruction.change",
-        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
-    },
-    {
-        "key": "ctrl+shift+i",
-        "command": "-vscode-augment.code-instruction.change",
-        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
-    },
-    {
-        "key": "ctrl+shift+alt+i",
-        "command": "vscode-augment.code-instruction.start",
-        "when": "!editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+i",
-        "command": "-vscode-augment.code-instruction.start",
-        "when": "!editorReadonly"
-    },
-    {
-        "key": "ctrl+]",
-        "command": "vscode-augment.next-edit.background.goto-hinting",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canGotoHinting && vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
-        "key": "ctrl+;",
-        "command": "-vscode-augment.next-edit.background.goto-hinting",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canGotoHinting && vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
         "key": "ctrl+]",
         "command": "vscode-augment.next-edit.background.next",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canNext && !vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
-        "key": "ctrl+;",
-        "command": "-vscode-augment.next-edit.background.next",
         "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canNext && !vscode-augment.nextEdit.enableGotoHinting"
     },
     {
@@ -334,22 +299,16 @@
         "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canPrevious && !vscode-augment.nextEdit.enableGotoHinting"
     },
     {
-        "key": "ctrl+shift+;",
-        "command": "-vscode-augment.next-edit.background.previous",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canPrevious && !vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
         "key": "ctrl+alt+]",
         "command": "vscode-augment.next-edit.force",
         "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
     },
     {
-        "key": "ctrl+alt+;",
-        "command": "-vscode-augment.next-edit.force",
-        "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
+        "key": "ctrl+shift+a",
+        "command": "workbench.view.extension.augment-chat"
     },
     {
-        "key": "ctrl+shift+a",
+        "key": "ctrl+' a",
         "command": "workbench.view.extension.augment-chat"
     },
     {
