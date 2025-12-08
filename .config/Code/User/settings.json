@@ -144,7 +144,7 @@
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.5682760965896694,
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
@@ -178,4 +178,5 @@
         "scminput": true
     },
     "github.copilot.selectedCompletionModel": "",
+    "terminal.integrated.suggest.enabled": false,
 }
