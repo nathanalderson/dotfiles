@@ -48,7 +48,7 @@ defmodule N do
   def seed() do
     tango_org = SeedHelpers.tango_tango_org()
     SeedHelpers.attempt_insert(%Organization{org_name: "Nathan's Org"})
-    nathans_org = UnsecuredOrgs.get_organization_by_name("Nathan's Org")
+    nathans_org = Organizations.Unsecured.get_organization_by_name("Nathan's Org")
     SeedHelpers.device_limit(tango_org, 1000)
     SeedHelpers.device_limit(nathans_org, 1000)
 
@@ -120,7 +120,7 @@ defmodule N do
         nil
 
       {:ok, device} ->
-        UnsecuredDevices.update_device_token(%{
+        Devices.Unsecured.update_device_token(%{
           device_id: device.id,
           token_value:
             "d_Dn-zqSQo6RuelR6CDRRh:APA91bERzaOfSKJyC3B-UuVJXDGBPXqkmlRdMj5_FuDs3wB32wFKuKnViVelofnzGrJPzTuqX1Lr8VYZNT3c0rFiS8Ab3s8BUZoLGV7zKWoumFMDUVmRCzLYP72vhe1npFqgKQf4aEEi",
@@ -141,7 +141,7 @@ defmodule N do
   def dont_truncate(), do: IEx.configure(inspect: [limit: :infinity, printable_limit: :infinity])
 
   def me() do
-    me = UnsecuredUsers.get_user_by_email("nathan@tangotango.net")
+    me = Users.Unsecured.get_user_by_email("nathan@tangotango.net")
 
     token_permissions = [
       TokenPermissions.Org.view_all(),
@@ -157,7 +157,7 @@ defmodule N do
     %{me | token_permissions: token_permissions}
   end
 
-  def tango(), do: UnsecuredOrgs.get_organization_by_name("Tango Tango")
+  def tango(), do: Organizations.Unsecured.get_organization_by_name("Tango Tango")
 
   def create_sites(count, opts \\ []) do
     type = Keyword.get(opts, :type, :dev)
@@ -174,7 +174,7 @@ defmodule N do
     for i <- 1..count do
       <<upper::binary-2, lower::binary-2>> = String.pad_leading("#{i}", 4, "0")
 
-      UnsecuredSites.create_site(%{
+      Sites.Unsecured.create_site(%{
         name: "Site #{upper}#{lower} (#{org_id})",
         mac_address: "#{middle}:#{upper}:#{lower}",
         org_id: org_id,
@@ -191,7 +191,7 @@ defmodule N do
     Enum.each(sites, fn site ->
       tag_count = Enum.random(1..3)
       selected_tags = Enum.take_random(tags, tag_count)
-      UnsecuredSites.update_site(site, %{tags: selected_tags})
+      Sites.Unsecured.update_site(site, %{tags: selected_tags})
     end)
   end
 
@@ -199,7 +199,7 @@ defmodule N do
     org_id = Keyword.get(opts, :org_id, tango().id)
 
     for i <- 1..count do
-      UnsecuredChannels.create_channel(%{
+      Channels.Unsecured.create_channel(%{
         name: "Channel #{String.pad_leading("#{i}", 4, "0")}",
         org_id: org_id
       })
@@ -227,7 +227,7 @@ defmodule N do
         call_id \\ nil,
         tone_ids \\ []
       ) do
-    channel = UnsecuredChannels.get_channel!(channel_id)
+    channel = Channels.Unsecured.get_channel!(channel_id)
     now = Timex.now()
 
     for i <- 1..count do
@@ -282,7 +282,7 @@ defmodule N do
       num = String.pad_leading("#{i}", 4, "0")
 
       {:ok, user} =
-        UnsecuredUsers.create_user(%{
+        Users.Unsecured.create_user(%{
           first_name: "User",
           last_name: "Person #{num}",
           org_id: org_id,
@@ -295,7 +295,7 @@ defmodule N do
   end
 
   def create_random_devices(count, org_id) do
-    organization = UnsecuredOrgs.get_organization!(org_id) |> Repo.preload(:users)
+    organization = Organizations.Unsecured.get_organization!(org_id) |> Repo.preload(:users)
 
     Enum.map(1..count, fn i ->
       platform = Enum.random([:ios, :android])
@@ -312,7 +312,7 @@ defmodule N do
       i = Integer.to_string(i) |> String.pad_leading(4, "0")
 
       result =
-        UnsecuredDevices.create_device(%{
+        Devices.Unsecured.create_device(%{
           device_id: "device-#{i}",
           imei: "imei-#{i}",
           user_id: user && user.id,
@@ -329,14 +329,14 @@ defmodule N do
         {:ok, device} ->
           if push_status == :registered do
             {:ok, _} =
-              UnsecuredDevices.update_device_token(%{
+              Devices.Unsecured.update_device_token(%{
                 device_id: device.id,
                 token_type: :fcm,
                 token_value: "#{device.id}-fcm-token"
               })
 
             {:ok, _} =
-              UnsecuredDevices.update_device_token(%{
+              Devices.Unsecured.update_device_token(%{
                 device_id: device.id,
                 token_type: :ios_voip,
                 token_value: "#{device.id}-voip-token"
@@ -350,7 +350,7 @@ defmodule N do
   end
 
   def create_alerts(count, config_id, type, opts \\ []) do
-    config = UnsecuredEventConfigs.get(config_id)
+    config = ExternalEventConfigs.Unsecured.get(config_id)
 
     for i <- 1..count do
       num = String.pad_leading("#{i}", 4, "0")
