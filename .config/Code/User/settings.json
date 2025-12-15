@@ -2,7 +2,7 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
+    "workbench.colorTheme": "Monokai Pro",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
@@ -30,6 +30,7 @@
         "ELIXIR_WARNINGS_OK": "1"
     },
     "elixirLS.suggestSpecs": false,
+    "elixirLS.dialyzerEnabled": false,
     "exunit.saveAllBeforeRun": true,
     "[elixir]": {
         "editor.formatOnType": true,
@@ -45,10 +46,10 @@
     },
     "[html]": {
         "editor.tabSize": 2,
-        "editor.defaultFormatter": "vscode.html-language-features",
-        "autoCreateQuotes": false,
-        "html.autoClosingTags": false
+        "editor.defaultFormatter": "monosans.djlint",
     },
+    "html.autoClosingTags": false,
+    "html.autoCreateQuotes": false,
     "djlint.showInstallError": false,
     "[javascript]": {
         "editor.tabSize": 2,
@@ -65,7 +66,8 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         },
-        "defaultInterpreterPath": "/bin/python"
+        "defaultInterpreterPath": "/bin/python",
+        "diffEditor.ignoreTrimWhitespace": false
     },
     "isort.args": [
         "--profile",
@@ -79,6 +81,9 @@
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.localEchoLatencyThreshold": 100,
     "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.suggest.enabled": false,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.openDebug": "openOnDebugBreak",
     "[dart]": {
         "editor.formatOnSave": true,
@@ -139,12 +144,10 @@
     },
     "liquid.engine": "jekyll",
     "editor.smoothScrolling": true,
-    "terminal.integrated.smoothScrolling": true,
-    "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.5682760965896694,
-    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+    "workbench.iconTheme": "Monokai Pro Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
@@ -178,5 +181,4 @@
         "scminput": true
     },
     "github.copilot.selectedCompletionModel": "",
-    "terminal.integrated.suggest.enabled": false,
 }
