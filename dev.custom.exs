@@ -40,6 +40,6 @@ config :logger, :console,
   metadata: MyConsoleLogger.logs_metadata()
 
 # Import custom secrets
-if File.exists?("dev.custom.secret.exs") do
+if File.exists?("#{__DIR__}/#{config_env()}.secret.exs") do
   import_config "dev.custom.secret.exs"
 end
