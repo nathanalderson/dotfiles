@@ -146,8 +146,8 @@
     "editor.smoothScrolling": true,
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
-    "window.zoomLevel": -1.5682760965896694,
-    "workbench.iconTheme": "Dracula Theme Icons",
+    "window.zoomLevel": -2.0910347954528925,
+    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
@@ -185,4 +185,6 @@
     "editor.colorDecorators": false,
     "claudeCode.preferredLocation": "sidebar",
     "claudeCode.initialPermissionMode": "acceptEdits",
+    "terminal.integrated.suggest.enabled": false,
+    "docker.extension.enableComposeLanguageServer": false,
 }
