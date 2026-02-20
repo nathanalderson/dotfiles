@@ -2,12 +2,12 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'Fantasque Sans Mono', monospace",
-    "editor.fontSize": 15,
+    "editor.fontFamily": "'Cascadia Code', 'Fantasque Sans Mono', monospace",
+    "editor.fontSize": 14,
     "editor.fontLigatures": "",
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
@@ -126,7 +126,7 @@
     "testing.gutterEnabled": false,
     "eslint.format.enable": true,
     "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -147,7 +147,7 @@
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.5682760965896694,
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.iconTheme": "Dracula Theme Icons",
     "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
@@ -181,4 +181,8 @@
         "scminput": true
     },
     "github.copilot.selectedCompletionModel": "",
+    "terminal.integrated.initialHint": false,
+    "editor.colorDecorators": false,
+    "claudeCode.preferredLocation": "sidebar",
+    "claudeCode.initialPermissionMode": "acceptEdits",
 }

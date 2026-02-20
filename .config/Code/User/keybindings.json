@@ -304,10 +304,6 @@
         "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
     },
     {
-        "key": "ctrl+shift+a",
-        "command": "workbench.view.extension.augment-chat"
-    },
-    {
         "key": "ctrl+' a",
         "command": "workbench.view.extension.augment-chat"
     },
@@ -335,5 +331,21 @@
         "key": "ctrl+shift+j",
         "command": "-rust-analyzer.joinLines",
         "when": "editorTextFocus && editorLangId == 'rust'"
-    }
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "workbench.scm.focus"
+    },
+    {
+        "key": "ctrl+' n",
+        "command": "vscode-augment.startNewChat"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\r"
+        },
+        "when": "terminalFocus"
+    },
 ]
