@@ -141,7 +141,7 @@ defmodule N do
   def dont_truncate(), do: IEx.configure(inspect: [limit: :infinity, printable_limit: :infinity])
 
   def me() do
-    me = Users.Unsecured.get_user_by_email("nathan@tangotango.net")
+    me = Users.Unsecured.get_user_by_email("nathan@tangoptt.com")
 
     token_permissions = [
       TokenPermissions.Org.view_all(),
