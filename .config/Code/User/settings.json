@@ -185,6 +185,5 @@
     "editor.colorDecorators": false,
     "claudeCode.preferredLocation": "sidebar",
     "claudeCode.initialPermissionMode": "acceptEdits",
-    "terminal.integrated.suggest.enabled": false,
     "docker.extension.enableComposeLanguageServer": false,
 }
