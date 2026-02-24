@@ -396,7 +396,7 @@ defmodule N do
             }
         end
 
-      ExternalEvents.store_event(
+      event =
         ExternalEvent.new!(
           config.org_id,
           timestamp,
@@ -412,7 +412,8 @@ defmodule N do
           type: type,
           raw_input: "raw input"
         )
-      )
+
+      TangoTango.Web.ExternalEventManagerV2.create(config, event, opts)
     end
   end
 
