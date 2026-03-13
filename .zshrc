@@ -36,6 +36,7 @@ alias grom='git rebase --onto $(git_main_branch)'
 alias gsp='git stash pop'
 alias gsa='git stash apply'
 alias gca='git commit --amend'
+alias gdam='git diffall $(git_main_branch)...HEAD'
 
 znap source ohmyzsh/ohmyzsh plugins/common-aliases
 znap source ohmyzsh/ohmyzsh lib/directories
