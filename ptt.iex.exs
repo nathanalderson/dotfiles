@@ -358,6 +358,25 @@ defmodule N do
 
       content =
         case type do
+          "cad" ->
+            %{
+              title: Keyword.get(opts, :title, "CAD Event #{timestamp}"),
+              address: "123 Main St",
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+              city: "Anytown",
+              code: "69E08",
+              cross: "Main St x 1st St",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              gps: "34.711188,-86.653937",
+              w3w: "pursuing.smudges.walkway",
+              id: "id-#{num}",
+              info: Keyword.get(opts, :info, "Info #{num}"),
+              place: "Place #{num}",
+              priority: "bravo",
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              unit: "Unit #{num}"
+            }
+
           "flock" ->
             %{
               title: Keyword.get(opts, :title, "Flock Event #{timestamp}"),
@@ -376,23 +395,20 @@ defmodule N do
               extra_field: "extra_value"
             }
 
-          "cad" ->
+          "raptor" ->
             %{
-              title: Keyword.get(opts, :title, "CAD Event #{timestamp}"),
+              title: Keyword.get(opts, :title, "Raptor Event #{timestamp}"),
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              info: "Raptor info",
+              id: "id-#{num}",
               address: "123 Main St",
               call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
-              city: "Anytown",
-              code: "69E08",
-              cross: "Main St x 1st St",
-              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
               gps: "34.711188,-86.653937",
-              w3w: "pursuing.smudges.walkway",
-              id: "id-#{num}",
-              info: Keyword.get(opts, :info, "Info #{num}"),
               place: "Place #{num}",
-              priority: "bravo",
-              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
-              unit: "Unit #{num}"
+              initiator: "Initiator Name",
+              resolution_time: timestamp |> DateTime.shift(minute: 1) |> Timex.format!("%H:%M:%S", :strftime),
+              status: ""
             }
         end
 
