@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+# Intentionally using the system python to avoid asdf shims. This script should use
+# only the python standard library, but does require python 3.11+ (for tomllib)
+import subprocess
+import sys
+import tomllib
+from pathlib import Path
+
+
+def flatmap(f, xs):
+    return [y for ys in xs for y in f(ys)]
+
+
+LOAD_ORDER = [
+    Path("~/.config/cage.toml").expanduser(),
+    Path(".agent/cage.toml"),
+    Path(".cage.toml"),
+]
+
+
+def load_file(path):
+    with path.open("rb") as f:
+        return tomllib.load(f)
+
+
+def process_file_section(config, section):
+    path_entries = config.get(section, [])
+    paths = [Path(p).expanduser() for p in path_entries]
+    paths = [p for p in paths if p.exists()]
+    return [f"--{section}={p}" for p in paths]
+
+
+configs = [load_file(path) for path in LOAD_ORDER if path.exists()]
+
+file_section_args = []
+for file_section in ["ro", "rox", "rw", "rwx"]:
+    args = flatmap(lambda config: process_file_section(config, file_section), configs)
+    file_section_args.extend(args)
+
+env_args = []
+for config in configs:
+    for envvar in config.get("env", []):
+        env_args.append(f"--env={envvar}")
+
+cmd = (
+    ["landrun", "--add-exec", "--unrestricted-network"]
+    + file_section_args
+    + env_args
+    + sys.argv[1:]
+)
+
+print()
+print("\n".join(cmd))
+print()
+
+subprocess.run(cmd)
