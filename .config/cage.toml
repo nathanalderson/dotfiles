@@ -1,0 +1,17 @@
+ro = [
+    "~/tmp",
+    "~/.local/share/claude",
+    "/proc",
+    "/dev/urandom",
+    "/etc/rsolv.conf",
+    "/etc/nsswitch.conf",
+    "/run/systemd/resolve/stub-resolv.conf",
+    "/etc/hosts",
+    "/etc/hostname",
+    "/etc/ssl/certs",
+]
+rw = ["~/.claude", "~/.claude.json", "/tmp", "/dev/null"]
+rox = ["/usr/bin", "/usr/lib", "/opt/claude-code/bin"]
+rwx = ["."]
+
+env = ["COLORTERM", "EDITOR", "HOME", "LANG", "PATH", "SHELL", "TERM", "USER"]
