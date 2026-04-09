@@ -14,7 +14,7 @@ def flatmap(f, xs):
 
 LOAD_ORDER = [
     Path("~/.config/cage.toml").expanduser(),
-    Path(".agent/cage.toml"),
+    Path(".agents/cage.toml"),
     Path(".cage.toml"),
 ]
 
