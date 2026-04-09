@@ -50,8 +50,8 @@ cmd = (
     + sys.argv[1:]
 )
 
-print()
-print("\n".join(cmd))
-print()
+# print()
+# print("\n".join(cmd))
+# print()
 
 subprocess.run(cmd)
