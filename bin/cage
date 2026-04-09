@@ -3,8 +3,9 @@
 # only the python standard library, but does require python 3.11+ (for tomllib)
 import subprocess
 import sys
-import tomllib
 from pathlib import Path
+
+import tomllib
 
 
 def flatmap(f, xs):
@@ -25,7 +26,7 @@ def load_file(path):
 
 def process_file_section(config, section):
     path_entries = config.get(section, [])
-    paths = [Path(p).expanduser() for p in path_entries]
+    paths = [Path(p).expanduser().absolute() for p in path_entries]
     paths = [p for p in paths if p.exists()]
     return [f"--{section}={p}" for p in paths]
 
