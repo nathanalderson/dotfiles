@@ -147,7 +147,6 @@
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.2239010857415447,
     "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
-    "github.copilot.editor.enableAutoCompletions": true,
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
     "editor.suggest.shareSuggestSelections": true,
@@ -179,6 +178,7 @@
         "scminput": true
     },
     "github.copilot.selectedCompletionModel": "",
+    "github.copilot.nextEditSuggestions.extendedRange": true,
     "terminal.integrated.initialHint": false,
     "editor.colorDecorators": false,
     "claudeCode.preferredLocation": "sidebar",
@@ -297,5 +297,6 @@
             "Zeroing Crime Network"
         ]
     },
-    "github.copilot.nextEditSuggestions.extendedRange": true,
+    "chat.editing.autoAcceptDelay": 1,
+    "chat.agent.maxRequests": 100,
 }
