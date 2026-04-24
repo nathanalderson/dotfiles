@@ -52,7 +52,8 @@
     "djlint.showInstallError": false,
     "[javascript]": {
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[yaml]": {
         "editor.tabSize": 2,
@@ -298,4 +299,10 @@
         ]
     },
     "github.copilot.nextEditSuggestions.extendedRange": true,
+    "editor.inlineSuggest.edits.showCollapsed": true,
+    "chat.viewSessions.orientation": "stacked",
+    "workbench.browser.enableChatTools": true,
+    "chat.tools.terminal.autoApprove": {
+        "priv/pre-commit.sh": true
+    },
 }
