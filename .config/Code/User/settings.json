@@ -16,6 +16,7 @@
     "editor.find.loop": false,
     "editor.guides.indentation": false,
     "editor.inlineSuggest.enabled": true,
+    "editor.inlineSuggest.edits.showCollapsed": true,
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
     "extensions.ignoreRecommendations": true,
@@ -52,7 +53,8 @@
     "djlint.showInstallError": false,
     "[javascript]": {
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[yaml]": {
         "editor.tabSize": 2,
@@ -159,6 +161,7 @@
     "workbench.view.showQuietly": {
         "workbench.panel.output": true
     },
+    "workbench.browser.enableChatTools": true,
     "files.associations": {
         "*.html.j2": "html"
     },
@@ -296,6 +299,10 @@
             "Weathering Buildings",
             "Zeroing Crime Network"
         ]
+    },
+    "chat.viewSessions.orientation": "stacked",
+    "chat.tools.terminal.autoApprove": {
+        "priv/pre-commit.sh": true
     },
     "chat.editing.autoAcceptDelay": 1,
     "chat.agent.maxRequests": 100,

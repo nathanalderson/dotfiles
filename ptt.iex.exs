@@ -429,7 +429,7 @@ defmodule N do
           raw_input: "raw input"
         )
 
-      TangoTango.Web.ExternalEventManagerV2.create(config, event, opts)
+      TangoTango.Web.ExternalEventManager.create(config, event, opts)
     end
   end
 

@@ -304,10 +304,6 @@
         "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
     },
     {
-        "key": "ctrl+' a",
-        "command": "workbench.view.extension.augment-chat"
-    },
-    {
         "key": "ctrl+shift+/",
         "command": "editor.action.blockComment",
         "when": "editorTextFocus && !editorReadonly"
@@ -335,10 +331,6 @@
     {
         "key": "ctrl+shift+g",
         "command": "workbench.scm.focus"
-    },
-    {
-        "key": "ctrl+' n",
-        "command": "vscode-augment.startNewChat"
     },
     {
         "key": "shift+enter",
@@ -402,5 +394,14 @@
         "key": "tab",
         "command": "editor.action.inlineSuggest.commit",
         "when": "inInlineEditsPreviewEditor"
+    },
+    {
+        "key": "ctrl+' a",
+        "command": "workbench.panel.chat.view.copilot.focus"
+    },
+    {
+        "key": "ctrl+' n",
+        "command": "workbench.action.chat.newChat",
+        "when": "chatIsEnabled"
     }
 ]
