@@ -302,8 +302,13 @@
     },
     "chat.viewSessions.orientation": "stacked",
     "chat.tools.terminal.autoApprove": {
+        "/^mix test.*/": true,
         "priv/pre-commit.sh": true
     },
     "chat.editing.autoAcceptDelay": 1,
     "chat.agent.maxRequests": 100,
+    "zenMode.showTabs": "none",
+    "zenMode.silentNotifications": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideActivityBar": false,
 }
