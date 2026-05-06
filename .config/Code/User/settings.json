@@ -6,8 +6,7 @@
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'Fantasque Sans Mono', monospace",
-    "editor.fontLigatures": "",
+    "editor.fontFamily": "'GeistMono Nerd Font Propo', 'Fantasque Sans Mono', monospace",
     "editor.formatOnSave": true,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "phase",
@@ -85,6 +84,10 @@
     "terminal.integrated.suggest.enabled": false,
     "terminal.integrated.smoothScrolling": true,
     "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
+    "terminal.integrated.initialHint": false,
+    "terminal.integrated.enableImages": true,
+    // workaround for https://github.com/microsoft/vscode/issues/311252
+    "terminal.integrated.enableKittyKeyboardProtocol": false,
     "debug.openDebug": "openOnDebugBreak",
     "[dart]": {
         "editor.formatOnSave": true,
@@ -180,13 +183,11 @@
     },
     "github.copilot.selectedCompletionModel": "",
     "github.copilot.nextEditSuggestions.extendedRange": true,
-    "terminal.integrated.initialHint": false,
     "editor.colorDecorators": false,
     "claudeCode.preferredLocation": "sidebar",
     "claudeCode.initialPermissionMode": "acceptEdits",
     "docker.extension.enableComposeLanguageServer": false,
     "expert.server.nightly": true,
-    "terminal.integrated.enableImages": true,
     "chat.agent.thinking.phrases": {
         "mode": "replace",
         "phrases": [
