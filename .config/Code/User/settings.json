@@ -16,6 +16,14 @@
     "editor.guides.indentation": false,
     "editor.inlineSuggest.enabled": true,
     "editor.inlineSuggest.edits.showCollapsed": true,
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.parameterHints.enabled": false,
+    "editor.hover.enabled": "onKeyboardModifier",
     "explorer.autoReveal": false,
     "explorer.decorations.badges": false,
     "extensions.ignoreRecommendations": true,
