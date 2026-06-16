@@ -17,3 +17,5 @@ venv*/
 .vscode/
 .ipynb_checkpoints/
 .DS_STORE
+.claude/
+cage.toml

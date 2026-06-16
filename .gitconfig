@@ -20,6 +20,9 @@
     ui = auto
 [core]
     excludesfile = ~/.gitignore_global
+    pager = "diff-so-fancy | less --tabs=4 -RF"
+[interactive]
+    diffFilter = "diff-so-fancy --patch"
 [push]
     default = simple
 [alias]
@@ -37,9 +40,14 @@
     old = red bold
     new = green bold
     whitespace = red reverse
-[diff-so-fancy]
-	markEmptyLines = false
 [pull]
 	rebase = false
 [init]
 	defaultBranch = main
+[maintenance]
+	repo = /home/nathan/.local/share/znap
+	repo = /home/nathan/.local/share/agnoster/agnoster-zsh-theme
+	repo = /home/nathan/.local/share/ohmyzsh/ohmyzsh
+	repo = /home/nathan/.local/share/zinit/zinit.git
+	repo = /home/nathan/.local/share/zsh-users/zsh-autosuggestions
+	repo = /home/nathan/.local/share/zsh-users/zsh-syntax-highlighting

@@ -21,9 +21,9 @@
         ansible.builtin.service_facts:
 
   roles:
-    # - common
+    - common
     # - personal
-    - niceties
+    # - niceties
     # - home_network
     # - bluetooth
     # - docker

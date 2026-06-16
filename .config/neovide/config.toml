@@ -1,0 +1,6 @@
+[font]
+normal = "Fantasque Sans Mono"
+size = 10
+
+[font.features]
+"Fantasque Sans Mono" = ["-calt"]

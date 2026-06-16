@@ -295,43 +295,8 @@
         "command": "-vscode-augment.focusAugmentPanel"
     },
     {
-        "key": "ctrl+shift+alt+i",
-        "command": "vscode-augment.code-instruction.change",
-        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
-    },
-    {
-        "key": "ctrl+shift+i",
-        "command": "-vscode-augment.code-instruction.change",
-        "when": "vscode-augment.code-instruction.active && !vscode-augment.internal-new-instructions.enabled && resourceScheme == 'augment.code-instruction'"
-    },
-    {
-        "key": "ctrl+shift+alt+i",
-        "command": "vscode-augment.code-instruction.start",
-        "when": "!editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+i",
-        "command": "-vscode-augment.code-instruction.start",
-        "when": "!editorReadonly"
-    },
-    {
-        "key": "ctrl+]",
-        "command": "vscode-augment.next-edit.background.goto-hinting",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canGotoHinting && vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
-        "key": "ctrl+;",
-        "command": "-vscode-augment.next-edit.background.goto-hinting",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canGotoHinting && vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
         "key": "ctrl+]",
         "command": "vscode-augment.next-edit.background.next",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canNext && !vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
-        "key": "ctrl+;",
-        "command": "-vscode-augment.next-edit.background.next",
         "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canNext && !vscode-augment.nextEdit.enableGotoHinting"
     },
     {
@@ -340,18 +305,109 @@
         "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canPrevious && !vscode-augment.nextEdit.enableGotoHinting"
     },
     {
-        "key": "ctrl+shift+;",
-        "command": "-vscode-augment.next-edit.background.previous",
-        "when": "vscode-augment.enableNextEdit && vscode-augment.nextEdit.canPrevious && !vscode-augment.nextEdit.enableGotoHinting"
-    },
-    {
         "key": "ctrl+alt+]",
         "command": "vscode-augment.next-edit.force",
         "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
     },
     {
-        "key": "ctrl+alt+;",
-        "command": "-vscode-augment.next-edit.force",
-        "when": "editorHoverFocused && vscode-augment.enableNextEdit || editorTextFocus && vscode-augment.enableNextEdit || vscode-augment.enableNextEdit && activePanel == 'workbench.view.extension.augment-panel' || vscode-augment.enableNextEdit && activeViewlet == 'workbench.view.extension.augment-panel'"
+        "key": "ctrl+shift+/",
+        "command": "editor.action.blockComment",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "-editor.action.blockComment",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.terminal.newLocal",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "-rust-analyzer.joinLines",
+        "when": "editorTextFocus && editorLangId == 'rust'"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "workbench.scm.focus"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\r"
+        },
+        "when": "terminalFocus"
+    },
+    {
+        "key": "tab",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.commit",
+        "when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+]",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "inInlineEditsPreviewEditor"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.commit",
+        "when": "inInlineEditsPreviewEditor"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "editor.action.inlineSuggest.commitAlternativeAction",
+        "when": "inInlineEditsPreviewEditor"
+    },
+    {
+        "key": "shift+tab",
+        "command": "-editor.action.inlineSuggest.commitAlternativeAction",
+        "when": "inInlineEditsPreviewEditor"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "editor.action.inlineSuggest.commitAlternativeAction",
+        "when": "inlineEditIsVisible && inlineSuggestionAlternativeActionVisible"
+    },
+    {
+        "key": "shift+tab",
+        "command": "-editor.action.inlineSuggest.commitAlternativeAction",
+        "when": "inlineEditIsVisible && inlineSuggestionAlternativeActionVisible"
+    },
+    {
+        "key": "ctrl+]",
+        "command": "editor.action.inlineSuggest.jump",
+        "when": "inlineEditIsVisible && tabShouldJumpToInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.jump",
+        "when": "inlineEditIsVisible && tabShouldJumpToInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "tab",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "inInlineEditsPreviewEditor"
+    },
+    {
+        "key": "ctrl+' a",
+        "command": "workbench.panel.chat.view.copilot.focus"
+    },
+    {
+        "key": "ctrl+' n",
+        "command": "workbench.action.chat.newChat",
+        "when": "chatIsEnabled"
     }
 ]

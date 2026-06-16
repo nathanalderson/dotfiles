@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
+# Only do this for X11 sessions.
+[[ "${XDG_SESSION_TYPE:-}" == "x11" ]] || exit 0
+
+# Try to discover DISPLAY if systemd --user doesn't have it.
+if [[ -z "${DISPLAY:-}" && -n "${XDG_SESSION_ID:-}" ]]; then
+  disp="$(loginctl show-session "$XDG_SESSION_ID" -p Display --value 2>/dev/null || true)"
+  [[ -n "$disp" ]] && export DISPLAY="$disp"
+fi
+: "${DISPLAY:=:0}"
+export DISPLAY
+
+# Xauthority (common default for X11)
+: "${XAUTHORITY:=$HOME/.Xauthority}"
+export XAUTHORITY
+
+# Wait briefly for X to be ready (prevents racing at login)
+for _ in {1..50}; do
+  if command -v xset >/dev/null 2>&1 && xset q >/dev/null 2>&1; then
+    break
+  fi
+  sleep 0.1
+done
+
+OPTIONS='ctrl:nocaps,compose:menu,numpad:microsoft'
+/usr/bin/setxkbmap -option "$OPTIONS"
+echo $? > /home/nathan/kb.log
+date >> /home/nathan/kb.log
+

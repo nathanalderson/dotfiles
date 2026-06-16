@@ -151,10 +151,18 @@ if has("gui_running")
     set guioptions-=T  "remove toolbar
     set guioptions-=m  "remove menu
     set guioptions-=rL "remove right and left scroll bars
-    set guioptions+=c  "use non-modal confirm prompts
+    if !has('nvim')
+        set guioptions+=c  "use non-modal confirm prompts
+    endif
 else
     " do terminal-only stuff
     set t_ut=
+endif
+
+if exists("g:neovide")
+    " prevents overly bold text
+    let g:neovide_text_gamma = 0.8
+    let g:neovide_text_contrast = 0.1
 endif
 
 if has("win64") || has("win32") || has("win16")
@@ -336,6 +344,8 @@ set nohlsearch
 inoremap jk <ESC>
 nmap j gj
 nmap k gk
+" fixes horizontal cursor position memory with gj and gk (or just j and k with above mappings)
+set virtualedit=onemore
 nnoremap <leader>q gqip
 nnoremap <leader>v V`]
 "nnoremap <leader><leader> <c-^>
@@ -358,6 +368,16 @@ nnoremap <leader>* Oprintln(s"***** ")<ESC>hi
 " window management
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
+
+" Ctrl[-Shift]-v paste
+inoremap <C-v> <C-r>+
+inoremap <C-S-v> <C-r>+
+cnoremap <C-v> <C-r>+
+cnoremap <C-S-v> <C-r>+
+vnoremap <C-v> "+p
+vnoremap <C-S-v> "+p
+nnoremap <C-v> "+p
+nnoremap <C-S-v> "+p
 
 if !exists('g:vscode')
 

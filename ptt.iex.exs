@@ -1,64 +1,54 @@
 alias TangoTango.Core.Messaging
 
-alias TangoTango.Persistence.Repo
-alias TangoTango.Persistence.CassandraRepo
-alias TangoTango.Persistence.Users
-alias TangoTango.Persistence.Users.User
-alias TangoTango.Persistence.Users.Unsecured, as: UnsecuredUsers
-alias TangoTango.Persistence.Users.Devices
-alias TangoTango.Persistence.Users.Devices.Unsecured, as: UnsecuredDevices
-alias TangoTango.Persistence.Users.Device
-alias TangoTango.Persistence.Organizations
-alias TangoTango.Persistence.Organizations.Organization
-alias TangoTango.Persistence.Organizations.OrganizationAdmin
-alias TangoTango.Persistence.Organizations.InteropAgreement
-alias TangoTango.Persistence.Organizations.InteropAgreements
-alias TangoTango.Persistence.RedisUtils
-
-alias TangoTango.Persistence.Organizations.InteropAgreements.Unsecured,
-  as: UnsecuredInteropAgreements
-
 alias TangoTango.Persistence.AuditLog
 alias TangoTango.Persistence.AuditlogManager
 alias TangoTango.Persistence.CallDetailRecords
+alias TangoTango.Persistence.CassandraRepo
 alias TangoTango.Persistence.Channels
 alias TangoTango.Persistence.Channels.Channel
-alias TangoTango.Persistence.Channels.Unsecured, as: UnsecuredChannels
 alias TangoTango.Persistence.ExternalEvents
 alias TangoTango.Persistence.ExternalEvents.ExternalEvent
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
+alias TangoTango.Persistence.Groups
+alias TangoTango.Persistence.Groups.Group
 alias TangoTango.Persistence.LatestLocationByOrg
 alias TangoTango.Persistence.MessageAttachments
 alias TangoTango.Persistence.Messages
 alias TangoTango.Persistence.Messages.Attachment
 alias TangoTango.Persistence.Messages.Message
 alias TangoTango.Persistence.OrganizationFeatures
-alias TangoTango.Persistence.OrganizationFeatures.Unsecured, as: UnsecuredOrgFeatures
-alias TangoTango.Persistence.Organizations.Unsecured, as: UnsecuredOrgs
-alias TangoTango.Persistence.RegistrationList
-alias TangoTango.Persistence.RegistrationList.UnregisteredSite
+alias TangoTango.Persistence.Organizations
+alias TangoTango.Persistence.Organizations.InteropAgreement
+alias TangoTango.Persistence.Organizations.InteropAgreements
+alias TangoTango.Persistence.Organizations.Organization
+alias TangoTango.Persistence.Organizations.OrganizationAdmin
+alias TangoTango.Persistence.Permissions
+alias TangoTango.Persistence.Permissions.Permission
+alias TangoTango.Persistence.RedisUtils
+alias TangoTango.Persistence.Repo
 alias TangoTango.Persistence.SeedHelpers
 alias TangoTango.Persistence.Sites
 alias TangoTango.Persistence.Sites.Site
-alias TangoTango.Persistence.Sites.Unsecured, as: UnsecuredSites
 alias TangoTango.Persistence.ToneEvents
 alias TangoTango.Persistence.Tones
 alias TangoTango.Persistence.Tones.Tone
-alias TangoTango.Persistence.Tones.Unsecured, as: UnsecuredTones
 alias TangoTango.Persistence.Types.Avatar
 alias TangoTango.Persistence.Types.MacAddress
 alias TangoTango.Persistence.Types.PhoneNumber
+alias TangoTango.Persistence.Users
+alias TangoTango.Persistence.Users.Device
+alias TangoTango.Persistence.Users.Devices
 alias TangoTango.Persistence.Users.TokenPermissions
+alias TangoTango.Persistence.Users.User
 
-alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs.Unsecured,
-  as: UnsecuredEventConfigs
+require Ecto.Query
 
 defmodule N do
   def seed() do
     tango_org = SeedHelpers.tango_tango_org()
     SeedHelpers.attempt_insert(%Organization{org_name: "Nathan's Org"})
-    nathans_org = UnsecuredOrgs.get_organization_by_name("Nathan's Org")
+    nathans_org = Organizations.Unsecured.get_organization_by_name("Nathan's Org")
     SeedHelpers.device_limit(tango_org, 1000)
     SeedHelpers.device_limit(nathans_org, 1000)
 
@@ -130,7 +120,7 @@ defmodule N do
         nil
 
       {:ok, device} ->
-        UnsecuredDevices.update_device_token(%{
+        Devices.Unsecured.update_device_token(%{
           device_id: device.id,
           token_value:
             "d_Dn-zqSQo6RuelR6CDRRh:APA91bERzaOfSKJyC3B-UuVJXDGBPXqkmlRdMj5_FuDs3wB32wFKuKnViVelofnzGrJPzTuqX1Lr8VYZNT3c0rFiS8Ab3s8BUZoLGV7zKWoumFMDUVmRCzLYP72vhe1npFqgKQf4aEEi",
@@ -151,7 +141,7 @@ defmodule N do
   def dont_truncate(), do: IEx.configure(inspect: [limit: :infinity, printable_limit: :infinity])
 
   def me() do
-    me = UnsecuredUsers.get_user_by_email("nathan@tangotango.net")
+    me = Users.Unsecured.get_user_by_email("nathan@tangoptt.com")
 
     token_permissions = [
       TokenPermissions.Org.view_all(),
@@ -167,22 +157,7 @@ defmodule N do
     %{me | token_permissions: token_permissions}
   end
 
-  def tango(), do: UnsecuredOrgs.get_organization_by_name("Tango Tango")
-
-  def create_unregistered_sites(count, type \\ :dev) do
-    for i <- 1..count do
-      num = String.pad_leading("#{i}", 2, "0")
-
-      %UnregisteredSite{}
-      |> UnregisteredSite.changeset(%{
-        name: "Unregistered Site #{num}",
-        mac_address: "00:00:00:00:00:#{num}",
-        type: type,
-        status: :waiting
-      })
-      |> Repo.insert()
-    end
-  end
+  def tango(), do: Organizations.Unsecured.get_organization_by_name("Tango Tango")
 
   def create_sites(count, opts \\ []) do
     type = Keyword.get(opts, :type, :dev)
@@ -199,20 +174,32 @@ defmodule N do
     for i <- 1..count do
       <<upper::binary-2, lower::binary-2>> = String.pad_leading("#{i}", 4, "0")
 
-      UnsecuredSites.create_site(%{
-        name: "Site #{upper}#{lower}",
+      Sites.Unsecured.create_site(%{
+        name: "Site #{upper}#{lower} (#{org_id})",
         mac_address: "#{middle}:#{upper}:#{lower}",
         org_id: org_id,
-        type: type
+        type: type,
+        imei: "imei-#{upper}#{lower}"
       })
     end
+  end
+
+  # Add a random set of tags to each site in an org
+  def tag_sites(org_id, tags) do
+    sites = Repo.all(Site |> Ecto.Query.where(org_id: ^org_id))
+
+    Enum.each(sites, fn site ->
+      tag_count = Enum.random(1..3)
+      selected_tags = Enum.take_random(tags, tag_count)
+      Sites.Unsecured.update_site(site, %{tags: selected_tags})
+    end)
   end
 
   def create_channels(count, opts \\ []) do
     org_id = Keyword.get(opts, :org_id, tango().id)
 
     for i <- 1..count do
-      UnsecuredChannels.create_channel(%{
+      Channels.Unsecured.create_channel(%{
         name: "Channel #{String.pad_leading("#{i}", 4, "0")}",
         org_id: org_id
       })
@@ -240,7 +227,7 @@ defmodule N do
         call_id \\ nil,
         tone_ids \\ []
       ) do
-    channel = UnsecuredChannels.get_channel!(channel_id)
+    channel = Channels.Unsecured.get_channel!(channel_id)
     now = Timex.now()
 
     for i <- 1..count do
@@ -295,7 +282,7 @@ defmodule N do
       num = String.pad_leading("#{i}", 4, "0")
 
       {:ok, user} =
-        UnsecuredUsers.create_user(%{
+        Users.Unsecured.create_user(%{
           first_name: "User",
           last_name: "Person #{num}",
           org_id: org_id,
@@ -308,7 +295,7 @@ defmodule N do
   end
 
   def create_random_devices(count, org_id) do
-    organization = UnsecuredOrgs.get_organization!(org_id) |> Repo.preload(:users)
+    organization = Organizations.Unsecured.get_organization!(org_id) |> Repo.preload(:users)
 
     Enum.map(1..count, fn i ->
       platform = Enum.random([:ios, :android])
@@ -325,7 +312,7 @@ defmodule N do
       i = Integer.to_string(i) |> String.pad_leading(4, "0")
 
       result =
-        UnsecuredDevices.create_device(%{
+        Devices.Unsecured.create_device(%{
           device_id: "device-#{i}",
           imei: "imei-#{i}",
           user_id: user && user.id,
@@ -342,14 +329,14 @@ defmodule N do
         {:ok, device} ->
           if push_status == :registered do
             {:ok, _} =
-              UnsecuredDevices.update_device_token(%{
+              Devices.Unsecured.update_device_token(%{
                 device_id: device.id,
                 token_type: :fcm,
                 token_value: "#{device.id}-fcm-token"
               })
 
             {:ok, _} =
-              UnsecuredDevices.update_device_token(%{
+              Devices.Unsecured.update_device_token(%{
                 device_id: device.id,
                 token_type: :ios_voip,
                 token_value: "#{device.id}-voip-token"
@@ -363,7 +350,7 @@ defmodule N do
   end
 
   def create_alerts(count, config_id, type, opts \\ []) do
-    config = UnsecuredEventConfigs.get(config_id)
+    config = ExternalEventConfigs.Unsecured.get(config_id)
 
     for i <- 1..count do
       num = String.pad_leading("#{i}", 4, "0")
@@ -371,24 +358,6 @@ defmodule N do
 
       content =
         case type do
-          "flock" ->
-            %{
-              title: Keyword.get(opts, :title, "Flock Event #{timestamp}"),
-              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
-              source: "source1",
-              reason: "reason1",
-              vehicleModel: "Model",
-              vehicleMake: "Make",
-              vehicleColor: "Color",
-              licensePlate: "PLATENUM",
-              camera: "camera1",
-              network: "network1",
-              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
-              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
-              image: "https://picsum.photos/500",
-              extra_field: "extra_value"
-            }
-
           "cad" ->
             %{
               title: Keyword.get(opts, :title, "CAD Event #{timestamp}"),
@@ -407,9 +376,43 @@ defmodule N do
               time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
               unit: "Unit #{num}"
             }
+
+          "flock" ->
+            %{
+              title: Keyword.get(opts, :title, "Flock Event #{timestamp}"),
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+              source: "source1",
+              reason: "reason1",
+              vehicleModel: "Model",
+              vehicleMake: "Make",
+              vehicleColor: "Color",
+              licensePlate: "PLATENUM",
+              camera: "camera1",
+              network: "network1",
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              image: "https://picsum.photos/500",
+              extra_field: "extra_value"
+            }
+
+          "raptor" ->
+            %{
+              title: Keyword.get(opts, :title, "Raptor Event #{timestamp}"),
+              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              info: "Raptor info",
+              id: "id-#{num}",
+              address: "123 Main St",
+              call: Enum.random(["MEDICAL", "FIRE", "WEATHER", "RESCUE", "WRECK"]),
+              gps: "34.711188,-86.653937",
+              place: "Place #{num}",
+              initiator: "Initiator Name",
+              resolution_time: timestamp |> DateTime.shift(minute: 1) |> Timex.format!("%H:%M:%S", :strftime),
+              status: ""
+            }
         end
 
-      ExternalEvents.store_event(
+      event =
         ExternalEvent.new!(
           config.org_id,
           timestamp,
@@ -425,7 +428,8 @@ defmodule N do
           type: type,
           raw_input: "raw input"
         )
-      )
+
+      TangoTango.Web.ExternalEventManager.create(config, event, opts)
     end
   end
 

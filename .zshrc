@@ -3,7 +3,7 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
   zmodload zsh/zprof
 fi
 
-# initialize zinit
+# initialize znap
 source ~/.local/share/znap/znap.zsh
 
 ###
@@ -20,7 +20,7 @@ SPACESHIP_PROMPT_TRUNC=0
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_PROMPT_SYMBOL=»
-SPACESHIP_GIT_UNSTAGED=✘
+SPACESHIP_GIT_UNSTAGED=×
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
@@ -36,6 +36,7 @@ alias grom='git rebase --onto $(git_main_branch)'
 alias gsp='git stash pop'
 alias gsa='git stash apply'
 alias gca='git commit --amend'
+alias gdam='git diffall $(git_main_branch)...HEAD'
 
 znap source ohmyzsh/ohmyzsh plugins/common-aliases
 znap source ohmyzsh/ohmyzsh lib/directories
@@ -44,6 +45,7 @@ alias l='ls'
 alias ls='ls --color=auto'
 alias ll='lsa'
 
+znap source ohmyzsh/ohmyzsh lib/completion
 znap source ohmyzsh/ohmyzsh plugins/colored-man-pages
 znap source zsh-users/zsh-syntax-highlighting
 
