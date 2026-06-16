@@ -4,3 +4,5 @@
 .config/nvim
 # znap cache file
 *.zwc
+.config/karabiner/automatic_backups/
+.config/coc/
