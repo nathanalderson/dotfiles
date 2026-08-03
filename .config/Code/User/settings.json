@@ -1,98 +1,4 @@
 {
-    "window.commandCenter": false,
-    "window.titleBarStyle": "custom",
-    "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Cobalt2",
-    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
-    "workbench.editor.showTabs": "single",
-    "workbench.layoutControl.enabled": false,
-    "breadcrumbs.symbolPath": "off",
-    "editor.fontFamily": "'GeistMono Nerd Font Propo', 'Fantasque Sans Mono', monospace",
-    "editor.formatOnSave": true,
-    "editor.cursorSmoothCaretAnimation": "on",
-    "editor.cursorBlinking": "phase",
-    "editor.cursorSurroundingLines": 3,
-    "editor.minimap.enabled": false,
-    "editor.find.loop": false,
-    "editor.guides.indentation": false,
-    "editor.inlineSuggest.enabled": true,
-    "editor.inlineSuggest.edits.showCollapsed": true,
-    "editor.suggestOnTriggerCharacters": false,
-    "editor.parameterHints.enabled": false,
-    "editor.hover.enabled": "onKeyboardModifier",
-    "explorer.autoReveal": false,
-    "explorer.decorations.badges": false,
-    "extensions.ignoreRecommendations": true,
-    "vscode-neovim.compositeKeys": {
-        "jk": {
-            "command": "vscode-neovim.escape",
-        }
-    },
-    "files.autoSave": "onWindowChange",
-    "elixirLS.envVariables": {
-        "ELIXIR_WARNINGS_OK": "1"
-    },
-    "elixirLS.suggestSpecs": false,
-    "elixirLS.dialyzerEnabled": false,
-    "exunit.saveAllBeforeRun": true,
-    "[elixir]": {
-        "editor.formatOnType": true,
-        "editor.formatOnSave": true,
-        "editor.formatOnPaste": true,
-        "editor.tabSize": 2,
-    },
-    "[html-eex]": {
-        "editor.formatOnType": true,
-        "editor.formatOnSave": true,
-        "editor.formatOnPaste": true,
-        "editor.tabSize": 2
-    },
-    "[html]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "monosans.djlint",
-    },
-    "html.autoClosingTags": false,
-    "html.autoCreateQuotes": false,
-    "djlint.showInstallError": false,
-    "[javascript]": {
-        "editor.tabSize": 2,
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    "[yaml]": {
-        "editor.tabSize": 2,
-        "editor.formatOnSave": true,
-        "editor.detectIndentation": false
-    },
-    "[python]": {
-        "editor.formatOnType": true,
-        "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        },
-        "defaultInterpreterPath": "/bin/python",
-        "diffEditor.ignoreTrimWhitespace": false
-    },
-    "isort.args": [
-        "--profile",
-        "black"
-    ],
-    // This allows ctrl-p to function as "previous" in the terminal
-    "terminal.integrated.commandsToSkipShell": [
-        "-workbench.action.quickOpen"
-    ],
-    "terminal.integrated.stickyScroll.enabled": false,
-    "terminal.integrated.scrollback": 10000,
-    "terminal.integrated.localEchoLatencyThreshold": 100,
-    "terminal.integrated.enableMultiLinePasteWarning": "never",
-    "terminal.integrated.suggest.enabled": false,
-    "terminal.integrated.smoothScrolling": true,
-    "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
-    "terminal.integrated.initialHint": false,
-    "terminal.integrated.enableImages": true,
-    // workaround for https://github.com/microsoft/vscode/issues/311252
-    "terminal.integrated.enableKittyKeyboardProtocol": false,
-    "debug.openDebug": "openOnDebugBreak",
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -100,140 +6,59 @@
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": "off",
+        "editor.wordBasedSuggestions": "off"
     },
-    "git.confirmSync": false,
-    "remote.SSH.useLocalServer": false,
-    "remote.SSH.remotePlatform": {
-        "nathan-desktop-zt": "linux",
-        "192.168.125.2": "macOS",
-        "nathan-macbook-zt": "macOS",
-        "nathan-macbook": "macOS",
-        "nathan-desktop": "linux",
-        "nathan-ubuntu2204": "linux",
-        "10.0.100.107": "macOS",
-        "10.0.100.182": "macOS",
-        "10.0.100.60": "macOS",
-        "MacBookAir": "macOS"
+    "[elixir]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.tabSize": 2
     },
-    "diffEditor.ignoreTrimWhitespace": false,
-    "diffEditor.diffAlgorithm": "advanced",
-    "dart.showTestCodeLens": false,
-    "dart.showMainCodeLens": false,
-    "dart.showDartPadSampleCodeLens": false,
-    "testing.automaticallyOpenPeekView": "never",
-    "dart.closingLabels": false,
-    "tailwindCSS.includeLanguages": {
-        "elixir": "html",
-        "phoenix-heex": "html",
+    "[html-eex]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.tabSize": 2
     },
-    "emmet.includeLanguages": {
-        "phoenix-heex": "html",
-        "elixir": "html",
+    "[html]": {
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.tabSize": 2
     },
-    "testing.gutterEnabled": false,
-    "eslint.format.enable": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
-    "workbench.tree.indent": 12,
-    "workbench.list.smoothScrolling": true,
-    "editor.lineNumbers": "on",
-    "workbench.activityBar.location": "top",
     "[liquid]": {
         "editor.defaultFormatter": "sissel.shopify-liquid",
         "editor.formatOnSave": true
     },
-    "liquid.engine": "jekyll",
-    "editor.smoothScrolling": true,
-    "debug.javascript.autoAttachFilter": "disabled",
-    "window.customTitleBarVisibility": "auto",
-    "window.zoomLevel": -1.2239010857415447,
-    "black-formatter.importStrategy": "fromEnvironment",
-    "python.analysis.autoFormatStrings": true,
-    "editor.suggest.shareSuggestSelections": true,
-    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
-    "workbench.preferredLightColorTheme": "Monokai Pro Light",
-    "workbench.editorAssociations": {
-        "*.svg": "default"
+    "[python]": {
+        "defaultInterpreterPath": "/bin/python",
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnType": true
     },
-    "workbench.view.showQuietly": {
-        "workbench.panel.output": true
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
-    "workbench.browser.enableChatTools": true,
-    "files.associations": {
-        "*.html.j2": "html"
+    "[yaml]": {
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
     },
-    "rust-analyzer.inlayHints.chainingHints.enable": false,
-    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
-    "rust-analyzer.inlayHints.genericParameterHints.const.enable": false,
-    "rust-analyzer.inlayHints.parameterHints.enable": false,
-    "rust-analyzer.inlayHints.renderColons": false,
-    "rust-analyzer.inlayHints.typeHints.enable": false,
-    "rust-analyzer.lens.implementations.enable": false,
-    "rust-analyzer.lens.run.enable": false,
-    "rust-analyzer.lens.debug.enable": false,
-    "github.copilot.nextEditSuggestions.enabled": false,
-    "github.copilot.selectedCompletionModel": "",
-    "github.copilot.nextEditSuggestions.extendedRange": true,
-    "editor.colorDecorators": false,
-    "claudeCode.preferredLocation": "sidebar",
-    "claudeCode.initialPermissionMode": "acceptEdits",
-    "docker.extension.enableComposeLanguageServer": false,
-    "expert.server.nightly": true,
+    "augment.conflictingCodingAssistantCheck": false,
     "augment.disableFocusOnAugmentPanel": true,
     "augment.enableEmptyFileHint": false,
-    "augment.conflictingCodingAssistantCheck": false,
-    "zenMode.showTabs": "none",
-    "zenMode.silentNotifications": false,
-    "zenMode.hideLineNumbers": false,
-    "zenMode.hideActivityBar": false,
-    "chat.viewSessions.orientation": "stacked",
-    "chat.tools.terminal.autoApprove": {
-        "/^mix usage_rules.*/": true,
-        "/^mix assets.*/": true,
-        "/^mix compile.*/": true,
-        "/^mix credo/": true,
-        "/^mix format/": true,
-        "/^mix help/": true,
-        "/^mix test.*/": true,
-        "/^uv run pytest.*/": true,
-        "/^uv run ruff.*/": true,
-        "git merge-base": true,
-        "git rev-parse": true,
-        "npm run linter": true,
-        "npm test": true,
-        "printf": true,
-        "priv/pre-commit.sh": true,
-        "pytest": true,
-        "npx jest": true
-    },
-    "chat.editing.autoAcceptDelay": 1,
+    "black-formatter.importStrategy": "fromEnvironment",
+    "breadcrumbs.symbolPath": "off",
     "chat.agent.maxRequests": 100,
-    "chat.tools.urls.autoApprove": {
-        "https://code.visualstudio.com": true,
-        "https://github.com/microsoft/vscode/wiki/*": true,
-        "https://docs.github.com": {
-            "approveRequest": false,
-            "approveResponse": true
-        },
-        "https://docs.aws.amazon.com": true,
-        "https://auth0.com/docs": true,
-        "https://www.erlang.org/doc": true,
-        "https://getstream.io/chat/docs": true,
-        "https://hexdocs.pm": {
-            "approveRequest": true,
-            "approveResponse": false
-        },
-        "https://*.hexdocs.pm": true
-    },
     "chat.agent.thinking.phrases": {
         "mode": "replace",
         "phrases": [
@@ -345,13 +170,188 @@
             "Zeroing Crime Network"
         ]
     },
-    "github.copilot.nextEditSuggestions.eagerness": "high",
+    "chat.editing.autoAcceptDelay": 1,
+    "chat.tools.terminal.autoApprove": {
+        "/^mix assets.*/": true,
+        "/^mix compile.*/": true,
+        "/^mix credo/": true,
+        "/^mix format/": true,
+        "/^mix help/": true,
+        "/^mix test.*/": true,
+        "/^mix usage_rules.*/": true,
+        "/^uv run pytest.*/": true,
+        "/^uv run ruff.*/": true,
+        "git merge-base": true,
+        "git rev-parse": true,
+        "npm run linter": true,
+        "npm test": true,
+        "npx jest": true,
+        "printf": true,
+        "priv/pre-commit.sh": true,
+        "pytest": true
+    },
+    "chat.tools.urls.autoApprove": {
+        "https://*.hexdocs.pm": true,
+        "https://auth0.com/docs": true,
+        "https://code.visualstudio.com": true,
+        "https://docs.aws.amazon.com": true,
+        "https://docs.github.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        },
+        "https://getstream.io/chat/docs": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
+        "https://hexdocs.pm": {
+            "approveRequest": true,
+            "approveResponse": false
+        },
+        "https://www.erlang.org/doc": true
+    },
+    "chat.viewSessions.orientation": "stacked",
+    "claudeCode.initialPermissionMode": "acceptEdits",
+    "claudeCode.preferredLocation": "sidebar",
+    "dart.closingLabels": false,
+    "dart.showDartPadSampleCodeLens": false,
+    "dart.showMainCodeLens": false,
+    "dart.showTestCodeLens": false,
+    "debug.javascript.autoAttachFilter": "disabled",
+    "debug.openDebug": "openOnDebugBreak",
+    "diffEditor.diffAlgorithm": "advanced",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "djlint.showInstallError": false,
+    "docker.extension.enableComposeLanguageServer": false,
+    "editor.colorDecorators": false,
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorSurroundingLines": 3,
+    "editor.find.loop": false,
+    "editor.fontFamily": "'GeistMono Nerd Font Propo', 'Fantasque Sans Mono', monospace",
+    "editor.formatOnSave": true,
+    "editor.guides.indentation": false,
+    "editor.hover.enabled": "onKeyboardModifier",
+    "editor.inlineSuggest.edits.showCollapsed": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.lineNumbers": "on",
+    "editor.minimap.enabled": false,
+    "editor.parameterHints.enabled": false,
+    "editor.smoothScrolling": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "editor.suggestOnTriggerCharacters": false,
+    "elixirLS.dialyzerEnabled": false,
+    "elixirLS.envVariables": {
+        "ELIXIR_WARNINGS_OK": "1"
+    },
+    "elixirLS.suggestSpecs": false,
+    "emmet.includeLanguages": {
+        "elixir": "html",
+        "phoenix-heex": "html"
+    },
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "eslint.format.enable": true,
+    "expert.server.nightly": true,
+    "explorer.autoReveal": false,
+    "explorer.decorations.badges": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "extensions.ignoreRecommendations": true,
+    "exunit.saveAllBeforeRun": true,
+    "files.associations": {
+        "*.html.j2": "html"
+    },
+    "files.autoSave": "onWindowChange",
+    "git.confirmSync": false,
     "github.copilot.enable": {
         "*": true,
-        "plaintext": false,
+        "elixir": true,
         "markdown": false,
-        "scminput": false,
-        "elixir": true
+        "plaintext": false,
+        "scminput": false
     },
-    "workbench.experimental.modernUI": true
+    "github.copilot.nextEditSuggestions.eagerness": "high",
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "github.copilot.nextEditSuggestions.extendedRange": true,
+    "github.copilot.selectedCompletionModel": "",
+    "html.autoClosingTags": false,
+    "html.autoCreateQuotes": false,
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+    "liquid.engine": "jekyll",
+    "python.analysis.autoFormatStrings": true,
+    "remote.SSH.remotePlatform": {
+        "10.0.100.107": "macOS",
+        "10.0.100.182": "macOS",
+        "10.0.100.60": "macOS",
+        "192.168.125.2": "macOS",
+        "MacBookAir": "macOS",
+        "nathan-desktop": "linux",
+        "nathan-desktop-zt": "linux",
+        "nathan-macbook": "macOS",
+        "nathan-macbook-zt": "macOS",
+        "nathan-ubuntu2204": "linux"
+    },
+    "remote.SSH.useLocalServer": false,
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+    "rust-analyzer.inlayHints.genericParameterHints.const.enable": false,
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "rust-analyzer.inlayHints.renderColons": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "rust-analyzer.lens.debug.enable": false,
+    "rust-analyzer.lens.implementations.enable": false,
+    "rust-analyzer.lens.run.enable": false,
+    "tailwindCSS.includeLanguages": {
+        "elixir": "html",
+        "phoenix-heex": "html"
+    },
+    // This allows ctrl-p to function as "previous" in the terminal
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpen"
+    ],
+    "terminal.integrated.enableImages": true,
+    // workaround for https://github.com/microsoft/vscode/issues/311252
+    "terminal.integrated.enableKittyKeyboardProtocol": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.initialHint": false,
+    "terminal.integrated.localEchoLatencyThreshold": 100,
+    "terminal.integrated.mouseWheelScrollSensitivity": 0.4,
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.stickyScroll.enabled": false,
+    "terminal.integrated.suggest.enabled": false,
+    "testing.automaticallyOpenPeekView": "never",
+    "testing.gutterEnabled": false,
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape"
+        }
+    },
+    "window.commandCenter": false,
+    "window.customTitleBarVisibility": "auto",
+    "window.menuBarVisibility": "toggle",
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": -1.2239010857415447,
+    "workbench.activityBar.location": "top",
+    "workbench.browser.enableChatTools": true,
+    "workbench.colorTheme": "Cobalt2",
+    "workbench.editor.showTabs": "single",
+    "workbench.editorAssociations": {
+        "*.svg": "default"
+    },
+    "workbench.experimental.modernUI": true,
+    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
+    "workbench.layoutControl.enabled": false,
+    "workbench.list.smoothScrolling": true,
+    "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.preferredLightColorTheme": "Monokai Pro Light",
+    "workbench.tree.indent": 12,
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
+    "zenMode.hideActivityBar": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.showTabs": "none",
+    "zenMode.silentNotifications": false
 }
