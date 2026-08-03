@@ -29,6 +29,7 @@
     diffall = !diffall
     # Cleanup stale branches (upstream branch gone)
     sweep = !git fetch --prune && git branch -v | grep '\\[gone\\]' | awk '{print $1}' | xargs -r git branch -D
+    dd = difftool --dir-diff
 
 [color "diff-highlight"]
     oldNormal = red bold
@@ -47,9 +48,4 @@
 [init]
 	defaultBranch = main
 [maintenance]
-	repo = /home/nathan/.local/share/znap
-	repo = /home/nathan/.local/share/agnoster/agnoster-zsh-theme
-	repo = /home/nathan/.local/share/ohmyzsh/ohmyzsh
-	repo = /home/nathan/.local/share/zinit/zinit.git
-	repo = /home/nathan/.local/share/zsh-users/zsh-autosuggestions
-	repo = /home/nathan/.local/share/zsh-users/zsh-syntax-highlighting
+	repo = /home/nathan/dev/ptt
