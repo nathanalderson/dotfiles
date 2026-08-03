@@ -158,6 +158,7 @@ defmodule N do
   end
 
   def tango(), do: Organizations.Unsecured.get_organization_by_name("Tango Tango")
+  def nathans_org(), do: Organizations.Unsecured.get_organization_by_name("Nathan's Org")
 
   def create_sites(count, opts \\ []) do
     type = Keyword.get(opts, :type, :dev)
