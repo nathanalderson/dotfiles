@@ -2,7 +2,8 @@
     "window.commandCenter": false,
     "window.titleBarStyle": "custom",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Monokai Pro (Filter Machine)",
+    "workbench.colorTheme": "Cobalt2",
+    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
     "workbench.editor.showTabs": "single",
     "workbench.layoutControl.enabled": false,
     "breadcrumbs.symbolPath": "off",
@@ -16,11 +17,6 @@
     "editor.guides.indentation": false,
     "editor.inlineSuggest.enabled": true,
     "editor.inlineSuggest.edits.showCollapsed": true,
-    "editor.quickSuggestions": {
-        "other": false,
-        "comments": false,
-        "strings": false
-    },
     "editor.suggestOnTriggerCharacters": false,
     "editor.parameterHints.enabled": false,
     "editor.hover.enabled": "onKeyboardModifier",
@@ -159,7 +155,6 @@
     "debug.javascript.autoAttachFilter": "disabled",
     "window.customTitleBarVisibility": "auto",
     "window.zoomLevel": -1.2239010857415447,
-    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
     "black-formatter.importStrategy": "fromEnvironment",
     "python.analysis.autoFormatStrings": true,
     "editor.suggest.shareSuggestSelections": true,
@@ -186,9 +181,6 @@
     "rust-analyzer.lens.run.enable": false,
     "rust-analyzer.lens.debug.enable": false,
     "github.copilot.nextEditSuggestions.enabled": false,
-    "github.copilot.enable": {
-        "*": false
-    },
     "github.copilot.selectedCompletionModel": "",
     "github.copilot.nextEditSuggestions.extendedRange": true,
     "editor.colorDecorators": false,
@@ -196,6 +188,52 @@
     "claudeCode.initialPermissionMode": "acceptEdits",
     "docker.extension.enableComposeLanguageServer": false,
     "expert.server.nightly": true,
+    "augment.disableFocusOnAugmentPanel": true,
+    "augment.enableEmptyFileHint": false,
+    "augment.conflictingCodingAssistantCheck": false,
+    "zenMode.showTabs": "none",
+    "zenMode.silentNotifications": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideActivityBar": false,
+    "chat.viewSessions.orientation": "stacked",
+    "chat.tools.terminal.autoApprove": {
+        "/^mix usage_rules.*/": true,
+        "/^mix assets.*/": true,
+        "/^mix compile.*/": true,
+        "/^mix credo/": true,
+        "/^mix format/": true,
+        "/^mix help/": true,
+        "/^mix test.*/": true,
+        "/^uv run pytest.*/": true,
+        "/^uv run ruff.*/": true,
+        "git merge-base": true,
+        "git rev-parse": true,
+        "npm run linter": true,
+        "npm test": true,
+        "printf": true,
+        "priv/pre-commit.sh": true,
+        "pytest": true,
+        "npx jest": true
+    },
+    "chat.editing.autoAcceptDelay": 1,
+    "chat.agent.maxRequests": 100,
+    "chat.tools.urls.autoApprove": {
+        "https://code.visualstudio.com": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
+        "https://docs.github.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        },
+        "https://docs.aws.amazon.com": true,
+        "https://auth0.com/docs": true,
+        "https://www.erlang.org/doc": true,
+        "https://getstream.io/chat/docs": true,
+        "https://hexdocs.pm": {
+            "approveRequest": true,
+            "approveResponse": false
+        },
+        "https://*.hexdocs.pm": true
+    },
     "chat.agent.thinking.phrases": {
         "mode": "replace",
         "phrases": [
@@ -307,18 +345,13 @@
             "Zeroing Crime Network"
         ]
     },
-    "chat.viewSessions.orientation": "stacked",
-    "chat.tools.terminal.autoApprove": {
-        "/^mix test.*/": true,
-        "priv/pre-commit.sh": true
+    "github.copilot.nextEditSuggestions.eagerness": "high",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "elixir": true
     },
-    "chat.editing.autoAcceptDelay": 1,
-    "chat.agent.maxRequests": 100,
-    "augment.disableFocusOnAugmentPanel": true,
-    "augment.enableEmptyFileHint": false,
-    "augment.conflictingCodingAssistantCheck": false,
-    "zenMode.showTabs": "none",
-    "zenMode.silentNotifications": false,
-    "zenMode.hideLineNumbers": false,
-    "zenMode.hideActivityBar": false
+    "workbench.experimental.modernUI": true
 }
