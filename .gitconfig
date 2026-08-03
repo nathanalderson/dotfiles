@@ -27,6 +27,8 @@
     default = simple
 [alias]
     diffall = !diffall
+    # Cleanup stale branches (upstream branch gone)
+    sweep = !git fetch --prune && git branch -v | grep '\\[gone\\]' | awk '{print $1}' | xargs -r git branch -D
 
 [color "diff-highlight"]
     oldNormal = red bold
