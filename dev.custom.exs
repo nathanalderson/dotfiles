@@ -3,9 +3,6 @@ import Config
 # set this to `:debug` to enable spammy Ecto query logs
 config :persistence, TangoTango.Persistence.Repo, log: false
 
-# # Uncomment to use the same datadog logger as prod
-# config :logger, backends: [LoggerJSON]
-
 defmodule MyConsoleLogger do
   # verbose log format
   def logs_format do
@@ -34,12 +31,29 @@ defmodule MyConsoleLogger do
   end
 end
 
-config :logger, :console,
+config :logger, :default_formatter,
   format: {MyConsoleLogger, :format},
   colors: [enabled: true],
   metadata: MyConsoleLogger.logs_metadata()
+
+# Uncomment this to use prod-style logs (replaces paragraph above)
+# config :logger, :default_handler, formatter: {TangoTango.Core.CustomLogFormatter, metadata: :all}
+
+# Uncomment this paragraph to write prod-style json logs to a file
+# Must also add `Logger.add_handlers(:core)` to `apps/core/lib/core/application.ex`
+config :core, :logger, [
+  {:handler, :file_log, :logger_std_h,
+   %{
+     config: %{
+       file: ~c"/home/nathan/tmp/stillhouse-logs.jsonl"
+     },
+     formatter: {TangoTango.Core.CustomLogFormatter, metadata: :all}
+   }}
+]
 
 # Import custom secrets
 if File.exists?("#{__DIR__}/dev.custom.secret.exs") do
   import_config "dev.custom.secret.exs"
 end
+
+config :persistence, TangoTango.Persistence.ExternalEvents.TimeZoneLookup.DetsCacheLoader, enabled: true
