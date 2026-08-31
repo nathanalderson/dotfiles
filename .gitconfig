@@ -49,3 +49,5 @@
 	defaultBranch = main
 [maintenance]
 	repo = /home/nathan/dev/ptt
+[rebase]
+	autoSquash = true
