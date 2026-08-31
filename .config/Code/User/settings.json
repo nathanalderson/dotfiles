@@ -237,6 +237,7 @@
     "editor.smoothScrolling": true,
     "editor.suggest.shareSuggestSelections": true,
     "editor.suggestOnTriggerCharacters": false,
+    "editor.renderWhitespace": "none",
     "elixirLS.dialyzerEnabled": false,
     "elixirLS.envVariables": {
         "ELIXIR_WARNINGS_OK": "1"
@@ -335,7 +336,7 @@
     "window.zoomLevel": -1.2239010857415447,
     "workbench.activityBar.location": "top",
     "workbench.browser.enableChatTools": true,
-    "workbench.colorTheme": "Cobalt2",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "workbench.editor.showTabs": "single",
     "workbench.editorAssociations": {
         "*.svg": "default"
@@ -353,5 +354,8 @@
     "zenMode.hideActivityBar": false,
     "zenMode.hideLineNumbers": false,
     "zenMode.showTabs": "none",
-    "zenMode.silentNotifications": false
+    "zenMode.silentNotifications": false,
+    "extensions.supportAgentsWindow": {
+        "monokai.theme-monokai-pro-vscode": true
+    }
 }
