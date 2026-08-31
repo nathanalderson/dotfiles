@@ -27,6 +27,14 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 znap source ohmyzsh/ohmyzsh lib/{git,theme-and-appearance}
 
+export ZSH_AI_TRIGGER=",,"
+export ZSH_AI_PROVIDER="openai"
+export ZSH_AI_OPENAI_URL="https://openrouter.ai/api/v1/chat/completions"
+export ZSH_AI_OPENAI_MODEL="openai/gpt-5.6-luna"
+export ZSH_AI_OPENAI_MODEL="google/gemini-3.5-flash-lite"
+export OPENAI_API_KEY=$OPENROUTER_API_KEY
+znap source matheusml/zsh-ai
+
 source ~/dotfiles/spaceship.zsh-theme
 znap prompt
 
