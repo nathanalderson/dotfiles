@@ -1,3 +1,4 @@
+alias TangoTango.Core.ExternalEventManager
 alias TangoTango.Core.Messaging
 
 alias TangoTango.Persistence.AuditLog
@@ -7,6 +8,8 @@ alias TangoTango.Persistence.CassandraRepo
 alias TangoTango.Persistence.Channels
 alias TangoTango.Persistence.Channels.Channel
 alias TangoTango.Persistence.ExternalEvents
+alias TangoTango.Persistence.ExternalEvents.Alerts
+alias TangoTango.Persistence.ExternalEvents.Alerts.Alert
 alias TangoTango.Persistence.ExternalEvents.ExternalEvent
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfig
 alias TangoTango.Persistence.ExternalEvents.ExternalEventConfigs
@@ -276,6 +279,49 @@ defmodule N do
     LatestLocationByOrg.update_location(record)
   end
 
+  def random_gps() do
+    # Generates a random gps {lat, long} in the Huntsville, AL area
+    {
+      rand_interval(34.656507231884056, 34.801434768115946),
+      rand_interval(-86.67354187245076, -86.49720012754923)
+    }
+  end
+
+  def create_emergency_alert(user, opts \\ []) do
+    title = Keyword.get(opts, :title, "Emergency alert")
+    event_time = Keyword.get(opts, :event_time, DateTime.utc_now())
+    audio_arns = Keyword.get(opts, :audio_arns, [])
+    raw_input = Keyword.get(opts, :raw_input, "This is the raw input")
+
+    content =
+      Keyword.get_lazy(opts, :content, fn ->
+        {lat, long} = random_gps()
+        %{gps: "#{lat},#{long}"}
+      end)
+
+    with {:ok, source} <- ExternalEventConfigs.Unsecured.get_or_create_emergency(user.org_id) do
+      params =
+        TangoTango.Web.Api.V1.ExternalEventsApiController.alert_params(
+          %{
+            eventTime: event_time,
+            title: title,
+            content: content,
+            type: "emergency",
+            announcement: nil,
+            audioArns: audio_arns,
+            rating: :not_rated,
+            failure: nil,
+            rawInput: raw_input
+          },
+          source,
+          triggered_by: user
+        )
+
+      {:ok, _external_event, _alert} = ExternalEventManager.create(user, source, params)
+      :ok
+    end
+  end
+
   def rand_interval(a, b), do: a + (b - a) * :rand.uniform()
 
   def create_users(count, org_id) do
@@ -430,7 +476,7 @@ defmodule N do
           raw_input: "raw input"
         )
 
-      TangoTango.Web.ExternalEventManager.create(config, event, opts)
+      ExternalEventManager.create(config, event, opts)
     end
   end
 
