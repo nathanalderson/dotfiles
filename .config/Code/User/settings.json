@@ -172,13 +172,16 @@
     },
     "chat.editing.autoAcceptDelay": 1,
     "chat.tools.terminal.autoApprove": {
+        "/^twg jira.*/": true,
         "/^mix assets.*/": true,
         "/^mix compile.*/": true,
         "/^mix credo/": true,
         "/^mix format/": true,
         "/^mix help/": true,
+        "/^mix hex.info.*/": true,
         "/^mix test.*/": true,
         "/^mix usage_rules.*/": true,
+        "mix deps.get": true,
         "/^uv run pytest.*/": true,
         "/^uv run ruff.*/": true,
         "git merge-base": true,
@@ -188,24 +191,29 @@
         "npx jest": true,
         "printf": true,
         "priv/pre-commit.sh": true,
-        "pytest": true
+        "pytest": true,
+        "git remote": true
     },
+    "github.copilot.chat.additionalReadAccessPaths": [
+        "/tmp/twg/",
+    ],
     "chat.tools.urls.autoApprove": {
+        "https://code.visualstudio.com": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
         "https://*.hexdocs.pm": true,
         "https://auth0.com/docs": true,
-        "https://code.visualstudio.com": true,
         "https://docs.aws.amazon.com": true,
         "https://docs.github.com": {
             "approveRequest": false,
             "approveResponse": true
         },
         "https://getstream.io/chat/docs": true,
-        "https://github.com/microsoft/vscode/wiki/*": true,
         "https://hexdocs.pm": {
             "approveRequest": true,
             "approveResponse": false
         },
-        "https://www.erlang.org/doc": true
+        "https://www.erlang.org/doc": true,
+        "https://oban.pro/docs": true
     },
     "chat.viewSessions.orientation": "stacked",
     "claudeCode.initialPermissionMode": "acceptEdits",
@@ -333,16 +341,16 @@
     "window.customTitleBarVisibility": "auto",
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "custom",
-    "window.zoomLevel": -1.2239010857415447,
+    "window.zoomLevel": -1.5778829311823859,
     "workbench.activityBar.location": "top",
     "workbench.browser.enableChatTools": true,
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro Light",
     "workbench.editor.showTabs": "single",
     "workbench.editorAssociations": {
         "*.svg": "default"
     },
     "workbench.experimental.modernUI": true,
-    "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
+    "workbench.iconTheme": "Monokai Pro Light Icons",
     "workbench.layoutControl.enabled": false,
     "workbench.list.smoothScrolling": true,
     "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",
