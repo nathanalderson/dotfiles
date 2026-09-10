@@ -398,10 +398,14 @@ defmodule N do
 
   def create_alerts(count, config_id, type, opts \\ []) do
     config = ExternalEventConfigs.Unsecured.get(config_id)
+    {opts, create_opts} = Keyword.split(opts, [:accessing, :title, :info, :audio_arns, :announcement])
+    accessing = Keyword.get(opts, :accessing, :unsecured)
+    base_timestamp = Keyword.get(opts, :base_timestamp, DateTime.utc_now())
 
     for i <- 1..count do
       num = String.pad_leading("#{i}", 4, "0")
-      timestamp = Timex.shift(Timex.now(), seconds: -i)
+      timestamp = base_timestamp |> DateTime.add(-i, :second)
+      received_time = timestamp |> DateTime.add(500, :millisecond)
 
       content =
         case type do
@@ -459,24 +463,26 @@ defmodule N do
             }
         end
 
-      event =
-        ExternalEvent.new!(
-          config.org_id,
-          timestamp,
-          content.title,
-          content,
-          config_id,
-          audio_arns:
-            Keyword.get(opts, :audio_arns, [
-              "arn:aws:s3:::event-email-staging-audio/1234test/this_is_opus.opus",
-              "arn:aws:s3:::event-email-staging-audio/1234test/this_is_aac.aac"
-            ]),
-          announcement: Keyword.get(opts, :announcement, "Fake announcement"),
-          type: type,
-          raw_input: "raw input"
-        )
+      params = %{
+        org_id: config.org_id,
+        event_time: timestamp,
+        received_time: received_time,
+        title: content.title,
+        type: type,
+        content: content,
+        announcement: Keyword.get(opts, :announcement, "Fake announcement"),
+        audio_arns:
+          Keyword.get(opts, :audio_arns, [
+            "arn:aws:s3:::event-email-staging-audio/1234test/this_is_opus.opus",
+            "arn:aws:s3:::event-email-staging-audio/1234test/this_is_aac.aac"
+          ]),
+        rating: :not_rated,
+        failure: nil,
+        dest_email: if(config.input_method == :email, do: config.dest_email),
+        raw_input: "raw input"
+      }
 
-      ExternalEventManager.create(config, event, opts)
+      ExternalEventManager.create(accessing, config, params, create_opts)
     end
   end
 
