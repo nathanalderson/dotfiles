@@ -205,6 +205,8 @@ bindkey '^w' backward-kill-word
 bindkey '^H' backward-kill-word # ctrl-backspace
 bindkey "^[[1;5C" forward-word  # ctrl-rightarrow
 bindkey "^[[1;5D" backward-word # ctrl-leftarrow
+bindkey '^[f' forward-word # ctrl-rightarrow (macos + karabiner rules)
+bindkey '^[b' backward-word # ctrl-leftarrow (macos + karabiner rules)
 bindkey '^r' history-incremental-search-backward
 bindkey '^[1~' end-of-line
 bindkey '^[OF' end-of-line
