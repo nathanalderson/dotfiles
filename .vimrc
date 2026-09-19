@@ -50,18 +50,6 @@ endif
 " enable this on 88/256-color terminals
 " Plug 'godlygeek/CSApprox'
 
-" coc.nvim
-if has('nvim')
-let g:coc_global_extensions = [
-            \'@yaegassy/coc-ansible',
-            \'coc-elixir',
-            \'coc-flutter',
-            \'coc-json',
-            \'coc-pyright',
-            \'coc-snippets',
-            \]
-endif
-
 " other (non-vscode)
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
@@ -80,10 +68,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 
-" Language support
-if has('nvim')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-endif
 Plug 'lepture/vim-jinja'
 Plug 'groenewege/vim-less'
 Plug 'derekwyatt/vim-scala'
@@ -475,11 +459,6 @@ nnoremap <C-o> :ZoomWin<CR>
 " vim-perforce
 let g:perforce_auto_source_dirs=['/home/nalderso/p4workspace']
 
-if has('nvim')
-    let g:python_host_prog = "/usr/bin/python"
-    let g:python3_host_prog = "/usr/bin/python3"
-end
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<c-s>'
 let g:UltiSnipsEditSplit="vertical"
@@ -530,26 +509,10 @@ autocmd FileType kotlin let b:splitjoin_join_callbacks = [
 
 if !exists('g:vscode')
 
-" COC
-" Use <C-j>/<C-k> to trigger completion with characters ahead and navigate
-inoremap <silent><expr> <C-j>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<C-j>" :
-      \ coc#refresh()
-inoremap <expr><C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
 
 end " !exists('g:vscode')
 
