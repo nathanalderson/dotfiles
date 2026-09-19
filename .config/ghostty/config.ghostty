@@ -1,0 +1,20 @@
+# I pretty much always want it to just start from home
+working-directory = home
+window-save-state = never
+window-inherit-working-directory = false
+quit-after-last-window-closed = true
+
+# Treat cmd (which is also capslock in my case) as ctrl
+key-remap = super=ctrl
+
+# Copy and paste
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = ctrl+v=paste_from_clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# Let Cmd+D fall through as Ctrl+D instead of opening a split.
+keybind = cmd+d=unbind
+
+# word-wise cursor movement/delete
+keybind = alt+backspace=text:\x17
