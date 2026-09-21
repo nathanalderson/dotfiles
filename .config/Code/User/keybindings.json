@@ -5,67 +5,142 @@
     {
         "key": "ctrl+c",
         "command": "-vscode-neovim.escape",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert'"
+        "when": "(editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert') && isLinux"
+    },
+    {
+        "key": "cmd+c",
+        "command": "-vscode-neovim.escape",
+        "when": "(editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert') && isMac"
     },
     {
         "key": "ctrl+c",
         "command": "-vscode-neovim.escape",
-        "when": "editorTextFocus && neovim.ctrlKeysInsert && neovim.init && neovim.mode == 'insert'"
+        "when": "(editorTextFocus && neovim.ctrlKeysInsert && neovim.init && neovim.mode == 'insert') && isLinux"
+    },
+    {
+        "key": "cmd+c",
+        "command": "-vscode-neovim.escape",
+        "when": "(editorTextFocus && neovim.ctrlKeysInsert && neovim.init && neovim.mode == 'insert') && isMac"
     },
     // ===================================================
     // Remove neovim bindings for <C-W>o which conflicts with ZoomWin
     {
         "command": "-workbench.action.joinAllGroups",
-        "key": "ctrl+w o"
+        "key": "ctrl+w ctrl+o",
+        "when": "isLinux"
+    },
+    {
+        "command": "-workbench.action.joinAllGroups",
+        "key": "cmd+w cmd+o",
+        "when": "isMac"
     },
     // ===================================================
     // Simulate NERDTree
     {
         "key": "ctrl+n",
-        "command": "-workbench.action.files.newUntitledFile"
+        "command": "-workbench.action.files.newUntitledFile",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+n",
+        "command": "-workbench.action.files.newUntitledFile",
+        "when": "isMac"
     },
     {
         "key": "ctrl+n",
         "command": "workbench.action.toggleSidebarVisibility",
-        "when": "!suggestWidgetVisible && !inQuickOpen"
+        "when": "(!suggestWidgetVisible && !inQuickOpen) && isLinux"
+    },
+    {
+        "key": "cmd+n",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "(!suggestWidgetVisible && !inQuickOpen) && isMac"
     },
     {
         "key": "ctrl+b",
-        "command": "-workbench.action.toggleSidebarVisibility"
+        "command": "-workbench.action.toggleSidebarVisibility",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+b",
+        "command": "-workbench.action.toggleSidebarVisibility",
+        "when": "isMac"
     },
     // ===================================================
     // Toggle panel visibility
     {
         "key": "ctrl+m",
-        "command": "workbench.action.togglePanel"
+        "command": "workbench.action.togglePanel",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+m",
+        "command": "workbench.action.togglePanel",
+        "when": "isMac"
     },
     {
         "key": "ctrl+j",
-        "command": "-workbench.action.togglePanel"
+        "command": "-workbench.action.togglePanel",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+j",
+        "command": "-workbench.action.togglePanel",
+        "when": "isMac"
     },
     // ===================================================
     // Ctrl+6 to switch tabs
     {
         "key": "ctrl+6",
-        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+6",
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "when": "isMac"
     },
     // ===================================================
     // window navigation and manaagement
     {
         "key": "ctrl+h",
-        "command": "workbench.action.navigateLeft"
+        "command": "workbench.action.navigateLeft",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "isMac"
     },
     {
         "key": "ctrl+l",
-        "command": "workbench.action.navigateRight"
+        "command": "workbench.action.navigateRight",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+l",
+        "command": "workbench.action.navigateRight",
+        "when": "isMac"
     },
     {
         "key": "ctrl+k",
-        "command": "workbench.action.navigateUp"
+        "command": "workbench.action.navigateUp",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+k",
+        "command": "workbench.action.navigateUp",
+        "when": "isMac"
     },
     {
         "key": "ctrl+j",
-        "command": "workbench.action.navigateDown"
+        "command": "workbench.action.navigateDown",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+j",
+        "command": "workbench.action.navigateDown",
+        "when": "isMac"
     },
     {
         "key": "\\ w",
@@ -76,55 +151,106 @@
     // Focus the terminal
     {
         "key": "ctrl+shift+.",
-        "command": "workbench.action.terminal.toggleTerminal"
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+shift+.",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "isMac"
     },
     // ===================================================
     // navigate terminals
     {
         "key": "ctrl+shift+k",
         "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+        "when": "(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus) && isLinux"
+    },
+    {
+        "key": "cmd+shift+k",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus) && isMac"
     },
     {
         "key": "ctrl+shift+j",
         "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+        "when": "(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus) && isLinux"
+    },
+    {
+        "key": "cmd+shift+j",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus) && isMac"
     },
     {
         "key": "ctrl+t",
         "command": "workbench.action.terminal.new",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+        "when": "(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus) && isLinux"
+    },
+    {
+        "key": "cmd+t",
+        "command": "workbench.action.terminal.new",
+        "when": "(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus) && isMac"
     },
     // ===================================================
     // ctrl n(next) and p(previous) already works, just adding jk as a personal preference
     {
         "key": "ctrl+j",
         "command": "workbench.action.quickOpenSelectNext",
-        "when": "inQuickOpen"
+        "when": "(inQuickOpen) && isLinux"
+    },
+    {
+        "key": "cmd+j",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "(inQuickOpen) && isMac"
     },
     {
         "key": "ctrl+k",
         "command": "workbench.action.quickOpenSelectPrevious",
-        "when": "inQuickOpen"
+        "when": "(inQuickOpen) && isLinux"
+    },
+    {
+        "key": "cmd+k",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "(inQuickOpen) && isMac"
     },
     {
         "key": "ctrl+j",
         "command": "selectNextSuggestion",
-        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+        "when": "(suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus) && isLinux"
+    },
+    {
+        "key": "cmd+j",
+        "command": "selectNextSuggestion",
+        "when": "(suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus) && isMac"
     },
     {
         "key": "ctrl+k",
         "command": "selectPrevSuggestion",
-        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+        "when": "(suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus) && isLinux"
+    },
+    {
+        "key": "cmd+k",
+        "command": "selectPrevSuggestion",
+        "when": "(suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus) && isMac"
     },
     {
         "key": "ctrl+j",
-        "when": "codeActionMenuVisible",
+        "when": "(codeActionMenuVisible) && isLinux",
+        "command": "selectNextCodeAction"
+    },
+    {
+        "key": "cmd+j",
+        "when": "(codeActionMenuVisible) && isMac",
         "command": "selectNextCodeAction"
     },
     {
         "key": "ctrl+k",
-        "when": "codeActionMenuVisible",
+        "when": "(codeActionMenuVisible) && isLinux",
+        "command": "selectPrevCodeAction"
+    },
+    {
+        "key": "cmd+k",
+        "when": "(codeActionMenuVisible) && isMac",
         "command": "selectPrevCodeAction"
     },
     // ===================================================
@@ -132,32 +258,62 @@
     {
         "key": "ctrl+; ;",
         "command": "exunit.runTest", // test under cursor
-        "when": "editorTextFocus && resourceLangId == elixir"
+        "when": "(editorTextFocus && resourceLangId == elixir) && isLinux"
+    },
+    {
+        "key": "cmd+; ;",
+        "command": "exunit.runTest", // test under cursor
+        "when": "(editorTextFocus && resourceLangId == elixir) && isMac"
     },
     {
         "key": "ctrl+; ;",
         "command": "testing.runAtCursor",
-        "when": "editorTextFocus && resourceLangId != elixir"
+        "when": "(editorTextFocus && resourceLangId != elixir) && isLinux"
+    },
+    {
+        "key": "cmd+; ;",
+        "command": "testing.runAtCursor",
+        "when": "(editorTextFocus && resourceLangId != elixir) && isMac"
     },
     {
         "key": "ctrl+; .",
         "command": "exunit.runPrevious",
-        "when": "resourceLangId == elixir"
+        "when": "(resourceLangId == elixir) && isLinux"
+    },
+    {
+        "key": "cmd+; .",
+        "command": "exunit.runPrevious",
+        "when": "(resourceLangId == elixir) && isMac"
     },
     {
         "key": "ctrl+; .",
         "command": "testing.reRunLastRun",
-        "when": "resourceLangId != elixir"
+        "when": "(resourceLangId != elixir) && isLinux"
+    },
+    {
+        "key": "cmd+; .",
+        "command": "testing.reRunLastRun",
+        "when": "(resourceLangId != elixir) && isMac"
     },
     {
         "key": "ctrl+; g",
         "command": "exunit.runTestFile",
-        "when": "editorFocus && resourceLangId == elixir"
+        "when": "(editorFocus && resourceLangId == elixir) && isLinux"
+    },
+    {
+        "key": "cmd+; g",
+        "command": "exunit.runTestFile",
+        "when": "(editorFocus && resourceLangId == elixir) && isMac"
     },
     {
         "key": "ctrl+; g",
         "command": "testing.runCurrentFile",
-        "when": "editorFocus && resourceLangId != elixir"
+        "when": "(editorFocus && resourceLangId != elixir) && isLinux"
+    },
+    {
+        "key": "cmd+; g",
+        "command": "testing.runCurrentFile",
+        "when": "(editorFocus && resourceLangId != elixir) && isMac"
     },
     // Zoomwin
     {
@@ -165,78 +321,147 @@
         "command": "workbench.action.toggleZenMode",
         "when": "editorTextFocus && neovim.mode == normal"
     },
-    // Back and forward
+    // Back and forward (windows only, because alt+left/right is opt+left/right on mac and that's
+    // what we use for the more-important word navigation)
     {
         "key": "alt+left",
-        "command": "workbench.action.navigateBack"
+        "command": "workbench.action.navigateBack",
+        "when": "isWindows"
     },
     {
         "key": "alt+right",
-        "command": "workbench.action.navigateForward"
+        "command": "workbench.action.navigateForward",
+        "when": "isWindows"
     },
     // Don't close the workbench when I accidentally hit ctrl+q
     {
         "key": "ctrl+q",
-        "command": "-workbench.action.quit"
+        "command": "-workbench.action.quit",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+q",
+        "command": "-workbench.action.quit",
+        "when": "isMac"
     },
     // Use ctrl+shift+n to highlight the file in the explorer
     {
         "key": "ctrl+shift+n",
-        "command": "-workbench.action.newWindow"
+        "command": "-workbench.action.newWindow",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+shift+n",
+        "command": "-workbench.action.newWindow",
+        "when": "isMac"
     },
     {
         "key": "ctrl+shift+n",
-        "command": "workbench.files.action.showActiveFileInExplorer"
+        "command": "workbench.files.action.showActiveFileInExplorer",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+shift+n",
+        "command": "workbench.files.action.showActiveFileInExplorer",
+        "when": "isMac"
     },
     // Pass Ctrl-q to neovim
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+q",
-        "when": "editorTextFocus && neovim.mode == normal",
+        "when": "(editorTextFocus && neovim.mode == normal) && isLinux",
+        "args": "<C-q>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+q",
+        "when": "(editorTextFocus && neovim.mode == normal) && isMac",
         "args": "<C-q>"
     },
     // Pass Ctrl-s to neovim in insert mode
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+s",
-        "when": "editorTextFocus && neovim.mode == insert",
+        "when": "(editorTextFocus && neovim.mode == insert) && isLinux",
+        "args": "<C-s>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+s",
+        "when": "(editorTextFocus && neovim.mode == insert) && isMac",
         "args": "<C-s>"
     },
     // Pass Ctrl-y chords to neovim (for emmet-vim)
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+y ;",
-        "when": "editorTextFocus",
+        "when": "(editorTextFocus) && isLinux",
+        "args": "<C-y>;"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+y ;",
+        "when": "(editorTextFocus) && isMac",
         "args": "<C-y>;"
     },
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+y u",
-        "when": "editorTextFocus",
+        "when": "(editorTextFocus) && isLinux",
+        "args": "<C-y>u"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+y u",
+        "when": "(editorTextFocus) && isMac",
         "args": "<C-y>u"
     },
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+y m",
-        "when": "editorTextFocus",
+        "when": "(editorTextFocus) && isLinux",
+        "args": "<C-y>m"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+y m",
+        "when": "(editorTextFocus) && isMac",
         "args": "<C-y>m"
     },
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+y k",
-        "when": "editorTextFocus",
+        "when": "(editorTextFocus) && isLinux",
+        "args": "<C-y>k"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+y k",
+        "when": "(editorTextFocus) && isMac",
         "args": "<C-y>k"
     },
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+y j",
-        "when": "editorTextFocus",
+        "when": "(editorTextFocus) && isLinux",
+        "args": "<C-y>j"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+y j",
+        "when": "(editorTextFocus) && isMac",
         "args": "<C-y>j"
     },
     {
         "command": "vscode-neovim.send",
         "key": "ctrl+y /",
-        "when": "editorTextFocus",
+        "when": "(editorTextFocus) && isLinux",
+        "args": "<C-y>/"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "cmd+y /",
+        "when": "(editorTextFocus) && isMac",
         "args": "<C-y>/"
     },
     // Hunk revert
@@ -248,36 +473,72 @@
     {
         "key": "ctrl+; d",
         "command": "testing.debugAtCursor",
-        "when": "editorTextFocus"
+        "when": "(editorTextFocus) && isLinux"
+    },
+    {
+        "key": "cmd+; d",
+        "command": "testing.debugAtCursor",
+        "when": "(editorTextFocus) && isMac"
     },
     {
         "key": "ctrl+; ctrl+c",
         "command": "-testing.debugAtCursor",
-        "when": "editorTextFocus"
+        "when": "(editorTextFocus) && isLinux"
+    },
+    {
+        "key": "cmd+; cmd+c",
+        "command": "-testing.debugAtCursor",
+        "when": "(editorTextFocus) && isMac"
     },
     {
         "key": "ctrl+' i",
         "command": "inlineChat.start",
-        "when": "inlineChatHasProvider && !editorReadonly"
+        "when": "(inlineChatHasProvider && !editorReadonly) && isLinux"
+    },
+    {
+        "key": "cmd+' i",
+        "command": "inlineChat.start",
+        "when": "(inlineChatHasProvider && !editorReadonly) && isMac"
     },
     {
         "key": "ctrl+k i",
         "command": "-inlineChat.start",
-        "when": "inlineChatHasProvider && !editorReadonly"
+        "when": "(inlineChatHasProvider && !editorReadonly) && isLinux"
+    },
+    {
+        "key": "cmd+k i",
+        "command": "-inlineChat.start",
+        "when": "(inlineChatHasProvider && !editorReadonly) && isMac"
     },
     {
         "key": "ctrl+escape",
         "command": "-workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus"
+        "when": "(terminalFocus) && isLinux"
+    },
+    {
+        "key": "cmd+escape",
+        "command": "-workbench.action.focusActiveEditorGroup",
+        "when": "(terminalFocus) && isMac"
     },
     {
         "key": "ctrl+escape",
-        "command": "vscode-neovim.restart"
+        "command": "vscode-neovim.restart",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+escape",
+        "command": "vscode-neovim.restart",
+        "when": "isMac"
     },
     {
         "key": "ctrl+y ,",
         "command": "editor.emmet.action.expandAbbreviation",
-        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
+        "when": "(editorTextFocus && !editorReadonly && !editorTabMovesFocus) && isLinux"
+    },
+    {
+        "key": "cmd+y ,",
+        "command": "editor.emmet.action.expandAbbreviation",
+        "when": "(editorTextFocus && !editorReadonly && !editorTabMovesFocus) && isMac"
     },
     {
         "key": "tab",
@@ -286,36 +547,73 @@
     },
     {
         "key": "ctrl+l",
-        "command": "-vscode-augment.focusAugmentPanel"
+        "command": "-vscode-augment.focusAugmentPanel",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+l",
+        "command": "-vscode-augment.focusAugmentPanel",
+        "when": "isMac"
     },
     {
         "key": "ctrl+shift+/",
         "command": "editor.action.blockComment",
-        "when": "editorTextFocus && !editorReadonly"
+        "when": "(editorTextFocus && !editorReadonly) && isLinux"
+    },
+    {
+        "key": "cmd+shift+/",
+        "command": "editor.action.blockComment",
+        "when": "(editorTextFocus && !editorReadonly) && isMac"
     },
     {
         "key": "ctrl+shift+a",
         "command": "-editor.action.blockComment",
-        "when": "editorTextFocus && !editorReadonly"
+        "when": "(editorTextFocus && !editorReadonly) && isLinux"
+    },
+    {
+        "key": "cmd+shift+a",
+        "command": "-editor.action.blockComment",
+        "when": "(editorTextFocus && !editorReadonly) && isMac"
     },
     {
         "key": "ctrl+shift+t",
         "command": "workbench.action.terminal.newLocal",
-        "when": "terminalFocus"
+        "when": "(terminalFocus) && isLinux"
+    },
+    {
+        "key": "cmd+shift+t",
+        "command": "workbench.action.terminal.newLocal",
+        "when": "(terminalFocus) && isMac"
     },
     {
         "key": "ctrl+shift+k",
         "command": "-editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
+        "when": "(textInputFocus && !editorReadonly) && isLinux"
+    },
+    {
+        "key": "cmd+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "(textInputFocus && !editorReadonly) && isMac"
     },
     {
         "key": "ctrl+shift+j",
         "command": "-rust-analyzer.joinLines",
-        "when": "editorTextFocus && editorLangId == 'rust'"
+        "when": "(editorTextFocus && editorLangId == 'rust') && isLinux"
+    },
+    {
+        "key": "cmd+shift+j",
+        "command": "-rust-analyzer.joinLines",
+        "when": "(editorTextFocus && editorLangId == 'rust') && isMac"
     },
     {
         "key": "ctrl+shift+g",
-        "command": "workbench.scm.focus"
+        "command": "workbench.scm.focus",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+shift+g",
+        "command": "workbench.scm.focus",
+        "when": "isMac"
     },
     {
         "key": "shift+enter",
@@ -338,7 +636,12 @@
     {
         "key": "ctrl+]",
         "command": "editor.action.inlineSuggest.commit",
-        "when": "inInlineEditsPreviewEditor"
+        "when": "(inInlineEditsPreviewEditor) && isLinux"
+    },
+    {
+        "key": "cmd+]",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "(inInlineEditsPreviewEditor) && isMac"
     },
     {
         "key": "tab",
@@ -348,7 +651,12 @@
     {
         "key": "ctrl+shift+]",
         "command": "editor.action.inlineSuggest.commitAlternativeAction",
-        "when": "inInlineEditsPreviewEditor"
+        "when": "(inInlineEditsPreviewEditor) && isLinux"
+    },
+    {
+        "key": "cmd+shift+]",
+        "command": "editor.action.inlineSuggest.commitAlternativeAction",
+        "when": "(inInlineEditsPreviewEditor) && isMac"
     },
     {
         "key": "shift+tab",
@@ -358,7 +666,12 @@
     {
         "key": "ctrl+shift+]",
         "command": "editor.action.inlineSuggest.commitAlternativeAction",
-        "when": "inlineEditIsVisible && inlineSuggestionAlternativeActionVisible"
+        "when": "(inlineEditIsVisible && inlineSuggestionAlternativeActionVisible) && isLinux"
+    },
+    {
+        "key": "cmd+shift+]",
+        "command": "editor.action.inlineSuggest.commitAlternativeAction",
+        "when": "(inlineEditIsVisible && inlineSuggestionAlternativeActionVisible) && isMac"
     },
     {
         "key": "shift+tab",
@@ -368,7 +681,12 @@
     {
         "key": "ctrl+]",
         "command": "editor.action.inlineSuggest.jump",
-        "when": "inlineEditIsVisible && tabShouldJumpToInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+        "when": "(inlineEditIsVisible && tabShouldJumpToInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible) && isLinux"
+    },
+    {
+        "key": "cmd+]",
+        "command": "editor.action.inlineSuggest.jump",
+        "when": "(inlineEditIsVisible && tabShouldJumpToInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible) && isMac"
     },
     {
         "key": "tab",
@@ -382,21 +700,42 @@
     },
     {
         "key": "ctrl+' a",
-        "command": "workbench.panel.chat.view.copilot.focus"
+        "command": "workbench.panel.chat.view.copilot.focus",
+        "when": "isLinux"
+    },
+    {
+        "key": "cmd+' a",
+        "command": "workbench.panel.chat.view.copilot.focus",
+        "when": "isMac"
     },
     {
         "key": "ctrl+' n",
         "command": "workbench.action.chat.newChat",
-        "when": "chatIsEnabled"
+        "when": "(chatIsEnabled) && isLinux"
+    },
+    {
+        "key": "cmd+' n",
+        "command": "workbench.action.chat.newChat",
+        "when": "(chatIsEnabled) && isMac"
     },
     {
         "key": "ctrl+]",
         "command": "-editor.action.indentLines",
-        "when": "editorTextFocus && !editorReadonly"
+        "when": "(editorTextFocus && !editorReadonly) && isLinux"
+    },
+    {
+        "key": "cmd+]",
+        "command": "-editor.action.indentLines",
+        "when": "(editorTextFocus && !editorReadonly) && isMac"
     },
     {
         "key": "ctrl+]",
         "command": "editor.action.inlineSuggest.commit",
-        "when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
+        "when": "(inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible) && isLinux"
+    },
+    {
+        "key": "cmd+]",
+        "command": "editor.action.inlineSuggest.commit",
+        "when": "(inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible) && isMac"
     }
 ]
