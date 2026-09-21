@@ -4,3 +4,6 @@
 
 # znap cache file
 *.zwc
+
+# karabiner automatic backups
+.config/karabiner/automatic_backups/
