@@ -13,8 +13,9 @@ keybind = ctrl+v=paste_from_clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
 
-# Let Cmd+D fall through as Ctrl+D instead of opening a split.
+# Let these fall through instead of being intercepted by ghostty
 keybind = cmd+d=unbind
+keybind = cmd+n=unbind
 
 # word-wise cursor movement/delete
 keybind = alt+backspace=text:\x17

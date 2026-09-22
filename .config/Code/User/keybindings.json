@@ -365,6 +365,19 @@
         "command": "workbench.files.action.showActiveFileInExplorer",
         "when": "isMac"
     },
+    // Forward half-page scrolling to Neovim.
+    {
+        "key": "cmd+u",
+        "command": "vscode-neovim.send",
+        "args": "<C-u>",
+        "when": "editorTextFocus && neovim.init && isMac"
+    },
+    {
+        "key": "cmd+d",
+        "command": "vscode-neovim.send",
+        "args": "<C-d>",
+        "when": "editorTextFocus && neovim.init && isMac"
+    },
     // Pass Ctrl-q to neovim
     {
         "command": "vscode-neovim.send",
