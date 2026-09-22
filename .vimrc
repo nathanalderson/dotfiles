@@ -121,7 +121,9 @@ Plug 'nathanalderson/yanktohtml'
 Plug 'lambdalisue/suda.vim' " workaround for https://github.com/neovim/neovim/issues/1716
 
 " Snippets
+if has('python3')
 Plug 'SirVer/ultisnips'
+endif
 Plug 'honza/vim-snippets'
 
 call plug#end()
