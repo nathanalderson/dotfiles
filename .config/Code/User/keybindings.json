@@ -737,5 +737,72 @@
         "key": "cmd+]",
         "command": "editor.action.inlineSuggest.commit",
         "when": "(inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible) && isMac"
+    },
+    // Command keys act as their Ctrl equivalents in the integrated terminal.
+    {
+        "key": "cmd+c",
+        "command": "workbench.action.terminal.copySelection",
+        "when": "terminalFocus && terminalTextSelected && isMac"
+    },
+    {
+        "key": "cmd+c",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0003"
+        },
+        "when": "terminalFocus && !terminalTextSelected && isMac"
+    },
+    {
+        "key": "cmd+v",
+        "command": "workbench.action.terminal.paste",
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+d",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0004"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+r",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0012"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+x",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0018"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+z",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001a"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+p",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u0010"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+n",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u000e"
+        },
+        "when": "terminalFocus && isMac"
     }
 ]
