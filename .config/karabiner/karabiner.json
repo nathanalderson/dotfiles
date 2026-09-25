@@ -282,17 +282,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -323,17 +312,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -366,17 +344,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -407,17 +374,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -450,17 +406,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -492,17 +437,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -530,17 +464,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -573,17 +496,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -614,17 +526,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -657,17 +558,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -698,17 +588,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -741,17 +620,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -779,17 +647,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -822,17 +679,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -863,17 +709,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -906,17 +741,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -947,17 +771,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -990,17 +803,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1031,17 +833,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -1074,17 +865,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1115,17 +895,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -1158,17 +927,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1199,17 +957,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -1242,17 +989,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1283,17 +1019,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -1326,17 +1051,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1367,17 +1081,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -1410,17 +1113,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1451,17 +1143,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
@@ -1494,17 +1175,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1536,17 +1206,6 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
-                                    {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
                                             "^com\\.microsoft\\.windowsapp$",
@@ -1577,17 +1236,6 @@
                             },
                             {
                                 "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "Windows Keyboard for Mac target 1118:2092",
-                                                "is_keyboard": true,
-                                                "product_id": 2092,
-                                                "vendor_id": 1118
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    },
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.microsoft\\.rdc\\.macos$",
