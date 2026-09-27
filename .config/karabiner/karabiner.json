@@ -5,6 +5,17 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Screenshots",
+                        "manipulators": [
+                            {
+                                "description": "Print Screen launches Flameshot",
+                                "from": { "key_code": "print_screen" },
+                                "to": [{ "shell_command": "/Applications/Flameshot.app/Contents/MacOS/flameshot gui" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Open Spotlight when left Option is pressed by itself",
                         "manipulators": [
                             {
@@ -1353,11 +1364,133 @@
                         ]
                     },
                     {
-                        "description": "PrtScn launches Flameshot",
+                        "description": "Locking, sleeping, and screen management",
                         "manipulators": [
                             {
+                                "description": "Option+L (lock button) locks the screen.",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_control", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Left Command+Right Command+L locks the screen.",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_control", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Left Option+Left Shift+S locks the computer and turns off the monitors.",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "mandatory": ["left_option", "left_shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_control", "left_command"]
+                                    },
+                                    { "shell_command": "/usr/bin/pmset displaysleepnow" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Left Command+Right Command+Shift+L locks the computer and turns off the monitors.",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_control", "left_command"]
+                                    },
+                                    { "shell_command": "/usr/bin/pmset displaysleepnow" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Print Screen launches Flameshot",
                                 "from": { "key_code": "print_screen" },
                                 "to": [{ "shell_command": "/Applications/Flameshot.app/Contents/MacOS/flameshot gui" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Windows key shortcuts",
+                        "manipulators": [
+                            {
+                                "description": "Left Option+D shows the desktop.",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "key_code": "f11" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Left Option+Left Arrow navigates back.",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Left Option+Right Arrow navigates forward.",
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["left_option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
