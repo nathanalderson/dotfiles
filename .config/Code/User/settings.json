@@ -344,13 +344,13 @@
     "window.zoomLevel": -1.5778829311823859,
     "workbench.activityBar.location": "top",
     "workbench.browser.enableChatTools": true,
-    "workbench.colorTheme": "Monokai Pro Light",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "workbench.editor.showTabs": "single",
     "workbench.editorAssociations": {
         "*.svg": "default"
     },
     "workbench.experimental.modernUI": true,
-    "workbench.iconTheme": "Monokai Pro Light Icons",
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
     "workbench.layoutControl.enabled": false,
     "workbench.list.smoothScrolling": true,
     "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Octagon)",

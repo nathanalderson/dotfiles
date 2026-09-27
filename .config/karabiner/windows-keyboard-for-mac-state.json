@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "installed_at": "2026-09-15T15:15:24.058Z",
+  "previous_profile": "Windows Profile",
+  "backup_path": "/Users/nathan/.config/karabiner/windows-keyboard-for-mac-backups/20260915-101523-08AC0E4F-before-install/karabiner.json",
+  "target_keyboards": [
+    "1118:2092"
+  ]
+}

@@ -1,0 +1,1784 @@
+{
+    "machine_specific": { "krbn-dfb7dccc-fb2c-4e51-bbfc-817da2195eba": { "external_editor_path": "/Applications/Visual Studio Code.app" } },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Open Spotlight when left Option is pressed by itself",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_option" }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Microsoft keyboard emoji key opens macOS emoji picker",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["fn", "left_command", "left_option", "left_shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_control", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Launch apps with both Command keys",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "shell_command": "open -na Ghostty" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "shell_command": "open -na Firefox" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Map Right Command+Tab to Control+Tab",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["right_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right-click drag to scroll",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "pointing_button": "button2"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "key_up_value": false,
+                                            "name": "enable_mouse_motion_to_scroll",
+                                            "value": true
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "pointing_button": "button2" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "enable_mouse_motion_to_scroll",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "modifiers": { "optional": ["any"] } },
+                                "options": {
+                                    "momentum_scroll_enabled": true,
+                                    "speed_multiplier": 10
+                                },
+                                "type": "mouse_motion_to_scroll"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Reverse scroll direction for external mouse",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 50475,
+                                                "vendor_id": 1133
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "flip": ["vertical_wheel", "horizontal_wheel"],
+                                "type": "mouse_basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "workspace switching",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["left_command", "right_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "left_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "left_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "left_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "left_command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Home/End and word-wise text navigation and deletion",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Shift+Home selects to the start of the document.",
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Shift+Home selects to the start of the document.",
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Home moves to the start of the document.",
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Home moves to the start of the document.",
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Shift+Home selects to the start of the line.",
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Home moves to the start of the line.",
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": { "optional": ["caps_lock"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Shift+End selects to the end of the document.",
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Shift+End selects to the end of the document.",
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+End moves to the end of the document.",
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+End moves to the end of the document.",
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Shift+End selects to the end of the line.",
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "End moves to the end of the line.",
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": { "optional": ["caps_lock"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Shift+left_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Shift+left_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+left_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+left_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Shift+right_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Shift+right_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+right_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+right_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Shift+up_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Shift+up_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+up_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+up_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Shift+down_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Shift+down_arrow selects by word or paragraph.",
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn", "shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+down_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+down_arrow moves by word or paragraph.",
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Backspace deletes the previous word.",
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Backspace deletes the previous word.",
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Cmd+Delete deletes the next word.",
+                                "from": {
+                                    "key_code": "delete_forward",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_forward",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "description": "Windows Keyboard for Mac target 1118:2092",
+                                                "is_keyboard": true,
+                                                "product_id": 2092,
+                                                "vendor_id": 1118
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Fn+Delete deletes the next word.",
+                                "from": {
+                                    "key_code": "delete_forward",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_forward",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Fn+A/Z/X/C/V for Cmd equivalents",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "z",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": {
+                                        "mandatory": ["fn"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "PrtScn launches Flameshot",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "print_screen" },
+                                "to": [{ "shell_command": "/Applications/Flameshot.app/Contents/MacOS/flameshot gui" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 2092,
+                        "vendor_id": 1118
+                    },
+                    "ignore": false,
+                    "ignore_vendor_events": true,
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "application" },
+                            "to": [{ "key_code": "left_control" }]
+                        },
+                        {
+                            "from": { "key_code": "left_command" },
+                            "to": [{ "key_code": "left_option" }]
+                        },
+                        {
+                            "from": { "key_code": "left_control" },
+                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
+                        },
+                        {
+                            "from": { "key_code": "left_option" },
+                            "to": [{ "key_code": "left_command" }]
+                        },
+                        {
+                            "from": { "key_code": "right_command" },
+                            "to": [{ "key_code": "right_option" }]
+                        },
+                        {
+                            "from": { "key_code": "right_control" },
+                            "to": [{ "key_code": "right_option" }]
+                        },
+                        {
+                            "from": { "key_code": "right_option" },
+                            "to": [{ "key_code": "right_command" }]
+                        }
+                    ]
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 50475,
+                        "vendor_id": 1133
+                    },
+                    "ignore": false
+                }
+            ],
+            "name": "Nathan's Bespoke Mode",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "right_command" }]
+                }
+            ],
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        },
+        {
+            "name": "Vanilla Mac",
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
