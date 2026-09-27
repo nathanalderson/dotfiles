@@ -751,6 +751,39 @@
         "command": "editor.action.inlineSuggest.commit",
         "when": "(inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible) && isMac"
     },
+    // Home/End in the terminal for Mac
+    {
+        "key": "home",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b[H"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "end",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b[F"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+left",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b[H"
+        },
+        "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+right",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b[F"
+        },
+        "when": "terminalFocus && isMac"
+    },
     // Command keys act as their Ctrl equivalents in the integrated terminal.
     {
         "key": "cmd+c",
@@ -785,6 +818,12 @@
             "text": "\u0012"
         },
         "when": "terminalFocus && isMac"
+    },
+    {
+        "key": "cmd+r",
+        "command": "vscode-neovim.send",
+        "args": "<C-r>",
+        "when": "editorTextFocus && neovim.init && isMac"
     },
     {
         "key": "cmd+x",
