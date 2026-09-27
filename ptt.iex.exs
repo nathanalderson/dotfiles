@@ -210,17 +210,16 @@ defmodule N do
     end
   end
 
-  def create_tone_events(count, tone, call_id \\ nil) do
-    call_id = call_id || 1
-    entities = [{tone.id, :tone}, {tone.channel_id, :channel}, {tone.org_id, :org}]
+  def create_tone_events(count, tone_id, opts) do
+    tone = Tones.Unsecured.get_tone(tone_id) |> Repo.preload(:channel)
+    {base_timestamp, opts} = Keyword.pop(opts, :timestamp, DateTime.utc_now())
+    {call_id, opts} = Keyword.pop(opts, :call_id, 1)
 
-    1..count
-    |> Enum.flat_map(fn i ->
-      {events, []} =
-        ToneEvents.store_tone_event(entities, :now, tone.id, tone.channel_id, call_id, i)
-
-      events
-    end)
+    for i <- 1..count do
+      timestamp = DateTime.add(base_timestamp, -i, :second)
+      alert_params = Alert.params_from_tone_event!(tone, timestamp, call_id: call_id, channel: tone.channel)
+      ExternalEventManager.create(:unsecured, tone, alert_params, opts)
+    end
   end
 
   def send_messages(
