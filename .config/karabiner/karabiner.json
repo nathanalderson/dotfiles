@@ -1469,12 +1469,6 @@
                                     { "shell_command": "/usr/bin/pmset displaysleepnow" }
                                 ],
                                 "type": "basic"
-                            },
-                            {
-                                "description": "Print Screen launches Flameshot",
-                                "from": { "key_code": "print_screen" },
-                                "to": [{ "shell_command": "/Applications/Flameshot.app/Contents/MacOS/flameshot gui" }],
-                                "type": "basic"
                             }
                         ]
                     },
