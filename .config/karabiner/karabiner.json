@@ -35,9 +35,10 @@
                         ]
                     },
                     {
-                        "description": "Microsoft keyboard emoji key opens macOS emoji picker",
+                        "description": "Microsoft keyboard special keys",
                         "manipulators": [
                             {
+                                "description": "emoji key opens macOS emoji picker",
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["fn", "left_command", "left_option", "left_shift"] }
@@ -48,6 +49,12 @@
                                         "modifiers": ["left_control", "left_command"]
                                     }
                                 ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "play/pause controls the current media app",
+                                "from": { "key_code": "play_or_pause" },
+                                "to": [{ "consumer_key_code": "play_or_pause" }],
                                 "type": "basic"
                             }
                         ]
@@ -128,7 +135,7 @@
                                 "from": { "modifiers": { "optional": ["any"] } },
                                 "options": {
                                     "momentum_scroll_enabled": true,
-                                    "speed_multiplier": 10
+                                    "speed_multiplier": 5
                                 },
                                 "type": "mouse_motion_to_scroll"
                             }
@@ -136,6 +143,7 @@
                     },
                     {
                         "description": "Reverse scroll direction for external mouse",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1181,6 +1189,32 @@
                                         "modifiers": ["left_option"]
                                     }
                                 ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.windowsapp$",
+                                            "^com\\.jumpdesktop\\.JumpDesktop$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Option+Delete performs forward delete.",
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": ["option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "key_code": "delete_forward" }],
                                 "type": "basic"
                             },
                             {
