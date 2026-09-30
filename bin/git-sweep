@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+    cat <<'EOF'
+Usage: git sweep [OPTION]
+
+Clean up local Git branches.
+
+  --list             List branches whose remote tracking branch is gone.
+  --delete, -d       Delete gone branches only when they are fully merged.
+  -D                 Force-delete gone branches.
+  --local --list     List non-main/master branches with no upstream.
+  --local --delete   Delete non-main/master branches with no upstream.
+  --nuclear          Force-delete every branch except main and master.
+  --help, -h         Show this help message.
+EOF
+}
+
+die() {
+    printf '%s\n' "$*" >&2
+    exit 2
+}
+
+is_protected_branch() {
+    [[ $1 == main || $1 == master ]]
+}
+
+require_repository() {
+    git rev-parse --git-dir >/dev/null 2>&1 || die 'git sweep must be run inside a Git repository.'
+}
+
+list_gone_branches() {
+    git for-each-ref --format='%(refname:short)%09%(upstream:track)' refs/heads |
+        while IFS=$'\t' read -r branch tracking; do
+            [[ $tracking == *'[gone]'* ]] && printf '%s\n' "$branch"
+        done
+}
+
+list_local_only_branches() {
+    git for-each-ref --format='%(refname:short)%09%(upstream)' refs/heads |
+        while IFS=$'\t' read -r branch upstream; do
+            [[ -z $upstream ]] && ! is_protected_branch "$branch" && printf '%s\n' "$branch"
+        done
+}
+
+delete_branches() {
+    local delete_flag=$1
+    local scope=$2
+    shift 2
+
+    local branch exit_code=0
+    local -a failed_branches=()
+    for branch in "$@"; do
+        if ! git -c advice.forceDeleteBranch=false branch "$delete_flag" -- "$branch"; then
+            failed_branches+=("$branch")
+            exit_code=1
+        fi
+    done
+
+    if (( ${#failed_branches[@]} > 0 )); then
+        printf '\nCould not delete these branches because they are not fully merged:\n' >&2
+        printf '  %s\n' "${failed_branches[@]}" >&2
+        if [[ $delete_flag == -d ]]; then
+            if [[ $scope == local ]]; then
+                printf '\nForce-delete them with: git sweep --local -D\n' >&2
+            else
+                printf '\nForce-delete them with: git sweep -D\n' >&2
+            fi
+        fi
+    fi
+
+    return "$exit_code"
+}
+
+require_repository
+
+scope=gone
+action=
+
+while (($#)); do
+    case $1 in
+        --help|-h)
+            usage
+            exit 0
+            ;;
+        --list)
+            [[ -z $action ]] || die 'Choose only one action.'
+            action=list
+            ;;
+        --delete|-d)
+            [[ -z $action ]] || die 'Choose only one action.'
+            action=delete
+            ;;
+        -D)
+            [[ -z $action ]] || die 'Choose only one action.'
+            action=force-delete
+            ;;
+        --local)
+            [[ $scope == gone ]] || die 'Choose only one branch scope.'
+            scope=local
+            ;;
+        --nuclear)
+            [[ -z $action ]] || die 'Choose only one action.'
+            scope=nuclear
+            action=force-delete
+            ;;
+        *)
+            die "Unknown option: $1"
+            ;;
+    esac
+    shift
+done
+
+[[ -n $action ]] || {
+    usage
+    exit 0
+}
+
+case $scope in
+    gone)
+        git fetch --prune
+        branches=()
+        while IFS= read -r branch; do
+            branches+=("$branch")
+        done < <(list_gone_branches)
+        ;;
+    local)
+        branches=()
+        while IFS= read -r branch; do
+            branches+=("$branch")
+        done < <(list_local_only_branches)
+        ;;
+    nuclear)
+        branches=()
+        while IFS= read -r branch; do
+            branches+=("$branch")
+        done < <(
+            git for-each-ref --format='%(refname:short)' refs/heads |
+                while IFS= read -r branch; do
+                    ! is_protected_branch "$branch" && printf '%s\n' "$branch"
+                done
+        )
+        ;;
+esac
+
+if [[ $action == list ]]; then
+    (( ${#branches[@]} == 0 )) || printf '%s\n' "${branches[@]}"
+    exit 0
+fi
+
+[[ ${#branches[@]} -gt 0 ]] || exit 0
+
+if [[ $action == delete ]]; then
+    delete_branches -d "$scope" "${branches[@]}"
+else
+    delete_branches -D "$scope" "${branches[@]}"
+fi
