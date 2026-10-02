@@ -222,7 +222,8 @@
         },
         "https://www.erlang.org/doc": true,
         "https://oban.pro/docs": true,
-        "https://grafana.com/docs": true
+        "https://grafana.com/docs": true,
+        "https://www.hammerspoon.org/docs": true
     },
     "chat.viewSessions.orientation": "stacked",
     "claudeCode.initialPermissionMode": "acceptEdits",
