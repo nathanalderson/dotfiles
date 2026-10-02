@@ -1,4 +1,7 @@
 local dragScroll = require("drag_scroll")
+local workspaceSwitch = require("workspace_switch")
+
+workspaceSwitch.start({ velocity = 65 })
 
 dragScroll.start({
 	sensitivity = 1.5,

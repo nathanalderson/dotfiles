@@ -144,7 +144,6 @@
                     },
                     {
                         "description": "Reverse scroll direction for external mouse",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -165,6 +164,7 @@
                     },
                     {
                         "description": "workspace switching",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
