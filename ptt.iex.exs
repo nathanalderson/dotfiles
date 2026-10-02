@@ -231,14 +231,14 @@ defmodule N do
         tone_ids \\ []
       ) do
     channel = Channels.Unsecured.get_channel!(channel_id)
-    now = Timex.now()
+    now = DateTime.utc_now()
 
     for i <- 1..count do
       Messaging.send_message(
         channel,
         Message.new!(
           channel_id,
-          Timex.shift(now, seconds: -i),
+          DateTime.add(now, -i, :second),
           :user,
           6_890_685_743_094_562_816,
           type,
@@ -253,7 +253,7 @@ defmodule N do
     end
   end
 
-  def send_location_update(user, timestamp \\ Timex.now()) do
+  def send_location_update(user, timestamp \\ DateTime.utc_now()) do
     lat = rand_interval(34.769604619877164, 34.66079144385748)
     long = rand_interval(-86.79176805114027, -86.48162697390367)
 
@@ -416,14 +416,14 @@ defmodule N do
               city: "Anytown",
               code: "69E08",
               cross: "Main St x 1st St",
-              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
+              date: Calendar.strftime(timestamp, "%m/%d/%Y"),
               gps: "34.711188,-86.653937",
               w3w: "pursuing.smudges.walkway",
               id: "id-#{num}",
               info: Keyword.get(opts, :info, "Info #{num}"),
               place: "Place #{num}",
               priority: "bravo",
-              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              time: Calendar.strftime(timestamp, "%H:%M:%S"),
               unit: "Unit #{num}"
             }
 
@@ -439,8 +439,8 @@ defmodule N do
               licensePlate: "PLATENUM",
               camera: "camera1",
               network: "network1",
-              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
-              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              date: Calendar.strftime(timestamp, "%m/%d/%Y"),
+              time: Calendar.strftime(timestamp, "%H:%M:%S"),
               image: "https://picsum.photos/500",
               extra_field: "extra_value"
             }
@@ -448,8 +448,8 @@ defmodule N do
           "raptor" ->
             %{
               title: Keyword.get(opts, :title, "Raptor Event #{timestamp}"),
-              date: Timex.format!(timestamp, "%m/%d/%Y", :strftime),
-              time: Timex.format!(timestamp, "%H:%M:%S", :strftime),
+              date: Calendar.strftime(timestamp, "%m/%d/%Y"),
+              time: Calendar.strftime(timestamp, "%H:%M:%S"),
               info: "Raptor info",
               id: "id-#{num}",
               address: "123 Main St",
@@ -457,7 +457,7 @@ defmodule N do
               gps: "34.711188,-86.653937",
               place: "Place #{num}",
               initiator: "Initiator Name",
-              resolution_time: timestamp |> DateTime.shift(minute: 1) |> Timex.format!("%H:%M:%S", :strftime),
+              resolution_time: timestamp |> DateTime.shift(minute: 1) |> Calendar.strftime("%H:%M:%S"),
               status: ""
             }
         end
