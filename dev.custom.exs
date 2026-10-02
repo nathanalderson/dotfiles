@@ -51,6 +51,11 @@ config :core, :logger, [
    }}
 ]
 
+config :stream_chat_events,
+  start: true,
+  sqs_queue_url: "https://sqs.us-east-1.amazonaws.com/351244564755/nathan-stream-chat-events-dev",
+  sqs_region: "us-east-1"
+
 # Import custom secrets
 if File.exists?("#{__DIR__}/dev.custom.secret.exs") do
   import_config "dev.custom.secret.exs"
