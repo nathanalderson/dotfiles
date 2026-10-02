@@ -106,6 +106,7 @@
                     },
                     {
                         "description": "Right-click drag to scroll",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -135,7 +136,7 @@
                                 "from": { "modifiers": { "optional": ["any"] } },
                                 "options": {
                                     "momentum_scroll_enabled": true,
-                                    "speed_multiplier": 5
+                                    "speed_multiplier": 2
                                 },
                                 "type": "mouse_motion_to_scroll"
                             }
