@@ -13,6 +13,10 @@ keybind = ctrl+v=paste_from_clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
 
+# Create an explicit keybind for ctrl+h so the OS doesn't
+# intercept it and hide the window
+keybind = ctrl+h=text:\x08
+
 # Let these fall through instead of being intercepted by ghostty
 keybind = cmd+a=unbind
 keybind = cmd+d=unbind
