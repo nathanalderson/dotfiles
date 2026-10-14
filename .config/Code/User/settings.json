@@ -24,6 +24,9 @@
         "editor.defaultFormatter": "monosans.djlint",
         "editor.tabSize": 2
     },
+    "[jinja-html]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    },
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         "editor.formatOnSave": true,
@@ -207,13 +210,13 @@
         "/tmp/twg/",
     ],
     "chat.tools.urls.autoApprove": {
+        "https://code.visualstudio.com": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
         "https://*.hexdocs.pm": true,
         "https://auth0.com/docs": true,
-        "https://code.visualstudio.com": true,
         "https://docs.aws.amazon.com": true,
         "https://docs.github.com": true,
         "https://getstream.io/chat/docs": true,
-        "https://github.com/microsoft/vscode/wiki/*": true,
         "https://grafana.com/docs": true,
         "https://hexdocs.pm": true,
         "https://oban.pro/docs": true,
@@ -222,7 +225,8 @@
         "*": {
             "approveRequest": false,
             "approveResponse": true
-        }
+        },
+        "https://ghostty.org/docs": true
     },
     "chat.viewSessions.orientation": "stacked",
     "claudeCode.initialPermissionMode": "acceptEdits",
@@ -275,7 +279,7 @@
     "extensions.ignoreRecommendations": true,
     "exunit.saveAllBeforeRun": true,
     "files.associations": {
-        "*.html.j2": "html"
+        "*.html.j2": "jinja-html"
     },
     "files.autoSave": "onWindowChange",
     "git.confirmSync": false,
