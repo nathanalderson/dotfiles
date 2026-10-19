@@ -18,3 +18,4 @@ venv*/
 .ipynb_checkpoints/
 .claude/
 cage.toml
+.DS_Store
