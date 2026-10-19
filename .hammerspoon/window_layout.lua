@@ -1,6 +1,8 @@
 local windowLayout = {}
 local workspaceSwitch = require("workspace_switch")
 local hotkey
+local displayWatcher
+local displayTimer
 local sweeping = false
 hs.window.filter.forceRefreshOnSpaceChange = true
 local windowFilter = hs.window.filter.new({ "Slack", "Discord", "Code" }):keepActive()
@@ -207,7 +209,53 @@ function windowLayout.start()
     if hotkey then
         hotkey:delete()
     end
+    if displayWatcher then
+        displayWatcher:stop()
+    end
+    if displayTimer then
+        displayTimer:stop()
+        displayTimer = nil
+    end
     hotkey = hs.hotkey.bind({ "cmd" }, "F6", windowLayout.applyAllSpaces)
+
+    local knownDisplays = {}
+    for _, screen in ipairs(hs.screen.allScreens()) do
+        knownDisplays[screen:getUUID()] = true
+    end
+    local connectionPending = false
+
+    local function applyWhenReady()
+        displayTimer = nil
+        if #hs.screen.allScreens() < 2 then
+            connectionPending = false
+            return
+        end
+        if sweeping then
+            displayTimer = hs.timer.doAfter(0.5, applyWhenReady)
+            return
+        end
+        connectionPending = false
+        windowLayout.applyAllSpaces()
+    end
+
+    displayWatcher = hs.screen.watcher.new(function()
+        local connected = {}
+        for _, screen in ipairs(hs.screen.allScreens()) do
+            local uuid = screen:getUUID()
+            connected[uuid] = true
+            if not knownDisplays[uuid] then
+                connectionPending = true
+            end
+        end
+        knownDisplays = connected
+        if displayTimer then
+            displayTimer:stop()
+            displayTimer = nil
+        end
+        if connectionPending then
+            displayTimer = hs.timer.doAfter(2, applyWhenReady)
+        end
+    end):start()
 end
 
 return windowLayout
