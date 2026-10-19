@@ -1,7 +1,11 @@
+require("hs.ipc")
+
 local dragScroll = require("drag_scroll")
 local workspaceSwitch = require("workspace_switch")
+local windowLayout = require("window_layout")
 
 workspaceSwitch.start({ velocity = 65 })
+windowLayout.start()
 
 dragScroll.start({
 	sensitivity = 1.5,
