@@ -378,5 +378,6 @@
     "zenMode.silentNotifications": false,
     "extensions.supportAgentsWindow": {
         "monokai.theme-monokai-pro-vscode": true
-    }
+    },
+    "chat.sessionSync.enabled": true
 }
