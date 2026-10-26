@@ -4,7 +4,7 @@ local dragScroll = require("drag_scroll")
 local workspaceSwitch = require("workspace_switch")
 local windowLayout = require("window_layout")
 
-workspaceSwitch.start({ velocity = 25 })
+workspaceSwitch.start({ velocity = 99 })
 windowLayout.start()
 
 dragScroll.start({
