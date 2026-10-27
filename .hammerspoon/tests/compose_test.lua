@@ -62,15 +62,50 @@ assert(taps[1].running)
 assert(not send(types.keyDown, 1, "x"))
 assert(not send(types.keyUp, 1, "x"))
 
-for _, sequence in ipairs({ "--", "---", "n~", "N~", "e'", "shrug", "..." }) do
+local sequenceCount = 0
+for sequence, output in pairs(sequences) do
     local count = #outputs
     begin()
     typeSequence(sequence)
     assert(#outputs == count, "Must wait for compose release")
     finish()
-    assert(#outputs == count + 1 and outputs[#outputs] == sequences[sequence])
+    assert(#outputs == count + 1 and outputs[#outputs] == output, sequence)
+    sequenceCount = sequenceCount + 1
 end
 assert(sequences.shrug == "¯\\_(ツ)_/¯")
+local greekLetters = {
+    { "alpha", "α", "Α" },
+    { "beta", "β", "Β" },
+    { "gamma", "γ", "Γ" },
+    { "delta", "δ", "Δ" },
+    { "epsilon", "ε", "Ε" },
+    { "zeta", "ζ", "Ζ" },
+    { "eta", "η", "Η" },
+    { "theta", "θ", "Θ" },
+    { "iota", "ι", "Ι" },
+    { "kappa", "κ", "Κ" },
+    { "lambda", "λ", "Λ" },
+    { "mu", "μ", "Μ" },
+    { "nu", "ν", "Ν" },
+    { "xi", "ξ", "Ξ" },
+    { "omicron", "ο", "Ο" },
+    { "pi", "π", "Π" },
+    { "rho", "ρ", "Ρ" },
+    { "sigma", "σ", "Σ" },
+    { "tau", "τ", "Τ" },
+    { "upsilon", "υ", "Υ" },
+    { "phi", "φ", "Φ" },
+    { "chi", "χ", "Χ" },
+    { "psi", "ψ", "Ψ" },
+    { "omega", "ω", "Ω" },
+}
+for _, letter in ipairs(greekLetters) do
+    local name, lower, upper = letter[1], letter[2], letter[3]
+    local capitalized = name:sub(1, 1):upper() .. name:sub(2)
+    assert(sequences[name] == lower, name)
+    assert(sequences[capitalized] == upper, capitalized)
+end
+assert(sequences.finalsigma == "ς")
 
 local overlappingCount = #outputs
 begin()
@@ -158,4 +193,4 @@ assert(not pcall(compose.start, { [1] = "x" }))
 assert(not pcall(compose.start, { x = false }))
 compose.stop()
 assert(not taps[2].running)
-print("Compose tests passed")
+print("Compose tests passed (" .. sequenceCount .. " mappings)")
