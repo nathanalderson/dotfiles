@@ -2,7 +2,7 @@ local compose = {}
 local types = hs.eventtap.event.types
 local tap
 local active = false
-local cancelled = false
+local composeDown = false
 local buffer = ""
 local swallowedKeys = {}
 
@@ -12,17 +12,24 @@ function compose.stop()
         tap = nil
     end
     active = false
-    cancelled = false
+    composeDown = false
     buffer = ""
     swallowedKeys = {}
 end
 
 function compose.start(sequences)
     assert(type(sequences) == "table", "Compose sequences must be a table")
+    local prefixes = {}
     for sequence, output in pairs(sequences) do
         assert(type(sequence) == "string" and sequence ~= "",
             "Compose sequences must be nonempty strings")
         assert(type(output) == "string", "Compose output must be a string for " .. sequence)
+        for length = 1, #sequence - 1 do
+            prefixes[sequence:sub(1, length)] = true
+        end
+    end
+    for prefix in pairs(prefixes) do
+        assert(sequences[prefix] == nil, "Compose sequence is also a prefix: " .. prefix)
     end
 
     compose.stop()
@@ -31,19 +38,12 @@ function compose.start(sequences)
         local isDown = keyEvent:getType() == types.keyDown
         if keyCode == hs.keycodes.map.f20 then
             if isDown then
-                if not active then
+                if not composeDown then
                     active = true
-                    cancelled = false
                     buffer = ""
                 end
-            elseif active then
-                local output = not cancelled and sequences[buffer]
-                active = false
-                buffer = ""
-                if output then
-                    hs.eventtap.keyStrokes(output)
-                end
             end
+            composeDown = isDown
             return true
         end
 
@@ -59,13 +59,24 @@ function compose.start(sequences)
         swallowedKeys[keyCode] = true
         local flags = keyEvent:getFlags()
         if keyCode == hs.keycodes.map.escape or flags.cmd or flags.ctrl or flags.alt then
-            cancelled = true
-        elseif not cancelled then
+            active = false
+            buffer = ""
+        else
             local characters = keyEvent:getCharacters()
             if not characters or characters == "" or characters:find("%c") then
-                cancelled = true
+                active = false
+                buffer = ""
             else
                 buffer = buffer .. characters
+                local output = sequences[buffer]
+                if output ~= nil then
+                    active = false
+                    buffer = ""
+                    hs.eventtap.keyStrokes(output)
+                elseif not prefixes[buffer] then
+                    active = false
+                    buffer = ""
+                end
             end
         end
         return true

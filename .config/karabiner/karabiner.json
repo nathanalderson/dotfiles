@@ -5,19 +5,18 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Right Option is hold-to-compose (Hammerspoon F20)",
+                        "description": "Right Option alone is tap-to-compose (Hammerspoon F20)",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": { "optional": ["any"] }
+                                    "key_code": "right_option"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f20",
-                                        "repeat": true
+                                        "key_code": "right_option"
                                     }
                                 ],
+                                "to_if_alone": [{ "key_code": "f20" }],
                                 "type": "basic"
                             }
                         ]

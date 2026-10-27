@@ -1,6 +1,8 @@
+-- Tap Right Option alone, then type a sequence to insert; chords retain Option.
+-- Escape or an impossible prefix cancels silently. Mappings must be prefix-free.
 return {
     -- Punctuation
-    ["--"] = "–",
+    ["--."] = "–",
     ["---"] = "—",
     ["..."] = "…",
     ["<<"] = "«",
@@ -127,9 +129,9 @@ return {
     -- Arrows
     ["<-"] = "←",
     ["->"] = "→",
-    ["<->"] = "↔",
     ["=>"] = "⇒",
-    ["<=>"] = "⇔",
+    ["right"] = "→",
+    ["left"] = "←",
     ["up"] = "↑",
     ["down"] = "↓",
 
@@ -173,7 +175,7 @@ return {
     ["finalsigma"] = "ς",
     ["tau"] = "τ",
     ["Tau"] = "Τ",
-    ["upsilon"] = "υ",
+    [".upsilon"] = "υ",
     ["Upsilon"] = "Υ",
     ["phi"] = "φ",
     ["Phi"] = "Φ",

@@ -49,11 +49,20 @@ local function finish()
     assert(send(types.keyUp, codes.f20))
 end
 
+local function tapCompose()
+    begin()
+    finish()
+end
+
 local function typeSequence(sequence)
+    local count = #outputs
     for index = 1, #sequence do
         local character = sequence:sub(index, index)
         assert(send(types.keyDown, 1, character))
         assert(send(types.keyUp, 1, character))
+        if index < #sequence then
+            assert(#outputs == count, "Must not complete a partial sequence")
+        end
     end
 end
 
@@ -65,14 +74,17 @@ assert(not send(types.keyUp, 1, "x"))
 local sequenceCount = 0
 for sequence, output in pairs(sequences) do
     local count = #outputs
-    begin()
+    tapCompose()
     typeSequence(sequence)
-    assert(#outputs == count, "Must wait for compose release")
-    finish()
     assert(#outputs == count + 1 and outputs[#outputs] == output, sequence)
+    assert(not send(types.keyDown, 1, "x"), "Typing after completion must pass through")
+    assert(not send(types.keyUp, 1, "x"))
     sequenceCount = sequenceCount + 1
 end
 assert(sequences.shrug == "¯\\_(ツ)_/¯")
+assert(sequences["--."] == "–" and sequences["---"] == "—")
+assert(sequences["--"] == nil and sequences["<->"] == nil and sequences["<=>"] == nil)
+assert(sequences.upsilon == nil and sequences[".upsilon"] == "υ")
 local greekLetters = {
     { "alpha", "α", "Α" },
     { "beta", "β", "Β" },
@@ -102,83 +114,101 @@ local greekLetters = {
 for _, letter in ipairs(greekLetters) do
     local name, lower, upper = letter[1], letter[2], letter[3]
     local capitalized = name:sub(1, 1):upper() .. name:sub(2)
-    assert(sequences[name] == lower, name)
+    assert(sequences[name == "upsilon" and ".upsilon" or name] == lower, name)
     assert(sequences[capitalized] == upper, capitalized)
 end
 assert(sequences.finalsigma == "ς")
 
 local overlappingCount = #outputs
-begin()
+tapCompose()
 assert(send(types.keyDown, 14, "e"))
+assert(#outputs == overlappingCount)
 assert(send(types.keyDown, 39, "'"))
+assert(#outputs == overlappingCount + 1 and outputs[#outputs] == sequences["e'"])
 assert(send(types.keyUp, 14, "e"))
 assert(send(types.keyUp, 39, "'"))
-assert(#outputs == overlappingCount, "Overlapping sequence keys must wait for compose release")
-finish()
-assert(#outputs == overlappingCount + 1 and outputs[#outputs] == sequences["e'"])
+assert(not send(types.keyUp, 39, "'"))
 
 local count = #outputs
-begin()
-typeSequence("unknown")
-finish()
-begin()
+tapCompose()
 finish()
 finish()
-assert(#outputs == count, "Unknown, empty and unmatched releases must be silent")
+assert(#outputs == count, "Compose release must not insert anything")
+typeSequence("--")
+assert(#outputs == count, "An incomplete sequence must remain pending")
+typeSequence(".")
+assert(outputs[#outputs] == sequences["--."])
 
-begin()
+count = #outputs
+tapCompose()
+typeSequence("?")
+assert(send(types.keyDown, 1, "q"))
+assert(send(types.keyUp, 1, "q"))
+assert(#outputs == count, "Impossible sequences must cancel silently")
+assert(not send(types.keyDown, 1, "x"))
+assert(not send(types.keyUp, 1, "x"))
+
+tapCompose()
 typeSequence("--")
 assert(send(types.keyDown, codes.escape, "\27"))
 assert(send(types.keyUp, codes.escape))
-typeSequence("---")
-finish()
-assert(#outputs == count, "Escape must cancel until release")
+assert(#outputs == count, "Escape must cancel without insertion")
+assert(not send(types.keyDown, 1, "-"), "Typing after Escape must pass through")
+assert(not send(types.keyUp, 1, "-"))
 
-begin()
+tapCompose()
 assert(send(types.keyDown, 1, "N", { shift = true }))
 assert(send(types.keyUp, 1, "N"))
 assert(send(types.keyDown, 2, "~", { shift = true }))
 assert(send(types.keyUp, 2, "~"))
-finish()
 assert(outputs[#outputs] == sequences["N~"])
 
+count = #outputs
 begin()
 typeSequence("--")
 begin()
 typeSequence("-")
-finish()
 assert(outputs[#outputs] == sequences["---"], "Compose repeats must not reset the buffer")
-
+assert(#outputs == count + 1)
 begin()
-assert(send(types.keyDown, 1, "-"))
-assert(send(types.keyUp, 1))
-assert(send(types.keyDown, 1, "-"))
+assert(not send(types.keyDown, 1, "x"), "Repeats after completion must not rearm compose")
+assert(not send(types.keyUp, 1, "x"))
 finish()
-assert(outputs[#outputs] == sequences["--"])
-assert(send(types.keyUp, 1), "Captured key-up must stay suppressed after compose release")
-assert(not send(types.keyUp, 1))
+assert(#outputs == count + 1, "Release after completion must not insert twice")
+
+tapCompose()
+typeSequence("--")
+tapCompose()
+typeSequence("e'")
+assert(outputs[#outputs] == sequences["e'"], "A fresh tap must restart a partial sequence")
 
 for _, flags in ipairs({ { cmd = true }, { ctrl = true }, { alt = true } }) do
     count = #outputs
-    begin()
+    tapCompose()
     assert(send(types.keyDown, 1, "-", flags))
     assert(send(types.keyUp, 1))
-    typeSequence("--")
-    finish()
     assert(#outputs == count, "Shortcut modifiers must cancel composition")
+    assert(not send(types.keyDown, 1, "x"))
+    assert(not send(types.keyUp, 1, "x"))
 end
 
 for _, character in ipairs({ "", "\8" }) do
     count = #outputs
-    begin()
+    tapCompose()
     assert(send(types.keyDown, 1, character))
     assert(send(types.keyUp, 1))
-    typeSequence("--")
-    finish()
     assert(#outputs == count, "Non-text input must cancel composition")
+    assert(not send(types.keyDown, 1, "x"))
+    assert(not send(types.keyUp, 1, "x"))
 end
 
-begin()
+tapCompose()
+assert(send(types.keyDown, 1))
+assert(send(types.keyUp, 1))
+assert(not send(types.keyDown, 1, "x"), "Missing characters must cancel composition")
+assert(not send(types.keyUp, 1, "x"))
+
+tapCompose()
 typeSequence("--")
 compose.start(sequences)
 assert(not taps[1].running and taps[2].running)
@@ -191,6 +221,7 @@ assert(not pcall(compose.start, "invalid"))
 assert(not pcall(compose.start, { [""] = "x" }))
 assert(not pcall(compose.start, { [1] = "x" }))
 assert(not pcall(compose.start, { x = false }))
+assert(not pcall(compose.start, { a = "x", ab = "y" }), "Prefix conflicts must be rejected")
 compose.stop()
 assert(not taps[2].running)
 print("Compose tests passed (" .. sequenceCount .. " mappings)")
