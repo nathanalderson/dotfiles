@@ -71,52 +71,48 @@ function windowLayout.apply()
     return true
 end
 
-local function visitSpace(space, callback, desktopNumber)
-    local attempts = 0
-    local pendingSpace
-    if desktopNumber and hs.spaces.focusedSpace() ~= space then
-        local success, message = pcall(hs.eventtap.keyStroke, { "ctrl" }, tostring(desktopNumber), 0)
-        if not success then
-            callback(message)
-            return
-        end
-        pendingSpace = space
+local function visitDesktop(space, number, callback, direct)
+    if hs.spaces.focusedSpace() == space then
+        callback()
+        return
     end
+    local attempts = 0
+    local started = false
     local function waitForSpace()
-        local current = hs.spaces.focusedSpace()
-        if current == space then
+        if hs.spaces.focusedSpace() == space then
             hs.timer.doAfter(0.15, callback)
-            return
         elseif attempts >= 100 then
-            callback("Timed out switching workspace")
-            return
-        end
-
-        if not pendingSpace or current == pendingSpace then
-            local success, message = pcall(function()
-                local spaces = assert(hs.spaces.spacesForScreen(hs.screen.primaryScreen()))
-                local currentIndex, targetIndex
-                for index, candidate in ipairs(spaces) do
-                    if candidate == current then
-                        currentIndex = index
+            callback("Timed out switching to Desktop " .. number)
+        else
+            if not started then
+                local success, message = pcall(function()
+                    if not direct then
+                        local spaces = assert(hs.spaces.spacesForScreen(hs.screen.primaryScreen()))
+                        local current = hs.spaces.focusedSpace()
+                        for index, candidate in ipairs(spaces) do
+                            if candidate == current then
+                                if spaces[index - 1] == space then
+                                    started = workspaceSwitch.switch("left")
+                                    return
+                                elseif spaces[index + 1] == space then
+                                    started = workspaceSwitch.switch("right")
+                                    return
+                                end
+                                break
+                            end
+                        end
                     end
-                    if candidate == space then
-                        targetIndex = index
-                    end
+                    hs.eventtap.keyStroke({ "ctrl" }, tostring(number), 0)
+                    started = true
+                end)
+                if not success then
+                    callback(message)
+                    return
                 end
-                assert(currentIndex and targetIndex, "Workspace disappeared during layout")
-                local offset = targetIndex > currentIndex and 1 or -1
-                if workspaceSwitch.switch(offset == 1 and "right" or "left") then
-                    pendingSpace = spaces[currentIndex + offset]
-                end
-            end)
-            if not success then
-                callback(message)
-                return
             end
+            attempts = attempts + 1
+            hs.timer.doAfter(0.05, waitForSpace)
         end
-        attempts = attempts + 1
-        hs.timer.doAfter(0.05, waitForSpace)
     end
     waitForSpace()
 end
@@ -140,13 +136,14 @@ function windowLayout.applyAllSpaces()
         return false
     end
 
+    -- Only desktops 1-9 have ^N shortcuts
     local desktops = {}
-    local originalNumber
+    local returnNumber = 1
     for _, space in ipairs(spaces) do
-        if hs.spaces.spaceType(space) == "user" then
+        if #desktops < 9 and hs.spaces.spaceType(space) == "user" then
             table.insert(desktops, space)
             if space == original then
-                originalNumber = #desktops
+                returnNumber = #desktops
             end
         end
     end
@@ -155,31 +152,19 @@ function windowLayout.applyAllSpaces()
         return false
     end
 
-    local returnNumber = math.min(originalNumber or #desktops, 5)
-    local returnSpace = desktops[returnNumber]
     local queue = {}
-    for number, space in ipairs(desktops) do
-        table.insert(queue, { space = space, desktopNumber = number == 1 and 1 or nil })
+    for number in ipairs(desktops) do
+        table.insert(queue, number)
     end
-    table.insert(queue, { space = returnSpace, desktopNumber = returnNumber })
-    if returnSpace ~= original then
-        table.insert(queue, { space = original })
-    end
+    table.insert(queue, returnNumber)
     sweeping = true
 
     local function fail(reason)
-        local function finish(restoreError)
+        visitDesktop(desktops[returnNumber], returnNumber, function(restoreError)
             sweeping = false
             hs.alert.show("Window layout failed: " .. tostring(reason)
                 .. (restoreError and "; could not return: " .. tostring(restoreError) or ""))
-        end
-        visitSpace(returnSpace, function(restoreError)
-            if restoreError or returnSpace == original then
-                finish(restoreError)
-            else
-                visitSpace(original, finish)
-            end
-        end, returnNumber)
+        end, true)
     end
 
     local index = 0
@@ -189,15 +174,14 @@ function windowLayout.applyAllSpaces()
             return
         end
         index = index + 1
-        if queue[index] then
-            local destination = queue[index]
-            visitSpace(destination.space, advance, destination.desktopNumber)
+        local number = queue[index]
+        if number then
+            visitDesktop(desktops[number], number, advance, index == #queue)
         else
             local success, result = pcall(windowLayout.apply)
+            sweeping = false
             if not success then
-                fail(result)
-            else
-                sweeping = false
+                hs.alert.show("Window layout failed: " .. tostring(result))
             end
         end
     end
