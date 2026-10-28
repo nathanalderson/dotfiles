@@ -5,7 +5,7 @@ local workspaceSwitch = require("workspace_switch")
 local windowLayout = require("window_layout")
 local compose = require("compose")
 
-workspaceSwitch.start({ velocity = 99 })
+workspaceSwitch.start({ velocity = 2000 })
 windowLayout.start()
 compose.start(require("compose_sequences"))
 
