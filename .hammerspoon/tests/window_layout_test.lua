@@ -30,8 +30,8 @@ local function run(options)
         alert = { show = function(message) alerts[#alerts + 1] = message end },
         timer = { doAfter = function(_, callback) timers[#timers + 1] = callback end },
         eventtap = { keyStroke = function(modifiers, key, delay)
-            assert(modifiers[1] == "ctrl" and delay == 0)
-            actions[#actions + 1] = "^" .. key
+            assert(#modifiers == 1 and modifiers[1] == "cmd" and delay == 0)
+            actions[#actions + 1] = "cmd+" .. key
             current = 100 + tonumber(key)
         end },
     }
@@ -95,16 +95,16 @@ local function run(options)
     assert(layout.applyAllSpaces(), "Sweep state must be cleared")
 end
 
-run({ original = 3, expected = "^1,right,right,right,^3" })
-run({ original = 2, expected = "left,right,right,right,^2" })
-run({ original = 1, expected = "right,right,right,^1" })
-run({ original = 4, expected = "^1,right,right,right" })
+run({ original = 3, expected = "cmd+1,right,right,right,cmd+3" })
+run({ original = 2, expected = "left,right,right,right,cmd+2" })
+run({ original = 1, expected = "right,right,right,cmd+1" })
+run({ original = 4, expected = "cmd+1,right,right,right" })
 run({ original = 1, count = 1, expected = "" })
-run({ original = 2, busy = true, expected = "left,right,right,right,^2" })
-run({ original = 3, fullscreen = true, expected = "^1,^2,right,right,^3" })
-run({ original = 3, count = 11, expected = "^1,right,right,right,right,right,right,right,right,^3" })
+run({ original = 2, busy = true, expected = "left,right,right,right,cmd+2" })
+run({ original = 3, fullscreen = true, expected = "cmd+1,cmd+2,right,right,cmd+3" })
+run({ original = 3, count = 11, expected = "cmd+1,right,right,right,right,right,right,right,right,cmd+3" })
 run({ original = 2, fail = true, expected = "" })
-run({ original = 3, fail = true, expected = "^1,^3" })
-run({ original = 3, timeout = true, expected = "^1,right,^3" })
+run({ original = 3, fail = true, expected = "cmd+1,cmd+3" })
+run({ original = 3, timeout = true, expected = "cmd+1,right,cmd+3" })
 
 print("Window layout tests passed")

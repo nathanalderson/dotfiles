@@ -102,7 +102,7 @@ local function visitDesktop(space, number, callback, direct)
                             end
                         end
                     end
-                    hs.eventtap.keyStroke({ "ctrl" }, tostring(number), 0)
+                    hs.eventtap.keyStroke({ "cmd" }, tostring(number), 0)
                     started = true
                 end)
                 if not success then
@@ -136,7 +136,7 @@ function windowLayout.applyAllSpaces()
         return false
     end
 
-    -- Only desktops 1-9 have ^N shortcuts
+    -- Only desktops 1-9 have Cmd+N shortcuts
     local desktops = {}
     local returnNumber = 1
     for _, space in ipairs(spaces) do

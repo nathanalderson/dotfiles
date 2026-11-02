@@ -95,11 +95,6 @@
         "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
         "when": "isLinux"
     },
-    {
-        "key": "cmd+6",
-        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-        "when": "isMac"
-    },
     // ===================================================
     // window navigation and manaagement
     {
